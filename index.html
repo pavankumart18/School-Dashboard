@@ -131,8 +131,39 @@ a{color:inherit;text-decoration:none;}
 /* metric name */
 .kc-name{font-size:12px;font-weight:600;color:var(--ink-mid);margin-bottom:6px;line-height:1.2;}
 
-/* plain english insight */
-.kc-insight{font-size:11px;color:var(--ink-soft);line-height:1.5;padding-top:6px;border-top:1px solid var(--bdr);}
+/* plain english insight — collapsed by default */
+.kc-insight{
+  font-size:11px;color:var(--ink-soft);line-height:1.5;
+  max-height:0;overflow:hidden;
+  padding-top:0;border-top:1px solid transparent;
+  transition:max-height .32s ease,padding-top .22s ease,border-top-color .22s ease;
+}
+.kc.open .kc-insight{
+  max-height:220px;
+  padding-top:8px;
+  border-top-color:var(--bdr);
+}
+
+/* toggle button */
+.kc-toggle{
+  display:flex;align-items:center;gap:5px;
+  margin-top:10px;padding:0;
+  background:none;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:10.5px;font-weight:500;
+  color:var(--ink-ghost);
+  transition:color .13s;
+}
+.kc-toggle:hover{color:var(--ink-soft);}
+.kc-toggle-label{font-size:10.5px;}
+.kc-chevron{
+  font-size:11px;line-height:1;
+  display:inline-block;
+  transition:transform .25s ease;
+}
+.kc.open .kc-chevron{transform:rotate(180deg);}
+.kc.g .kc-toggle:hover{color:var(--green);}
+.kc.a .kc-toggle:hover{color:var(--amber);}
+.kc.r .kc-toggle:hover{color:var(--red);}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1280px){.kpi-grid{grid-template-columns:repeat(3,1fr);}}
@@ -450,5 +481,27 @@ a{color:inherit;text-decoration:none;}
     </div><!-- /scroll -->
   </main>
 </div>
+<script>
+  document.querySelectorAll('.kc').forEach(card => {
+    const insight = card.querySelector('.kc-insight');
+    if (!insight) return;
+
+    // Build toggle button
+    const btn = document.createElement('button');
+    btn.className = 'kc-toggle';
+    btn.innerHTML =
+      '<span class="kc-toggle-label">What does this mean?</span>' +
+      '<span class="kc-chevron">▾</span>';
+
+    // Insert button before the insight text
+    card.insertBefore(btn, insight);
+
+    btn.addEventListener('click', () => {
+      const isOpen = card.classList.toggle('open');
+      btn.querySelector('.kc-toggle-label').textContent =
+        isOpen ? 'Hide explanation' : 'What does this mean?';
+    });
+  });
+</script>
 </body>
 </html>
