@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principal's Intelligence Dashboard — Westbridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+:root {
+  --ink:#0f1923; --ink-mid:#2d3f50; --ink-soft:#5a7082; --ink-ghost:#8fa3b0;
+  --paper:#f5f1eb; --paper-warm:#ede9e1; --paper-card:#faf8f4;
+  --amber:#d4820a; --amber-lt:#f5a623; --teal:#0d7a6e; --rose:#c0392b; --blue-ink:#1a5276;
+  --border:rgba(15,25,35,0.10); --shadow:0 2px 16px rgba(15,25,35,0.08);
+  --panel-bg:#141e2d; --panel-bdr:rgba(255,255,255,0.08);
+  --ca:#f5a623; --ct:#2dd4bf; --cr:#f87171; --cb:#60a5fa;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);height:100vh;overflow:hidden;}
+.app{display:flex;height:100%;}
+
+/* SIDEBAR */
+.sb{width:214px;min-width:214px;background:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
+.sb-brand{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.07);}
+.sb-brand .sn{font-family:'DM Serif Display',serif;color:#fff;font-size:14.5px;line-height:1.35;display:block;}
+.sb-brand .sl{font-size:9.5px;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.13em;margin-top:5px;display:block;}
+.sb-nav{flex:1;overflow:hidden;padding:6px 0;}
+.sb-ns{padding:12px 0 4px;}
+.sb-nlbl{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.22);padding:0 20px 6px;font-weight:500;}
+.sb-nav ul{list-style:none;}
+.sb-nav li{margin-bottom:1px;}
+.sb-nav a{display:flex;align-items:center;gap:10px;padding:8px 20px;font-size:13px;color:rgba(255,255,255,.48);text-decoration:none;border-left:3px solid transparent;transition:all .14s;}
+.sb-nav a:hover{color:rgba(255,255,255,.82);background:rgba(255,255,255,.05);}
+.sb-nav li.active a{color:#fff;background:rgba(255,255,255,.08);border-left-color:var(--amber-lt);}
+.sb-nav .icon{font-size:17px;opacity:.6;}
+.sb-nav li.active a .icon{opacity:1;}
+.sb-ref{padding:11px 20px 13px;font-size:9.5px;color:rgba(255,255,255,.22);line-height:1.65;border-top:1px solid rgba(255,255,255,.07);}
+.sb-ref strong{color:rgba(255,255,255,.40);font-weight:500;}
+.sb-user{display:flex;align-items:center;gap:10px;padding:11px 20px 15px;border-top:1px solid rgba(255,255,255,.07);}
+.sb-av{width:32px;height:32px;background:rgba(245,166,35,.20);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--amber-lt);}
+.sb-user .un{font-size:12px;font-weight:600;color:rgba(255,255,255,.80);display:block;}
+.sb-user .ur{font-size:10px;color:rgba(255,255,255,.30);}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--paper-card);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:14px;}
+.tb-l{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.tb-h1{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);font-weight:400;letter-spacing:-.02em;}
+.school-sel{background:var(--paper);border:1px solid var(--border);color:var(--ink-mid);padding:4px 12px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:12px;outline:none;cursor:pointer;}
+.seg-grp{display:flex;background:var(--paper);border-radius:20px;padding:3px;gap:2px;border:1px solid var(--border);}
+.seg-btn{background:transparent;border:none;color:var(--ink-soft);padding:3px 12px;border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;transition:all .13s;}
+.seg-btn.active{background:var(--ink);color:#fff;font-weight:600;}
+.seg-btn:hover:not(.active){color:var(--ink);background:var(--paper-warm);}
+.btn-exp{background:var(--paper);color:var(--ink-soft);border:1px solid var(--border);padding:5px 14px;border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;}
+.btn-exp:hover{background:var(--paper-warm);}
+.btn-exp .icon{font-size:15px;}
+
+/* SCROLL */
+.scroll{flex:1;overflow-y:auto;padding:16px 24px 36px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.scroll::-webkit-scrollbar{width:5px;}
+.scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* ALERT */
+.alert-bar{background:linear-gradient(135deg,#1a1a2e,#162032);border-radius:10px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.ab-l{display:flex;align-items:center;gap:12px;}
+.ab-ico{width:28px;height:28px;background:rgba(245,166,35,.18);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ab-msg strong{font-size:12.5px;font-weight:600;color:#fff;}
+.ab-msg p{font-size:11px;color:rgba(255,255,255,.45);margin-top:1px;}
+.ab-pills{display:flex;gap:6px;flex-wrap:wrap;}
+.a-pill{background:rgba(255,255,255,.09);border-radius:20px;padding:3px 10px;font-size:11px;color:rgba(255,255,255,.65);text-decoration:none;transition:background .13s;cursor:pointer;}
+.a-pill:hover{background:rgba(255,255,255,.17);color:#fff;}
+.a-pill.warn{background:rgba(212,130,10,.22);color:var(--amber-lt);}
+
+/* SECTION LABEL */
+.sl{font-size:9.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-ghost);font-weight:500;display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.sl::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* KPI CARDS */
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;}
+.kpi{background:var(--paper-card);border:1px solid var(--border);border-radius:9px;padding:13px 14px;position:relative;overflow:hidden;transition:transform .13s,box-shadow .13s;cursor:default;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ks,var(--ink-ghost));border-radius:9px 9px 0 0;}
+.kpi:hover{transform:translateY(-1px);box-shadow:var(--shadow);}
+.kpi.cr{--ks:var(--rose);}.kpi.ca{--ks:var(--amber);}.kpi.ct{--ks:var(--teal);}.kpi.cb{--ks:var(--blue-ink);}
+.kpi-lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.10em;color:var(--ink-ghost);font-weight:500;margin-bottom:8px;}
+.kpi-val{font-family:'DM Serif Display',serif;font-size:24px;color:var(--ink);letter-spacing:-.02em;line-height:1;}
+.kpi-d{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;margin-top:6px;padding:2px 6px;border-radius:8px;}
+.kpi-d.up{color:var(--teal);background:rgba(13,122,110,.10);}
+.kpi-d.dn{color:var(--rose);background:rgba(192,57,43,.10);}
+.kpi-d.flat{color:var(--ink-soft);background:rgba(90,112,130,.10);}
+.kpi-sub{font-size:9.5px;color:var(--ink-ghost);margin-top:3px;}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:16px;}
+.g2w{display:grid;grid-template-columns:3fr 2fr;gap:13px;margin-bottom:16px;}
+.g2n{display:grid;grid-template-columns:2fr 3fr;gap:13px;margin-bottom:16px;}
+.gfull{margin-bottom:16px;}
+
+/* DARK PANEL */
+.panel{background:var(--panel-bg);border:1px solid var(--panel-bdr);border-radius:11px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .14s;}
+.panel:hover{border-color:rgba(255,255,255,.15);}
+.panel.h380{height:380px;}.panel.h320{height:320px;}.panel.h300{height:300px;}
+.panel.h280{height:280px;}.panel.h260{height:260px;}.panel.h220{height:220px;}
+.phd{padding:14px 18px 8px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.phd h3{font-size:12px;font-weight:600;color:rgba(255,255,255,.85);font-family:'DM Sans',sans-serif;}
+.phd .psub{font-size:10px;color:rgba(255,255,255,.38);margin-top:2px;}
+.pbadge{font-size:9.5px;padding:2px 8px;border-radius:8px;font-weight:600;}
+.pbadge.ca{background:rgba(245,166,35,.18);color:var(--ca);}
+.pbadge.ct{background:rgba(45,212,191,.18);color:var(--ct);}
+.pbadge.cr{background:rgba(248,113,113,.18);color:var(--cr);}
+.pbadge.cm{background:rgba(255,255,255,.07);color:rgba(255,255,255,.45);}
+.pbody{flex:1;padding:0 18px 14px;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.viz{flex:1;position:relative;overflow:hidden;}
+#radar-viz{min-height:168px;}
+
+/* LIGHT CARD */
+.lcard{background:var(--paper-card);border:1px solid var(--border);border-radius:11px;display:flex;flex-direction:column;overflow:hidden;}
+.lcard.h380{height:380px;}.lcard.h320{height:320px;}.lcard.h300{height:300px;}.lcard.h280{height:280px;}.lcard.h260{height:260px;}
+.lhd{padding:14px 18px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid var(--border);}
+.lhd h3{font-size:12px;font-weight:600;color:var(--ink);font-family:'DM Sans',sans-serif;}
+.lhd .lsub{font-size:10px;color:var(--ink-ghost);margin-top:2px;}
+.lbody{padding:12px 18px;flex:1;overflow-y:auto;}
+.lbadge{font-size:9.5px;padding:2px 8px;border-radius:8px;font-weight:600;}
+.lbadge.g{background:rgba(13,122,110,.10);color:var(--teal);}
+.lbadge.a{background:rgba(212,130,10,.12);color:var(--amber);}
+.lbadge.r{background:rgba(192,57,43,.10);color:var(--rose);}
+.mrow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
+.mrow:last-child{border-bottom:none;}
+.mrow-n{font-size:12px;color:var(--ink-mid);}
+.mrow-r{text-align:right;}
+.mrow-v{font-size:14px;font-weight:700;color:var(--ink);}
+.mrow-s{font-size:10px;color:var(--ink-ghost);}
+.comp{margin-bottom:10px;}.comp:last-child{margin-bottom:0;}
+.comp-hd{display:flex;justify-content:space-between;margin-bottom:3px;}
+.comp-n{font-size:11px;color:var(--ink-mid);}
+.comp-v{font-size:12px;font-weight:700;color:var(--ink);}
+.comp-tr{height:5px;background:var(--paper-warm);border-radius:3px;overflow:hidden;}
+.comp-fi{height:100%;border-radius:3px;transition:width 1s ease;}
+.ai{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.ai:last-child{border-bottom:none;}
+.ai-ico{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ai-ico.mkt{background:rgba(26,82,118,.10);}
+.ai-ico.acad{background:rgba(13,122,110,.10);}
+.ai-ico.risk{background:rgba(212,130,10,.12);}
+.ai-text strong{font-size:11.5px;font-weight:600;color:var(--ink);display:block;margin-bottom:2px;}
+.ai-text span{font-size:10.5px;color:var(--ink-soft);line-height:1.45;}
+.ai-tag{font-size:9.5px;padding:2px 7px;border-radius:8px;font-weight:600;flex-shrink:0;align-self:flex-start;margin-top:2px;}
+
+/* NPS display inside dark panel */
+.nps-display{text-align:center;padding:6px 0 4px;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.06);margin:0 18px 8px;}
+.nps-big{font-family:'DM Serif Display',serif;font-size:40px;color:var(--ca);line-height:1;letter-spacing:-.03em;}
+.nps-lbl{font-size:10px;color:rgba(255,255,255,.38);margin-top:2px;}
+.nps-band{display:flex;height:4px;border-radius:3px;overflow:hidden;margin:6px 18px 6px;flex-shrink:0;}
+
+/* TOOLTIP */
+.tip{position:fixed;background:rgba(10,15,25,.97);border:1px solid rgba(245,166,35,.40);border-radius:8px;padding:9px 13px;font-size:12px;font-family:'DM Sans',sans-serif;color:#fff;pointer-events:none;opacity:0;transition:opacity .15s;z-index:9999;max-width:260px;line-height:1.55;}
+.tip-insight{font-size:10.5px;color:rgba(255,255,255,.48);display:block;margin-top:4px;font-style:italic;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.kpi{animation:fadeUp .4s ease both;}
+.kpi:nth-child(1){animation-delay:.04s}.kpi:nth-child(2){animation-delay:.08s}
+.kpi:nth-child(3){animation-delay:.12s}.kpi:nth-child(4){animation-delay:.16s}
+.kpi:nth-child(5){animation-delay:.20s}.kpi:nth-child(6){animation-delay:.24s}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- SIDEBAR -->
+<nav class="sb">
+  <div class="sb-brand">
+    <span class="sn">Westbridge<br>Academy</span>
+    <span class="sl">Principal View · FY2026</span>
+  </div>
+  <div class="sb-nav">
+    <div class="sb-ns">
+      <div class="sb-nlbl">School</div>
+      <ul>
+        <li class="active"><a href="#"><span class="icon">dashboard</span>Overview</a></li>
+        <li><a href="principal-datastory.html"><span class="icon">auto_stories</span>Data Story</a></li>
+        <li><a href="principal-email-alert.html"><span class="icon">mail</span>Alerts via mail</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="sb-ref">Last refreshed<br><strong>Today 04:07 AM</strong><br>
+    <span style="font-size:9px;opacity:.7;">Salesforce · Wk 24 &nbsp;|&nbsp; Finance · Wk 23</span>
+  </div>
+  <div class="sb-user">
+    <div class="sb-av">JP</div>
+    <div><span class="un">J. Principal</span><span class="ur">Head of School</span></div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+  <header class="topbar">
+    <div class="tb-l">
+      <span class="tb-h1">School Intelligence</span>
+      <select class="school-sel" id="school-select"></select>
+      <div class="seg-grp">
+        <button class="seg-btn active" data-seg="All">All Stages</button>
+        <button class="seg-btn" data-seg="Early Years">Early Years</button>
+        <button class="seg-btn" data-seg="Primary">Primary</button>
+        <button class="seg-btn" data-seg="Secondary">Secondary</button>
+      </div>
+    </div>
+    <button class="btn-exp"><span class="icon">download</span>Export</button>
+  </header>
+
+  <div class="scroll" id="scroll-area">
+
+    <!-- ALERT -->
+    <div class="alert-bar">
+      <div class="ab-l">
+        <div class="ab-ico">⚠</div>
+        <div class="ab-msg">
+          <strong>2 metrics need your attention this week</strong>
+          <p>New enrolment ↓13.9% YoY &nbsp;·&nbsp; Secondary velocity at 138 days exceeds 120-day threshold</p>
+        </div>
+      </div>
+      <div class="ab-pills">
+        <span class="a-pill warn">↓ Enrolments</span>
+        <span class="a-pill warn">⏱ Velocity</span>
+        <a href="principal-email-alert.html" class="a-pill">View Alerts →</a>
+        <a href="principal-datastory.html" class="a-pill">Morning Briefing →</a>
+      </div>
+    </div>
+
+    <!-- KPI STRIP -->
+    <div class="sl">Key Metrics — <span id="school-name-lbl">Westbridge Academy</span> · EY2027</div>
+    <div class="kpi-row">
+      <div class="kpi cr"><div class="kpi-lbl">Forecast FTE</div><div class="kpi-val" id="k-fte">12,459</div><div class="kpi-d dn" id="k-fte-d">↓ 3.2% vs Budget</div><div class="kpi-sub" id="k-fte-s">Budget: 12,864</div></div>
+      <div class="kpi cr"><div class="kpi-lbl">New Enrolments</div><div class="kpi-val" id="k-enr">410</div><div class="kpi-d dn" id="k-enr-d">↓ 13.9% YoY</div><div class="kpi-sub" id="k-enr-s">Last year: 477</div></div>
+      <div class="kpi ca"><div class="kpi-lbl">Enquiries</div><div class="kpi-val" id="k-enq">5,615</div><div class="kpi-d dn" id="k-enq-d">↓ 13.3% YoY</div><div class="kpi-sub" id="k-enq-s">Visits: 2,815</div></div>
+      <div class="kpi ca"><div class="kpi-lbl">NPS Score</div><div class="kpi-val" id="k-nps">29</div><div class="kpi-d flat" id="k-nps-d">→ Flat YoY</div><div class="kpi-sub" id="k-nps-s">Benchmark: 35</div></div>
+      <div class="kpi ct"><div class="kpi-lbl">Capacity Used</div><div class="kpi-val" id="k-cap">80.5%</div><div class="kpi-d up" id="k-cap-d">↑ On Track</div><div class="kpi-sub" id="k-cap-s">Forecast: 73.7%</div></div>
+      <div class="kpi cb"><div class="kpi-lbl">Staff Engagement</div><div class="kpi-val" id="k-eng">3.81</div><div class="kpi-d flat" id="k-eng-d">→ Flat YoY</div><div class="kpi-sub" id="k-eng-s">Attrition: 19.6%</div></div>
+    </div>
+
+    <!-- ADMISSIONS -->
+    <div class="sl">Admissions Pipeline &amp; Enquiry Sources</div>
+    <div class="g2w">
+      <div class="panel h380">
+        <div class="phd">
+          <div><h3>Enrolment Funnel — Drop-off Analysis</h3><div class="psub">EY2027 · <span id="seg-lbl">All Year Groups</span> · CVR: <span id="cvr-val" style="color:var(--ca);font-weight:700;">7.3%</span></div></div>
+          <span class="pbadge ca" id="funnel-badge">↓ Vol −13.9%</span>
+        </div>
+        <div class="pbody"><div class="viz" id="funnel-viz"></div></div>
+      </div>
+      <div class="panel h380">
+        <div class="phd">
+          <div><h3>Enquiry Sources &amp; Conversion Rate</h3><div class="psub">Hover each channel · Best CVR = referral at 10.1%</div></div>
+          <span class="pbadge ct">Referral Wins</span>
+        </div>
+        <div class="pbody"><div class="viz" id="sources-viz"></div></div>
+      </div>
+    </div>
+
+    <!-- TRENDS -->
+    <div class="sl">Trends &amp; Timing Intelligence</div>
+    <div class="g2">
+      <div class="panel h280">
+        <div class="phd">
+          <div><h3>Weekly Enquiry Volume vs. Prior Year</h3><div class="psub">Hover to compare weeks · Gold = this year · Grey = last year</div></div>
+          <span class="pbadge cr">Gap from Wk 9</span>
+        </div>
+        <div class="pbody"><div class="viz" id="weekly-viz"></div></div>
+      </div>
+      <div class="panel h280">
+        <div class="phd">
+          <div><h3>Velocity Heatmap — Days to Convert</h3><div class="psub">Hover a cell · Red = slow pipeline · Secondary critical Wks 10–18</div></div>
+          <span class="pbadge ca">Secondary critical</span>
+        </div>
+        <div class="pbody" style="padding:0 18px 12px;"><div class="viz" id="heatmap-viz"></div></div>
+      </div>
+    </div>
+
+    <!-- SCHOOL HEALTH -->
+    <div class="sl">School Health &amp; Parent Satisfaction</div>
+    <div class="g2n">
+      <div class="panel h320">
+        <div class="phd">
+          <div><h3>Performance Radar</h3><div class="psub">Hover each axis for metric detail · Gold = your school</div></div>
+          <span class="pbadge ct">vs Region</span>
+        </div>
+        <div class="nps-display">
+          <div class="nps-big" id="nps-score">29</div>
+          <div class="nps-lbl">Net Promoter Score &nbsp;·&nbsp; Benchmark: <span id="nps-bench">35</span></div>
+        </div>
+        <div class="nps-band" id="nps-band">
+          <div style="flex:18;background:var(--cr);opacity:.75;"></div>
+          <div style="flex:36;background:rgba(255,255,255,.18);"></div>
+          <div style="flex:46;background:var(--ct);opacity:.75;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,.35);padding:0 18px 6px;flex-shrink:0;">
+          <span>18% Detractors</span><span>36% Passive</span><span>46% Promoters</span>
+        </div>
+        <div class="pbody" style="padding-top:0;"><div class="viz" id="radar-viz"></div></div>
+      </div>
+      <div class="panel h320">
+        <div class="phd">
+          <div><h3>NPS Driver Decomposition — Year-on-Year</h3><div class="psub">Hover a row · Dot = this year · Hollow = last year · Right = change</div></div>
+          <span class="pbadge cr">Value ↓ 0.4</span>
+        </div>
+        <div class="pbody"><div class="viz" id="nps-drivers-viz"></div></div>
+      </div>
+    </div>
+
+    <!-- PEOPLE & ACADEMIC -->
+    <div class="sl">People &amp; Academic Performance</div>
+    <div class="g2">
+      <div class="panel h300">
+        <div class="phd">
+          <div><h3>Attrition vs. Academic Outcomes — by Department</h3><div class="psub">Hover a dot · Red zone = attrition &gt;20% · Trend line shows correlation</div></div>
+          <span class="pbadge cr">Correlation risk</span>
+        </div>
+        <div class="pbody"><div class="viz" id="scatter-viz"></div></div>
+      </div>
+      <div class="lcard h300">
+        <div class="lhd"><div><h3>Academic Results</h3><div class="lsub">2025 Results · GCSE, A-Level, IB</div></div><span class="lbadge a">Mixed</span></div>
+        <div class="lbody">
+          <div class="mrow"><span class="mrow-n">IB Avg Diploma Score</span><div class="mrow-r"><div class="mrow-v">33.2</div><div class="mrow-s" style="color:var(--teal)">+0.5 vs PY ↑</div></div></div>
+          <div class="mrow"><span class="mrow-n">A-Levels A*–A Grades</span><div class="mrow-r"><div class="mrow-v" style="color:var(--rose)">52.7%</div><div class="mrow-s" style="color:var(--rose)">−13.3pts vs PY ↓</div></div></div>
+          <div class="mrow"><span class="mrow-n">iGCSE A*–A Grades</span><div class="mrow-r"><div class="mrow-v">46.4%</div><div class="mrow-s" style="color:var(--rose)">−2.0pts vs PY</div></div></div>
+          <div class="mrow"><span class="mrow-n">AP Average Score</span><div class="mrow-r"><div class="mrow-v">3.6</div><div class="mrow-s">→ Flat vs PY</div></div></div>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border);">
+            <div style="font-size:9.5px;color:var(--ink-ghost);margin-bottom:4px;">IB Score Trend (5yr)</div>
+            <svg viewBox="0 0 200 32" style="width:100%;height:32px;overflow:visible;">
+              <polyline points="0,24 50,20 100,22 150,16 200,10" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="200" cy="10" r="3" fill="var(--teal)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPACITY & FINANCE -->
+    <div class="sl">Capacity Utilisation &amp; Financial Health</div>
+    <div class="g2">
+      <div class="panel h260">
+        <div class="phd">
+          <div><h3>Capacity — Bullet Chart by Year Group</h3><div class="psub">Hover a row · Bar = actual · Marker = target · Track = max</div></div>
+          <span class="pbadge ca">Secondary under target</span>
+        </div>
+        <div class="pbody"><div class="viz" id="capacity-viz"></div></div>
+      </div>
+      <div class="panel h260">
+        <div class="phd">
+          <div><h3>Fee Income — Budget to Actual Waterfall</h3><div class="psub">Hover each bar to see what drove the variance</div></div>
+          <span class="pbadge ct">Near Budget</span>
+        </div>
+        <div class="pbody"><div class="viz" id="waterfall-viz"></div></div>
+      </div>
+    </div>
+
+    <!-- TALENT & COMPLIANCE -->
+    <div class="sl">Talent, Compliance &amp; Financial Detail</div>
+    <div class="g2">
+      <div class="lcard h260">
+        <div class="lhd"><div><h3>Talent &amp; Retention</h3><div class="lsub">2,773 staff · FY2026</div></div><span class="lbadge a">Monitor</span></div>
+        <div class="lbody">
+          <div class="mrow"><span class="mrow-n">Teacher Attrition</span><div class="mrow-r"><div class="mrow-v" style="color:var(--rose)">19.6%</div><div class="mrow-s">Flat vs PY</div></div></div>
+          <div class="mrow"><span class="mrow-n">MAC Attrition</span><div class="mrow-r"><div class="mrow-v" style="color:var(--amber)">21.5%</div><div class="mrow-s">+0.2% vs PY</div></div></div>
+          <div class="mrow"><span class="mrow-n">Employee Engagement</span><div class="mrow-r"><div class="mrow-v">3.81</div><div class="mrow-s">→ Flat vs PY</div></div></div>
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border);">
+            <div class="comp"><div class="comp-hd"><span class="comp-n">Safeguarding Training</span><span class="comp-v">94.9%</span></div><div class="comp-tr"><div class="comp-fi" style="width:94.9%;background:var(--teal)"></div></div></div>
+            <div class="comp"><div class="comp-hd"><span class="comp-n">Background Checks (Staff)</span><span class="comp-v" style="color:var(--amber)">92.6%</span></div><div class="comp-tr"><div class="comp-fi" style="width:92.6%;background:var(--amber)"></div></div></div>
+            <div class="comp"><div class="comp-hd"><span class="comp-n">Contractors — BGC</span><span class="comp-v" style="color:var(--rose)">76.2%</span></div><div class="comp-tr"><div class="comp-fi" style="width:76.2%;background:var(--rose)"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="lcard h260">
+        <div class="lhd"><div><h3>Financial Health</h3><div class="lsub">OneStream · as of Wk 23</div></div><span class="lbadge g">On Track</span></div>
+        <div class="lbody">
+          <div class="mrow"><span class="mrow-n">Fee Income</span><div class="mrow-r"><div class="mrow-v">$64.3M</div><div class="mrow-s">On budget</div></div></div>
+          <div class="mrow"><span class="mrow-n">EBITDA</span><div class="mrow-r"><div class="mrow-v">$36.4M</div><div class="mrow-s">On budget</div></div></div>
+          <div class="mrow"><span class="mrow-n">Flowthrough %</span><div class="mrow-r"><div class="mrow-v" style="color:var(--rose)">23.7%</div><div class="mrow-s" style="color:var(--rose)">−26.3% vs PY</div></div></div>
+          <div class="mrow"><span class="mrow-n">Market Share Growth</span><div class="mrow-r"><div class="mrow-v">+0.17%</div><div class="mrow-s">vs Core Market</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRATEGIC VIEW -->
+    <div class="sl">Strategic View — Action Plans &amp; Competitive Position</div>
+    <div class="gfull">
+      <div class="panel h220">
+        <div class="phd">
+          <div><h3>Initiative Timeline — Action Plan Gantt</h3><div class="psub">Hover each bar · Gold line = today · Colour = RAG status</div></div>
+          <div style="display:flex;gap:8px;"><span class="pbadge cr">3 Open</span><span class="pbadge ct">1 In Progress</span></div>
+        </div>
+        <div class="pbody"><div class="viz" id="gantt-viz"></div></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="panel h300">
+        <div class="phd">
+          <div><h3>Competitive Landscape — Bubble Chart</h3><div class="psub">Hover each school · Bubble size = enrolment · Gold = your school</div></div>
+          <span class="pbadge ca">New entrant: Aspire IS</span>
+        </div>
+        <div class="pbody"><div class="viz" id="competitor-viz"></div></div>
+      </div>
+      <div class="lcard h300">
+        <div class="lhd"><div><h3>Priority Actions This Week</h3></div><span class="lbadge r">4 Actions</span></div>
+        <div class="lbody">
+          <div class="ai"><div class="ai-ico mkt">📣</div><div class="ai-text"><strong>Launch Parent Referral Programme</strong><span>Competitor entering Primary. Leverage the 46% promoter base before Aspire IS establishes brand locally.</span></div><span class="ai-tag" style="background:rgba(212,130,10,.12);color:var(--amber)">Marketing</span></div>
+          <div class="ai"><div class="ai-ico acad">📋</div><div class="ai-text"><strong>Audit A-Level Teaching by Dept</strong><span>−13.3pt drop is not within normal variation. Cross-reference with attrition data — likely a staffing-outcome link.</span></div><span class="ai-tag" style="background:rgba(192,57,43,.10);color:var(--rose)">Urgent</span></div>
+          <div class="ai"><div class="ai-ico risk">⚠️</div><div class="ai-text"><strong>Escalate Contractor BGC Gap (76.2%)</strong><span>Safeguarding risk. The gap vs employed staff (94.9%) confirms a process failure — flag to HR today.</span></div><span class="ai-tag" style="background:rgba(192,57,43,.10);color:var(--rose)">Compliance</span></div>
+          <div class="ai"><div class="ai-ico mkt">⏱</div><div class="ai-text"><strong>Map Secondary Velocity Bottleneck</strong><span>138 days vs 94 for Early Years. Identify if stall is at visit→app or app→decision with MAC team.</span></div><span class="ai-tag" style="background:rgba(26,82,118,.10);color:var(--blue-ink)">Admissions</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /scroll -->
+</main>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+/* ─────────────────────────────────────────────
+   DATA
+───────────────────────────────────────────── */
+const SCHOOLS = {
+  "SCH-001": {
+    name:"Westbridge Academy",
+    kpis:{fte:12459,fteBud:12864,fteCh:-3.2,enr:410,enrLY:477,enrCh:-13.9,enq:5615,enqLY:6477,enqCh:-13.3,nps:29,npsBen:35,npsCh:0,cap:80.5,capF:73.7,eng:3.81,engCh:0},
+    funnel:{"All":[5615,2815,1537,410],"Early Years":[1200,680,420,115],"Primary":[2800,1380,750,200],"Secondary":[1615,755,367,95]},
+    velocity:{"All":{EY:94,Pri:102,Sec:138},"Early Years":{EY:94},"Primary":{Pri:102},"Secondary":{Sec:138}},
+    npsDrivers:[{dim:'Value for Money',ly:3.81,ty:3.41},{dim:'Communication',ly:3.81,ty:3.72},{dim:'Pastoral Care',ly:4.05,ty:4.08},{dim:'Facilities',ly:3.88,ty:3.95},{dim:'Teaching Quality',ly:4.10,ty:4.15},{dim:'Leadership',ly:4.22,ty:4.17}],
+    capacity:[{yg:'Early Years',actual:92,target:85},{yg:'Primary',actual:83,target:90},{yg:'Secondary',actual:72,target:88}]
+  },
+  "SCH-002": {
+    name:"Harrington School",
+    kpis:{fte:8920,fteBud:9100,fteCh:-2.0,enr:290,enrLY:310,enrCh:-6.5,enq:4200,enqLY:4500,enqCh:-6.7,nps:34,npsBen:35,npsCh:2,cap:76.0,capF:74.5,eng:3.95,engCh:0.07},
+    funnel:{"All":[4200,2300,1200,290],"Early Years":[900,520,310,90],"Primary":[2100,1100,580,140],"Secondary":[1200,680,310,60]},
+    velocity:{"All":{EY:88,Pri:95,Sec:118},"Early Years":{EY:88},"Primary":{Pri:95},"Secondary":{Sec:118}},
+    npsDrivers:[{dim:'Value for Money',ly:3.90,ty:3.95},{dim:'Communication',ly:4.00,ty:4.05},{dim:'Pastoral Care',ly:4.10,ty:4.12},{dim:'Facilities',ly:3.85,ty:3.90},{dim:'Teaching Quality',ly:4.15,ty:4.18},{dim:'Leadership',ly:4.20,ty:4.22}],
+    capacity:[{yg:'Early Years',actual:85,target:82},{yg:'Primary',actual:78,target:85},{yg:'Secondary',actual:68,target:80}]
+  },
+  "SCH-003": {
+    name:"Meridian International",
+    kpis:{fte:15200,fteBud:14800,fteCh:2.7,enr:620,enrLY:590,enrCh:5.1,enq:7800,enqLY:7200,enqCh:8.3,nps:42,npsBen:35,npsCh:3,cap:88.2,capF:86.0,eng:4.12,engCh:0.07},
+    funnel:{"All":[7800,4200,2100,620],"Early Years":[1800,1000,520,160],"Primary":[3900,2100,1050,310],"Secondary":[2100,1100,530,150]},
+    velocity:{"All":{EY:78,Pri:88,Sec:105},"Early Years":{EY:78},"Primary":{Pri:88},"Secondary":{Sec:105}},
+    npsDrivers:[{dim:'Value for Money',ly:4.10,ty:4.20},{dim:'Communication',ly:4.25,ty:4.28},{dim:'Pastoral Care',ly:4.30,ty:4.35},{dim:'Facilities',ly:4.40,ty:4.42},{dim:'Teaching Quality',ly:4.45,ty:4.48},{dim:'Leadership',ly:4.38,ty:4.40}],
+    capacity:[{yg:'Early Years',actual:95,target:90},{yg:'Primary',actual:90,target:88},{yg:'Secondary',actual:82,target:85}]
+  }
+};
+
+const SOURCES=[{src:'Web / Search',enq:2800,enr:185,cvr:6.6,insight:'High volume but average conversion — SEO quality may be the issue'},{src:'Referral',enq:1400,enr:142,cvr:10.1,insight:'Best conversion rate — invest more here. Consider referral incentives'},{src:'Agent / Partner',enq:800,enr:52,cvr:6.5,insight:'Consistent performer — review agent mix and brief new ones'},{src:'Open Events',enq:450,enr:25,cvr:5.6,insight:'Events convert at 5.6% — consider follow-up nurture sequence'},{src:'Walk-in',enq:165,enr:6,cvr:3.6,insight:'Lowest CVR — these families need more cultivation post-visit'}];
+
+const WEEKLY=Array.from({length:24},(_,i)=>{
+  const w=i+1,s=n=>{let x=Math.sin(n+1)*99999;return x-Math.floor(x);};
+  const pLY=(w>=4&&w<=8)?1.30:(w>=14&&w<=18)?1.15:1.0;
+  const pTY=(w>=4&&w<=8)?1.10:(w>=14&&w<=18)?0.92:1.0;
+  return{week:w,ly:Math.round(270*pLY+(s(w*7)-.5)*80),ty:Math.round(232*pTY+(s(w*13)-.5)*60)};
+});
+
+const HEATMAP=(()=>{
+  const ygs=['Early Years','Primary','Secondary'],bases={'Early Years':90,Primary:100,Secondary:132},rows=[];
+  for(let w=1;w<=24;w++){ygs.forEach(yg=>{const s=n=>{let x=Math.sin(n+1)*99999;return x-Math.floor(x);};const spike=(yg==='Secondary'&&w>=10&&w<=18)?16:0;rows.push({week:w,yg,days:Math.round(bases[yg]+spike+(s(w*(yg==='Early Years'?3:yg==='Primary'?7:11))-.5)*20)});});}
+  return rows;
+})();
+
+const SCATTER=[{dept:'Mathematics',attr:8,grade:74},{dept:'Sciences',attr:12,grade:68},{dept:'PE / Sport',attr:9,grade:80},{dept:'Arts',attr:16,grade:62},{dept:'English',attr:14,grade:60},{dept:'Humanities',attr:21,grade:50},{dept:'Languages',attr:28,grade:42},{dept:'A-Lv. Avg',attr:24,grade:53,hl:true}];
+
+const WATERFALL=[{label:'Budget',value:64800,type:'base',insight:'Annual fee income budget set for FY26'},{label:'Volume −',value:-2100,type:'neg',insight:'Fewer students enrolled than planned — the biggest driver of shortfall'},{label:'Fee Rate +',value:890,type:'pos',insight:'Fee rates were marginally above plan, partially offsetting volume loss'},{label:'Mix Shift −',value:-390,type:'neg',insight:'Heavier mix of lower-fee year groups than planned'},{label:'Actual',value:63200,type:'total',insight:'Final fee income — $1.6M below budget but operationally on track'}];
+
+const GANTT=[{name:'Parent Referral Programme',start:0,end:3,cat:'Marketing',rag:'ca',detail:'Brief MAC team by end of week. Leverage 46% promoter base.'},{name:'EAL Provision Expansion',start:2,end:6,cat:'Academic',rag:'ct',detail:'Addresses Value for Money gap. Growing local student demand.'},{name:'Entrepreneurship & AI Curriculum',start:3,end:8,cat:'Academic',rag:'ct',detail:'Differentiates proposition vs competitors entering Primary.'},{name:'A-Level Teaching Review',start:0,end:2,cat:'Compliance',rag:'cr',detail:'−13.3pt single-year drop. Likely staffing-outcome correlation.'},{name:'Contractor BGC Remediation',start:0,end:1,cat:'Compliance',rag:'cr',detail:'76.2% is a safeguarding risk. Process failure — escalate to HR.'},{name:'Boarding Offer Development',start:6,end:12,cat:'Strategic',rag:'cm',detail:'Opens new student segments. Improves occupancy utilisation.'}];
+const QUARTERS=['FY26 Q3','FY26 Q4','FY27 Q1','FY27 Q2','FY27 Q3','FY27 Q4','FY28 Q1','FY28 Q2','FY28 Q3','FY28 Q4'];
+
+const COMPETITORS=[{name:'Westbridge',fee:22,out:72,sz:1250,school:true,detail:'Your school — mid-fee, good outcomes, losing enquiry share'},{name:'Northfield',fee:19,out:68,sz:980,detail:'Lower fee, lower outcomes — competes in price-sensitive segment'},{name:'Greenvale',fee:24,out:78,sz:1400,detail:'Premium competitor — strong academic reputation'},{name:"St. Clement's",fee:17,out:62,sz:720,detail:'Budget option — different market, low overlap'},{name:'Aspire IS',fee:21,out:70,sz:650,newE:true,detail:'NEW ENTRANT — entering Primary. Watch enquiry share carefully'},{name:'Atlas Academy',fee:26,out:82,sz:1800,detail:'Top-tier — aspirational benchmark, different price point'}];
+
+const RADAR_AXES=['Enquiries','Conversion','Market','NPS','Engagement','Capacity','Velocity','Value'];
+const RADAR_SCHOOL=[0.45,0.52,0.55,0.62,0.68,0.75,0.48,0.58];
+const RADAR_REGION=[0.60,0.65,0.60,0.68,0.70,0.72,0.60,0.65];
+const RADAR_INSIGHTS=['Enquiry volume is 13.3% below last year — pipeline is shrinking','Conversion rate held flat at 7.3% but fewer enquiries = fewer enrolments','Market share is growing slightly (+0.17%) but new entrant threatens','NPS at 29 is below the 35 regional benchmark — Value for Money is the weak link','Staff engagement is 3.81/5 — flat but with high attrition risk underneath','Capacity at 80.5% is healthy but Secondary has room to grow','Velocity is 123 days avg — Secondary at 138 days needs intervention','Value for Money rated 3.41/5 — recurring concern across all surveys'];
+
+/* ─────────────────────────────────────────────
+   STATE & UTILS
+───────────────────────────────────────────── */
+let CUR_SCH='SCH-001', CUR_SEG='All';
+const tipEl=document.getElementById('tip');
+
+function showTip(e,html){
+  tipEl.innerHTML=html; tipEl.style.opacity=1;
+  const vw=window.innerWidth, vh=window.innerHeight;
+  let tx=e.clientX+16, ty=e.clientY-10;
+  if(tx+270>vw) tx=e.clientX-280;
+  if(ty+120>vh) ty=e.clientY-120;
+  tipEl.style.left=tx+'px'; tipEl.style.top=ty+'px';
+}
+function hideTip(){tipEl.style.opacity=0;}
+function fmt(n){return Math.round(n).toLocaleString();}
+function tip(title,lines,insight){
+  return `<strong>${title}</strong><br>${lines.join('<br>')}${insight?`<span class="tip-insight">${insight}</span>`:''}`;
+}
+
+/* ─────────────────────────────────────────────
+   SCHOOL SELECT & SEGMENTS
+───────────────────────────────────────────── */
+const schoolSel=document.getElementById('school-select');
+Object.entries(SCHOOLS).forEach(([id,s])=>{const o=document.createElement('option');o.value=id;o.textContent=s.name;schoolSel.appendChild(o);});
+schoolSel.addEventListener('change',e=>{CUR_SCH=e.target.value;updateAll();});
+document.querySelectorAll('.seg-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.seg-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active'); CUR_SEG=btn.dataset.seg;
+    document.getElementById('seg-lbl').textContent=CUR_SEG==='All'?'All Year Groups':CUR_SEG;
+    drawFunnel();
+  });
+});
+
+/* ─────────────────────────────────────────────
+   KPI UPDATE
+───────────────────────────────────────────── */
+function updateKPIs(){
+  const k=SCHOOLS[CUR_SCH].kpis;
+  document.getElementById('school-name-lbl').textContent=SCHOOLS[CUR_SCH].name;
+  function set(id,val,chg,sub){
+    document.getElementById('k-'+id).textContent=val;
+    const d=document.getElementById('k-'+id+'-d');
+    if(d){d.textContent=chg;d.className='kpi-d '+(chg.startsWith('↑')?'up':chg.startsWith('↓')?'dn':'flat');}
+    if(sub)document.getElementById('k-'+id+'-s').textContent=sub;
+  }
+  set('fte',fmt(k.fte),(k.fteCh>=0?'↑ ':'↓ ')+Math.abs(k.fteCh).toFixed(1)+'% vs Budget','Budget: '+fmt(k.fteBud));
+  set('enr',fmt(k.enr),(k.enrCh>=0?'↑ ':'↓ ')+Math.abs(k.enrCh).toFixed(1)+'% YoY','Last year: '+fmt(k.enrLY));
+  set('enq',fmt(k.enq),(k.enqCh>=0?'↑ ':'↓ ')+Math.abs(k.enqCh).toFixed(1)+'% YoY',null);
+  set('nps',k.nps,k.npsCh===0?'→ Flat YoY':(k.npsCh>0?'↑ +':'↓ ')+k.npsCh+' pts','Benchmark: '+k.npsBen);
+  set('cap',k.cap+'%',k.cap>k.capF?'↑ On Track':'↓ Below forecast','Forecast: '+k.capF+'%');
+  set('eng',k.eng,k.engCh===0?'→ Flat YoY':(k.engCh>0?'↑ +':'↓ ')+k.engCh.toFixed(2),null);
+  document.getElementById('nps-score').textContent=k.nps;
+  document.getElementById('nps-bench').textContent=k.npsBen;
+}
+
+/* ─────────────────────────────────────────────
+   CHART: FUNNEL  (hover brightening + rich tooltip)
+───────────────────────────────────────────── */
+function drawFunnel(){
+  const con=d3.select('#funnel-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||360, H=nd.getBoundingClientRect().height||310;
+  const data=SCHOOLS[CUR_SCH].funnel[CUR_SEG]||SCHOOLS[CUR_SCH].funnel['All'];
+  const vel=SCHOOLS[CUR_SCH].velocity[CUR_SEG]||SCHOOLS[CUR_SCH].velocity['All'];
+  const stages=['Enquiries','Visits','Applications','Enrolled'];
+  const maxV=data[0]||1;
+  const cvr=((data[3]/data[0])*100).toFixed(1);
+  document.getElementById('cvr-val').textContent=cvr+'%';
+  const insights=['Total interest from all enquiry channels this year','Families who visited the school in person','Families who submitted a formal application','Students who completed enrolment'];
+  const velH=52, chartH=H-velH-10;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:82,r:96,t:6,b:6};
+  const uw=W-pad.l-pad.r, uch=chartH-pad.t-pad.b, stepH=uch/stages.length, cx=pad.l+uw/2;
+  const cols=['#1a4a7a','#1a6276','#0d7a6e','#c0392b'];
+
+  stages.forEach((stg,i)=>{
+    const v=data[i]||0, vn=i<stages.length-1?data[i+1]:data[i]*0.55;
+    const tw=(v/maxV)*uw, bw=(vn/maxV)*uw;
+    const y1=pad.t+i*stepH+2, y2=y1+stepH-4;
+    const pts=[[cx-tw/2,y1],[cx+tw/2,y1],[cx+bw/2,y2],[cx-bw/2,y2]].map(p=>p.join(',')).join(' ');
+    const cvr_stage=i>0&&data[i-1]?((v/data[i-1])*100).toFixed(0)+'% from prev':'100% (top)';
+    const poly=svg.append('polygon').attr('points',pts).attr('fill',cols[i]).attr('opacity',0.88).style('cursor','pointer')
+      .on('mouseover',function(){d3.select(this).attr('opacity',1).style('filter','brightness(1.18)');})
+      .on('mouseout',function(){d3.select(this).attr('opacity',0.88).style('filter',null);hideTip();})
+      .on('mousemove',e=>showTip(e,tip(stg,[`Count: <strong>${fmt(v)}</strong>`,`Retention from previous: <strong>${cvr_stage}</strong>`],insights[i])));
+    // Stage label
+    svg.append('text').attr('x',cx-tw/2-8).attr('y',y1+stepH/2+4)
+      .attr('text-anchor','end').attr('fill','rgba(255,255,255,.62)').attr('font-size','11px').attr('font-family','DM Sans,sans-serif').text(stg);
+    // Value inside
+    svg.append('text').attr('x',cx).attr('y',y1+stepH/2+4)
+      .attr('text-anchor','middle').attr('fill','#fff').attr('font-size','13px').attr('font-weight','bold').attr('font-family','DM Serif Display,serif').text(fmt(v));
+    // Drop-off annotation
+    if(i<stages.length-1){
+      const drop=data[i]?Math.round((1-data[i+1]/data[i])*100):0;
+      svg.append('text').attr('x',cx+uw/2+8).attr('y',y2+4).attr('fill','#f87171').attr('font-size','10px').attr('font-family','DM Sans,sans-serif').text('−'+drop+'% drop');
+    }
+  });
+
+  // Velocity stats
+  const velEntries=Object.entries(vel);
+  const slotW=W/(velEntries.length+1), vy=chartH+26;
+  velEntries.forEach(([lbl,days],i)=>{
+    const x=slotW*(i+1), col=days>120?'#f5a623':days>100?'#60a5fa':'#2dd4bf';
+    const vg=svg.append('g').style('cursor','default')
+      .on('mousemove',e=>showTip(e,tip(`${lbl} Velocity`,[`Average: <strong>${days} days</strong>`,`Enquiry → Enrolment`],days>120?'⚠ Above 120-day threshold — investigate bottleneck':days>100?'Monitor — approaching threshold':'✓ Within acceptable range')))
+      .on('mouseout',hideTip);
+    vg.append('text').attr('x',x).attr('y',vy-14).attr('text-anchor','middle').attr('font-family','DM Serif Display,serif').attr('font-size','18px').attr('fill',col).text(days);
+    vg.append('text').attr('x',x).attr('y',vy).attr('text-anchor','middle').attr('font-size','9px').attr('fill','rgba(255,255,255,.42)').attr('font-family','DM Sans,sans-serif').text(lbl+' · days');
+  });
+}
+
+/* ─────────────────────────────────────────────
+   CHART: ENQUIRY SOURCES  (row highlight + rich tooltip)
+───────────────────────────────────────────── */
+function drawSources(){
+  const con=d3.select('#sources-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||280, H=nd.getBoundingClientRect().height||310;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:106,r:54,t:8,b:30};
+  const uw=W-pad.l-pad.r;
+  const maxE=d3.max(SOURCES,d=>d.enq);
+  const xSc=d3.scaleLinear().domain([0,maxE]).range([0,uw]);
+  const ySc=d3.scaleBand().domain(SOURCES.map(d=>d.src)).range([pad.t,H-pad.b]).padding(0.38);
+
+  // Best CVR annotation
+  const bestCVR=SOURCES.reduce((a,b)=>a.cvr>b.cvr?a:b);
+  svg.append('text').attr('x',pad.l+xSc(bestCVR.enr)+6).attr('y',ySc(bestCVR.src)+(ySc.bandwidth()/2)-8)
+    .attr('fill','#2dd4bf').attr('font-size','8.5px').attr('font-weight','700').attr('font-family','DM Sans,sans-serif').text('★ Best CVR');
+
+  SOURCES.forEach(d=>{
+    const y=ySc(d.src), bh=ySc.bandwidth();
+    const col=d.src===bestCVR.src?'#2dd4bf':'#f5a623';
+    // Row hover bg
+    const rowBg=svg.append('rect').attr('x',0).attr('y',y-2).attr('width',W).attr('height',bh+4).attr('fill','transparent').attr('rx',3);
+    // Enquiry track
+    svg.append('rect').attr('x',pad.l).attr('y',y+bh*.12).attr('width',xSc(d.enq)).attr('height',bh*.76).attr('fill','rgba(255,255,255,.07)').attr('rx',2);
+    // Enrolled bar
+    svg.append('rect').attr('x',pad.l).attr('y',y+bh*.22).attr('width',0).attr('height',bh*.56).attr('fill',col).attr('rx',2)
+      .transition().duration(900).attr('width',xSc(d.enr));
+    // Source label
+    svg.append('text').attr('x',pad.l-8).attr('y',y+bh/2+4).attr('text-anchor','end').attr('fill','rgba(255,255,255,.70)').attr('font-size','11px').attr('font-family','DM Sans,sans-serif').text(d.src);
+    // CVR label
+    svg.append('text').attr('x',pad.l+xSc(d.enq)+6).attr('y',y+bh/2+4).attr('fill',d.cvr>=10?'#2dd4bf':'rgba(255,255,255,.50)').attr('font-size','10px').attr('font-weight',d.cvr>=10?'700':'400').attr('font-family','DM Sans,sans-serif').text(d.cvr.toFixed(1)+'%');
+    // Hover
+    rowBg.style('cursor','pointer')
+      .on('mouseover',function(){d3.select(this).attr('fill','rgba(255,255,255,.04)');})
+      .on('mouseout',function(){d3.select(this).attr('fill','transparent');hideTip();})
+      .on('mousemove',e=>showTip(e,tip(d.src,[`Enquiries: <strong>${fmt(d.enq)}</strong>`,`Enrolled: <strong>${fmt(d.enr)}</strong>`,`Conversion: <strong style="color:${col}">${d.cvr}%</strong>`],d.insight)));
+  });
+  // Legend
+  const lgY=H-8;
+  svg.append('rect').attr('x',pad.l).attr('y',lgY-5).attr('width',10).attr('height',4).attr('fill','rgba(255,255,255,.15)').attr('rx',1);
+  svg.append('text').attr('x',pad.l+13).attr('y',lgY).attr('fill','rgba(255,255,255,.35)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('Enquiries');
+  svg.append('rect').attr('x',pad.l+72).attr('y',lgY-5).attr('width',10).attr('height',4).attr('fill','#f5a623').attr('rx',1);
+  svg.append('text').attr('x',pad.l+85).attr('y',lgY).attr('fill','rgba(255,255,255,.35)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('Enrolled');
+}
+
+/* ─────────────────────────────────────────────
+   CHART: WEEKLY  (scrubber + peak annotations)
+───────────────────────────────────────────── */
+function drawWeekly(){
+  const con=d3.select('#weekly-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||380, H=nd.getBoundingClientRect().height||192;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:32,r:14,t:12,b:24};
+  const uw=W-pad.l-pad.r, uh=H-pad.t-pad.b;
+  const xSc=d3.scaleLinear().domain([1,24]).range([0,uw]);
+  const maxV=d3.max(WEEKLY,d=>Math.max(d.ly,d.ty));
+  const ySc=d3.scaleLinear().domain([0,maxV*1.12]).range([uh,0]);
+  const g=svg.append('g').attr('transform',`translate(${pad.l},${pad.t})`);
+
+  ySc.ticks(4).forEach(t=>{
+    g.append('line').attr('x1',0).attr('x2',uw).attr('y1',ySc(t)).attr('y2',ySc(t)).attr('stroke','rgba(255,255,255,.055)');
+    g.append('text').attr('x',-4).attr('y',ySc(t)+4).attr('text-anchor','end').attr('fill','rgba(255,255,255,.28)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text(t);
+  });
+  [1,4,8,12,16,20,24].forEach(w=>{
+    g.append('text').attr('x',xSc(w)).attr('y',uh+14).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.28)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('W'+w);
+  });
+
+  // LY area & line
+  g.append('path').datum(WEEKLY).attr('d',d3.area().x(d=>xSc(d.week)).y0(uh).y1(d=>ySc(d.ly)).curve(d3.curveBasis)).attr('fill','rgba(255,255,255,.05)');
+  g.append('path').datum(WEEKLY).attr('d',d3.line().x(d=>xSc(d.week)).y(d=>ySc(d.ly)).curve(d3.curveBasis)).attr('fill','none').attr('stroke','rgba(255,255,255,.22)').attr('stroke-width',1.5).attr('stroke-dasharray','3 2');
+
+  // TY area & line
+  g.append('path').datum(WEEKLY).attr('d',d3.area().x(d=>xSc(d.week)).y0(uh).y1(d=>ySc(d.ty)).curve(d3.curveBasis)).attr('fill','rgba(245,166,35,.10)');
+  g.append('path').datum(WEEKLY).attr('d',d3.line().x(d=>xSc(d.week)).y(d=>ySc(d.ty)).curve(d3.curveBasis)).attr('fill','none').attr('stroke','#f5a623').attr('stroke-width',2);
+
+  // Peak TY annotation
+  const peakTY=WEEKLY.reduce((a,b)=>b.ty>a.ty?b:a);
+  g.append('circle').attr('cx',xSc(peakTY.week)).attr('cy',ySc(peakTY.ty)).attr('r',4).attr('fill','#f5a623');
+  g.append('text').attr('x',xSc(peakTY.week)+6).attr('y',ySc(peakTY.ty)-4).attr('fill','rgba(245,166,35,.75)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('Peak W'+peakTY.week);
+
+  // Competitor entry annotation
+  g.append('line').attr('x1',xSc(9)).attr('x2',xSc(9)).attr('y1',0).attr('y2',uh).attr('stroke','rgba(248,113,113,.40)').attr('stroke-dasharray','3 2').attr('stroke-width',1);
+  g.append('text').attr('x',xSc(9)+3).attr('y',22).attr('fill','rgba(248,113,113,.78)').attr('font-size','8.5px').attr('font-family','DM Sans,sans-serif').text('Competitor entry →');
+
+  // Open Days shaded zone
+  g.append('rect').attr('x',xSc(4)).attr('y',0).attr('width',xSc(8)-xSc(4)).attr('height',uh).attr('fill','rgba(255,255,255,.03)').attr('rx',2);
+  g.append('text').attr('x',xSc(6)).attr('y',uh-4).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.20)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text('Open Days');
+
+  // Scrubber
+  const sLine=g.append('line').attr('y1',0).attr('y2',uh).attr('stroke','rgba(255,255,255,.25)').attr('stroke-width',1.5).style('opacity',0);
+  const sDotTY=g.append('circle').attr('r',5).attr('fill','#f5a623').attr('stroke','#fff').attr('stroke-width',1.5).style('opacity',0);
+  const sDotLY=g.append('circle').attr('r',4).attr('fill','rgba(255,255,255,.5)').attr('stroke','#fff').attr('stroke-width',1).style('opacity',0);
+  svg.append('rect').attr('x',pad.l).attr('y',pad.t).attr('width',uw).attr('height',uh).attr('fill','transparent')
+    .on('mousemove',function(e){
+      const [mx]=d3.pointer(e);
+      const w=Math.round(xSc.invert(mx));
+      const row=WEEKLY.find(d=>d.week===w); if(!row)return;
+      const gap=row.ly-row.ty, pct=((row.ly-row.ty)/row.ly*100).toFixed(0);
+      sLine.attr('x1',xSc(w)).attr('x2',xSc(w)).style('opacity',1);
+      sDotTY.attr('cx',xSc(w)).attr('cy',ySc(row.ty)).style('opacity',1);
+      sDotLY.attr('cx',xSc(w)).attr('cy',ySc(row.ly)).style('opacity',1);
+      showTip(e,tip(`Week ${w}`,[`This year: <strong style="color:#f5a623">${fmt(row.ty)}</strong>`,`Last year: <span style="color:rgba(255,255,255,.55)">${fmt(row.ly)}</span>`,`Gap: <strong style="color:#f87171">−${fmt(gap)} (${pct}% down)</strong>`],w>=9?'Post-competitor-entry period — gap widened from here':'Pre-competitor period'));
+    })
+    .on('mouseout',()=>{sLine.style('opacity',0);sDotTY.style('opacity',0);sDotLY.style('opacity',0);hideTip();});
+}
+
+/* ─────────────────────────────────────────────
+   CHART: HEATMAP  (row + column highlight)
+───────────────────────────────────────────── */
+function drawHeatmap(){
+  const con=d3.select('#heatmap-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||380, H=nd.getBoundingClientRect().height||192;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const ygs=['Early Years','Primary','Secondary'];
+  const offX=58, offY=18;
+  const cellW=(W-offX-4)/24, cellH=(H-offY-24)/3;
+  const colorSc=d3.scaleSequential().domain([72,160]).interpolator(d3.interpolateRgb('#2dd4bf','#f87171'));
+
+  [4,8,12,16,20,24].forEach(w=>{
+    svg.append('text').attr('x',offX+(w-.5)*cellW).attr('y',offY-5).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.28)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('W'+w);
+  });
+  ygs.forEach((yg,i)=>{
+    const short=yg==='Early Years'?'EY':yg==='Primary'?'Pri':'Sec';
+    svg.append('text').attr('x',offX-5).attr('y',offY+i*cellH+cellH/2+4).attr('text-anchor','end').attr('fill','rgba(255,255,255,.55)').attr('font-size','11px').attr('font-family','DM Sans,sans-serif').text(short);
+  });
+
+  // Row highlight lines (hidden by default)
+  const rowHL=ygs.map((yg,i)=>svg.append('rect').attr('x',offX).attr('y',offY+i*cellH).attr('width',cellW*24).attr('height',cellH).attr('fill','transparent').attr('rx',2).style('pointer-events','none'));
+  const colHL=Array.from({length:24},(_,i)=>svg.append('rect').attr('x',offX+i*cellW).attr('y',offY).attr('width',cellW).attr('height',cellH*3).attr('fill','transparent').attr('rx',2).style('pointer-events','none'));
+
+  // Cells
+  HEATMAP.forEach(d=>{
+    const xi=d.week-1, yi=ygs.indexOf(d.yg);
+    const status=d.days>130?'Critical — significant delay':d.days>110?'Elevated — monitor closely':d.days<90?'Healthy — pipeline is fast':'Normal range';
+    svg.append('rect').attr('x',offX+xi*cellW+1).attr('y',offY+yi*cellH+1).attr('width',cellW-2).attr('height',cellH-2).attr('fill',colorSc(d.days)).attr('rx',1).style('cursor','pointer')
+      .on('mouseover',()=>{
+        rowHL[yi].attr('fill','rgba(255,255,255,.06)');
+        colHL[xi].attr('fill','rgba(255,255,255,.06)');
+      })
+      .on('mouseout',()=>{rowHL[yi].attr('fill','transparent');colHL[xi].attr('fill','transparent');hideTip();})
+      .on('mousemove',e=>showTip(e,tip(`${d.yg} · Week ${d.week}`,[`Days to convert: <strong>${d.days}</strong>`,`Status: <strong style="color:${colorSc(d.days)}">${status}</strong>`],d.days>120&&d.yg==='Secondary'?'Secondary at >120 days is above the action threshold':'Cross-reference with open events calendar for context')));
+  });
+
+  // Threshold annotation
+  const thresh120X=offX+9*cellW; // roughly week 10
+  svg.append('text').attr('x',W-4).attr('y',offY+2*cellH+8).attr('text-anchor','end').attr('fill','rgba(248,113,113,.50)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text('⚠ Secondary spike weeks 10–18');
+
+  // Legend
+  const lgX=W-104, lgY=H-8;
+  const grad=svg.append('defs').append('linearGradient').attr('id','hm-grad');
+  grad.append('stop').attr('offset','0%').attr('stop-color','#2dd4bf');
+  grad.append('stop').attr('offset','100%').attr('stop-color','#f87171');
+  svg.append('rect').attr('x',lgX).attr('y',lgY-5).attr('width',100).attr('height',4).attr('fill','url(#hm-grad)').attr('rx',2);
+  svg.append('text').attr('x',lgX).attr('y',lgY+8).attr('fill','rgba(255,255,255,.28)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text('Fast');
+  svg.append('text').attr('x',lgX+100).attr('y',lgY+8).attr('text-anchor','end').attr('fill','rgba(255,255,255,.28)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text('Slow');
+}
+
+/* ─────────────────────────────────────────────
+   CHART: RADAR  (interactive vertex hover)
+───────────────────────────────────────────── */
+function drawRadar(){
+  const con=d3.select('#radar-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const rect=nd.getBoundingClientRect();
+  const w=rect.width||200, h=rect.height||200;
+  const sz=Math.min(w,h,200);
+  if(sz<70)return;
+  const cx=sz/2, cy=sz/2, r=sz*0.30;
+  const n=RADAR_AXES.length;
+  const svg=con.append('svg').attr('width',sz).attr('height',sz).attr('viewBox',`0 0 ${sz} ${sz}`);
+  function polar(i,v){const a=(i/n)*2*Math.PI-Math.PI/2;return{x:cx+v*r*Math.cos(a),y:cy+v*r*Math.sin(a)};}
+
+  [.25,.5,.75,1].forEach(ring=>{
+    const pts=RADAR_AXES.map((_,i)=>polar(i,ring));
+    svg.append('polygon').attr('points',pts.map(p=>`${p.x},${p.y}`).join(' ')).attr('fill','none').attr('stroke','rgba(255,255,255,.07)').attr('stroke-width',1);
+  });
+  RADAR_AXES.forEach((ax,i)=>{
+    const ep=polar(i,1);
+    svg.append('line').attr('x1',cx).attr('y1',cy).attr('x2',ep.x).attr('y2',ep.y).attr('stroke','rgba(255,255,255,.06)');
+    const lp=polar(i,1.22);
+    svg.append('text').attr('x',lp.x).attr('y',lp.y).attr('text-anchor','middle').attr('dominant-baseline','middle').attr('fill','rgba(255,255,255,.40)').attr('font-size','7.5px').attr('font-family','DM Sans,sans-serif').text(ax);
+  });
+
+  const rPts=RADAR_REGION.map((v,i)=>polar(i,v));
+  svg.append('polygon').attr('points',rPts.map(p=>`${p.x},${p.y}`).join(' ')).attr('fill','rgba(255,255,255,.04)').attr('stroke','rgba(255,255,255,.18)').attr('stroke-width',1).attr('stroke-dasharray','3 2');
+
+  const sPts=RADAR_SCHOOL.map((v,i)=>polar(i,v));
+  svg.append('polygon').attr('points',sPts.map(p=>`${p.x},${p.y}`).join(' ')).attr('fill','rgba(245,166,35,.15)').attr('stroke','#f5a623').attr('stroke-width',2).attr('filter','drop-shadow(0 0 4px rgba(245,166,35,.45))');
+
+  // Interactive vertices
+  sPts.forEach((p,i)=>{
+    const school=RADAR_SCHOOL[i], region=RADAR_REGION[i];
+    const diff=((school-region)*100).toFixed(0);
+    const col=school>=region?'#2dd4bf':'#f87171';
+    svg.append('circle').attr('cx',p.x).attr('cy',p.y).attr('r',4).attr('fill','#f5a623').attr('stroke','rgba(255,255,255,.4)').attr('stroke-width',1).style('cursor','pointer')
+      .on('mouseover',function(){d3.select(this).attr('r',7).attr('fill','#fff');})
+      .on('mouseout',function(){d3.select(this).attr('r',4).attr('fill','#f5a623');hideTip();})
+      .on('mousemove',e=>showTip(e,tip(RADAR_AXES[i],[`Your score: <strong>${(school*100).toFixed(0)}/100</strong>`,`Region avg: <span style="color:rgba(255,255,255,.5)">${(region*100).toFixed(0)}/100</span>`,`Gap: <strong style="color:${col}">${diff>0?'+':''}${diff} pts</strong>`],RADAR_INSIGHTS[i])));
+  });
+
+  // Legend (kept well inside bottom so it never clips)
+  const legY=sz-18;
+  svg.append('rect').attr('x',5).attr('y',legY).attr('width',10).attr('height',2).attr('fill','#f5a623');
+  svg.append('text').attr('x',19).attr('y',legY+7).attr('fill','rgba(255,255,255,.35)').attr('font-size','7.5px').attr('font-family','DM Sans,sans-serif').text('Your School');
+  svg.append('rect').attr('x',sz/2+4).attr('y',legY).attr('width',10).attr('height',2).attr('fill','rgba(255,255,255,.25)');
+  svg.append('text').attr('x',sz/2+17).attr('y',legY+7).attr('fill','rgba(255,255,255,.35)').attr('font-size','7.5px').attr('font-family','DM Sans,sans-serif').text('Region Avg');
+}
+
+/* ─────────────────────────────────────────────
+   CHART: NPS DRIVERS  (dumbbell — no overlap)
+   Redesigned as horizontal dumbbell chart:
+   each row = one dimension, horizontal scale 3–5
+   hollow dot = LY, filled dot = TY, delta on right
+───────────────────────────────────────────── */
+function drawNPSDrivers(){
+  const con=d3.select('#nps-drivers-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||360, H=nd.getBoundingClientRect().height||240;
+  const drivers=SCHOOLS[CUR_SCH].npsDrivers;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:116,r:52,t:20,b:20};
+  const uw=W-pad.l-pad.r;
+  const rowH=(H-pad.t-pad.b)/drivers.length;
+  const xSc=d3.scaleLinear().domain([3.0,5.0]).range([0,uw]);
+
+  // Axis ticks
+  [3.0,3.5,4.0,4.5,5.0].forEach(t=>{
+    svg.append('line').attr('x1',pad.l+xSc(t)).attr('x2',pad.l+xSc(t)).attr('y1',pad.t).attr('y2',H-pad.b).attr('stroke','rgba(255,255,255,.06)');
+    svg.append('text').attr('x',pad.l+xSc(t)).attr('y',pad.t-6).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.22)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text(t.toFixed(1));
+  });
+
+  // "Needs work" zone shade
+  svg.append('rect').attr('x',pad.l).attr('y',pad.t).attr('width',xSc(3.6)).attr('height',H-pad.t-pad.b).attr('fill','rgba(248,113,113,.04)');
+  svg.append('text').attr('x',pad.l+xSc(3.3)).attr('y',pad.t+10).attr('text-anchor','middle').attr('fill','rgba(248,113,113,.28)').attr('font-size','7.5px').attr('font-family','DM Sans,sans-serif').text('Needs work');
+
+  drivers.forEach((d,i)=>{
+    const y=pad.t+i*rowH+rowH/2;
+    const up=d.ty>=d.ly, col=up?'#2dd4bf':'#f87171';
+    const delta=(d.ty-d.ly).toFixed(2);
+    const x_ly=pad.l+xSc(d.ly), x_ty=pad.l+xSc(d.ty);
+
+    // Row hover background
+    const rowBg=svg.append('rect').attr('x',pad.l-8).attr('y',pad.t+i*rowH).attr('width',uw+60).attr('height',rowH).attr('fill','transparent').attr('rx',3);
+
+    // Dim label (left, always has space — no overlap possible)
+    svg.append('text').attr('x',pad.l-10).attr('y',y+4).attr('text-anchor','end').attr('fill','rgba(255,255,255,.65)').attr('font-size','10.5px').attr('font-family','DM Sans,sans-serif').text(d.dim);
+
+    // Connector line between LY and TY
+    svg.append('line').attr('x1',x_ly).attr('x2',x_ty).attr('y1',y).attr('y2',y).attr('stroke',col).attr('stroke-width',2).attr('opacity',.6);
+
+    // LY dot (hollow / grey)
+    svg.append('circle').attr('cx',x_ly).attr('cy',y).attr('r',5).attr('fill','rgba(255,255,255,.0)').attr('stroke','rgba(255,255,255,.38)').attr('stroke-width',1.5);
+
+    // TY dot (filled, coloured)
+    const tyDot=svg.append('circle').attr('cx',x_ty).attr('cy',y).attr('r',6).attr('fill',col).attr('stroke',col).attr('stroke-width',1.5).attr('filter',`drop-shadow(0 0 4px ${col}60)`);
+
+    // TY value label above dot (only when not cramped)
+    svg.append('text').attr('x',x_ty).attr('y',y-10).attr('text-anchor','middle').attr('fill',col).attr('font-size','9px').attr('font-weight','700').attr('font-family','DM Serif Display,serif').text(d.ty.toFixed(2));
+
+    // Delta label (right column — always clear)
+    svg.append('text').attr('x',W-pad.r+6).attr('y',y+4).attr('fill',col).attr('font-size','10.5px').attr('font-weight','700').attr('font-family','DM Serif Display,serif').text((up?'+':'')+delta);
+
+    // Hover interaction
+    rowBg.style('cursor','pointer')
+      .on('mouseover',function(){
+        d3.select(this).attr('fill','rgba(255,255,255,.04)');
+        tyDot.attr('r',9);
+      })
+      .on('mouseout',function(){
+        d3.select(this).attr('fill','transparent');
+        tyDot.attr('r',6);
+        hideTip();
+      })
+      .on('mousemove',e=>showTip(e,tip(d.dim,[`Last Year: <span style="color:rgba(255,255,255,.55)">${d.ly.toFixed(2)} / 5.00</span>`,`This Year: <strong style="color:${col}">${d.ty.toFixed(2)} / 5.00</strong>`,`Change: <strong style="color:${col}">${(up?'+':'')+delta} pts</strong>`],up?'↑ Improving — reinforce what is working':'↓ Declining — investigate specific parent feedback. Raise at next parent forum.')));
+  });
+
+  // Legend
+  svg.append('circle').attr('cx',pad.l).attr('cy',H-8).attr('r',4).attr('fill','rgba(255,255,255,0)').attr('stroke','rgba(255,255,255,.35)').attr('stroke-width',1.5);
+  svg.append('text').attr('x',pad.l+10).attr('y',H-4).attr('fill','rgba(255,255,255,.28)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text('Last year');
+  svg.append('circle').attr('cx',pad.l+72).attr('cy',H-8).attr('r',4).attr('fill','#2dd4bf');
+  svg.append('text').attr('x',pad.l+82).attr('y',H-4).attr('fill','rgba(255,255,255,.28)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text('This year · ▶ delta');
+}
+
+/* ─────────────────────────────────────────────
+   CHART: SCATTER  (hover-reveal labels + crosshairs + danger zone)
+   Labels only appear on hover — no static overlap
+───────────────────────────────────────────── */
+function drawScatter(){
+  const con=d3.select('#scatter-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||360, H=nd.getBoundingClientRect().height||220;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:36,r:18,t:14,b:32};
+  const uw=W-pad.l-pad.r, uh=H-pad.t-pad.b;
+  const xSc=d3.scaleLinear().domain([0,35]).range([0,uw]);
+  const ySc=d3.scaleLinear().domain([30,90]).range([uh,0]);
+  const g=svg.append('g').attr('transform',`translate(${pad.l},${pad.t})`);
+
+  // Danger zone (attrition > 20%)
+  g.append('rect').attr('x',xSc(20)).attr('y',0).attr('width',uw-xSc(20)).attr('height',uh).attr('fill','rgba(248,113,113,.07)');
+  g.append('line').attr('x1',xSc(20)).attr('x2',xSc(20)).attr('y1',0).attr('y2',uh).attr('stroke','rgba(248,113,113,.30)').attr('stroke-dasharray','4 3').attr('stroke-width',1);
+  g.append('text').attr('x',xSc(20)+4).attr('y',12).attr('fill','rgba(248,113,113,.50)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text('⚠ High attrition zone');
+
+  // Grid
+  ySc.ticks(5).forEach(t=>{
+    g.append('line').attr('x1',0).attr('x2',uw).attr('y1',ySc(t)).attr('y2',ySc(t)).attr('stroke','rgba(255,255,255,.055)');
+    g.append('text').attr('x',-4).attr('y',ySc(t)+4).attr('text-anchor','end').attr('fill','rgba(255,255,255,.26)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text(t+'%');
+  });
+  xSc.ticks(5).forEach(t=>{
+    g.append('text').attr('x',xSc(t)).attr('y',uh+14).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.26)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text(t+'%');
+  });
+
+  // Regression line
+  const mx=d3.mean(SCATTER,d=>d.attr), my=d3.mean(SCATTER,d=>d.grade);
+  const num=d3.sum(SCATTER,d=>(d.attr-mx)*(d.grade-my)), den=d3.sum(SCATTER,d=>(d.attr-mx)**2);
+  const sl=num/den, ic=my-sl*mx;
+  g.append('line').attr('x1',xSc(4)).attr('x2',xSc(32)).attr('y1',ySc(sl*4+ic)).attr('y2',ySc(sl*32+ic)).attr('stroke','rgba(248,113,113,.28)').attr('stroke-dasharray','4 3').attr('stroke-width',1.5);
+  g.append('text').attr('x',xSc(30)).attr('y',ySc(sl*30+ic)-6).attr('fill','rgba(248,113,113,.45)').attr('font-size','8.5px').attr('font-family','DM Sans,sans-serif').text('Trend →');
+
+  // Crosshair lines (hidden by default, shared across dots)
+  const hLine=g.append('line').attr('stroke','rgba(255,255,255,.18)').attr('stroke-dasharray','3 2').attr('stroke-width',1).style('opacity',0).style('pointer-events','none');
+  const vLine=g.append('line').attr('stroke','rgba(255,255,255,.18)').attr('stroke-dasharray','3 2').attr('stroke-width',1).style('opacity',0).style('pointer-events','none');
+  // Hover label (single, repositioned per dot)
+  const hLabel=g.append('text').attr('font-size','10px').attr('font-weight','600').attr('font-family','DM Sans,sans-serif').style('opacity',0).style('pointer-events','none');
+
+  // Dots — labels only on hover (no static overlap)
+  SCATTER.forEach(d=>{
+    const dcx=xSc(d.attr), dcy=ySc(d.grade);
+    const col=d.hl?'#f5a623':d.attr>20?'#f87171':'#60a5fa';
+    const rr=d.hl?7:4.5;
+    const insight=d.attr>20?'This department is in the danger zone — high attrition likely driving grade decline':d.hl?'This is the school-wide A-Level average — watch for further decline':'Teacher attrition is within acceptable range for this dept';
+
+    const dot=g.append('circle').attr('cx',dcx).attr('cy',dcy).attr('r',rr).attr('fill',col).attr('opacity',.78).style('cursor','pointer')
+      .on('mouseover',function(){
+        d3.select(this).attr('r',rr+4).attr('opacity',1);
+        hLine.attr('x1',0).attr('x2',uw).attr('y1',dcy).attr('y2',dcy).style('opacity',1);
+        vLine.attr('x1',dcx).attr('x2',dcx).attr('y1',0).attr('y2',uh).style('opacity',1);
+        // Label placed left or right depending on space
+        const labelX=dcx>uw*0.65?dcx-rr-4:dcx+rr+4;
+        const anchor=dcx>uw*0.65?'end':'start';
+        hLabel.attr('x',labelX).attr('y',dcy-4).attr('text-anchor',anchor).attr('fill',col).text(d.dept).style('opacity',1);
+      })
+      .on('mouseout',function(){
+        d3.select(this).attr('r',rr).attr('opacity',.78);
+        hLine.style('opacity',0); vLine.style('opacity',0); hLabel.style('opacity',0);
+        hideTip();
+      })
+      .on('mousemove',e=>showTip(e,tip(d.dept,[`Teacher Attrition: <strong>${d.attr}%</strong>`,`A*–A Grade: <strong>${d.grade}%</strong>`],insight)));
+  });
+
+  // Axis labels
+  g.append('text').attr('x',uw/2).attr('y',uh+27).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.28)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('Teacher Attrition %');
+  g.append('text').attr('transform',`translate(-28,${uh/2}) rotate(-90)`).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.28)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('A*–A Grade %');
+}
+
+/* ─────────────────────────────────────────────
+   CHART: CAPACITY BULLET  (hover gap indicator)
+───────────────────────────────────────────── */
+function drawCapacity(){
+  const con=d3.select('#capacity-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||360, H=nd.getBoundingClientRect().height||190;
+  const caps=SCHOOLS[CUR_SCH].capacity;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:96,r:32,t:10,b:20};
+  const uw=W-pad.l-pad.r, stepH=(H-pad.t-pad.b)/caps.length;
+  const xSc=d3.scaleLinear().domain([0,110]).range([0,uw]);
+
+  // X axis labels
+  [0,25,50,75,100].forEach(t=>{
+    svg.append('text').attr('x',pad.l+xSc(t)).attr('y',H-4).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.22)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text(t+'%');
+    svg.append('line').attr('x1',pad.l+xSc(t)).attr('x2',pad.l+xSc(t)).attr('y1',pad.t).attr('y2',H-pad.b).attr('stroke','rgba(255,255,255,.05)');
+  });
+
+  caps.forEach((d,i)=>{
+    const y=pad.t+i*stepH;
+    const gap=d.target-d.actual;
+    const col=d.actual>=d.target?'#2dd4bf':d.actual>=d.target*.9?'#f5a623':'#f87171';
+    const insight=gap>0?`${gap} percentage points below target — ${gap>5?'significant':'minor'} shortfall. Equates to roughly ${Math.round(gap*d.target/10)} vacant spaces`:d.actual===d.target?'Exactly on target — well managed':'Above target — consider whether to expand or raise selective criteria';
+
+    // YG label
+    svg.append('text').attr('x',pad.l-8).attr('y',y+stepH/2+4).attr('text-anchor','end').attr('fill','rgba(255,255,255,.65)').attr('font-size','11px').attr('font-family','DM Sans,sans-serif').text(d.yg);
+
+    // Track (max capacity)
+    svg.append('rect').attr('x',pad.l).attr('y',y+stepH*.2).attr('width',uw).attr('height',stepH*.6).attr('fill','rgba(255,255,255,.05)').attr('rx',3);
+
+    // Actual bar (animated)
+    svg.append('rect').attr('x',pad.l).attr('y',y+stepH*.3).attr('width',0).attr('height',stepH*.4).attr('fill',col).attr('rx',2).attr('opacity',.92)
+      .transition().duration(900).attr('width',xSc(d.actual));
+
+    // Target marker
+    svg.append('line').attr('x1',pad.l+xSc(d.target)).attr('x2',pad.l+xSc(d.target)).attr('y1',y+stepH*.12).attr('y2',y+stepH*.88).attr('stroke','#fff').attr('stroke-width',2).attr('opacity',.46);
+    svg.append('text').attr('x',pad.l+xSc(d.target)).attr('y',y+stepH*.10).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.26)').attr('font-size','7.5px').attr('font-family','DM Sans,sans-serif').text('T:'+d.target+'%');
+
+    // Actual value label
+    svg.append('text').attr('x',pad.l+xSc(d.actual)+5).attr('y',y+stepH/2+4).attr('fill',col).attr('font-size','12px').attr('font-weight','bold').attr('font-family','DM Serif Display,serif').text(d.actual+'%');
+
+    // Invisible hover target
+    svg.append('rect').attr('x',0).attr('y',y).attr('width',W).attr('height',stepH).attr('fill','transparent').style('cursor','pointer')
+      .on('mouseover',()=>{svg.selectAll('line').filter(function(){return d3.select(this).attr('x1')===String(pad.l+xSc(d.target));}).attr('opacity',.9);})
+      .on('mouseout',()=>{svg.selectAll('line').attr('opacity',.46);hideTip();})
+      .on('mousemove',e=>showTip(e,tip(d.yg+' Capacity',[`Actual: <strong style="color:${col}">${d.actual}%</strong>`,`Target: <span style="color:rgba(255,255,255,.55)">${d.target}%</span>`,`Gap: <strong style="color:${col}">${gap>0?'−'+gap+' pts below':'On or above target'}</strong>`],insight)));
+  });
+  svg.append('text').attr('x',pad.l).attr('y',H-2).attr('fill','rgba(255,255,255,.20)').attr('font-size','7.5px').attr('font-family','DM Sans,sans-serif').text('bar = actual  ·  ▏= target  ·  track = 100% capacity');
+}
+
+/* ─────────────────────────────────────────────
+   CHART: FINANCIAL WATERFALL  (hover brightening)
+───────────────────────────────────────────── */
+function drawWaterfall(){
+  const con=d3.select('#waterfall-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||360, H=nd.getBoundingClientRect().height||190;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:8,r:8,t:24,b:24};
+  const uw=W-pad.l-pad.r, uh=H-pad.t-pad.b;
+  const bw=uw/WATERFALL.length*.64, bg=uw/WATERFALL.length;
+
+  let run=0;
+  const bars=WATERFALL.map((d,i)=>{
+    if(d.type==='base'){run=d.value;return{...d,base:0,top:d.value,i};}
+    if(d.type==='total'){return{...d,base:0,top:d.value,i};}
+    if(d.type==='pos'){const ob=run;run+=d.value;return{...d,base:ob,top:run,i};}
+    const ob=run;run+=d.value;return{...d,base:run,top:ob,i};
+  });
+
+  const allV=bars.flatMap(b=>[b.base,b.top]);
+  const ySc=d3.scaleLinear().domain([d3.min(allV)-500,d3.max(allV)+500]).range([uh,0]);
+
+  bars.forEach((b,i)=>{
+    const x=pad.l+i*bg+(bg-bw)/2;
+    const y1=pad.t+ySc(b.top), y2=pad.t+ySc(b.base), bh=Math.max(Math.abs(y2-y1),2);
+    const col=b.type==='base'||b.type==='total'?'#60a5fa':b.type==='pos'?'#2dd4bf':'#f87171';
+    if(i>0&&b.type!=='total'){
+      const prev=bars[i-1];
+      svg.append('line').attr('x1',pad.l+(i-1)*bg+bg/2+bw/2).attr('x2',x).attr('y1',pad.t+ySc(prev.top)).attr('y2',pad.t+ySc(prev.top)).attr('stroke','rgba(255,255,255,.14)').attr('stroke-dasharray','3 2').attr('stroke-width',1);
+    }
+    const rect=svg.append('rect').attr('x',x).attr('y',y1).attr('width',bw).attr('height',bh).attr('fill',col).attr('rx',2).attr('opacity',.85).style('cursor','pointer')
+      .on('mouseover',function(){d3.select(this).attr('opacity',1).style('filter','brightness(1.2)');})
+      .on('mouseout',function(){d3.select(this).attr('opacity',.85).style('filter',null);hideTip();})
+      .on('mousemove',e=>showTip(e,tip(b.label,[`Amount: <strong style="color:${col}">$${(Math.round(b.value/100)/10).toFixed(1)}M</strong>`,`Cumulative: <span style="color:rgba(255,255,255,.55)">$${(Math.round(b.top/100)/10).toFixed(1)}M</span>`],b.insight)));
+    const labelY=b.type==='neg'?y2+14:y1-5;
+    svg.append('text').attr('x',x+bw/2).attr('y',labelY).attr('text-anchor','middle').attr('fill',col).attr('font-size','9px').attr('font-weight','bold').attr('font-family','DM Sans,sans-serif').text((b.value>0?'+':'')+Math.round(b.value/100)/10+'M');
+    svg.append('text').attr('x',x+bw/2).attr('y',pad.t+uh+14).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.38)').attr('font-size','8.5px').attr('font-family','DM Sans,sans-serif').text(b.label);
+  });
+}
+
+/* ─────────────────────────────────────────────
+   CHART: GANTT  (hover highlight + detail tooltip)
+───────────────────────────────────────────── */
+function drawGantt(){
+  const con=d3.select('#gantt-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||700, H=nd.getBoundingClientRect().height||155;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:172,r:8,t:20,b:8};
+  const labelLeft=8;        // category column start
+  const categoryWidth=52;   // reserved for category so it never overlaps initiative
+  const initiativeLeft=labelLeft+categoryWidth+6;  // initiative name starts here, ends at pad.l-6
+  const uw=W-pad.l-pad.r, uh=H-pad.t-pad.b;
+  const nQ=10, qW=uw/nQ, rowH=uh/GANTT.length;
+  const ragCols={ca:'#f5a623',ct:'#2dd4bf',cr:'#f87171',cm:'rgba(255,255,255,.18)'};
+
+  QUARTERS.slice(0,nQ).forEach((q,i)=>{
+    svg.append('text').attr('x',pad.l+i*qW+qW/2).attr('y',13).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.26)').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text(q);
+    svg.append('line').attr('x1',pad.l+i*qW).attr('x2',pad.l+i*qW).attr('y1',pad.t).attr('y2',pad.t+uh).attr('stroke','rgba(255,255,255,.05)');
+  });
+
+  // Today marker
+  const todayX=pad.l+qW*.6;
+  svg.append('line').attr('x1',todayX).attr('x2',todayX).attr('y1',pad.t).attr('y2',pad.t+uh).attr('stroke','#f5a623').attr('stroke-width',1.5).attr('opacity',.65);
+  svg.append('text').attr('x',todayX+3).attr('y',pad.t+9).attr('fill','#f5a623').attr('font-size','8px').attr('font-family','DM Sans,sans-serif').text('Today');
+
+  // Clip so long initiative names don't spill into the timeline bars
+  const clipW=pad.l-initiativeLeft-4;
+  svg.append('defs').append('clipPath').attr('id','gantt-label-clip').append('rect').attr('x',initiativeLeft).attr('y',0).attr('width',clipW).attr('height',H);
+
+  GANTT.forEach((d,i)=>{
+    const y=pad.t+i*rowH, col=ragCols[d.rag]||'#fff';
+    svg.append('rect').attr('x',pad.l).attr('y',y).attr('width',uw).attr('height',rowH).attr('fill',i%2===0?'rgba(255,255,255,.018)':'transparent');
+    // Category tag — fixed-width column so it never overlaps the initiative name
+    svg.append('text').attr('x',labelLeft).attr('y',y+rowH/2+4).attr('text-anchor','start').attr('fill',col).attr('font-size','8.5px').attr('font-weight','600').attr('font-family','DM Sans,sans-serif').text(d.cat);
+    // Initiative name — starts after category column, clipped so it doesn't run into bars
+    svg.append('text').attr('x',initiativeLeft).attr('y',y+rowH/2+4).attr('text-anchor','start').attr('fill','rgba(255,255,255,.72)').attr('font-size','10.5px').attr('font-family','DM Sans,sans-serif').attr('clip-path','url(#gantt-label-clip)').text(d.name);
+    // Bar
+    const s=Math.min(d.start,nQ-1), e=Math.min(d.end,nQ);
+    const barW=(e-s)*qW-4;
+    svg.append('rect').attr('x',pad.l+s*qW+2).attr('y',y+rowH*.2).attr('width',barW).attr('height',rowH*.6).attr('fill',col).attr('rx',3).attr('opacity',.80).style('cursor','pointer')
+      .on('mouseover',function(){d3.select(this).attr('opacity',1).style('filter','brightness(1.15)');})
+      .on('mouseout',function(){d3.select(this).attr('opacity',.80).style('filter',null);hideTip();})
+      .on('mousemove',ev=>showTip(ev,tip(d.name,[`Timeline: <strong>${QUARTERS[d.start]} → ${QUARTERS[Math.min(d.end-1,nQ-1)]}</strong>`,`Category: <strong>${d.cat}</strong>`],d.detail)));
+  });
+}
+
+/* ─────────────────────────────────────────────
+   CHART: COMPETITOR BUBBLE  (smart label placement + hover ring)
+   Labels placed above bubbles near top of chart,
+   below otherwise, with collision resolution
+───────────────────────────────────────────── */
+function drawCompetitor(){
+  const con=d3.select('#competitor-viz'); con.html('');
+  const nd=con.node(); if(!nd)return;
+  const W=nd.getBoundingClientRect().width||360, H=nd.getBoundingClientRect().height||225;
+  const svg=con.append('svg').attr('width',W).attr('height',H);
+  const pad={l:36,r:14,t:14,b:32};
+  const uw=W-pad.l-pad.r, uh=H-pad.t-pad.b;
+  const g=svg.append('g').attr('transform',`translate(${pad.l},${pad.t})`);
+  const xSc=d3.scaleLinear().domain([14,30]).range([0,uw]);
+  const ySc=d3.scaleLinear().domain([55,92]).range([uh,0]);
+  const rSc=d3.scaleSqrt().domain([0,2000]).range([0,26]);
+
+  // Grid
+  xSc.ticks(4).forEach(t=>{
+    g.append('line').attr('x1',xSc(t)).attr('x2',xSc(t)).attr('y1',0).attr('y2',uh).attr('stroke','rgba(255,255,255,.055)');
+    g.append('text').attr('x',xSc(t)).attr('y',uh+14).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.26)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('$'+t+'k');
+  });
+  ySc.ticks(4).forEach(t=>{
+    g.append('line').attr('x1',0).attr('x2',uw).attr('y1',ySc(t)).attr('y2',ySc(t)).attr('stroke','rgba(255,255,255,.055)');
+    g.append('text').attr('x',-4).attr('y',ySc(t)+4).attr('text-anchor','end').attr('fill','rgba(255,255,255,.26)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text(t+'%');
+  });
+
+  // Compute positions with label placement that avoids overlap
+  const positions=COMPETITORS.map(d=>{
+    const bx=xSc(d.fee), by=ySc(d.out), r=rSc(d.sz);
+    return{d,bx,by,r,labelY:null};
+  });
+
+  // Sort by Y position then assign labels above/below, resolving collisions
+  const sorted=[...positions].sort((a,b)=>a.by-b.by);
+  sorted.forEach((p,i)=>{
+    // Default: label below the bubble
+    let lY=p.by+p.r+13;
+    // If near bottom of chart, put label above
+    if(lY>uh-4) lY=p.by-p.r-6;
+    // Resolve collisions with previously placed labels
+    for(let j=0;j<i;j++){
+      const prev=sorted[j];
+      if(Math.abs(prev.bx-p.bx)<50&&Math.abs(prev.labelY-lY)<13){
+        lY=prev.labelY+14;
+      }
+    }
+    p.labelY=lY;
+  });
+
+  // Draw hover rings (initially hidden)
+  const rings=positions.map(p=>{
+    return g.append('circle').attr('cx',p.bx).attr('cy',p.by).attr('r',p.r+8).attr('fill','none').attr('stroke',p.d.school?'#f5a623':p.d.newE?'#f87171':'rgba(255,255,255,.3)').attr('stroke-width',1.5).attr('stroke-dasharray','4 3').style('opacity',0).style('pointer-events','none');
+  });
+
+  // Draw bubbles + labels
+  positions.forEach((p,i)=>{
+    const col=p.d.school?'#f5a623':p.d.newE?'#f87171':'rgba(255,255,255,.22)';
+    const nameCol=p.d.school?'#f5a623':p.d.newE?'rgba(248,113,113,.85)':'rgba(255,255,255,.45)';
+
+    g.append('circle').attr('cx',p.bx).attr('cy',p.by).attr('r',p.r).attr('fill',col).attr('opacity',p.d.school?.90:.52).attr('stroke',p.d.school?'#f5a623':p.d.newE?'rgba(248,113,113,.5)':'transparent').attr('stroke-width',p.d.school||p.d.newE?2:0).style('cursor','pointer')
+      .on('mouseover',function(){d3.select(this).attr('opacity',1);rings[i].style('opacity',1);})
+      .on('mouseout',function(){d3.select(this).attr('opacity',p.d.school?.90:.52);rings[i].style('opacity',0);hideTip();})
+      .on('mousemove',e=>showTip(e,tip(p.d.name+(p.d.newE?' 🆕':''),[`Annual Fee: <strong>$${p.d.fee}k</strong>`,`Academic Outcome: <strong>${p.d.out}%</strong>`,`Enrolment: <strong>${fmt(p.d.sz)} students</strong>`],p.d.detail)));
+
+    // Label — collision-resolved Y position
+    g.append('text').attr('x',p.bx).attr('y',p.labelY).attr('text-anchor','middle').attr('fill',nameCol).attr('font-size','9px').attr('font-weight',p.d.school?'600':'400').attr('font-family','DM Sans,sans-serif').text(p.d.name).style('pointer-events','none');
+  });
+
+  // Axis labels
+  g.append('text').attr('x',uw/2).attr('y',uh+27).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.26)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('Annual Fee (USD)');
+  g.append('text').attr('transform',`translate(-28,${uh/2}) rotate(-90)`).attr('text-anchor','middle').attr('fill','rgba(255,255,255,.26)').attr('font-size','9px').attr('font-family','DM Sans,sans-serif').text('Academic Outcome %');
+}
+
+/* ─────────────────────────────────────────────
+   ORCHESTRATE
+───────────────────────────────────────────── */
+function updateAll(){updateKPIs();drawFunnel();drawNPSDrivers();drawCapacity();}
+function drawStatic(){drawSources();drawWeekly();drawHeatmap();drawRadar();drawScatter();drawWaterfall();drawGantt();drawCompetitor();}
+
+document.addEventListener('DOMContentLoaded',()=>{updateAll();drawStatic();});
+
+let resizeT;
+window.addEventListener('resize',()=>{clearTimeout(resizeT);resizeT=setTimeout(()=>{updateAll();drawStatic();},220);});
+</script>
+</body>
+</html>

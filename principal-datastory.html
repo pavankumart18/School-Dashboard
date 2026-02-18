@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Dispatch — Principal's Daily Story · Westbridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:#0a0a0a; --charcoal:#1c1c1c; --dark:#2e2e2e; --mid:#5c5c5c; --soft:#8a8a8a;
+    --rule:#d0cac0; --paper:#f8f4ee; --warm-white:#fdfaf5; --ink-cream:#e8e2d6;
+    --red:#c0392b; --teal:#0d7a6e; --amber:#b8680a; --blue:#1a4a7a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:16px;}
+  body{background:var(--paper);color:var(--black);font-family:'Source Serif 4',serif;max-width:960px;margin:0 auto;padding:40px 32px;animation:fadeIn .5s ease;}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+  /* NAV BAR */
+  .nav-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 0 18px;border-bottom:1px solid var(--rule);margin-bottom:6px;}
+  .nav-bar a{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);text-decoration:none;padding:4px 10px;border:1px solid var(--rule);}
+  .nav-bar a:hover{background:var(--ink-cream);}
+  .nav-bar a.active{background:var(--black);color:#fff;border-color:var(--black);}
+  .nav-center{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mid);letter-spacing:.1em;}
+
+  /* MASTHEAD */
+  .masthead{text-align:center;border-top:4px solid var(--black);border-bottom:1px solid var(--black);padding:20px 0 16px;margin-bottom:8px;}
+  .masthead-kicker{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+  .masthead-title{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--black);}
+  .masthead-title em{font-style:italic;color:var(--mid);font-weight:400;}
+  .masthead-meta{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);letter-spacing:.08em;}
+
+  /* SECTION RULE */
+  .section-rule{border:none;border-top:2px solid var(--black);margin:24px 0 20px;}
+  .section-rule.thin{border-width:1px;border-color:var(--rule);}
+  .section-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+  /* LEAD STORY */
+  .lead-story{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding-bottom:24px;border-bottom:1px solid var(--rule);margin-bottom:24px;}
+  .headline{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px;}
+  .headline .hed-red{color:var(--red);}.headline .hed-teal{color:var(--teal);}.headline .hed-amber{color:var(--amber);}
+  .deck{font-size:14px;color:var(--dark);line-height:1.6;font-style:italic;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--rule);}
+  .body-copy{font-size:13px;line-height:1.7;color:var(--charcoal);}
+  .body-copy strong{font-weight:600;}
+
+  /* CHART BOX */
+  .chart-box{background:var(--warm-white);border:1px solid var(--rule);padding:20px;height:100%;display:flex;flex-direction:column;}
+  .chart-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+  .chart-note{font-size:11px;color:var(--soft);font-style:italic;margin-top:auto;padding-top:12px;}
+
+  /* FUNNEL */
+  .funnel-viz{display:flex;flex-direction:column;gap:6px;flex:1;justify-content:center;}
+  .f-stage{display:flex;align-items:center;gap:12px;}
+  .f-bar-outer{flex:1;height:22px;background:var(--ink-cream);position:relative;}
+  .f-bar-fill{height:100%;display:flex;align-items:center;padding-left:8px;}
+  .f-bar-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:#fff;letter-spacing:.06em;}
+  .f-stage-name{width:80px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);text-align:right;}
+  .f-num{width:52px;font-family:'Playfair Display',serif;font-size:14px;font-weight:600;text-align:right;}
+  .f-drop{width:54px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--red);text-align:right;}
+
+  /* METRICS STRIP */
+  .metrics-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:24px;}
+  .metric-cell{padding:16px 20px;border-right:1px solid var(--rule);position:relative;}
+  .metric-cell:last-child{border-right:none;}
+  .metric-cell.alert::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .metric-cell.alert-red::before{background:var(--red);}
+  .metric-cell.alert-amber::before{background:var(--amber);}
+  .metric-cell.alert-green::before{background:var(--teal);}
+  .mc-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;}
+  .mc-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;letter-spacing:-.02em;}
+  .mc-value.red{color:var(--red);}.mc-value.teal{color:var(--teal);}.mc-value.amber{color:var(--amber);}
+  .mc-delta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);margin-top:4px;}
+  .mc-delta .up{color:var(--teal);}.mc-delta .dn{color:var(--red);}
+
+  /* 3-COL */
+  .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);margin-bottom:24px;}
+  .col-block{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px;}
+  .col-headline{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;line-height:1.3;margin-bottom:10px;letter-spacing:-.01em;}
+  .col-body{font-size:12px;line-height:1.65;color:var(--charcoal);}
+
+  /* PULL QUOTE */
+  .pull-quote{border-left:4px solid var(--black);padding:12px 20px;margin:16px 0;background:var(--warm-white);}
+  .pull-quote p{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;line-height:1.4;color:var(--black);}
+  .pull-quote cite{font-size:11px;color:var(--soft);font-style:normal;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;display:block;margin-top:8px;}
+
+  /* ACTION ITEMS */
+  .actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+  .action-story{display:flex;gap:14px;padding:16px;border:1px solid var(--rule);background:var(--warm-white);}
+  .action-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--ink-cream);line-height:1;flex-shrink:0;width:32px;}
+  .action-hl{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;margin-bottom:4px;line-height:1.3;}
+  .action-body{font-size:12px;color:var(--charcoal);line-height:1.6;}
+  .action-tag{display:inline-block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border:1px solid currentColor;}
+  .action-tag.mkt{color:var(--blue);}.action-tag.acad{color:var(--teal);}.action-tag.strat{color:var(--amber);}.action-tag.risk{color:var(--red);}
+
+  /* DATA TABLES */
+  .vel-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .vel-table td{padding:5px 0;border-bottom:1px solid var(--rule);}
+  .vel-table td:last-child{text-align:right;font-family:'JetBrains Mono',monospace;}
+  .vel-table tr:last-child td{border-bottom:none;}
+
+  .data-row{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+  .data-row:last-child{margin-bottom:0;}
+  .dr-label{font-size:11px;color:var(--mid);width:130px;flex-shrink:0;}
+  .dr-track{flex:1;height:8px;background:var(--ink-cream);}
+  .dr-fill{height:100%;}
+  .dr-val{font-family:'JetBrains Mono',monospace;font-size:11px;width:44px;text-align:right;flex-shrink:0;}
+
+  /* NPS BAND */
+  .nps-band{display:flex;height:12px;overflow:hidden;margin:10px 0;}
+  .nps-d{background:var(--red);opacity:.7;}.nps-p{background:#c8c0b0;}.nps-pr{background:var(--teal);}
+
+  /* WATERFALL VISUAL */
+  .wf-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+  .wf-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--soft);width:88px;flex-shrink:0;}
+  .wf-bar-wrap{flex:1;height:14px;position:relative;background:var(--ink-cream);}
+  .wf-bar{height:100%;position:absolute;}
+  .wf-val{font-family:'JetBrains Mono',monospace;font-size:10px;width:52px;text-align:right;font-weight:600;flex-shrink:0;}
+
+  /* SCATTER MINI */
+  .scat-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--rule);font-size:11px;}
+  .scat-row:last-child{border-bottom:none;}
+  .scat-dept{width:100px;}
+  .scat-bar-wrap{flex:1;margin:0 10px;height:8px;background:var(--ink-cream);}
+  .scat-bar{height:100%;}
+  .scat-nums{font-family:'JetBrains Mono',monospace;font-size:10px;width:90px;text-align:right;white-space:nowrap;}
+
+  svg.trend{width:100%;height:60px;overflow:visible;}
+
+  /* FOOTNOTE */
+  .footnote{border-top:1px solid var(--rule);margin-top:32px;padding-top:12px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);letter-spacing:.08em;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-bar">
+  <a href="index.html">← Dashboard</a>
+  <span class="nav-center">Westbridge Academy · School Intelligence Suite</span>
+  <div style="display:flex;gap:6px;">
+    <a href="principal-datastory.html" class="active">Data Story</a>
+    <a href="principal-email-alert.html">Alert Email</a>
+    <a href="principal-dashboard.html">Full Dashboard</a>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-kicker">The School Intelligence Briefing · For the Principal's Desk</div>
+  <div class="masthead-title">Morning<em> Dispatch</em></div>
+  <div class="masthead-meta">
+    <span>Wednesday, 18 February 2026</span>
+    <span>⬦</span>
+    <span>Westbridge Academy · EU Region</span>
+    <span>⬦</span>
+    <span>Data as of Week 24 · Salesforce + OneStream</span>
+    <span>⬦</span>
+    <span>Enrolment Year 2027</span>
+  </div>
+</div>
+
+<!-- SUMMARY STRIP -->
+<div class="metrics-strip" style="margin-top:20px;">
+  <div class="metric-cell alert alert-red">
+    <div class="mc-label">New Enrolments</div>
+    <div class="mc-value red">410</div>
+    <div class="mc-delta"><span class="dn">↓ 13.9%</span> vs last year (477)</div>
+  </div>
+  <div class="metric-cell alert alert-amber">
+    <div class="mc-label">Enquiries</div>
+    <div class="mc-value amber">5,615</div>
+    <div class="mc-delta"><span class="dn">↓ 13.3%</span> vs last year (6,477)</div>
+  </div>
+  <div class="metric-cell alert alert-amber">
+    <div class="mc-label">NPS Score</div>
+    <div class="mc-value amber">29</div>
+    <div class="mc-delta">Benchmark 35 · Flat YoY</div>
+  </div>
+  <div class="metric-cell alert alert-green">
+    <div class="mc-label">Capacity Used</div>
+    <div class="mc-value teal">80.5%</div>
+    <div class="mc-delta"><span class="up">↑</span> Forecast was 73.7%</div>
+  </div>
+</div>
+
+<!-- LEAD STORIES -->
+<div class="section-label">This Week's Lead Stories</div>
+
+<div class="lead-story">
+  <div>
+    <div class="headline">
+      Enrolments Fall <span class="hed-red">13.9%</span> as Enquiry Pipeline Narrows
+    </div>
+    <div class="deck">
+      A sharp decline in new student enrolments — down from 477 to 410 versus last year — compounds a weakened enquiry pipeline that has shrunk by 13.3% year-on-year (6,477 → 5,615).
+    </div>
+    <div class="body-copy">
+      <p>The admissions funnel is under pressure at every stage. Of 5,615 enquiries, only 410 students have enrolled — a conversion rate of <strong>7.3%</strong>. While the rate itself has held flat, total volume is falling, meaning the same efficiency produces fewer enrolments.</p>
+      <br>
+      <p>The biggest single drop-off is <strong>Visits → Applications (45.4%)</strong>, suggesting families visit but are not yet committing to a formal application — likely due to the new competitor entering Primary. Secondary velocity has extended to <strong>138 days</strong> from enquiry to enrolment, against 94 days for Early Years — a gap that can be reduced by mapping the bottleneck at the application-to-decision stage.</p>
+      <div class="pull-quote" style="margin-top:16px;">
+        <p>"Referral is the highest-converting channel at 10.1% — nearly double the Web/Search rate. The 46% promoter base is an underutilised asset."</p>
+        <cite>— Admissions Intelligence · Enquiry Source Analysis, Wk 24</cite>
+      </div>
+      <p>The recommended response already within the action plan: a <strong>parent referral programme</strong> launching this quarter, directly leveraging the school's promoter base before the competitor (Aspire IS, $21k annual fee) establishes its brand locally.</p>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-label">Enrolment Funnel — EY2027 · All Year Groups</div>
+    <div class="funnel-viz">
+      <div class="f-stage">
+        <div class="f-stage-name">Enquiries</div>
+        <div class="f-bar-outer">
+          <div class="f-bar-fill" style="width:100%; background:#1a4a7a;">
+            <span class="f-bar-label">100%</span>
+          </div>
+        </div>
+        <div class="f-num">5,615</div>
+        <div class="f-drop"></div>
+      </div>
+      <div class="f-stage">
+        <div class="f-stage-name">Visits</div>
+        <div class="f-bar-outer">
+          <div class="f-bar-fill" style="width:50.1%; background:#286090;">
+            <span class="f-bar-label">50%</span>
+          </div>
+        </div>
+        <div class="f-num">2,815</div>
+        <div class="f-drop">↓ 50%</div>
+      </div>
+      <div class="f-stage">
+        <div class="f-stage-name">Applications</div>
+        <div class="f-bar-outer">
+          <div class="f-bar-fill" style="width:27.4%; background:#0d7a6e;">
+            <span class="f-bar-label">27%</span>
+          </div>
+        </div>
+        <div class="f-num">1,537</div>
+        <div class="f-drop">↓ 45%</div>
+      </div>
+      <div class="f-stage">
+        <div class="f-stage-name">Enrolled</div>
+        <div class="f-bar-outer">
+          <div class="f-bar-fill" style="width:7.3%; background:#b8680a;">
+            <span class="f-bar-label" style="display:none;"></span>
+          </div>
+        </div>
+        <div class="f-num" style="color:var(--amber); font-weight:700;">410</div>
+        <div class="f-drop">↓ 73%</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; padding-top:14px; border-top:1px solid var(--rule);">
+      <div class="chart-label">Enquiry Source Conversion Rates</div>
+      <div class="data-row">
+        <span class="dr-label">Referral</span>
+        <div class="dr-track"><div class="dr-fill" style="width:100%; background:var(--teal);"></div></div>
+        <span class="dr-val" style="color:var(--teal);">10.1%</span>
+      </div>
+      <div class="data-row">
+        <span class="dr-label">Web / Search</span>
+        <div class="dr-track"><div class="dr-fill" style="width:65%; background:var(--blue);"></div></div>
+        <span class="dr-val">6.6%</span>
+      </div>
+      <div class="data-row">
+        <span class="dr-label">Agent / Partner</span>
+        <div class="dr-track"><div class="dr-fill" style="width:64%; background:var(--blue);"></div></div>
+        <span class="dr-val">6.5%</span>
+      </div>
+      <div class="data-row">
+        <span class="dr-label">Open Events</span>
+        <div class="dr-track"><div class="dr-fill" style="width:55%; background:var(--mid);"></div></div>
+        <span class="dr-val">5.6%</span>
+      </div>
+      <div class="data-row">
+        <span class="dr-label">Walk-in</span>
+        <div class="dr-track"><div class="dr-fill" style="width:36%; background:var(--red); opacity:.7;"></div></div>
+        <span class="dr-val" style="color:var(--red);">3.6%</span>
+      </div>
+    </div>
+
+    <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--rule);">
+      <div class="chart-label">Days to Convert — by Year Group</div>
+      <table class="vel-table">
+        <tr><td>Early Years</td><td style="color:var(--teal);">94 days ✓</td></tr>
+        <tr><td>Primary</td><td>102 days</td></tr>
+        <tr><td>Secondary</td><td style="color:var(--red); font-weight:700;">138 days ⚠ +18 above threshold</td></tr>
+        <tr><td><strong>School Average</strong></td><td><strong>123 days</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="chart-note">Overall CVR: 7.3% · Flat YoY · Biggest leak: Visit→Application (50% drop)</div>
+  </div>
+</div>
+
+<!-- SECOND STORY ROW -->
+<hr class="section-rule thin">
+<div class="three-col">
+  <div class="col-block">
+    <div class="col-headline">Parent Confidence — <em>Value for Money</em> Is the Weak Link</div>
+    <div class="col-body">
+      <p>NPS sits at <strong>29</strong> — flat year-on-year, below the regional benchmark of 35. The year-on-year driver breakdown reveals the problem clearly: <strong>Value for Money has fallen 0.40 points</strong> to 3.41/5, the sharpest single-dimension decline. Teaching Quality (4.15, +0.05) and Facilities (3.95, +0.07) are both improving. Leadership slipped marginally to 4.17 (−0.05). Communication fell to 3.72 (−0.09).</p>
+      <div class="nps-band" style="margin-top:12px;">
+        <div class="nps-d" style="flex:18;"></div>
+        <div class="nps-p" style="flex:36;"></div>
+        <div class="nps-pr" style="flex:46;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--soft);font-family:'JetBrains Mono',monospace;margin-top:4px;">
+        <span>18% Detract</span><span>36% Passive</span><span>46% Promote</span>
+      </div>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);margin-bottom:8px;">NPS DRIVER YEAR-ON-YEAR CHANGE</div>
+        <div class="data-row"><span class="dr-label">Value for Money</span><div class="dr-track"><div class="dr-fill" style="width:68%; background:var(--red); opacity:.7;"></div></div><span class="dr-val" style="color:var(--red);">−0.40</span></div>
+        <div class="data-row"><span class="dr-label">Communication</span><div class="dr-track"><div class="dr-fill" style="width:23%; background:var(--red); opacity:.5;"></div></div><span class="dr-val" style="color:var(--red);">−0.09</span></div>
+        <div class="data-row"><span class="dr-label">Leadership</span><div class="dr-track"><div class="dr-fill" style="width:10%; background:var(--red); opacity:.4;"></div></div><span class="dr-val" style="color:var(--red);">−0.05</span></div>
+        <div class="data-row"><span class="dr-label">Teaching Quality</span><div class="dr-track"><div class="dr-fill" style="width:13%; background:var(--teal);"></div></div><span class="dr-val" style="color:var(--teal);">+0.05</span></div>
+        <div class="data-row"><span class="dr-label">Facilities</span><div class="dr-track"><div class="dr-fill" style="width:18%; background:var(--teal);"></div></div><span class="dr-val" style="color:var(--teal);">+0.07</span></div>
+        <div class="data-row"><span class="dr-label">Pastoral Care</span><div class="dr-track"><div class="dr-fill" style="width:8%; background:var(--teal);"></div></div><span class="dr-val" style="color:var(--teal);">+0.03</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-block">
+    <div class="col-headline">A-Level Decline Is <em>Not Normal Variation</em> — Act Now</div>
+    <div class="col-body">
+      <p>IB Diploma scores improved to <strong>33.2</strong> (+0.5 pts) — a five-year upward trend. But A-Level A*–A grades collapsed by <strong>13.3 percentage points</strong> to 52.7% — the sharpest single-year drop across any programme. iGCSE is off −2.0pts (46.4%). AP scores are flat at 3.6.</p>
+      <br>
+      <p>The scatterplot of teacher attrition vs grade outcomes reveals a clear pattern: the departments with highest attrition have the worst grades. <strong>Languages</strong> (28% attrition, 42% A*–A) and <strong>Humanities</strong> (21% attrition, 50%) sit in the danger zone. The A-Level school average (24% attrition, 53%) confirms this is structural.</p>
+      <br>
+      <div style="margin-top:4px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);margin-bottom:8px;">ATTRITION vs GRADE — KEY DEPTS</div>
+        <div class="scat-row"><span class="scat-dept">Languages</span><div class="scat-bar-wrap"><div class="scat-bar" style="width:80%;background:var(--red);opacity:.7;"></div></div><span class="scat-nums" style="color:var(--red);">28% attr · 42% A*-A</span></div>
+        <div class="scat-row"><span class="scat-dept">Humanities</span><div class="scat-bar-wrap"><div class="scat-bar" style="width:60%;background:var(--amber);opacity:.8;"></div></div><span class="scat-nums" style="color:var(--amber);">21% attr · 50% A*-A</span></div>
+        <div class="scat-row"><span class="scat-dept">Sciences</span><div class="scat-bar-wrap"><div class="scat-bar" style="width:34%;background:var(--blue);opacity:.8;"></div></div><span class="scat-nums">12% attr · 68% A*-A</span></div>
+        <div class="scat-row"><span class="scat-dept">Mathematics</span><div class="scat-bar-wrap"><div class="scat-bar" style="width:23%;background:var(--teal);"></div></div><span class="scat-nums" style="color:var(--teal);">8% attr · 74% A*-A</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-block">
+    <div class="col-headline">Capacity Is Healthy — but <em>Secondary Lags</em> Target</div>
+    <div class="col-body">
+      <p>Overall capacity at <strong>80.5%</strong> is ahead of forecast (73.7%), a positive indicator. But the picture varies significantly by year group. Early Years is <strong>92%</strong> — well above its 85% target and now approaching the upper capacity ceiling. Primary at <strong>83%</strong> is 7 points below its 90% target.</p>
+      <br>
+      <p>The concern is Secondary: at just <strong>72%</strong> against an 88% target, it is carrying 16 percentage points of vacant space — approximately 60–70 unfilled places with fixed overhead costs. The enrolment velocity issue (138 days) is directly correlated: families are taking longer to commit, and some are leaving for the new entrant.</p>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);margin-bottom:8px;">CAPACITY BY YEAR GROUP (ACTUAL vs TARGET)</div>
+        <div class="data-row"><span class="dr-label">Early Years</span><div class="dr-track" style="position:relative;"><div class="dr-fill" style="width:92%; background:var(--teal);"></div><div style="position:absolute;top:-3px;bottom:-3px;left:85%;width:2px;background:var(--dark);"></div></div><span class="dr-val" style="color:var(--teal);">92%</span></div>
+        <div class="data-row"><span class="dr-label">Primary</span><div class="dr-track" style="position:relative;"><div class="dr-fill" style="width:83%; background:var(--amber);"></div><div style="position:absolute;top:-3px;bottom:-3px;left:90%;width:2px;background:var(--dark);"></div></div><span class="dr-val" style="color:var(--amber);">83%</span></div>
+        <div class="data-row"><span class="dr-label">Secondary</span><div class="dr-track" style="position:relative;"><div class="dr-fill" style="width:72%; background:var(--red); opacity:.8;"></div><div style="position:absolute;top:-3px;bottom:-3px;left:88%;width:2px;background:var(--dark);"></div></div><span class="dr-val" style="color:var(--red);">72%</span></div>
+        <p style="font-size:10px;color:var(--soft);margin-top:8px;font-family:'JetBrains Mono',monospace;">bar = actual &nbsp;·&nbsp; ▏= target</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINANCIAL BRIDGE -->
+<hr class="section-rule thin">
+<div class="section-label">Fee Income — What Drove the Variance from Budget</div>
+<div style="display:grid;grid-template-columns:2fr 3fr;gap:24px;margin-bottom:24px;border:1px solid var(--rule);background:var(--warm-white);padding:20px;">
+  <div>
+    <div class="col-headline" style="font-size:14px;">Budget to Actual: <em style="color:var(--red);">−$1.6M</em></div>
+    <br>
+    <div class="col-body">
+      <p>Fee income landed at <strong>$63.2M</strong> — $1.6M below the $64.8M budget, but operationally on track. The waterfall breakdown explains the drivers:</p>
+      <br>
+      <p><strong>Volume was the biggest drag</strong> (−$2.1M): fewer students enrolled than planned. Fee rates were marginally above plan (+$0.89M), partially offsetting the volume shortfall. Year-group mix was slightly unfavourable (−$0.39M), reflecting a heavier tilt to lower-fee year groups.</p>
+      <br>
+      <p>EBITDA stands at <strong>$36.4M</strong> (on budget), though flowthrough at <strong>23.7%</strong> is down 26.3% versus prior year — being monitored centrally. Market share grew by +0.17% vs the core market.</p>
+    </div>
+  </div>
+  <div>
+    <div class="chart-label">Fee Income Waterfall — FY2026 ($000s)</div>
+    <!-- Waterfall visual -->
+    <div class="wf-row">
+      <span class="wf-label">Budget</span>
+      <div class="wf-bar-wrap">
+        <div class="wf-bar" style="left:0;width:100%;background:var(--blue);opacity:.75;"></div>
+      </div>
+      <span class="wf-val" style="color:var(--blue);">$64.8M</span>
+    </div>
+    <div class="wf-row">
+      <span class="wf-label">Volume −</span>
+      <div class="wf-bar-wrap">
+        <div class="wf-bar" style="right:0;width:25%;background:var(--red);opacity:.75;"></div>
+      </div>
+      <span class="wf-val" style="color:var(--red);">−$2.1M</span>
+    </div>
+    <div class="wf-row">
+      <span class="wf-label">Fee Rate +</span>
+      <div class="wf-bar-wrap">
+        <div class="wf-bar" style="right:25%;width:10.9%;background:var(--teal);opacity:.75;"></div>
+      </div>
+      <span class="wf-val" style="color:var(--teal);">+$0.9M</span>
+    </div>
+    <div class="wf-row">
+      <span class="wf-label">Mix Shift −</span>
+      <div class="wf-bar-wrap">
+        <div class="wf-bar" style="right:14.1%;width:4.8%;background:var(--amber);opacity:.75;"></div>
+      </div>
+      <span class="wf-val" style="color:var(--amber);">−$0.4M</span>
+    </div>
+    <div style="border-top:1px solid var(--rule);margin:8px 0;"></div>
+    <div class="wf-row">
+      <span class="wf-label" style="font-weight:700;">Actual</span>
+      <div class="wf-bar-wrap">
+        <div class="wf-bar" style="left:0;width:97.5%;background:var(--blue);opacity:.5;"></div>
+      </div>
+      <span class="wf-val" style="color:var(--blue);font-weight:700;">$63.2M</span>
+    </div>
+    <div style="margin-top:16px;border-top:1px solid var(--rule);padding-top:12px;">
+      <div class="chart-label">Other Financial Indicators</div>
+      <table class="vel-table" style="font-size:11px;">
+        <tr><td>EBITDA</td><td><strong>$36.4M</strong> · On budget</td></tr>
+        <tr><td>Flowthrough</td><td style="color:var(--red);">23.7% · ↓ 26.3% vs PY</td></tr>
+        <tr><td>Market Share</td><td style="color:var(--teal);">+0.17% vs core market</td></tr>
+        <tr><td>Forecast FTE vs Budget</td><td style="color:var(--red);">12,459 vs 12,864 · −3.2%</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT HAPPENS NEXT -->
+<hr class="section-rule thin">
+<div class="section-label">What Is Likely to Happen</div>
+<div style="display:grid;grid-template-columns:3fr 2fr;gap:24px;margin-bottom:24px;">
+  <div>
+    <p class="body-copy" style="font-size:14px;line-height:1.8;">
+      If current trends continue, <strong>forecast FTE will end the year at 12,459 — 3.2% below the 12,864 budget</strong>. The pipeline shows no signs of self-correcting: enquiries are down 13.3%, conversion is flat, and Aspire IS (new entrant, $21k fee) is yet to reach full operational capacity (expected by FY27 Q2). Every week without a referral programme cedes organic reach.
+    </p>
+    <br>
+    <p class="body-copy" style="font-size:14px;line-height:1.8;">
+      <strong>Secondary capacity will remain underutilised at 72%</strong> against an 88% target — approximately 60–70 vacant spaces with fixed overhead. The 138-day conversion velocity compounds this: families currently in the pipeline will take longer to land, leaving Secondary even more exposed to competitor alternatives in the interim.
+    </p>
+    <br>
+    <p class="body-copy" style="font-size:14px;line-height:1.8;">
+      On the positive side, financial health is currently on budget, IB scores continue to improve, and Early Years capacity at 92% (well above 85% target) demonstrates the admissions proposition is strong when the channel reaches the right families. The competitive landscape shows Westbridge ($22k, 72% outcome) holds a defensible position — but only if volume holds.
+    </p>
+  </div>
+  <div style="background:var(--warm-white);border:1px solid var(--rule);padding:20px;">
+    <div class="chart-label">Key Forward Indicators</div>
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;color:var(--soft);margin-bottom:5px;">Forecast FTE vs Budget</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;height:8px;background:var(--ink-cream);position:relative;">
+          <div style="position:absolute;left:0;top:0;height:100%;width:96.8%;background:var(--amber);"></div>
+          <div style="position:absolute;right:0;top:-4px;bottom:-4px;width:2px;background:var(--black);"></div>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);">−3.2%</span>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;color:var(--soft);margin-bottom:5px;">Secondary Capacity (Actual 72% vs Target 88%)</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;height:8px;background:var(--ink-cream);position:relative;">
+          <div style="position:absolute;left:0;top:0;height:100%;width:72%;background:var(--red);opacity:.8;"></div>
+          <div style="position:absolute;left:88%;top:-4px;bottom:-4px;width:2px;background:var(--dark);"></div>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);">−16pts</span>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;color:var(--soft);margin-bottom:5px;">A-Level Grade Trajectory</div>
+      <svg viewBox="0 0 160 40" style="width:100%;height:36px;">
+        <polyline points="0,10 40,12 80,10 120,14 160,28" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="160" cy="28" r="3" fill="var(--red)"/>
+        <text x="134" y="36" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--red)">52.7%</text>
+      </svg>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;color:var(--soft);margin-bottom:5px;">IB Score Trajectory (33.2 · +0.5)</div>
+      <svg viewBox="0 0 160 40" style="width:100%;height:36px;">
+        <polyline points="0,30 40,26 80,28 120,22 160,14" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="160" cy="14" r="3" fill="var(--teal)"/>
+        <text x="134" y="12" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--teal)">33.2</text>
+      </svg>
+    </div>
+    <div style="border-top:1px solid var(--rule);padding-top:12px;">
+      <div style="font-size:11px;color:var(--soft);margin-bottom:5px;">Staff Compliance</div>
+      <table class="vel-table" style="font-size:11px;">
+        <tr><td>Safeguarding</td><td style="color:var(--teal);">94.9% ✓</td></tr>
+        <tr><td>Staff BGC</td><td style="color:var(--amber);">92.6%</td></tr>
+        <tr><td>Contractor BGC</td><td style="color:var(--red);font-weight:700;">76.2% ⚠</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT YOU SHOULD DO -->
+<hr class="section-rule">
+<div class="section-label">What You Should Do — Priority Actions This Week</div>
+
+<div class="actions-grid">
+  <div class="action-story">
+    <div class="action-num">1</div>
+    <div class="action-content">
+      <div class="action-hl">Launch the parent referral programme immediately</div>
+      <div class="action-body">Aspire IS's primary entry is imminent. Your 46% promoter base (NPS survey) is ready to activate — every week of delay cedes organic reach. Brief the MAC team this week and agree on incentive mechanics. Referral already converts at 10.1% vs 6.6% for web — it is your highest-quality channel.</div>
+      <span class="action-tag mkt">Marketing · FY26 Q3</span>
+    </div>
+  </div>
+  <div class="action-story">
+    <div class="action-num">2</div>
+    <div class="action-content">
+      <div class="action-hl">Audit A-Level teaching by department — cross-reference attrition</div>
+      <div class="action-body">A 13.3-point single-year drop to 52.7% is not within normal variation. Languages (28% attrition, 42% A*–A) and Humanities (21%, 50%) are in the danger zone. Conduct a subject-level review with Heads of Department. Establish the staffing-outcomes correlation before end of term.</div>
+      <span class="action-tag acad">Academic · Immediate</span>
+    </div>
+  </div>
+  <div class="action-story">
+    <div class="action-num">3</div>
+    <div class="action-content">
+      <div class="action-hl">Escalate contractor background check compliance (76.2%)</div>
+      <div class="action-body">76.2% contractor BGC vs 94.9% for employed staff is a safeguarding and reputational risk — the gap confirms a process failure, not a cultural one. Flag to HR and Head of Operations immediately. This must be resolved this quarter (target: FY26 Q3).</div>
+      <span class="action-tag risk">Compliance · Urgent</span>
+    </div>
+  </div>
+  <div class="action-story">
+    <div class="action-num">4</div>
+    <div class="action-content">
+      <div class="action-hl">Map Secondary velocity bottleneck with MAC team</div>
+      <div class="action-body">138 days from enquiry to secondary enrolment vs 94 days for Early Years is a 47% gap. Ask your MAC team to map at which stage (visit→app or app→decision) families are stalling. A targeted intervention at the bottleneck stage alone can close 20–30 days. Secondary is 16 points below capacity target.</div>
+      <span class="action-tag mkt">Admissions · This Week</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTNOTE -->
+<div class="footnote">
+  <span>Westbridge Academy · School Intelligence Briefing · <a href="index.html" style="color:inherit;">Back to Dashboard</a></span>
+  <span>Data: Salesforce Wk 24 · OneStream Wk 23 · Refresh 18 Feb 2026</span>
+  <span>All data synthetic · For illustrative purposes only</span>
+</div>
+
+</body>
+</html>

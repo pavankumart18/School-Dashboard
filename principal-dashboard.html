@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principal Dashboard — Westbridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1923;
+    --ink-mid: #2d3f50;
+    --ink-soft: #5a7082;
+    --ink-ghost: #8fa3b0;
+    --paper: #f5f1eb;
+    --paper-warm: #ede9e1;
+    --paper-card: #faf8f4;
+    --amber: #d4820a;
+    --amber-light: #f5a623;
+    --teal: #0d7a6e;
+    --teal-light: #12a896;
+    --rose: #c0392b;
+    --rose-light: #e74c3c;
+    --blue: #1a5276;
+    --border: rgba(15,25,35,0.1);
+    --shadow: 0 2px 20px rgba(15,25,35,0.08);
+    --shadow-deep: 0 8px 40px rgba(15,25,35,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 220px;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    padding: 0;
+  }
+
+  .sidebar-brand {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .sidebar-brand .school-name {
+    font-family: 'DM Serif Display', serif;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+  .sidebar-brand .school-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 4px;
+  }
+
+  .nav-section {
+    padding: 20px 0 8px;
+  }
+  .nav-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.25);
+    padding: 0 24px 8px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 24px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    cursor: pointer;
+    transition: all 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .nav-item:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.05); }
+  .nav-item.active {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border-left-color: var(--amber-light);
+  }
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .nav-item.active .nav-dot { opacity: 1; background: var(--amber-light); }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+  }
+  .sidebar-footer .refresh-time { color: rgba(255,255,255,0.45); font-weight: 500; }
+
+  /* MAIN */
+  .main {
+    margin-left: 220px;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--paper-card);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .header-left h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .header-left .subtitle {
+    font-size: 12px;
+    color: var(--ink-ghost);
+    margin-top: 2px;
+  }
+
+  .header-filters {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .filter-chip {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-chip:hover { border-color: var(--ink-soft); }
+  .filter-chip.active {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+  .filter-chip select {
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 12px;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
+  }
+
+  /* CONTENT */
+  .content {
+    padding: 28px 32px;
+  }
+
+  /* ALERT BANNER */
+  .alert-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #162032 100%);
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+  }
+  .alert-banner .alert-icon {
+    width: 32px; height: 32px;
+    background: rgba(245, 166, 35, 0.2);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .alert-content { margin-left: 14px; flex: 1; }
+  .alert-content strong { font-size: 13px; font-weight: 600; }
+  .alert-content p { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .alert-pills { display: flex; gap: 8px; }
+  .alert-pill {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .alert-pill:hover { background: rgba(255,255,255,0.18); }
+  .alert-pill.warn { background: rgba(212, 130, 10, 0.25); color: var(--amber-light); }
+
+  /* KPI STRIP */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .kpi-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: default;
+  }
+  .kpi-card:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--stripe-color, var(--ink-ghost));
+    border-radius: 10px 10px 0 0;
+  }
+  .kpi-card.green::before { --stripe-color: var(--teal); }
+  .kpi-card.amber::before { --stripe-color: var(--amber); }
+  .kpi-card.red::before { --stripe-color: var(--rose); }
+  .kpi-card.blue::before { --stripe-color: var(--blue); }
+
+  .kpi-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-ghost);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .kpi-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .kpi-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 6px;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+  .kpi-change.up { color: var(--teal); background: rgba(13,122,110,0.1); }
+  .kpi-change.down { color: var(--rose); background: rgba(192,57,43,0.1); }
+  .kpi-change.flat { color: var(--ink-soft); background: rgba(90,112,130,0.1); }
+  .kpi-sub { font-size: 10px; color: var(--ink-ghost); margin-top: 4px; }
+
+  /* MAIN GRID */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .dashboard-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .dashboard-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 16px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .card-sub { font-size: 11px; color: var(--ink-ghost); margin-top: 2px; }
+  .card-body { padding: 20px; }
+
+  .card-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-green { background: rgba(13,122,110,0.1); color: var(--teal); }
+  .badge-amber { background: rgba(212,130,10,0.12); color: var(--amber); }
+  .badge-red { background: rgba(192,57,43,0.1); color: var(--rose); }
+
+  /* ENROLLMENT FUNNEL */
+  .funnel-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 12px;
+  }
+  .funnel-label {
+    width: 90px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .funnel-bar-wrap {
+    flex: 1;
+    height: 28px;
+    background: var(--paper);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .funnel-bar {
+    height: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    transition: width 1s ease;
+  }
+  .funnel-meta {
+    width: 80px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .funnel-count { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .funnel-cvr { font-size: 10px; color: var(--ink-ghost); }
+
+  /* RADAR CHART */
+  .radar-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  canvas.radar-canvas { max-width: 200px; max-height: 200px; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-ghost);
+    font-weight: 500;
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    font-size: 12px;
+    color: var(--ink-mid);
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(0,0,0,0.02); }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .pill-green { background: rgba(13,122,110,0.1); color: var(--teal); }
+  .pill-amber { background: rgba(212,130,10,0.12); color: var(--amber); }
+  .pill-red { background: rgba(192,57,43,0.1); color: var(--rose); }
+
+  /* SPARKLINE */
+  .sparkline-wrap { display: flex; align-items: flex-end; gap: 3px; height: 32px; }
+  .spark-bar {
+    flex: 1;
+    border-radius: 2px 2px 0 0;
+    min-width: 4px;
+    transition: opacity 0.15s;
+  }
+  .spark-bar:hover { opacity: 0.7; }
+
+  /* METRIC ROW */
+  .metric-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .metric-row:last-child { border-bottom: none; }
+  .metric-name { font-size: 12px; color: var(--ink-mid); }
+  .metric-value-wrap { text-align: right; }
+  .metric-val { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .metric-vs { font-size: 10px; color: var(--ink-ghost); }
+
+  /* COMPLIANCE BARS */
+  .compliance-row { margin-bottom: 14px; }
+  .compliance-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 5px;
+  }
+  .compliance-name { font-size: 12px; color: var(--ink-mid); }
+  .compliance-val { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .compliance-track {
+    height: 6px;
+    background: var(--paper);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .compliance-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+
+  /* ACTION ITEMS */
+  .action-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .action-item:last-child { border-bottom: none; }
+  .action-icon {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .action-icon.marketing { background: rgba(26,82,118,0.1); }
+  .action-icon.proposition { background: rgba(13,122,110,0.1); }
+  .action-icon.risk { background: rgba(212,130,10,0.12); }
+  .action-text { flex: 1; }
+  .action-text strong { font-size: 12px; font-weight: 600; color: var(--ink); display: block; margin-bottom: 2px; }
+  .action-text span { font-size: 11px; color: var(--ink-soft); }
+  .action-fy {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--paper);
+    border-radius: 10px;
+    color: var(--ink-ghost);
+    flex-shrink: 0;
+  }
+
+  /* NPS GAUGE */
+  .nps-display {
+    text-align: center;
+    padding: 20px 0;
+  }
+  .nps-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .nps-label { font-size: 11px; color: var(--ink-ghost); margin-top: 4px; }
+  .nps-bars { display: flex; gap: 2px; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 14px; }
+  .nps-detract { background: var(--rose-light); flex: 18; }
+  .nps-passive { background: #e8e0d0; flex: 36; }
+  .nps-promote { background: var(--teal-light); flex: 46; }
+  .nps-legend {
+    display: flex; justify-content: space-between;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--ink-ghost);
+  }
+
+  /* SCROLL */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* TABS */
+  .tab-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab {
+    padding: 10px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-ghost);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.15s;
+  }
+  .tab:hover { color: var(--ink-mid); }
+  .tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* CHART AREA */
+  .chart-area {
+    width: 100%;
+    height: 140px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* VELOCITY GAUGE */
+  .velocity-display {
+    text-align: center;
+    padding: 16px 0;
+  }
+  .velocity-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .velocity-label { font-size: 11px; color: var(--ink-ghost); margin-top: 4px; }
+  .velocity-context { font-size: 11px; color: var(--ink-soft); margin-top: 8px; }
+
+  /* MINI CHART SVG */
+  svg.mini-line { width: 100%; height: 60px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .kpi-card { animation: fadeUp 0.4s ease both; }
+  .kpi-card:nth-child(1) { animation-delay: 0.05s; }
+  .kpi-card:nth-child(2) { animation-delay: 0.10s; }
+  .kpi-card:nth-child(3) { animation-delay: 0.15s; }
+  .kpi-card:nth-child(4) { animation-delay: 0.20s; }
+  .kpi-card:nth-child(5) { animation-delay: 0.25s; }
+  .kpi-card:nth-child(6) { animation-delay: 0.30s; }
+
+  .section-divider {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-ghost);
+    margin-bottom: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="school-name">Westbridge<br>Academy</div>
+    <div class="school-label">Principal View · FY2026</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">School</div>
+    <div class="nav-item active"><span class="nav-dot"></span>Overview</div>
+    <div class="nav-item"><span class="nav-dot"></span>Marketing & Admissions</div>
+    <div class="nav-item"><span class="nav-dot"></span>Academic Performance</div>
+    <div class="nav-item"><span class="nav-dot"></span>Financial Health</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Workforce</div>
+    <div class="nav-item"><span class="nav-dot"></span>Talent & Retention</div>
+    <div class="nav-item"><span class="nav-dot"></span>Compliance</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Context</div>
+    <div class="nav-item"><span class="nav-dot"></span>Competitor Landscape</div>
+    <div class="nav-item"><span class="nav-dot"></span>Action Plans</div>
+  </div>
+
+  <div class="sidebar-footer">
+    Last refreshed<br>
+    <span class="refresh-time">Today 04:07 AM</span>
+    <div style="margin-top:8px; font-size:10px;">Salesforce · Wk 24<br>Finance · Wk 23</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="header">
+    <div class="header-left">
+      <h1>School Overview</h1>
+      <div class="subtitle">Westbridge Academy · EU Region · Enrolment Year 2027</div>
+    </div>
+    <div class="header-filters">
+      <div class="filter-chip active">FY 2026</div>
+      <div class="filter-chip">
+        <select><option>All Year Groups</option><option>Early Years</option><option>Primary</option><option>Secondary</option></select>
+      </div>
+      <div class="filter-chip">
+        <select><option>Start-Year Period</option><option>In-Year</option></select>
+      </div>
+      <div class="filter-chip">
+        <select><option>All Students</option><option>Local</option><option>Expat</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ALERT BANNER -->
+    <div class="alert-banner">
+      <div class="alert-icon">⚠</div>
+      <div class="alert-content">
+        <strong>2 metrics need your attention this week</strong>
+        <p>New enrolment is down 13.9% YoY · Secondary velocity at 138 days is above threshold</p>
+      </div>
+      <div class="alert-pills">
+        <div class="alert-pill warn">↓ Enrolments</div>
+        <div class="alert-pill warn">⏱ Velocity</div>
+        <div class="alert-pill">View Action Plans →</div>
+      </div>
+    </div>
+
+    <!-- KPI STRIP -->
+    <div class="section-divider">Key Metrics</div>
+    <div class="kpi-grid">
+      <div class="kpi-card red">
+        <div class="kpi-label">Forecast FTE</div>
+        <div class="kpi-value">12,459</div>
+        <div class="kpi-change down">↓ 3.2% vs Budget</div>
+        <div class="kpi-sub">Budget: 12,864</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-label">New Enrolments</div>
+        <div class="kpi-value">410</div>
+        <div class="kpi-change down">↓ 13.9% YoY</div>
+        <div class="kpi-sub">Last year: 477</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">Enquiries</div>
+        <div class="kpi-value">5,615</div>
+        <div class="kpi-change down">↓ 13.3% YoY</div>
+        <div class="kpi-sub">Visits: 2,815</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">NPS Score</div>
+        <div class="kpi-value">29</div>
+        <div class="kpi-change flat">→ Flat YoY</div>
+        <div class="kpi-sub">Benchmark: 35</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">Capacity Used</div>
+        <div class="kpi-value">80.5%</div>
+        <div class="kpi-change up">↑ Forecast 73.7%</div>
+        <div class="kpi-sub">Current vs Target</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">Eng. Score</div>
+        <div class="kpi-value">3.81</div>
+        <div class="kpi-change flat">→ vs 3.81 LY</div>
+        <div class="kpi-sub">Staff engagement</div>
+      </div>
+    </div>
+
+    <!-- ROW 2: FUNNEL + RADAR + ACTIONS -->
+    <div class="dashboard-grid">
+      <!-- FUNNEL -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Enrolment Funnel</div>
+            <div class="card-sub">EY 2027 — All year groups</div>
+          </div>
+          <div class="tab-row" style="margin-bottom:0; border:none; gap:0;">
+            <div class="tab active" style="padding:4px 12px; font-size:11px;">All</div>
+            <div class="tab" style="padding:4px 12px; font-size:11px;">EY</div>
+            <div class="tab" style="padding:4px 12px; font-size:11px;">Primary</div>
+            <div class="tab" style="padding:4px 12px; font-size:11px;">Secondary</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="funnel-row">
+            <div class="funnel-label">Enquiries</div>
+            <div class="funnel-bar-wrap">
+              <div class="funnel-bar" style="width:100%; background: linear-gradient(90deg, #1a5276, #2980b9);">5,615</div>
+            </div>
+            <div class="funnel-meta"><div class="funnel-count">5,615</div><div class="funnel-cvr">100%</div></div>
+          </div>
+          <div class="funnel-row">
+            <div class="funnel-label">Visits</div>
+            <div class="funnel-bar-wrap">
+              <div class="funnel-bar" style="width:50.1%; background: linear-gradient(90deg, #1a6276, #2898b9);">2,815</div>
+            </div>
+            <div class="funnel-meta"><div class="funnel-count">2,815</div><div class="funnel-cvr">50.1%</div></div>
+          </div>
+          <div class="funnel-row">
+            <div class="funnel-label">Applications</div>
+            <div class="funnel-bar-wrap">
+              <div class="funnel-bar" style="width:27.4%; background: linear-gradient(90deg, #0d7a6e, #12a896);">1,537</div>
+            </div>
+            <div class="funnel-meta"><div class="funnel-count">1,537</div><div class="funnel-cvr">27.4%</div></div>
+          </div>
+          <div class="funnel-row">
+            <div class="funnel-label">Enrolled</div>
+            <div class="funnel-bar-wrap">
+              <div class="funnel-bar" style="width:7.3%; background: linear-gradient(90deg, #d4820a, #f5a623);">410</div>
+            </div>
+            <div class="funnel-meta"><div class="funnel-count">410</div><div class="funnel-cvr">7.3%</div></div>
+          </div>
+
+          <!-- velocity -->
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; gap: 16px;">
+            <div style="flex:1; text-align:center; padding: 12px; background: var(--paper); border-radius: 8px;">
+              <div style="font-size:10px; color:var(--ink-ghost); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">Avg. Velocity</div>
+              <div style="font-family:'DM Serif Display',serif; font-size:28px; color:var(--amber); letter-spacing:-0.02em;">123 <span style="font-size:14px; color:var(--ink-ghost);">days</span></div>
+              <div style="font-size:10px; color:var(--ink-soft); margin-top:2px;">Enq → Enrolment</div>
+            </div>
+            <div style="flex:1; text-align:center; padding: 12px; background: var(--paper); border-radius: 8px;">
+              <div style="font-size:10px; color:var(--ink-ghost); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">CVR (Enq→Enr)</div>
+              <div style="font-family:'DM Serif Display',serif; font-size:28px; color:var(--ink-soft); letter-spacing:-0.02em;">7.3%</div>
+              <div style="font-size:10px; color:var(--ink-soft); margin-top:2px;"><span style="color:var(--rose);">−0.0%</span> vs last year</div>
+            </div>
+            <div style="flex:1; text-align:center; padding: 12px; background: var(--paper); border-radius: 8px;">
+              <div style="font-size:10px; color:var(--ink-ghost); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">App→Enr CVR</div>
+              <div style="font-family:'DM Serif Display',serif; font-size:28px; color:var(--teal); letter-spacing:-0.02em;">26.7%</div>
+              <div style="font-size:10px; color:var(--ink-soft); margin-top:2px;"><span style="color:var(--rose);">−3.9%</span> vs last year</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COL: NPS + RADAR -->
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <!-- NPS -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Parent Satisfaction</div>
+            <span class="card-badge badge-amber">Needs Attention</span>
+          </div>
+          <div class="card-body" style="padding:16px;">
+            <div class="nps-display">
+              <div class="nps-score">29</div>
+              <div class="nps-label">Net Promoter Score</div>
+              <div class="nps-bars" style="margin-top:12px;">
+                <div class="nps-detract"></div>
+                <div class="nps-passive"></div>
+                <div class="nps-promote"></div>
+              </div>
+              <div class="nps-legend">
+                <span>18% Detractors</span>
+                <span>36% Passive</span>
+                <span>46% Promoters</span>
+              </div>
+            </div>
+            <div style="margin-top:12px;">
+              <div class="metric-row">
+                <span class="metric-name">Quality of Teaching</span>
+                <div class="metric-value-wrap"><div class="metric-val">4.15</div><div class="metric-vs">/ 5.00</div></div>
+              </div>
+              <div class="metric-row">
+                <span class="metric-name">Quality of Principal</span>
+                <div class="metric-value-wrap"><div class="metric-val">4.17</div><div class="metric-vs">/ 5.00</div></div>
+              </div>
+              <div class="metric-row">
+                <span class="metric-name">Value for Money</span>
+                <div class="metric-value-wrap"><div class="metric-val" style="color:var(--amber);">3.41</div><div class="metric-vs">/ 5.00</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PERFORMANCE RADAR -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Performance Radar</div>
+            <span class="card-badge badge-amber">vs Region</span>
+          </div>
+          <div class="card-body" style="padding:12px;">
+            <canvas id="radarChart" width="220" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 3: ACADEMIC + TALENT + FINANCIALS -->
+    <div class="section-divider" style="margin-top:4px;">Academic · Talent · Financials</div>
+    <div class="dashboard-grid-3">
+      <!-- ACADEMIC -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Academic Results</div>
+            <div class="card-sub">2025 Results · GCSE, A-Level, IB</div>
+          </div>
+          <span class="card-badge badge-amber">Mixed</span>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-name">IB Avg Diploma Score</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val">33.2</div>
+              <div class="metric-vs"><span style="color:var(--teal);">+0.5</span> vs PY</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">A-Levels A*–A Grades</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val">52.7%</div>
+              <div class="metric-vs"><span style="color:var(--rose);">−13.3%</span> vs PY</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">iGCSE A*–A Grades</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val">46.4%</div>
+              <div class="metric-vs"><span style="color:var(--rose);">−2.0%</span> vs PY</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">AP Average Score</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val">3.6</div>
+              <div class="metric-vs">→ Flat vs PY</div>
+            </div>
+          </div>
+          <!-- sparkline -->
+          <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--border);">
+            <div style="font-size:10px; color:var(--ink-ghost); margin-bottom:6px;">IB Score Trend (5yr)</div>
+            <svg viewBox="0 0 200 40" style="width:100%; height:40px; overflow:visible;">
+              <polyline points="0,28 40,24 80,26 120,22 160,20 200,14" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="200" cy="14" r="3" fill="var(--teal)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- TALENT -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Talent & Compliance</div>
+            <div class="card-sub">2,773 staff · FY2026</div>
+          </div>
+          <span class="card-badge badge-amber">Monitor</span>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-name">Teacher Attrition</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val" style="color:var(--rose);">19.6%</div>
+              <div class="metric-vs">−0.0% vs PY</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">MAC Attrition</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val" style="color:var(--amber);">21.5%</div>
+              <div class="metric-vs">+0.2% vs PY</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">Employee Engagement</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val">3.81</div>
+              <div class="metric-vs">→ Flat vs PY</div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px; padding-top:12px; border-top:1px solid var(--border);">
+            <div class="compliance-row">
+              <div class="compliance-header">
+                <span class="compliance-name">Safeguarding Training</span>
+                <span class="compliance-val">94.9%</span>
+              </div>
+              <div class="compliance-track">
+                <div class="compliance-fill" style="width:94.9%; background:var(--teal);"></div>
+              </div>
+            </div>
+            <div class="compliance-row">
+              <div class="compliance-header">
+                <span class="compliance-name">Background Checks</span>
+                <span class="compliance-val" style="color:var(--amber);">92.6%</span>
+              </div>
+              <div class="compliance-track">
+                <div class="compliance-fill" style="width:92.6%; background:var(--amber);"></div>
+              </div>
+            </div>
+            <div class="compliance-row">
+              <div class="compliance-header">
+                <span class="compliance-name">Contractors — BGC</span>
+                <span class="compliance-val" style="color:var(--rose);">76.2%</span>
+              </div>
+              <div class="compliance-track">
+                <div class="compliance-fill" style="width:76.2%; background:var(--rose);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINANCIALS -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Financial Health</div>
+            <div class="card-sub">OneStream · as of Wk 23</div>
+          </div>
+          <span class="card-badge badge-green">On Track</span>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-name">Fee Income</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val">$64.3M</div>
+              <div class="metric-vs">On budget</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">EBITDA</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val">$36.4M</div>
+              <div class="metric-vs">On budget</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">Flowthrough %</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val" style="color:var(--rose);">23.7%</div>
+              <div class="metric-vs">−26.3% vs PY</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-name">Market Share Growth</span>
+            <div class="metric-value-wrap">
+              <div class="metric-val">+0.17%</div>
+              <div class="metric-vs">vs Core Market</div>
+            </div>
+          </div>
+          <!-- Fee income sparkline -->
+          <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--border);">
+            <div style="font-size:10px; color:var(--ink-ghost); margin-bottom:6px;">Fee Income Trend</div>
+            <svg viewBox="0 0 200 40" style="width:100%; height:40px;">
+              <polyline points="0,32 40,28 80,24 120,20 160,22 200,18" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="200" cy="18" r="3" fill="var(--teal)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 4: ACTION PLANS -->
+    <div class="section-divider">Action Plans</div>
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Strategic Action Items</div>
+          <div class="card-sub">Initiatives linked to this school's improvement plan</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <span class="card-badge badge-red">3 Open</span>
+          <span class="card-badge badge-green">1 In Progress</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="action-item">
+          <div class="action-icon marketing">📣</div>
+          <div class="action-text">
+            <strong>Launch Primary Parent Referral Programme</strong>
+            <span>Strong new competitor entering primary segment. Drive organic referrals to offset enquiry decline.</span>
+          </div>
+          <div class="action-fy">FY27</div>
+          <span class="pill pill-amber">Marketing</span>
+        </div>
+        <div class="action-item">
+          <div class="action-icon proposition">📚</div>
+          <div class="action-text">
+            <strong>Expand EAL Provision for Local Families</strong>
+            <span>Growing demand from local students. EAL support will improve Value for Money perception and retention.</span>
+          </div>
+          <div class="action-fy">FY27</div>
+          <span class="pill pill-green">Academic</span>
+        </div>
+        <div class="action-item">
+          <div class="action-icon proposition">🚀</div>
+          <div class="action-text">
+            <strong>Entrepreneurship & AI Programme (Upper Primary / Lower Secondary)</strong>
+            <span>Develop innovation curriculum to differentiate school proposition against competitors.</span>
+          </div>
+          <div class="action-fy">FY27</div>
+          <span class="pill pill-green">Academic</span>
+        </div>
+        <div class="action-item">
+          <div class="action-icon risk">🏠</div>
+          <div class="action-text">
+            <strong>Develop Boarding Offer</strong>
+            <span>Boarding provision will open new student segments and improve occupancy utilisation beyond current 80.5%.</span>
+          </div>
+          <div class="action-fy">FY28</div>
+          <span class="pill pill-amber">Strategic</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+// Radar Chart
+const canvas = document.getElementById('radarChart');
+const ctx = canvas.getContext('2d');
+const cx = 110, cy = 100, r = 75;
+
+const categories = ['Enquiries','Conversion','Market','NPS','Eng.','Capacity','Velocity','Value/Money'];
+const school = [0.45, 0.52, 0.55, 0.62, 0.68, 0.75, 0.48, 0.58];
+const region = [0.60, 0.65, 0.60, 0.68, 0.70, 0.72, 0.60, 0.65];
+const n = categories.length;
+
+function polar(i, val) {
+  const angle = (i / n) * 2 * Math.PI - Math.PI / 2;
+  return {
+    x: cx + val * r * Math.cos(angle),
+    y: cy + val * r * Math.sin(angle)
+  };
+}
+
+// Grid
+for (let ring = 0.25; ring <= 1; ring += 0.25) {
+  ctx.beginPath();
+  for (let i = 0; i < n; i++) {
+    const p = polar(i, ring);
+    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+  }
+  ctx.closePath();
+  ctx.strokeStyle = 'rgba(15,25,35,0.08)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+}
+
+// Axes
+for (let i = 0; i < n; i++) {
+  const p = polar(i, 1);
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(p.x, p.y);
+  ctx.strokeStyle = 'rgba(15,25,35,0.08)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // labels
+  const lp = polar(i, 1.22);
+  ctx.fillStyle = '#5a7082';
+  ctx.font = '9px DM Sans, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(categories[i], lp.x, lp.y);
+}
+
+// Region polygon
+ctx.beginPath();
+for (let i = 0; i < n; i++) {
+  const p = polar(i, region[i]);
+  i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+}
+ctx.closePath();
+ctx.fillStyle = 'rgba(15,25,35,0.04)';
+ctx.fill();
+ctx.strokeStyle = 'rgba(15,25,35,0.2)';
+ctx.lineWidth = 1;
+ctx.stroke();
+
+// School polygon
+ctx.beginPath();
+for (let i = 0; i < n; i++) {
+  const p = polar(i, school[i]);
+  i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+}
+ctx.closePath();
+ctx.fillStyle = 'rgba(212, 130, 10, 0.15)';
+ctx.fill();
+ctx.strokeStyle = 'rgba(212, 130, 10, 0.8)';
+ctx.lineWidth = 2;
+ctx.stroke();
+
+// Points
+for (let i = 0; i < n; i++) {
+  const p = polar(i, school[i]);
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+  ctx.fillStyle = '#d4820a';
+  ctx.fill();
+}
+
+// Legend
+ctx.fillStyle = '#d4820a';
+ctx.fillRect(10, 183, 10, 3);
+ctx.fillStyle = '#5a7082';
+ctx.font = '9px DM Sans, sans-serif';
+ctx.textAlign = 'left';
+ctx.fillText('Your School', 24, 185);
+
+ctx.fillStyle = 'rgba(15,25,35,0.2)';
+ctx.fillRect(90, 183, 10, 3);
+ctx.fillStyle = '#5a7082';
+ctx.fillText('Region Avg', 104, 185);
+</script>
+</body>
+</html>
