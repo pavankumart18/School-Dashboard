@@ -4,213 +4,152 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Principal's Dashboard — Westbridge Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet" />
 <style>
 :root{
-  --ink:#0d1b2a;--ink-mid:#2c3e50;--ink-soft:#607080;--ink-ghost:#96aab8;
-  --paper:#f4f0e8;--paper-warm:#ece8df;--card:#ffffff;
-  --amber:#c97a0a;--amber-bg:rgba(201,122,10,.10);--amber-bdr:rgba(201,122,10,.22);
-  --teal:#0b7060;--teal-bg:rgba(11,112,96,.10);--teal-bdr:rgba(11,112,96,.22);
-  --rose:#b83228;--rose-bg:rgba(184,50,40,.10);--rose-bdr:rgba(184,50,40,.22);
-  --blue:#1a3d6e;--blue-bg:rgba(26,61,110,.10);
-  --bdr:rgba(13,27,42,.09);--shadow:0 2px 18px rgba(13,27,42,.08);--shadow-lg:0 6px 30px rgba(13,27,42,.12);
+  --ink:#0d1b2a;--ink-mid:#2c3e50;--ink-soft:#60748a;--ink-ghost:#96aab8;
+  --paper:#f0ede6;--paper-warm:#e8e3da;--card:#ffffff;
+  --green:#0b7060;--green-bg:#edf7f3;--green-bdr:rgba(11,112,96,.25);
+  --amber:#b8720a;--amber-bg:#fff8ed;--amber-bdr:rgba(184,114,10,.25);
+  --red:#b02820;--red-bg:#fdf0ee;--red-bdr:rgba(176,40,32,.25);
+  --blue:#1a3d6e;--blue-bg:#eef2fb;
+  --bdr:rgba(13,27,42,.09);--shadow:0 2px 16px rgba(13,27,42,.07);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;overflow:hidden;}
 body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:14px;}
 a{color:inherit;text-decoration:none;}
 
-/* ── LAYOUT ── */
+/* ── APP SHELL ── */
 .app{display:flex;height:100%;}
 
 /* ── SIDEBAR ── */
-.sb{width:216px;min-width:216px;background:var(--ink);display:flex;flex-direction:column;flex-shrink:0;}
-.sb-brand{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.07);}
-.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:2px;}
-.sb-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);opacity:.8;}
-.sb-school{font-family:'DM Serif Display',serif;color:#fff;font-size:15px;line-height:1.25;}
-.sb-role{font-size:9px;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.15em;margin-top:6px;}
-.sb-nav{flex:1;overflow-y:auto;padding:10px 0;scrollbar-width:none;}
+.sb{width:218px;min-width:218px;background:var(--ink);display:flex;flex-direction:column;flex-shrink:0;}
+.sb-brand{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,.07);}
+.sb-logo{display:flex;align-items:center;gap:9px;margin-bottom:2px;}
+.sb-dot{width:8px;height:8px;border-radius:50%;background:#b8720a;opacity:.85;}
+.sb-school{font-family:'DM Serif Display',serif;color:#fff;font-size:14.5px;line-height:1.25;}
+.sb-role{font-size:9px;color:rgba(255,255,255,.24);text-transform:uppercase;letter-spacing:.15em;margin-top:5px;}
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0;scrollbar-width:none;}
 .sb-nav::-webkit-scrollbar{display:none;}
-.sb-section{padding:14px 0 2px;}
-.sb-label{font-size:9px;text-transform:uppercase;letter-spacing:.17em;color:rgba(255,255,255,.18);padding:0 20px 6px;font-weight:500;}
+.sb-section{padding:12px 0 2px;}
+.sb-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.17em;color:rgba(255,255,255,.18);padding:0 20px 5px;font-weight:500;}
 .sb-nav ul{list-style:none;}
 .sb-nav li{margin-bottom:1px;}
-.sb-nav a{display:flex;align-items:center;gap:10px;padding:8px 20px;font-size:13px;color:rgba(255,255,255,.44);border-left:3px solid transparent;transition:all .15s;border-radius:0 6px 6px 0;margin-right:8px;}
+.sb-nav a{display:flex;align-items:center;gap:10px;padding:8px 18px;font-size:13px;color:rgba(255,255,255,.44);border-left:3px solid transparent;transition:all .14s;border-radius:0 7px 7px 0;margin-right:8px;}
 .sb-nav a:hover{color:rgba(255,255,255,.80);background:rgba(255,255,255,.05);}
-.sb-nav li.active a{color:#fff;background:rgba(255,255,255,.09);border-left-color:#c97a0a;}
-.mi{font-family:'Material Symbols Outlined';font-size:16px;opacity:.6;font-style:normal;line-height:1;font-variation-settings:'FILL' 0,'wght' 300;}
-.sb-nav li.active a .mi{opacity:.9;}
-.sb-foot{padding:14px 20px;border-top:1px solid rgba(255,255,255,.07);}
+.sb-nav li.active a{color:#fff;background:rgba(255,255,255,.09);border-left-color:#b8720a;}
+.mi{font-family:'Material Symbols Outlined';font-size:16px;opacity:.55;font-style:normal;line-height:1;}
+.sb-nav li.active a .mi{opacity:.88;}
+.sb-foot{padding:13px 20px;border-top:1px solid rgba(255,255,255,.07);}
 .av{display:flex;align-items:center;gap:10px;}
-.av-ring{width:32px;height:32px;border-radius:50%;background:rgba(201,122,10,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#e8a030;flex-shrink:0;}
-.av-name{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.78);}
-.av-role{font-size:10px;color:rgba(255,255,255,.28);margin-top:1px;}
+.av-ring{width:32px;height:32px;border-radius:50%;background:rgba(184,114,10,.22);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#e8a030;flex-shrink:0;}
+.av-name{font-size:12px;font-weight:600;color:rgba(255,255,255,.76);}
+.av-role{font-size:10px;color:rgba(255,255,255,.26);margin-top:1px;}
 
 /* ── MAIN ── */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
 
 /* ── TOPBAR ── */
-.topbar{background:var(--card);border-bottom:1px solid var(--bdr);padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 1px 0 var(--bdr);}
+.topbar{background:var(--card);border-bottom:1px solid var(--bdr);padding:0 28px;height:62px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .tb-left{display:flex;flex-direction:column;justify-content:center;}
-.tb-greeting{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);letter-spacing:-.025em;line-height:1;}
+.tb-greeting{font-family:'DM Serif Display',serif;font-size:19px;color:var(--ink);letter-spacing:-.025em;line-height:1;}
 .tb-greeting em{font-style:italic;color:var(--ink-soft);}
 .tb-date{font-size:11px;color:var(--ink-ghost);margin-top:3px;}
 .tb-right{display:flex;align-items:center;gap:8px;}
-.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;padding:5px 13px;border-radius:20px;border:1px solid var(--bdr);color:var(--ink-soft);background:var(--paper);white-space:nowrap;}
-.chip .mi{font-size:14px;opacity:.7;}
-.chip.danger{background:var(--rose-bg);border-color:var(--rose-bdr);color:var(--rose);}
-.chip.danger .mi{opacity:.8;}
-.chip-link{cursor:pointer;transition:all .14s;}
-.chip-link:hover{background:var(--paper-warm);}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;padding:5px 14px;border-radius:20px;border:1px solid var(--bdr);color:var(--ink-soft);background:var(--paper);white-space:nowrap;cursor:pointer;transition:background .13s;}
+.chip:hover{background:var(--paper-warm);}
+.chip .mi{font-size:14px;}
+.chip.urgent{background:var(--red-bg);border-color:var(--red-bdr);color:var(--red);}
 
 /* ── SCROLL ── */
-.scroll{flex:1;overflow-y:auto;padding:22px 28px 48px;scrollbar-width:thin;scrollbar-color:var(--bdr) transparent;}
+.scroll{flex:1;overflow-y:auto;padding:24px 28px 52px;scrollbar-width:thin;scrollbar-color:var(--bdr) transparent;}
 .scroll::-webkit-scrollbar{width:4px;}
 .scroll::-webkit-scrollbar-thumb{background:var(--paper-warm);border-radius:2px;}
 
-/* ── SECTION TITLE ── */
-.stitle{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-ghost);font-weight:500;display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.stitle::after{content:'';flex:1;height:1px;background:var(--bdr);}
+/* ── SUMMARY BANNER (top alert strip) ── */
+.alert-banner{background:linear-gradient(135deg,#1a2d42,#152438);border-radius:12px;padding:14px 22px;margin-bottom:26px;display:flex;align-items:center;gap:20px;}
+.ab-dot{width:10px;height:10px;border-radius:50%;background:#e85050;animation:pulse 1.6s infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.85);}}
+.ab-text{flex:1;font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;}
+.ab-text strong{color:#fff;}
+.ab-pills{display:flex;gap:6px;flex-wrap:wrap;}
+.ab-pill{font-size:10.5px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap;}
+.ab-pill.r{background:rgba(176,40,32,.3);color:#ff9090;border:1px solid rgba(176,40,32,.4);}
+.ab-pill.a{background:rgba(184,114,10,.28);color:#ffc97a;border:1px solid rgba(184,114,10,.38);}
 
-/* ── KPI ROW ── */
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
-.kpi{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden;cursor:default;transition:box-shadow .15s,transform .15s;}
-.kpi:hover{box-shadow:var(--shadow);transform:translateY(-1px);}
-.kpi-stripe{position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0;}
-.kpi-label{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:var(--ink-ghost);font-weight:500;margin-bottom:9px;}
-.kpi-value{font-family:'DM Serif Display',serif;font-size:32px;letter-spacing:-.03em;line-height:1;}
-.kpi-tag{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:600;margin-top:8px;padding:3px 8px;border-radius:8px;}
-.tag-dn{color:var(--rose);background:var(--rose-bg);}
-.tag-warn{color:var(--amber);background:var(--amber-bg);}
-.tag-ok{color:var(--ink-soft);background:rgba(96,112,128,.10);}
-.tag-up{color:var(--teal);background:var(--teal-bg);}
-.kpi-note{font-size:10px;color:var(--ink-ghost);margin-top:4px;}
+/* ── SECTION HEADER ── */
+.sec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:14px;margin-top:4px;}
+.sec-hdr+.sec-hdr,.kpi-grid+.sec-hdr{margin-top:30px;}
+.sec-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.sec-icon.enrol{background:#edf7f3;}
+.sec-icon.people{background:#eef2fb;}
+.sec-icon.finance{background:#fff8ed;}
+.sec-icon.perf{background:#f5f0fb;}
+.sec-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink);letter-spacing:-.02em;}
+.sec-sub{font-size:11.5px;color:var(--ink-ghost);margin-top:1px;}
+.sec-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.sec-count{font-size:10px;color:var(--ink-ghost);}
+.sec-alert{font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;}
+.sec-alert.red{background:var(--red-bg);color:var(--red);}
+.sec-alert.amber{background:var(--amber-bg);color:var(--amber);}
+.sec-alert.green{background:var(--green-bg);color:var(--green);}
+.sec-line{flex:1;height:1px;background:var(--bdr);}
 
-/* ── TWO-COL ── */
-.two-col{display:grid;grid-template-columns:1fr 340px;gap:14px;margin-bottom:24px;}
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:8px;}
 
-/* ── CARD ── */
-.card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(13,27,42,.04);}
-.card-head{padding:15px 20px 13px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.card-title{font-size:13.5px;font-weight:600;color:var(--ink);}
-.card-sub{font-size:10.5px;color:var(--ink-ghost);margin-top:2px;}
-.pill{font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:10px;letter-spacing:.04em;white-space:nowrap;}
-.pill-red{background:var(--rose-bg);color:var(--rose);}
-.pill-amber{background:var(--amber-bg);color:var(--amber);}
-.pill-green{background:var(--teal-bg);color:var(--teal);}
+/* ── KPI CARD ── */
+.kc{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:18px 18px 16px;position:relative;overflow:hidden;cursor:default;transition:box-shadow .15s,transform .15s;}
+.kc:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
+/* coloured top stripe */
+.kc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:12px 12px 0 0;background:var(--kc-color,#ccc);}
+.kc.g{--kc-color:var(--green);}
+.kc.a{--kc-color:var(--amber);}
+.kc.r{--kc-color:var(--red);}
 
-/* ── ISSUE ROW ── */
-.issue{display:flex;align-items:flex-start;gap:13px;padding:14px 20px;border-bottom:1px solid var(--bdr);transition:background .13s;}
-.issue:last-child{border-bottom:none;}
-.issue:hover{background:#f9f7f3;}
-.sev{width:3px;border-radius:2px;align-self:stretch;flex-shrink:0;min-height:28px;}
-.sev-red{background:var(--rose);}.sev-amber{background:var(--amber);}
-.iss-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
-.iss-icon-red{background:var(--rose-bg);}.iss-icon-amber{background:var(--amber-bg);}
-.iss-body{flex:1;min-width:0;}
-.iss-title{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:4px;}
-.iss-desc{font-size:11.5px;color:var(--ink-soft);line-height:1.5;}
-.iss-meta{font-size:10px;color:var(--ink-ghost);margin-top:5px;}
-.iss-val{font-family:'DM Serif Display',serif;font-size:22px;flex-shrink:0;text-align:right;padding-top:3px;}
-.iss-val-red{color:var(--rose);}.iss-val-amber{color:var(--amber);}
+/* status badge */
+.kc-status{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:10px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
+.kc.g .kc-status{background:var(--green-bg);color:var(--green);}
+.kc.a .kc-status{background:var(--amber-bg);color:var(--amber);}
+.kc.r .kc-status{background:var(--red-bg);color:var(--red);}
 
-/* ── ACTION ROW ── */
-.action{display:flex;gap:12px;padding:14px 20px;border-bottom:1px solid var(--bdr);transition:background .13s;}
-.action:last-child{border-bottom:none;}
-.action:hover{background:#f9f7f3;}
-.act-num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-.act-body{flex:1;}
-.act-title{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3;}
-.act-desc{font-size:11.5px;color:var(--ink-soft);line-height:1.5;}
-.act-tag{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:2px 9px;border-radius:9px;margin-top:6px;}
-.at-urgent{background:var(--rose-bg);color:var(--rose);}
-.at-week{background:var(--amber-bg);color:var(--amber);}
-.at-comp{background:var(--rose-bg);color:var(--rose);}
-.at-plan{background:var(--teal-bg);color:var(--teal);}
+/* trend arrow top-right */
+.kc-trend{position:absolute;top:14px;right:14px;font-size:12px;font-weight:700;}
+.kc-trend.up{color:var(--green);}
+.kc-trend.dn{color:var(--red);}
+.kc-trend.flat{color:var(--ink-ghost);}
 
-/* ── SNAPSHOT STRIP ── */
-.snap-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:10px;}
-.snap{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;}
-.snap-left{flex:1;}
-.snap-label{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:var(--ink-ghost);font-weight:500;margin-bottom:6px;}
-.snap-val{font-family:'DM Serif Display',serif;font-size:26px;letter-spacing:-.02em;line-height:1;}
-.snap-note{font-size:10.5px;color:var(--ink-soft);margin-top:5px;line-height:1.4;}
-.snap-icon{font-size:28px;flex-shrink:0;opacity:.7;}
+/* value */
+.kc-value{font-family:'DM Serif Display',serif;font-size:34px;line-height:1;letter-spacing:-.03em;margin-bottom:4px;}
+.kc.g .kc-value{color:var(--ink);}
+.kc.a .kc-value{color:var(--amber);}
+.kc.r .kc-value{color:var(--red);}
 
-/* ── BAR ROW (simple health) ── */
-.bar-row{display:flex;align-items:center;gap:9px;margin-bottom:8px;}
-.bar-row:last-child{margin-bottom:0;}
-.bar-name{font-size:11.5px;color:var(--ink-soft);flex-shrink:0;width:130px;}
-.bar-track{flex:1;height:6px;background:var(--paper-warm);border-radius:3px;overflow:hidden;}
-.bar-fill{height:100%;border-radius:3px;}
-.bar-val{font-size:11.5px;font-weight:600;width:46px;text-align:right;flex-shrink:0;}
+/* metric name */
+.kc-name{font-size:12px;font-weight:600;color:var(--ink-mid);margin-bottom:6px;line-height:1.2;}
 
-/* ── BOTTOM GRID ── */
-.bottom-grid{display:grid;grid-template-columns:1fr 1fr 300px;gap:12px;margin-bottom:10px;}
+/* plain english insight */
+.kc-insight{font-size:11px;color:var(--ink-soft);line-height:1.5;padding-top:6px;border-top:1px solid var(--bdr);}
 
-/* Staff card */
-.dept-row{display:flex;align-items:center;gap:9px;margin-bottom:8px;}
-.dept-row:last-child{margin-bottom:0;}
-.dept-name{font-size:11.5px;color:var(--ink-soft);width:90px;flex-shrink:0;}
-.dept-track{flex:1;height:7px;background:var(--paper-warm);border-radius:3px;overflow:hidden;}
-.dept-fill{height:100%;border-radius:3px;}
-.dept-val{font-size:11.5px;font-weight:600;width:40px;text-align:right;flex-shrink:0;}
-.stat-row{display:flex;gap:14px;margin-bottom:14px;}
-.mini-stat{flex:1;background:var(--paper);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;text-align:center;}
-.mini-stat-val{font-family:'DM Serif Display',serif;font-size:22px;line-height:1;letter-spacing:-.02em;}
-.mini-stat-lbl{font-size:9.5px;color:var(--ink-ghost);margin-top:3px;text-transform:uppercase;letter-spacing:.09em;}
-
-/* Sparkline */
-.spark-labels{display:flex;justify-content:space-between;margin-top:6px;}
-.spark-lbl{font-size:9.5px;color:var(--ink-ghost);}
-.spark-insight{margin-top:10px;padding:9px 12px;background:var(--rose-bg);border-radius:7px;font-size:11px;color:var(--rose);line-height:1.5;}
-
-/* Events */
-.event-row{display:flex;align-items:flex-start;gap:11px;padding:11px 20px;border-bottom:1px solid var(--bdr);}
-.event-row:last-child{border-bottom:none;}
-.event-row:hover{background:#f9f7f3;}
-.event-date{flex-shrink:0;text-align:center;width:36px;}
-.event-day{font-size:16px;font-weight:700;font-family:'DM Serif Display',serif;line-height:1;color:var(--ink);}
-.event-dow{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-ghost);}
-.event-body{flex:1;}
-.event-title{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3;}
-.event-sub{font-size:11px;color:var(--ink-soft);margin-top:2px;}
-.event-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:7px;display:inline-block;margin-top:4px;}
-.ev-today{background:var(--blue-bg);color:var(--blue);}
-.ev-alert{background:var(--rose-bg);color:var(--rose);}
-.ev-info{background:rgba(96,112,128,.10);color:var(--ink-soft);}
-.ev-key{background:var(--amber-bg);color:var(--amber);}
-
-/* ── MEDIA ── */
-@media(max-width:1100px){
-  .kpi-row{grid-template-columns:repeat(2,1fr);}
-  .two-col{grid-template-columns:1fr;}
-  .snap-strip{grid-template-columns:1fr 1fr;}
-  .bottom-grid{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:800px){
-  .bottom-grid{grid-template-columns:1fr;}
-}
+/* ── RESPONSIVE ── */
+@media(max-width:1280px){.kpi-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- SIDEBAR -->
+  <!-- ── SIDEBAR ── -->
   <nav class="sb">
     <div class="sb-brand">
-      <div class="sb-logo">
-        <div class="sb-dot"></div>
-        <span class="sb-school">Westbridge Academy</span>
-      </div>
+      <div class="sb-logo"><div class="sb-dot"></div><span class="sb-school">Westbridge Academy</span></div>
       <div class="sb-role">Principal · Dashboard</div>
     </div>
-
     <div class="sb-nav">
       <div class="sb-section">
-        <div class="sb-label">My School</div>
+        <div class="sb-lbl">My School</div>
         <ul>
           <li class="active"><a href="#"><i class="mi">dashboard</i>Overview</a></li>
           <li><a href="principal-datastory.html"><i class="mi">auto_stories</i>Data Story</a></li>
@@ -218,7 +157,7 @@ a{color:inherit;text-decoration:none;}
         </ul>
       </div>
       <div class="sb-section">
-        <div class="sb-label">Leadership</div>
+        <div class="sb-lbl">Leadership</div>
         <ul>
           <li><a href="Leaders-dahsboard.html"><i class="mi">hub</i>Portfolio Overview</a></li>
           <li><a href="Leaders-datastory.html"><i class="mi">auto_stories</i>Portfolio Briefing</a></li>
@@ -226,471 +165,283 @@ a{color:inherit;text-decoration:none;}
         </ul>
       </div>
     </div>
-
     <div class="sb-foot">
       <div class="av">
         <div class="av-ring">JM</div>
-        <div>
-          <div class="av-name">J. Mitchell</div>
-          <div class="av-role">Principal</div>
-        </div>
+        <div><div class="av-name">J. Mitchell</div><div class="av-role">Principal</div></div>
       </div>
     </div>
   </nav>
 
-  <!-- MAIN -->
+  <!-- ── MAIN ── -->
   <main class="main">
 
     <!-- TOPBAR -->
     <header class="topbar">
       <div class="tb-left">
-        <div class="tb-greeting">Good morning, <em>James</em></div>
-        <div class="tb-date">Wednesday, 18 Feb 2026 · Week 24 · EY2027</div>
+        <div class="tb-greeting">Good morning, <em>James</em> — here's your school at a glance</div>
+        <div class="tb-date">Wednesday, 18 February 2026 · Week 24 of the school year · EY2027</div>
       </div>
       <div class="tb-right">
-        <span class="chip danger"><i class="mi">warning</i>4 alerts active</span>
-        <a href="principal-email-alert.html" class="chip chip-link"><i class="mi">mail</i>Alert Email</a>
-        <a href="Leaders-dahsboard.html" class="chip chip-link"><i class="mi">hub</i>Leadership View</a>
+        <span class="chip urgent"><i class="mi">warning</i>3 urgent issues</span>
+        <a href="principal-email-alert.html" class="chip"><i class="mi">mail</i>Email Alert</a>
+        <a href="Leaders-dahsboard.html" class="chip"><i class="mi">hub</i>Leadership View</a>
       </div>
     </header>
 
     <!-- SCROLL -->
     <div class="scroll">
 
-      <!-- KPIs -->
-      <div class="kpi-row">
+      <!-- ALERT BANNER -->
+      <div class="alert-banner">
+        <div class="ab-dot"></div>
+        <div class="ab-text">
+          <strong>3 areas need your attention this week.</strong> Enrolments are below target, A-Level grades have fallen, and contractor compliance is below the legal threshold.
+        </div>
+        <div class="ab-pills">
+          <span class="ab-pill r">↓ Enrolments −13.9%</span>
+          <span class="ab-pill r">A-Level grades ↓13pt</span>
+          <span class="ab-pill a">BGC compliance 76%</span>
+          <span class="ab-pill a">Secondary velocity 138d</span>
+        </div>
+      </div>
 
-        <div class="kpi">
-          <div class="kpi-stripe" style="background:var(--rose);"></div>
-          <div class="kpi-label">New Enrolments</div>
-          <div class="kpi-value" style="color:var(--rose);">410</div>
-          <div class="kpi-tag tag-dn">↓ −13.9% vs last year</div>
-          <div class="kpi-note">Target 477 · 67 students short</div>
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- 1. ENROLLMENTS -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <div class="sec-hdr">
+        <div class="sec-icon enrol">🎓</div>
+        <div>
+          <div class="sec-title">Enrollments</div>
+          <div class="sec-sub">How many students are joining, staying, and leaving</div>
+        </div>
+        <div class="sec-right">
+          <span class="sec-alert red">2 need attention</span>
+          <span class="sec-count">5 indicators</span>
+        </div>
+        <div class="sec-line"></div>
+      </div>
+
+      <div class="kpi-grid">
+
+        <div class="kc r">
+          <div class="kc-status">✗ Action Needed</div>
+          <div class="kc-trend dn">↓ −13.9%</div>
+          <div class="kc-value">410</div>
+          <div class="kc-name">New Admissions This Year</div>
+          <div class="kc-insight">We enrolled 67 fewer students than our target of 477. This is the biggest concern for the school right now — we need more families joining.</div>
         </div>
 
-        <div class="kpi">
-          <div class="kpi-stripe" style="background:var(--amber);"></div>
-          <div class="kpi-label">Active Enquiries</div>
-          <div class="kpi-value" style="color:var(--ink-mid);">5,615</div>
-          <div class="kpi-tag tag-dn">↓ −13.3% vs last year</div>
-          <div class="kpi-note">CVR 7.3% · Referral best at 10.1%</div>
+        <div class="kc g">
+          <div class="kc-status">✓ On Track</div>
+          <div class="kc-trend flat">→</div>
+          <div class="kc-value">87%</div>
+          <div class="kc-name">Student Retention Rate</div>
+          <div class="kc-insight">87 in every 100 of our current students are expected to return next year. This is healthy and shows families are happy with the school.</div>
         </div>
 
-        <div class="kpi">
-          <div class="kpi-stripe" style="background:var(--amber);"></div>
-          <div class="kpi-label">Secondary Velocity</div>
-          <div class="kpi-value" style="color:var(--amber);">138d</div>
-          <div class="kpi-tag tag-warn">⚠ 18 days over threshold</div>
-          <div class="kpi-note">Limit 120d · EY 94d ✓ · Primary 102d</div>
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend dn">↑ vs LY</div>
+          <div class="kc-value">4.2%</div>
+          <div class="kc-name">Withdrawal Rate</div>
+          <div class="kc-insight">Slightly more families than usual are choosing to leave mid-year. Individually small, but worth monitoring to understand whether there's a pattern.</div>
         </div>
 
-        <div class="kpi">
-          <div class="kpi-stripe" style="background:var(--teal);"></div>
-          <div class="kpi-label">Capacity Used</div>
-          <div class="kpi-value" style="color:var(--teal);">80.5%</div>
-          <div class="kpi-tag tag-ok">Fee income on budget</div>
-          <div class="kpi-note">Secondary 72% · Target 88%</div>
+        <div class="kc g">
+          <div class="kc-status">✓ On Track</div>
+          <div class="kc-trend up">↑ +6</div>
+          <div class="kc-value">34</div>
+          <div class="kc-name">Students on Waitlist</div>
+          <div class="kc-insight">34 families are waiting for a place — this shows our school is still in demand. Early Years and Primary have the longest waitlists.</div>
+        </div>
+
+        <div class="kc g">
+          <div class="kc-status">✓ On Track</div>
+          <div class="kc-trend up">↑ +18%</div>
+          <div class="kc-value">142</div>
+          <div class="kc-name">IB Programme Enquiries</div>
+          <div class="kc-insight">142 families have asked about our IB pathway this year — 18% more than last year. Strong interest that could convert to future enrolments.</div>
         </div>
 
       </div>
 
-      <!-- ISSUES + ACTIONS -->
-      <div class="stitle">What needs your attention now</div>
-      <div class="two-col">
-
-        <!-- ISSUES -->
-        <div class="card">
-          <div class="card-head">
-            <div>
-              <div class="card-title">Active Alerts</div>
-              <div class="card-sub">Metrics that have crossed warning thresholds</div>
-            </div>
-            <span class="pill pill-red">4 Open</span>
-          </div>
-
-          <div class="issue">
-            <div class="sev sev-red"></div>
-            <div class="iss-icon iss-icon-red">📉</div>
-            <div class="iss-body">
-              <div class="iss-title">Enrolments down 13.9% — 67 students short of target</div>
-              <div class="iss-desc">Secondary most affected. Enquiry volume is also down, so this is a top-of-funnel problem — fewer families discovering us, not just converting poorly. New competitor Aspire IS entered Primary this cycle.</div>
-              <div class="iss-meta">Threshold: −10% · Salesforce Wk 24</div>
-            </div>
-            <div class="iss-val iss-val-red">−13.9%</div>
-          </div>
-
-          <div class="issue">
-            <div class="sev sev-red"></div>
-            <div class="iss-icon iss-icon-red">📋</div>
-            <div class="iss-body">
-              <div class="iss-title">A-Level grades fell 13.3 pts to 52.7% — outside normal variation</div>
-              <div class="iss-desc">Languages (28% attrition, 42% A*–A) and Humanities (21%, 50%) are the highest-risk depts. IB Diploma improved to 33.2. Staffing and outcomes are visibly correlated — review needed before results season.</div>
-              <div class="iss-meta">Prior year: 66% · Threshold: −5pp</div>
-            </div>
-            <div class="iss-val iss-val-red">52.7%</div>
-          </div>
-
-          <div class="issue">
-            <div class="sev sev-amber"></div>
-            <div class="iss-icon iss-icon-amber">⏱</div>
-            <div class="iss-body">
-              <div class="iss-title">Secondary conversion taking 138 days — 18 days above limit</div>
-              <div class="iss-desc">Families are stalling at the decision stage — likely comparing us against Aspire IS. EY (94d) and Primary (102d) are within range. Secondary capacity is 72% vs 88% target: directly connected.</div>
-              <div class="iss-meta">Threshold: 120d · Avg: 123d</div>
-            </div>
-            <div class="iss-val iss-val-amber">138d</div>
-          </div>
-
-          <div class="issue">
-            <div class="sev sev-amber"></div>
-            <div class="iss-icon iss-icon-amber">🔒</div>
-            <div class="iss-body">
-              <div class="iss-title">Contractor BGC compliance at 76.2% — below 80% minimum</div>
-              <div class="iss-desc">Employed staff sit at 94.9%. The 18.7pp gap is a process failure in contractor onboarding. This is a safeguarding exposure — escalate to HR and Operations today.</div>
-              <div class="iss-meta">Threshold: 80% · Gap vs staff: 18.7pp</div>
-            </div>
-            <div class="iss-val iss-val-amber">76.2%</div>
-          </div>
-
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- 2. OUR PEOPLE (FTEs) -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <div class="sec-hdr">
+        <div class="sec-icon people">👥</div>
+        <div>
+          <div class="sec-title">Our People</div>
+          <div class="sec-sub">Teachers, staff wellbeing, and team stability</div>
         </div>
-
-        <!-- ACTIONS -->
-        <div class="card">
-          <div class="card-head">
-            <div>
-              <div class="card-title">Your Actions This Week</div>
-              <div class="card-sub">In order of priority</div>
-            </div>
-          </div>
-
-          <div class="action">
-            <div class="act-num">1</div>
-            <div class="act-body">
-              <div class="act-title">Brief MAC team — launch parent referral programme</div>
-              <div class="act-desc">Referral converts at 10.1% vs 6.6% web. 46% of parents are promoters. Aspire IS is entering Primary — every week of delay cedes reach.</div>
-              <span class="act-tag at-urgent">Urgent</span>
-            </div>
-          </div>
-
-          <div class="action">
-            <div class="act-num">2</div>
-            <div class="act-body">
-              <div class="act-title">Audit A-Level departments, starting with Languages &amp; Humanities</div>
-              <div class="act-desc">A 13-point drop is not within normal variation. Cross-reference attrition data. Determine whether emergency staffing is needed before results season.</div>
-              <span class="act-tag at-urgent">Urgent</span>
-            </div>
-          </div>
-
-          <div class="action">
-            <div class="act-num">3</div>
-            <div class="act-body">
-              <div class="act-title">Escalate contractor BGC to HR and Head of Operations</div>
-              <div class="act-desc">Process failure — not a people issue. Set a hard deadline: 95%+ within 6 weeks. This is a live safeguarding risk.</div>
-              <span class="act-tag at-comp">Compliance</span>
-            </div>
-          </div>
-
-          <div class="action">
-            <div class="act-num">4</div>
-            <div class="act-body">
-              <div class="act-title">Map Secondary conversion bottleneck with MAC team</div>
-              <div class="act-desc">138d vs 94d for EY. Find where families stall — visit→application or decision. A targeted fix can cut 20–30 days and lift Secondary capacity.</div>
-              <span class="act-tag at-week">This Week</span>
-            </div>
-          </div>
-
+        <div class="sec-right">
+          <span class="sec-alert amber">3 to watch</span>
+          <span class="sec-count">5 indicators</span>
         </div>
+        <div class="sec-line"></div>
       </div>
 
-      <!-- SNAPSHOT STRIP -->
-      <div class="stitle">School snapshot</div>
-      <div class="snap-strip">
+      <div class="kpi-grid">
 
-        <!-- NPS -->
-        <div class="snap">
-          <div class="snap-left">
-            <div class="snap-label">NPS Score</div>
-            <div class="snap-val" style="color:var(--amber);">29</div>
-            <div class="snap-note" style="color:var(--amber);">Target 35 · Value for Money ↓ −0.4</div>
-            <div style="margin-top:10px;">
-              <div class="bar-row">
-                <div class="bar-name">Teaching Quality</div>
-                <div class="bar-track"><div class="bar-fill" style="width:82%;background:var(--teal);"></div></div>
-                <div class="bar-val" style="color:var(--teal);">4.1</div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-name">Communication</div>
-                <div class="bar-track"><div class="bar-fill" style="width:72%;background:var(--amber);"></div></div>
-                <div class="bar-val" style="color:var(--amber);">3.6</div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-name" style="font-weight:600;">Value for Money</div>
-                <div class="bar-track"><div class="bar-fill" style="width:62%;background:var(--rose);opacity:.8;"></div></div>
-                <div class="bar-val" style="color:var(--rose);font-weight:700;">3.1</div>
-              </div>
-            </div>
-          </div>
-          <div class="snap-icon">⭐</div>
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend dn">↓ vs LY</div>
+          <div class="kc-value">80%</div>
+          <div class="kc-name">Teacher Retention Rate</div>
+          <div class="kc-insight">About 1 in every 5 teachers left this year — slightly higher than we'd like. Languages and Humanities have the highest turnover and are linked to the grade decline.</div>
         </div>
 
-        <!-- COMPLIANCE -->
-        <div class="snap">
-          <div class="snap-left">
-            <div class="snap-label">Compliance &amp; Safeguarding</div>
-            <div class="snap-val" style="color:var(--rose);">⚠</div>
-            <div class="snap-note" style="color:var(--rose);">Contractor BGC below threshold</div>
-            <div style="margin-top:10px;">
-              <div class="bar-row">
-                <div class="bar-name">Safeguarding Training</div>
-                <div class="bar-track"><div class="bar-fill" style="width:94.9%;background:var(--teal);"></div></div>
-                <div class="bar-val" style="color:var(--teal);">94.9%</div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-name">Staff BGC</div>
-                <div class="bar-track"><div class="bar-fill" style="width:92.6%;background:var(--teal);opacity:.75;"></div></div>
-                <div class="bar-val">92.6%</div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-name" style="font-weight:600;">Contractor BGC ⚠</div>
-                <div class="bar-track"><div class="bar-fill" style="width:76.2%;background:var(--rose);opacity:.8;"></div></div>
-                <div class="bar-val" style="color:var(--rose);font-weight:700;">76.2%</div>
-              </div>
-            </div>
-          </div>
-          <div class="snap-icon">🔒</div>
+        <div class="kc r">
+          <div class="kc-status">✗ Action Needed</div>
+          <div class="kc-trend dn">↑ vs LY</div>
+          <div class="kc-value">4</div>
+          <div class="kc-name">Teaching Posts Currently Vacant</div>
+          <div class="kc-insight">4 teaching roles are still unfilled. 2 of these are in Languages and Humanities — the same departments where grades fell this year. Urgently needs HR action.</div>
         </div>
 
-        <!-- PIPELINE -->
-        <div class="snap">
-          <div class="snap-left">
-            <div class="snap-label">Enrolment Pipeline</div>
-            <div class="snap-val" style="color:var(--ink-mid);">7.3%</div>
-            <div class="snap-note">Overall CVR · Biggest drop at enquiry→visit</div>
-            <div style="margin-top:10px;">
-              <div class="bar-row">
-                <div class="bar-name">Enquiries</div>
-                <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--blue);opacity:.7;"></div></div>
-                <div class="bar-val">5,615</div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-name">Applications</div>
-                <div class="bar-track"><div class="bar-fill" style="width:27%;background:var(--teal);opacity:.8;"></div></div>
-                <div class="bar-val">1,537</div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-name" style="font-weight:600;">Enrolled</div>
-                <div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--amber);"></div></div>
-                <div class="bar-val" style="color:var(--amber);font-weight:700;">410</div>
-              </div>
-            </div>
-          </div>
-          <div class="snap-icon">📊</div>
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend dn">↑ vs LY</div>
+          <div class="kc-value">12%</div>
+          <div class="kc-name">Lessons Covered by Supply Staff</div>
+          <div class="kc-insight">About 1 in 8 lessons is being taught by supply or cover teachers rather than the regular class teacher. This affects continuity and student outcomes.</div>
+        </div>
+
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend flat">→</div>
+          <div class="kc-value">78%</div>
+          <div class="kc-name">Staff Training Completed</div>
+          <div class="kc-insight">78% of staff have completed required training this term. The remaining 22% need to finish before end of term — HR should follow up this week.</div>
+        </div>
+
+        <div class="kc g">
+          <div class="kc-status">✓ On Track</div>
+          <div class="kc-trend flat">→</div>
+          <div class="kc-value">1:11</div>
+          <div class="kc-name">Teacher-to-Student Ratio</div>
+          <div class="kc-insight">Each teacher works with 11 students on average. This is within our target range and means students are getting good individual attention.</div>
         </div>
 
       </div>
 
-      <!-- BOTTOM GRID -->
-      <div class="stitle">Staff, trend &amp; upcoming</div>
-      <div class="bottom-grid">
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- 3. FINANCES -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <div class="sec-hdr">
+        <div class="sec-icon finance">💰</div>
+        <div>
+          <div class="sec-title">Finances</div>
+          <div class="sec-sub">Budget health, fee collection, and income sources</div>
+        </div>
+        <div class="sec-right">
+          <span class="sec-alert green">Broadly on track</span>
+          <span class="sec-count">5 indicators</span>
+        </div>
+        <div class="sec-line"></div>
+      </div>
 
-        <!-- STAFF & PEOPLE -->
-        <div class="card">
-          <div class="card-head">
-            <div>
-              <div class="card-title">Staff &amp; People</div>
-              <div class="card-sub">Teacher attrition · Vacancies · Cover</div>
-            </div>
-            <span class="pill pill-amber">Action needed</span>
-          </div>
-          <div style="padding:16px 20px;">
+      <div class="kpi-grid">
 
-            <div class="stat-row">
-              <div class="mini-stat">
-                <div class="mini-stat-val" style="color:var(--amber);">19.6%</div>
-                <div class="mini-stat-lbl">Attrition rate</div>
-              </div>
-              <div class="mini-stat">
-                <div class="mini-stat-val" style="color:var(--rose);">4</div>
-                <div class="mini-stat-lbl">Open vacancies</div>
-              </div>
-              <div class="mini-stat">
-                <div class="mini-stat-val" style="color:var(--ink-mid);">12%</div>
-                <div class="mini-stat-lbl">Cover lessons</div>
-              </div>
-            </div>
-
-            <div style="font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:var(--ink-ghost);margin-bottom:10px;font-weight:500;">Attrition by department</div>
-
-            <div class="dept-row">
-              <div class="dept-name" style="font-weight:600;color:var(--rose);">Languages</div>
-              <div class="dept-track"><div class="dept-fill" style="width:100%;background:var(--rose);opacity:.75;"></div></div>
-              <div class="dept-val" style="color:var(--rose);">28%</div>
-            </div>
-            <div class="dept-row">
-              <div class="dept-name" style="font-weight:600;color:var(--amber);">Humanities</div>
-              <div class="dept-track"><div class="dept-fill" style="width:75%;background:var(--amber);opacity:.8;"></div></div>
-              <div class="dept-val" style="color:var(--amber);">21%</div>
-            </div>
-            <div class="dept-row">
-              <div class="dept-name">STEM</div>
-              <div class="dept-track"><div class="dept-fill" style="width:50%;background:var(--ink-ghost);"></div></div>
-              <div class="dept-val">14%</div>
-            </div>
-            <div class="dept-row">
-              <div class="dept-name" style="color:var(--teal);">Arts</div>
-              <div class="dept-track"><div class="dept-fill" style="width:32%;background:var(--teal);opacity:.7;"></div></div>
-              <div class="dept-val" style="color:var(--teal);">9%</div>
-            </div>
-
-            <div style="margin-top:12px;padding:9px 12px;background:var(--amber-bg);border-radius:7px;font-size:11px;color:var(--amber);line-height:1.5;">
-              <strong>Languages &amp; Humanities attrition directly correlates with the A-Level grade decline.</strong> 2 of the 4 open vacancies are in these departments.
-            </div>
-          </div>
+        <div class="kc g">
+          <div class="kc-status">✓ On Track</div>
+          <div class="kc-trend up">+2.1%</div>
+          <div class="kc-value">+2.1%</div>
+          <div class="kc-name">Budget Variance This Month</div>
+          <div class="kc-insight">We are spending within budget — no concerns. The small surplus means we have a little headroom if unexpected costs arise this term.</div>
         </div>
 
-        <!-- WEEKLY ENQUIRY TREND -->
-        <div class="card">
-          <div class="card-head">
-            <div>
-              <div class="card-title">Weekly Enquiry Trend</div>
-              <div class="card-sub">New enquiries per week · Last 12 weeks</div>
-            </div>
-            <span class="pill pill-red">Declining</span>
-          </div>
-          <div style="padding:16px 20px 14px;">
-            <div style="display:flex;align-items:flex-end;gap:4px;margin-bottom:2px;">
-              <!-- Reference lines labels -->
-              <div style="font-size:9px;color:var(--ink-ghost);width:24px;flex-shrink:0;display:flex;flex-direction:column;justify-content:space-between;height:120px;text-align:right;padding-right:4px;">
-                <span>180</span><span>140</span><span>100</span>
-              </div>
-              <div style="flex:1;position:relative;">
-                <!-- Grid lines -->
-                <div style="position:absolute;top:0;left:0;right:0;height:1px;background:var(--bdr);"></div>
-                <div style="position:absolute;top:33%;left:0;right:0;height:1px;background:var(--bdr);"></div>
-                <div style="position:absolute;top:67%;left:0;right:0;height:1px;background:var(--bdr);"></div>
-                <svg width="100%" height="120" viewBox="0 0 300 120" preserveAspectRatio="none" style="display:block;">
-                  <!-- Fill area under line -->
-                  <defs>
-                    <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#b83228" stop-opacity="0.15"/>
-                      <stop offset="100%" stop-color="#b83228" stop-opacity="0.01"/>
-                    </linearGradient>
-                  </defs>
-                  <!-- Data: wk13→wk24 enquiries: 168,154,162,175,148,141,136,128,134,121,118,95 -->
-                  <!-- Mapped to 0-120 where 180=0 and 60=120: y = (180-val)/(180-60)*120 -->
-                  <!-- 168→10, 154→26, 162→18, 175→5, 148→32, 141→39, 136→44, 128→52, 134→46, 121→59, 118→62, 95→85 -->
-                  <polygon
-                    points="0,10 27,26 55,18 82,5 109,32 136,39 164,44 191,52 218,46 245,59 272,62 300,85 300,120 0,120"
-                    fill="url(#sparkGrad)"/>
-                  <polyline
-                    points="0,10 27,26 55,18 82,5 109,32 136,39 164,44 191,52 218,46 245,59 272,62 300,85"
-                    fill="none"
-                    stroke="#b83228"
-                    stroke-width="2.5"
-                    stroke-linejoin="round"
-                    stroke-linecap="round"/>
-                  <!-- Current week dot -->
-                  <circle cx="300" cy="85" r="4" fill="#b83228"/>
-                  <!-- Peak marker -->
-                  <circle cx="82" cy="5" r="3" fill="none" stroke="#0b7060" stroke-width="1.5"/>
-                </svg>
-              </div>
-            </div>
-            <div class="spark-labels">
-              <span class="spark-lbl">Wk 13</span>
-              <span class="spark-lbl">Wk 17</span>
-              <span class="spark-lbl">Wk 21</span>
-              <span class="spark-lbl" style="color:var(--rose);font-weight:600;">Wk 24</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;">
-              <div style="text-align:center;padding:8px;background:var(--paper);border-radius:7px;border:1px solid var(--bdr);">
-                <div style="font-family:'DM Serif Display',serif;font-size:18px;color:var(--teal);">175</div>
-                <div style="font-size:9px;color:var(--ink-ghost);text-transform:uppercase;letter-spacing:.09em;margin-top:2px;">Wk 16 Peak</div>
-              </div>
-              <div style="text-align:center;padding:8px;background:var(--paper);border-radius:7px;border:1px solid var(--bdr);">
-                <div style="font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink-mid);">128</div>
-                <div style="font-size:9px;color:var(--ink-ghost);text-transform:uppercase;letter-spacing:.09em;margin-top:2px;">8-wk avg</div>
-              </div>
-              <div style="text-align:center;padding:8px;background:var(--rose-bg);border-radius:7px;border:1px solid var(--rose-bdr);">
-                <div style="font-family:'DM Serif Display',serif;font-size:18px;color:var(--rose);">95</div>
-                <div style="font-size:9px;color:var(--rose);text-transform:uppercase;letter-spacing:.09em;margin-top:2px;">This week</div>
-              </div>
-            </div>
-            <div class="spark-insight">
-              <strong>Enquiries this week (95) are 46% below the Wk 16 peak.</strong> The downward trend began 6 weeks ago — consistent with Aspire IS launching their admissions campaign.
-            </div>
-          </div>
+        <div class="kc g">
+          <div class="kc-status">✓ On Track</div>
+          <div class="kc-trend up">↑ +1.2%</div>
+          <div class="kc-value">94.3%</div>
+          <div class="kc-name">School Fees Collected on Time</div>
+          <div class="kc-insight">94 in every 100 families have paid this term's fees on time. The Finance team is following up the remaining 5.7% — no major concerns.</div>
         </div>
 
-        <!-- THIS WEEK -->
-        <div class="card">
-          <div class="card-head">
-            <div>
-              <div class="card-title">This Week</div>
-              <div class="card-sub">18 – 22 Feb 2026</div>
-            </div>
-          </div>
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend dn">↑ cost</div>
+          <div class="kc-value">+3.4%</div>
+          <div class="kc-name">Facility Maintenance Spend</div>
+          <div class="kc-insight">Building and grounds upkeep is running 3.4% above our planned budget. The main driver is HVAC repairs in the Secondary block — one-off this term.</div>
+        </div>
 
-          <div class="event-row">
-            <div class="event-date">
-              <div class="event-day">18</div>
-              <div class="event-dow">Mon</div>
-            </div>
-            <div class="event-body">
-              <div class="event-title">Finance Governor Meeting</div>
-              <div class="event-sub">4:00 pm · Board Room</div>
-              <span class="event-tag ev-today">Today</span>
-            </div>
-          </div>
+        <div class="kc g">
+          <div class="kc-status">✓ On Track</div>
+          <div class="kc-trend up">↑ +8%</div>
+          <div class="kc-value">£142k</div>
+          <div class="kc-name">Parent &amp; Alumni Donations</div>
+          <div class="kc-insight">Donation income is up 8% versus last year — a great sign that our community feels connected and generous. The annual fund campaign is performing well.</div>
+        </div>
 
-          <div class="event-row">
-            <div class="event-date">
-              <div class="event-day">19</div>
-              <div class="event-dow">Tue</div>
-            </div>
-            <div class="event-body">
-              <div class="event-title">Year 9 Parents' Evening</div>
-              <div class="event-sub">5:30 pm · Main Hall</div>
-              <span class="event-tag ev-key">Key Event</span>
-            </div>
-          </div>
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend flat">—</div>
+          <div class="kc-value">2</div>
+          <div class="kc-name">Grant Applications Awaiting Decision</div>
+          <div class="kc-insight">2 grant applications (totalling £68k) are still awaiting a decision from external bodies. No action needed now — but decisions are expected in the next 3 weeks.</div>
+        </div>
 
-          <div class="event-row">
-            <div class="event-date">
-              <div class="event-day" style="color:var(--rose);">20</div>
-              <div class="event-dow">Wed</div>
-            </div>
-            <div class="event-body">
-              <div class="event-title">Aspire IS Open Day</div>
-              <div class="event-sub">Competitor event — monitor enquiry impact</div>
-              <span class="event-tag ev-alert">Competitor</span>
-            </div>
-          </div>
+      </div>
 
-          <div class="event-row">
-            <div class="event-date">
-              <div class="event-day">21</div>
-              <div class="event-dow">Thu</div>
-            </div>
-            <div class="event-body">
-              <div class="event-title">A-Level Mock Results Published</div>
-              <div class="event-sub">Review dept breakdown on release</div>
-              <span class="event-tag ev-key">Academic</span>
-            </div>
-          </div>
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- 4. SCHOOL PERFORMANCE -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <div class="sec-hdr">
+        <div class="sec-icon perf">📈</div>
+        <div>
+          <div class="sec-title">School Performance</div>
+          <div class="sec-sub">Academic outcomes, parent satisfaction, and student wellbeing</div>
+        </div>
+        <div class="sec-right">
+          <span class="sec-alert red">2 need attention</span>
+          <span class="sec-count">5 indicators</span>
+        </div>
+        <div class="sec-line"></div>
+      </div>
 
-          <div class="event-row">
-            <div class="event-date">
-              <div class="event-day">22</div>
-              <div class="event-dow">Fri</div>
-            </div>
-            <div class="event-body">
-              <div class="event-title">MAC Team Briefing</div>
-              <div class="event-sub">9:00 am · Referral programme launch</div>
-              <span class="event-tag ev-info">Internal</span>
-            </div>
-          </div>
+      <div class="kpi-grid">
 
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend flat">→ flat</div>
+          <div class="kc-value">29</div>
+          <div class="kc-name">Parent Satisfaction Score (NPS)</div>
+          <div class="kc-insight">Our score of 29 is below our 35 target. Parents rate teaching highly, but Value for Money has dropped — likely linked to this year's fee increase. Communication also dipped slightly.</div>
+        </div>
+
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend dn">↓ −0.4%</div>
+          <div class="kc-value">94.6%</div>
+          <div class="kc-name">Student Attendance Rate</div>
+          <div class="kc-insight">About 1 in 18 students is absent on any given day. Our target is 96% — we're just below it. Secondary attendance is the weakest group at 92.8%.</div>
+        </div>
+
+        <div class="kc r">
+          <div class="kc-status">✗ Action Needed</div>
+          <div class="kc-trend dn">↓ −13.3pt</div>
+          <div class="kc-value">52.7%</div>
+          <div class="kc-name">A-Level Top Grades (A*–A)</div>
+          <div class="kc-insight">This is our most urgent academic concern. Top grades fell from 66% last year to 52.7% — a 13-point drop that is not normal variation. Languages and Humanities are most affected, linked to teacher turnover.</div>
+        </div>
+
+        <div class="kc a">
+          <div class="kc-status">⚠ Watch This</div>
+          <div class="kc-trend dn">↑ +4 vs avg</div>
+          <div class="kc-value">18</div>
+          <div class="kc-name">Behaviour Incidents This Week</div>
+          <div class="kc-insight">18 incidents were logged this week — above our usual weekly average of 14. Most are low-level, but the Pastoral team should review whether there's a pattern in specific year groups.</div>
+        </div>
+
+        <div class="kc g">
+          <div class="kc-status">✓ On Track</div>
+          <div class="kc-trend up">↑ +0.3</div>
+          <div class="kc-value">7.4<span style="font-size:16px;color:var(--ink-ghost);"> /10</span></div>
+          <div class="kc-name">Student Wellbeing Index</div>
+          <div class="kc-insight">Students report feeling safe, supported, and respected at school — scoring 7.4 out of 10. This is above our 7.0 target and has improved slightly from last term.</div>
         </div>
 
       </div>
