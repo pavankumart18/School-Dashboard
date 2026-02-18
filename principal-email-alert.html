@@ -4,84 +4,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Principal Alert — Westbridge Academy · 18 Feb 2026</title>
-<!-- Leaders → Leadership label fix applied -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Sans',-apple-system,sans-serif;background:#ede9e1;color:#1a1a1a;padding:32px 16px;line-height:1.5;}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:#f0ebe2;color:#1c1410;padding:32px 16px;line-height:1.5;}
 a{color:inherit;text-decoration:none;}
 
-.wrap{max-width:600px;margin:0 auto;}
-.pre{text-align:center;font-size:11px;color:#999;margin-bottom:12px;}
-.email{background:#fff;box-shadow:0 4px 28px rgba(0,0,0,0.11);}
+/* ── WRAPPER ── */
+.wrap{max-width:620px;margin:0 auto;}
+.pre{text-align:center;font-size:11px;color:#b0a090;margin-bottom:14px;font-style:italic;}
+.email{background:#fffefb;border:1px solid #e2d8cc;border-radius:4px;overflow:hidden;box-shadow:0 4px 24px rgba(100,80,60,.09);}
 
-/* Header */
-.hdr{background:#0f1923;padding:28px 32px 26px;position:relative;overflow:hidden;}
-.hdr::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c0392b,#d4820a,#c0392b);}
-.alert-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(192,57,43,.2);border:1px solid rgba(192,57,43,.35);border-radius:20px;padding:3px 12px;font-size:10px;font-weight:600;color:#ff7777;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
-.alert-dot{width:6px;height:6px;border-radius:50%;background:#ff7777;animation:blink 1.5s infinite;}
+/* ── HEADER ── */
+.hdr{background:#fefcf7;border-bottom:1px solid #e8e0d2;padding:28px 32px 24px;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#a82818 0%,#c97a0a 50%,#a82818 100%);}
+.alert-pill{display:inline-flex;align-items:center;gap:7px;background:#fdf0ee;border:1px solid rgba(168,40,24,.25);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:700;color:#a82818;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
+.alert-dot{width:7px;height:7px;border-radius:50%;background:#a82818;animation:blink 1.5s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-.hdr-title{font-family:'DM Serif Display',serif;font-size:24px;color:#fff;line-height:1.2;margin-bottom:6px;letter-spacing:-.02em;}
-.hdr-sub{font-size:12px;color:rgba(255,255,255,.45);}
-.hdr-meta{display:flex;gap:24px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.09);}
-.hm{font-size:11px;color:rgba(255,255,255,.38);}
-.hm strong{color:rgba(255,255,255,.65);display:block;font-size:12px;margin-bottom:2px;}
+.hdr-title{font-family:'DM Serif Display',serif;font-size:26px;color:#1c1410;line-height:1.2;margin-bottom:6px;letter-spacing:-.025em;}
+.hdr-sub{font-size:12px;color:#9a8878;}
+.hdr-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:20px;padding-top:18px;border-top:1px solid #e8e0d2;}
+.hm{font-size:11px;color:#b0a090;padding-right:16px;}
+.hm strong{color:#3d3028;display:block;font-size:12.5px;font-weight:600;margin-bottom:2px;}
 
-/* Section header */
-.sec{padding:18px 32px 6px;font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.13em;color:#aaa;border-top:1px solid #f0ece4;}
-.sec:first-of-type{border-top:none;}
-
-/* Issue rows */
-.issues{padding:4px 32px 8px;}
-.issue{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #f0ece4;}
-.issue:last-child{border-bottom:none;}
-.issue-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;margin-top:1px;}
-.icon-red{background:#fdf0ee;}.icon-amber{background:#fdf5e6;}
-.issue-body{flex:1;}
-.issue-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:4px;line-height:1.3;}
-.issue-desc{font-size:12px;color:#555;line-height:1.55;}
-.issue-stat{text-align:right;flex-shrink:0;}
-.stat-val{font-family:'DM Serif Display',serif;font-size:26px;line-height:1;letter-spacing:-.02em;}
-.stat-val.red{color:#c0392b;}.stat-val.amber{color:#b8680a;}
-.stat-sub{font-size:10px;color:#aaa;margin-top:3px;}
-
-/* Divider */
-.divider{height:1px;background:#f0ece4;margin:0 32px;}
-
-/* Actions */
-.actions{padding:8px 32px 16px;background:#faf8f4;}
-.action{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid #ede9e1;}
-.action:last-child{border-bottom:none;}
-.action-num{width:26px;height:26px;border-radius:50%;background:#0f1923;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-.action-text{flex:1;}
-.action-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:3px;}
-.action-desc{font-size:12px;color:#555;line-height:1.5;}
-.action-tag{display:inline-block;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;padding:2px 9px;border-radius:10px;margin-top:5px;}
-.tag-urgent{background:#fdf0ee;color:#c0392b;}
-.tag-week{background:#fdf5e6;color:#b8680a;}
-.tag-comp{background:#fdf0ee;color:#c0392b;}
-.tag-plan{background:rgba(13,122,110,.1);color:#0d7a6e;}
-
-/* 3-stat strip */
-.stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #f0ece4;border-bottom:1px solid #f0ece4;}
-.stat-cell{padding:16px 20px;border-right:1px solid #f0ece4;text-align:center;}
+/* ── STATS STRIP ── */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #ede6d8;border-bottom:1px solid #ede6d8;background:#faf7f2;}
+.stat-cell{padding:18px 22px;border-right:1px solid #ede6d8;text-align:center;}
 .stat-cell:last-child{border-right:none;}
-.stat-lbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#bbb;margin-bottom:5px;}
-.stat-big{font-family:'DM Serif Display',serif;font-size:24px;letter-spacing:-.02em;line-height:1;}
-.stat-big.amber{color:#b8680a;}.stat-big.green{color:#0d7a6e;}.stat-big.red{color:#c0392b;}
-.stat-note{font-size:10px;color:#aaa;margin-top:3px;}
+.stat-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#b8a898;margin-bottom:6px;}
+.stat-big{font-family:'DM Serif Display',serif;font-size:26px;letter-spacing:-.025em;line-height:1;}
+.stat-big.red{color:#a82818;}
+.stat-big.amber{color:#a86008;}
+.stat-big.green{color:#0b7060;}
+.stat-note{font-size:10px;color:#b0a090;margin-top:4px;}
 
-/* CTA */
-.cta{padding:22px 32px;text-align:center;background:#fff;border-top:1px solid #f0ece4;}
-.cta-title{font-family:'DM Serif Display',serif;font-size:17px;color:#1a1a1a;margin-bottom:6px;}
-.cta-sub{font-size:12px;color:#888;margin-bottom:18px;}
+/* ── SECTION LABEL ── */
+.sec{padding:18px 32px 8px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:#b8a898;border-top:1px solid #ede6d8;}
+
+/* ── ISSUE ROWS ── */
+.issues{padding:0 32px 8px;}
+.issue{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #ede6d8;}
+.issue:last-child{border-bottom:none;}
+.issue-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:1px;}
+.icon-red{background:#fdf0ee;border:1px solid rgba(168,40,24,.15);}
+.icon-amber{background:#fff8ed;border:1px solid rgba(168,96,8,.15);}
+.issue-body{flex:1;}
+.issue-title{font-size:13px;font-weight:600;color:#1c1410;margin-bottom:4px;line-height:1.3;}
+.issue-desc{font-size:12px;color:#7a6a5a;line-height:1.55;}
+.issue-stat{text-align:right;flex-shrink:0;min-width:72px;}
+.stat-val{font-family:'DM Serif Display',serif;font-size:28px;line-height:1;letter-spacing:-.025em;}
+.stat-val.red{color:#a82818;}
+.stat-val.amber{color:#a86008;}
+.stat-sub{font-size:10px;color:#b0a090;margin-top:3px;}
+
+/* ── ACTIONS ── */
+.actions-bg{background:#faf7f2;border-top:1px solid #ede6d8;}
+.actions{padding:4px 32px 20px;}
+.action{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #ede6d8;}
+.action:last-child{border-bottom:none;}
+.action-num{width:28px;height:28px;border-radius:50%;background:#a86008;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.action-text{flex:1;}
+.action-title{font-size:13px;font-weight:600;color:#1c1410;margin-bottom:4px;}
+.action-desc{font-size:12px;color:#7a6a5a;line-height:1.5;}
+.action-tag{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:10px;margin-top:6px;}
+.tag-urgent{background:#fdf0ee;color:#a82818;border:1px solid rgba(168,40,24,.18);}
+.tag-week{background:#fff8ed;color:#a86008;border:1px solid rgba(168,96,8,.18);}
+.tag-comp{background:#fdf0ee;color:#a82818;border:1px solid rgba(168,40,24,.18);}
+.tag-plan{background:#edf7f3;color:#0b7060;border:1px solid rgba(11,112,96,.18);}
+
+/* ── CTA ── */
+.cta{padding:26px 32px;text-align:center;background:#fffefb;border-top:1px solid #ede6d8;}
+.cta-title{font-family:'DM Serif Display',serif;font-size:18px;color:#1c1410;margin-bottom:5px;}
+.cta-sub{font-size:12px;color:#9a8878;margin-bottom:20px;}
 .cta-btns{display:flex;gap:10px;justify-content:center;}
-.btn-primary{background:#0f1923;color:#fff;padding:11px 26px;font-size:12.5px;font-weight:600;border-radius:5px;display:inline-block;}
-.btn-secondary{background:transparent;color:#555;border:1px solid #ddd;padding:11px 22px;font-size:12.5px;font-weight:500;border-radius:5px;display:inline-block;}
-.cta-note{font-size:10.5px;color:#bbb;margin-top:14px;line-height:1.6;}
+.btn-primary{background:#a86008;color:#fff;padding:12px 28px;font-size:13px;font-weight:600;border-radius:6px;display:inline-block;letter-spacing:-.01em;}
+.btn-secondary{background:transparent;color:#7a6a5a;border:1px solid #d8cfc4;padding:12px 24px;font-size:13px;font-weight:500;border-radius:6px;display:inline-block;}
+.cta-note{font-size:10.5px;color:#c0b0a0;margin-top:16px;line-height:1.65;}
 
-/* Footer */
-.foot{padding:18px 32px;border-top:1px solid #f0ece4;display:flex;justify-content:space-between;font-size:10.5px;color:#bbb;}
+/* ── FOOTER ── */
+.foot{padding:16px 32px;border-top:1px solid #ede6d8;display:flex;justify-content:space-between;font-size:10.5px;color:#c0b0a0;background:#faf7f2;}
 </style>
 </head>
 <body>
@@ -109,17 +110,17 @@ a{color:inherit;text-decoration:none;}
       <div class="stat-cell">
         <div class="stat-lbl">New Enrolments</div>
         <div class="stat-big red">410</div>
-        <div class="stat-note">↓ −13.9% vs last year</div>
+        <div class="stat-note">↓ −13.9% · Target was 477</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-lbl">Sec. Velocity</div>
-        <div class="stat-big amber">138d</div>
-        <div class="stat-note">⚠ Threshold: 120 days</div>
+        <div class="stat-lbl">A-Level Top Grades</div>
+        <div class="stat-big red">52.7%</div>
+        <div class="stat-note">↓ −13.3pt from 66% last year</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-lbl">Capacity Used</div>
-        <div class="stat-big green">80.5%</div>
-        <div class="stat-note">Fee income on budget ✓</div>
+        <div class="stat-lbl">Safeguarding BGC</div>
+        <div class="stat-big amber">76.2%</div>
+        <div class="stat-note">⚠ Below 80% legal minimum</div>
       </div>
     </div>
 
@@ -143,7 +144,7 @@ a{color:inherit;text-decoration:none;}
         <div class="issue-icon icon-red">📋</div>
         <div class="issue-body">
           <div class="issue-title">A-Level grades fell 13.3 points — not within normal variation</div>
-          <div class="issue-desc">A*–A dropped from 66% to 52.7%. Languages (28% staff attrition, 42% A*–A) and Humanities (21%, 50%) are highest risk. IB improved to 33.2 (+0.5). Staffing–outcomes correlation needs urgent review.</div>
+          <div class="issue-desc">A*–A dropped from 66% to 52.7%. Languages (28% attrition, 42% A*–A) and Humanities (21%, 50%) are highest risk. IB improved to 33.2 (+0.5). Staffing–outcomes link needs urgent review.</div>
         </div>
         <div class="issue-stat">
           <div class="stat-val red">−13.3</div>
@@ -155,7 +156,7 @@ a{color:inherit;text-decoration:none;}
         <div class="issue-icon icon-amber">⏱</div>
         <div class="issue-body">
           <div class="issue-title">Secondary conversion taking 138 days — 18 days above threshold</div>
-          <div class="issue-desc">Families are stalling at decision stage, likely evaluating Aspire IS in parallel. EY is 94 days (healthy), Primary 102 days. Secondary capacity is 72% vs 88% target — directly connected.</div>
+          <div class="issue-desc">Families are stalling at decision stage, likely comparing us to Aspire IS. Early Years is 94 days (healthy), Primary 102 days. Secondary capacity is 72% vs 88% target — directly connected.</div>
         </div>
         <div class="issue-stat">
           <div class="stat-val amber">138d</div>
@@ -167,7 +168,7 @@ a{color:inherit;text-decoration:none;}
         <div class="issue-icon icon-amber">🔒</div>
         <div class="issue-body">
           <div class="issue-title">Contractor BGC compliance at 76.2% — below 80% minimum</div>
-          <div class="issue-desc">Employed staff sit at 94.9%. The 18.7pp gap is a process failure in contractor onboarding, not a cultural one. This is a safeguarding exposure — escalate to HR and Operations immediately.</div>
+          <div class="issue-desc">Employed staff sit at 94.9%. The 18.7pp gap is a process failure in contractor onboarding. This is a safeguarding exposure — escalate to HR and Operations immediately.</div>
         </div>
         <div class="issue-stat">
           <div class="stat-val amber">76.2%</div>
@@ -178,51 +179,53 @@ a{color:inherit;text-decoration:none;}
     </div>
 
     <!-- WHAT TO DO -->
-    <div class="sec">What you should do this week</div>
-    <div class="actions">
+    <div class="actions-bg">
+      <div class="sec" style="border-top:none;">What you should do this week</div>
+      <div class="actions">
 
-      <div class="action">
-        <div class="action-num">1</div>
-        <div class="action-text">
-          <div class="action-title">Brief MAC team — launch parent referral programme today</div>
-          <div class="action-desc">Referral converts at 10.1% vs 6.6% for web. 46% of current parents are promoters. Every week of delay cedes reach to Aspire IS. Agree incentive mechanics and launch this week.</div>
-          <span class="action-tag tag-urgent">Urgent</span>
+        <div class="action">
+          <div class="action-num">1</div>
+          <div class="action-text">
+            <div class="action-title">Brief MAC team — launch parent referral programme today</div>
+            <div class="action-desc">Referral converts at 10.1% vs 6.6% for web. 46% of current parents are promoters. Every week of delay cedes reach to Aspire IS. Agree incentive mechanics and launch this week.</div>
+            <span class="action-tag tag-urgent">Urgent</span>
+          </div>
         </div>
-      </div>
 
-      <div class="action">
-        <div class="action-num">2</div>
-        <div class="action-text">
-          <div class="action-title">Audit A-Level teaching by department — cross-reference attrition data</div>
-          <div class="action-desc">Focus on Languages and Humanities first. A 13.3-point single-year drop is not within normal variation. Determine if emergency staffing intervention is needed before results season.</div>
-          <span class="action-tag tag-urgent">Urgent</span>
+        <div class="action">
+          <div class="action-num">2</div>
+          <div class="action-text">
+            <div class="action-title">Audit A-Level departments — start with Languages &amp; Humanities</div>
+            <div class="action-desc">A 13-point single-year drop is not normal. Cross-reference attrition data. Determine whether emergency staffing is needed before results season.</div>
+            <span class="action-tag tag-urgent">Urgent</span>
+          </div>
         </div>
-      </div>
 
-      <div class="action">
-        <div class="action-num">3</div>
-        <div class="action-text">
-          <div class="action-title">Escalate contractor BGC to HR and Head of Operations</div>
-          <div class="action-desc">Set a resolution deadline of end of Q3. Target: 95%+ within 6 weeks. The gap versus employed staff confirms this is a process failure — not a people issue.</div>
-          <span class="action-tag tag-comp">Compliance</span>
+        <div class="action">
+          <div class="action-num">3</div>
+          <div class="action-text">
+            <div class="action-title">Escalate contractor BGC to HR and Head of Operations</div>
+            <div class="action-desc">Set a hard deadline: 95%+ within 6 weeks. Process failure — not a people issue. This is a live safeguarding risk.</div>
+            <span class="action-tag tag-comp">Compliance</span>
+          </div>
         </div>
-      </div>
 
-      <div class="action">
-        <div class="action-num">4</div>
-        <div class="action-text">
-          <div class="action-title">Map Secondary conversion bottleneck with MAC team</div>
-          <div class="action-desc">138 days vs 94 for EY. Identify whether families stall at visit→application or application→decision. A targeted intervention can cut 20–30 days and directly improve Secondary capacity utilisation.</div>
-          <span class="action-tag tag-week">This Week</span>
+        <div class="action">
+          <div class="action-num">4</div>
+          <div class="action-text">
+            <div class="action-title">Map Secondary conversion bottleneck with MAC team</div>
+            <div class="action-desc">138d vs 94d for EY. Find where families stall — visit→application or decision stage. A targeted fix can cut 20–30 days.</div>
+            <span class="action-tag tag-week">This Week</span>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
 
     <!-- CTA -->
     <div class="cta">
       <div class="cta-title">Open the full dashboard</div>
-      <div class="cta-sub">See all metrics, pipeline detail, and NPS breakdown.</div>
+      <div class="cta-sub">See all 20 metrics, pipeline detail, and the complete school picture.</div>
       <div class="cta-btns">
         <a href="index.html" class="btn-primary">Open Dashboard →</a>
         <a href="principal-datastory.html" class="btn-secondary">Read Data Story</a>
