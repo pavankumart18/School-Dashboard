@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Portfolio Exception Alert — EU Region</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Bricolage+Grotesque:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stone-50:#fafaf9;--stone-100:#f5f4f0;--stone-200:#e8e5df;
+  --ink:#1a1614;--ink-mid:#3d3730;--ink-soft:#7a7060;--ink-ghost:#b0a898;
+  --border:#e0dbd2;--border-strong:#c8c2b8;
+  --crimson:#c0392b;--crimson-dim:#fdf0ee;--crimson-dark:#8b1a10;
+  --emerald:#1a6b50;--emerald-dim:#edf7f3;
+  --amber:#b8680a;--amber-dim:#fdf5e6;
+  --cobalt:#1a3a7a;--cobalt-dim:#eef2fb;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Bricolage Grotesque',sans-serif;background:var(--stone-100);color:var(--ink);min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+
+/* Nav */
+.nav-bar{background:var(--ink);padding:0 32px;height:50px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-icon{width:26px;height:26px;background:linear-gradient(135deg,#e8b46e,#b8680a);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;}
+.nav-logo-text{font-family:'Fraunces',serif;font-size:14px;color:#fff;font-weight:500;}
+.nav-logo-text span{font-style:italic;font-weight:300;color:rgba(255,255,255,.5);}
+.nav-links{display:flex;gap:4px;}
+.nav-link{font-size:11px;color:rgba(255,255,255,.5);padding:5px 12px;border-radius:10px;transition:all .14s;font-weight:500;}
+.nav-link:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.08);}
+.nav-link.active{color:#fff;background:rgba(232,180,110,.2);border:1px solid rgba(232,180,110,.3);}
+
+/* Email container */
+.email-outer{max-width:680px;margin:32px auto 48px;background:white;border:1px solid var(--border);}
+
+/* Critical strip */
+.critical-strip{background:var(--crimson-dark);color:white;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;font-family:'Fira Code',monospace;font-size:10px;letter-spacing:.1em;}
+.crit-label{font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+.crit-meta{opacity:.7;}
+
+/* Email header */
+.email-header{padding:28px 36px 24px;border-bottom:3px solid var(--ink);}
+.eh-kicker{font-family:'Fira Code',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:8px;}
+.eh-title{font-family:'Fraunces',serif;font-size:30px;font-weight:600;line-height:1.1;letter-spacing:-.02em;margin-bottom:4px;}
+.eh-title em{font-style:italic;font-weight:300;color:var(--ink-soft);}
+.eh-date{font-family:'Fira Code',monospace;font-size:10px;color:var(--ink-ghost);margin-top:8px;}
+.eh-meta-row{display:flex;gap:20px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.eh-meta{display:flex;flex-direction:column;gap:2px;}
+.eh-meta-lbl{font-family:'Fira Code',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-ghost);}
+.eh-meta-val{font-size:12px;font-weight:600;color:var(--ink);}
+
+/* Trigger summary */
+.trigger-summary{padding:18px 36px;background:var(--crimson-dim);border-bottom:1px solid rgba(192,57,43,.15);}
+.ts-head{font-family:'Fira Code',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--crimson);margin-bottom:12px;}
+.ts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ts-item{display:flex;gap:9px;align-items:flex-start;background:rgba(255,255,255,.6);padding:10px 12px;border:1px solid rgba(192,57,43,.15);}
+.ts-num{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--crimson);line-height:1;flex-shrink:0;width:20px;}
+.ts-text{font-size:11.5px;color:var(--crimson-dark);line-height:1.4;font-weight:500;}
+.ts-val{font-family:'Fira Code',monospace;font-size:10px;color:var(--crimson);opacity:.7;margin-top:2px;}
+
+/* Body */
+.email-body{padding:0 36px;}
+.section{padding:22px 0;border-bottom:1px solid var(--border);}
+.section:last-child{border-bottom:none;}
+.sec-label{font-family:'Fira Code',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* Exception rows */
+.exc-row{display:flex;gap:0;margin-bottom:8px;border:1px solid var(--border);overflow:hidden;}
+.exc-row:last-child{margin-bottom:0;}
+.exc-severity{width:4px;flex-shrink:0;}
+.exc-severity.critical{background:var(--crimson);}
+.exc-severity.warning{background:var(--amber);}
+.exc-school-badge{padding:10px 14px;display:flex;flex-direction:column;justify-content:center;gap:2px;background:var(--stone-100);border-right:1px solid var(--border);min-width:100px;}
+.esb-init{font-family:'Fraunces',serif;font-size:20px;font-weight:600;line-height:1;}
+.esb-name{font-size:10px;font-weight:600;color:var(--ink);white-space:nowrap;}
+.esb-loc{font-family:'Fira Code',monospace;font-size:8.5px;color:var(--ink-ghost);}
+.exc-detail{flex:1;padding:10px 14px;}
+.exc-title{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.exc-desc{font-size:11.5px;color:var(--ink-soft);line-height:1.5;}
+.exc-chips{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+.chip{font-family:'Fira Code',monospace;font-size:9px;padding:2px 7px;border-radius:8px;}
+.chip-r{background:var(--crimson-dim);color:var(--crimson);}
+.chip-a{background:var(--amber-dim);color:var(--amber);}
+.chip-g{background:var(--emerald-dim);color:var(--emerald);}
+.chip-b{background:var(--cobalt-dim);color:var(--cobalt);}
+
+/* Mini bars */
+.mbar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.mbar-label{font-size:11px;color:var(--ink-soft);width:84px;flex-shrink:0;}
+.mbar-track{flex:1;height:7px;background:var(--stone-200);border-radius:2px;overflow:hidden;}
+.mbar-fill{height:100%;border-radius:2px;}
+.mbar-val{font-family:'Fira Code',monospace;font-size:10.5px;width:44px;text-align:right;flex-shrink:0;}
+
+/* Heatmap table */
+.htable{width:100%;border-collapse:collapse;font-family:'Fira Code',monospace;font-size:10px;}
+.htable th{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-ghost);font-weight:400;padding:6px 10px;text-align:center;border-bottom:1px solid var(--border);}
+.htable th.lft{text-align:left;}
+.htable td{padding:7px 10px;text-align:center;border-bottom:1px solid var(--border);}
+.htable tr:last-child td{border-bottom:none;}
+.htable .sch{font-size:11px;font-weight:600;color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;text-align:left;}
+.hcell-r{background:var(--crimson-dim);color:var(--crimson);font-weight:600;}
+.hcell-a{background:var(--amber-dim);color:var(--amber);}
+.hcell-g{background:var(--emerald-dim);color:var(--emerald);}
+
+/* Actions */
+.action-row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);}
+.action-row:last-child{border-bottom:none;}
+.ar-num{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--stone-200);line-height:1;width:22px;flex-shrink:0;}
+.ar-priority{font-family:'Fira Code',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+.ar-title{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.ar-desc{font-size:11.5px;color:var(--ink-soft);line-height:1.5;}
+.ar-impact{font-family:'Fira Code',monospace;font-size:9px;margin-top:4px;}
+.ar-owner{font-family:'Fira Code',monospace;font-size:9px;color:var(--ink-ghost);margin-top:3px;}
+
+/* CTA */
+.cta-block{padding:24px 36px;background:var(--stone-100);border-top:2px solid var(--ink);text-align:center;}
+.cta-title{font-family:'Fraunces',serif;font-size:16px;font-weight:600;margin-bottom:6px;}
+.cta-sub{font-size:12px;color:var(--ink-soft);margin-bottom:18px;}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-btn{display:inline-block;padding:10px 22px;font-size:12px;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:opacity .15s;}
+.cta-btn.primary{background:var(--ink);color:white;}
+.cta-btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.cta-btn:hover{opacity:.8;}
+.cta-note{font-family:'Fira Code',monospace;font-size:9px;color:var(--ink-ghost);margin-top:14px;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto;}
+
+/* Footer */
+.email-footer{padding:14px 36px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--stone-50);}
+.ef-text{font-family:'Fira Code',monospace;font-size:9px;color:var(--ink-ghost);letter-spacing:.06em;}
+.ef-links{display:flex;gap:14px;}
+.ef-link{font-family:'Fira Code',monospace;font-size:9px;color:var(--ink-ghost);text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<nav class="nav-bar">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">◈</div>
+    <div class="nav-logo-text">Regional Intelligence <span>· EU Portfolio</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="Leaders-dahsboard.html" class="nav-link">Dashboard</a>
+    <a href="Leaders-datastory.html" class="nav-link">Portfolio Briefing</a>
+    <a href="Leaders-email-alert.html" class="nav-link active">Alert Email</a>
+    <a href="index.html" class="nav-link">Principal View</a>
+  </div>
+</nav>
+
+<div class="email-outer">
+  <div class="critical-strip">
+    <span class="crit-label" id="critLabel">⚠ Portfolio Exception Alert — Loading…</span>
+    <span class="crit-meta" id="critMeta"></span>
+  </div>
+
+  <div class="email-header">
+    <div class="eh-kicker" id="ehKicker"></div>
+    <div class="eh-title">Portfolio<em> Exception Report</em></div>
+    <div class="eh-date" id="ehDate"></div>
+    <div class="eh-meta-row" id="ehMetaRow"></div>
+  </div>
+
+  <div class="trigger-summary">
+    <div class="ts-head" id="tsHead"></div>
+    <div class="ts-grid" id="tsGrid"></div>
+  </div>
+
+  <div class="email-body">
+
+    <!-- KPI SNAPSHOT -->
+    <div class="section">
+      <div class="sec-label">Portfolio KPI Snapshot</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" id="kpiSnapshot"></div>
+    </div>
+
+    <!-- SCHOOL EXCEPTIONS -->
+    <div class="section">
+      <div class="sec-label">School-Level Exceptions</div>
+      <div id="schoolExceptions"></div>
+    </div>
+
+    <!-- HEATMAP -->
+    <div class="section">
+      <div class="sec-label">Portfolio Heatmap — All Schools × All Metrics</div>
+      <table class="htable" id="heatmapTable"></table>
+      <div style="font-family:'Fira Code',monospace;font-size:9px;color:var(--ink-ghost);margin-top:8px;display:flex;gap:10px;" id="heatmapLegend"></div>
+    </div>
+
+    <!-- ACADEMIC -->
+    <div class="section">
+      <div class="sec-label">Academic Outcomes — Regional</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:12px;" id="academicCards"></div>
+      <div id="academicAlert" style="padding:11px 14px;font-size:11.5px;line-height:1.6;"></div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="section">
+      <div class="sec-label">Required Actions — This Week</div>
+      <div id="actionsList"></div>
+    </div>
+
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-title">Review the full portfolio dashboard</div>
+    <div class="cta-sub" id="ctaSub"></div>
+    <div class="cta-btns">
+      <a href="Leaders-dahsboard.html" class="cta-btn primary">Open Portfolio Dashboard →</a>
+      <a href="Leaders-datastory.html" class="cta-btn secondary">Read Full Briefing</a>
+    </div>
+    <div class="cta-note" id="ctaNote"></div>
+  </div>
+
+  <div class="email-footer">
+    <div class="ef-text" id="footerText"></div>
+    <div class="ef-links">
+      <a href="Leaders-dahsboard.html" class="ef-link">Dashboard</a>
+      <a href="Leaders-datastory.html" class="ef-link">Briefing</a>
+      <a href="index.html" class="ef-link">Principal View</a>
+    </div>
+  </div>
+</div>
+
+<script src="portfolio-data.js"></script>
+<script>
+(function () {
+  const P   = window.PORTFOLIO;
+  const S   = P.SCHOOLS;
+  const R   = P.REGIONAL;
+  const A   = P.ACADEMIC;
+  const INS = P.generateInsights();
+  const ALERTS  = P.getAlerts();
+  const ACTIONS = P.ACTIONS;
+
+  const criticals = ALERTS.filter(a => a.severity === 'critical');
+  const warnings  = ALERTS.filter(a => a.severity === 'warning');
+  const totalAlerts = ALERTS.length;
+
+  // ── HEADER ────────────────────────────────────────────────────────────────
+  document.getElementById('pageTitle').textContent = `Portfolio Exception Alert — ${criticals.length} Critical · EU Region · ${P.META.date}`;
+  document.getElementById('critLabel').textContent = `⚠ Portfolio Exception Alert — ${criticals.length} Critical · ${warnings.length} Warning Thresholds Breached`;
+  document.getElementById('critMeta').textContent  = `EU Region · ${P.META.date} · Auto-generated`;
+
+  document.getElementById('ehKicker').textContent = `Regional Leadership · EU Portfolio Intelligence System`;
+  document.getElementById('ehDate').textContent   = `${P.META.dayOfWeek}, ${P.META.date} · ${P.META.source}`;
+
+  document.getElementById('ehMetaRow').innerHTML = `
+    <div class="eh-meta"><span class="eh-meta-lbl">Region</span><span class="eh-meta-val">EU Portfolio (${P.META.schoolCount} Schools)</span></div>
+    <div class="eh-meta"><span class="eh-meta-lbl">Alert Triggers</span><span class="eh-meta-val" style="color:var(--crimson);">${totalAlerts} Breached (${criticals.length} Critical)</span></div>
+    <div class="eh-meta"><span class="eh-meta-lbl">Critical Schools</span><span class="eh-meta-val" style="color:var(--crimson);">${criticals.map(a=>a.school).filter((v,i,arr)=>arr.indexOf(v)===i&&v!=='EU Region'&&v!=='Region').join(', ')||'Multiple'}</span></div>
+    <div class="eh-meta"><span class="eh-meta-lbl">Fee Income</span><span class="eh-meta-val" style="color:var(--emerald);">${P.fmt(R.feeIncome,'$M')} On Budget</span></div>`;
+
+  // ── TRIGGER SUMMARY ────────────────────────────────────────────────────────
+  document.getElementById('tsHead').textContent = `${totalAlerts} threshold${totalAlerts!==1?'s':''} breached — alert generated automatically`;
+
+  const tsGrid = document.getElementById('tsGrid');
+  ALERTS.slice(0, 6).forEach((alert, i) => {
+    const item = document.createElement('div');
+    item.className = 'ts-item';
+    if (i === ALERTS.slice(0,6).length - 1 && ALERTS.slice(0,6).length % 2 !== 0) {
+      item.style.gridColumn = '1 / -1';
+    }
+    item.innerHTML = `
+      <div class="ts-num">${i+1}</div>
+      <div>
+        <div class="ts-text">${alert.school} — ${alert.metric}: ${alert.value}</div>
+        <div class="ts-val">Threshold: ${alert.threshold} · ${alert.desc}</div>
+      </div>`;
+    tsGrid.appendChild(item);
+  });
+
+  // ── KPI SNAPSHOT ──────────────────────────────────────────────────────────
+  const kpiSnap = document.getElementById('kpiSnapshot');
+  const sortedByCVR = [...S].sort((a,b)=>a.metrics.cvr - b.metrics.cvr);
+  const sortedByCap = [...S].sort((a,b)=>a.metrics.capacity - b.metrics.capacity);
+  const maxCVR = Math.max(...S.map(s=>s.metrics.cvr));
+
+  let cvrHtml = '';
+  sortedByCVR.forEach(s => {
+    const col = s.metrics.cvr >= 8 ? 'var(--emerald)' : s.metrics.cvr >= 6 ? 'var(--ink-soft)' : s.metrics.cvr >= 5 ? 'var(--amber)' : 'var(--crimson)';
+    const pct = Math.round((s.metrics.cvr / maxCVR) * 100);
+    cvrHtml += `<div class="mbar-row">
+      <span class="mbar-label" style="font-size:10.5px;color:${col};font-weight:${s.metrics.cvr===maxCVR?700:400};">${s.name}${s.metrics.cvr===maxCVR?' ★':''}</span>
+      <div class="mbar-track"><div class="mbar-fill" style="width:${pct}%;background:${col};opacity:.85;"></div></div>
+      <span class="mbar-val" style="color:${col};">${s.metrics.cvr}%</span>
+    </div>`;
+  });
+  cvrHtml += `<div style="font-family:'Fira Code',monospace;font-size:8.5px;color:var(--ink-ghost);margin-top:4px;">Enquiry → Enrolment CVR · ${P.getBest('cvr').name} = ${(P.getBest('cvr').metrics.cvr/P.getWorst('cvr').metrics.cvr).toFixed(1)}× ${P.getWorst('cvr').name}</div>`;
+
+  let capHtml = '';
+  sortedByCap.forEach(s => {
+    const col = s.metrics.capacity >= 90 ? 'var(--emerald)' : s.metrics.capacity >= 70 ? 'var(--amber)' : 'var(--crimson)';
+    capHtml += `<div class="mbar-row">
+      <span class="mbar-label" style="font-size:10.5px;color:${col};">${s.name}</span>
+      <div class="mbar-track"><div class="mbar-fill" style="width:${Math.min(s.metrics.capacity,100)}%;background:${col};opacity:.85;"></div></div>
+      <span class="mbar-val" style="color:${col};">${s.metrics.capacity}%</span>
+    </div>`;
+  });
+  capHtml += `<div style="font-family:'Fira Code',monospace;font-size:8.5px;color:var(--ink-ghost);margin-top:4px;">Capacity Utilisation · Target ≥85%</div>`;
+
+  kpiSnap.innerHTML = `<div>${cvrHtml}</div><div>${capHtml}</div>`;
+
+  // ── SCHOOL EXCEPTIONS ─────────────────────────────────────────────────────
+  const schExc = document.getElementById('schoolExceptions');
+  const excConfig = [
+    {
+      school: P.getWorst('enrolmentsYoY'),
+      severity: 'critical',
+      titleFn: s => `Critical — ${s.metrics.capacity <= 60 ? Math.floor(P.getHeatmapData().rows.find(r=>r.school.id===s.id).cells.filter(c=>c.rag==='r').length) : 4} of 8 metrics red. Enrolment collapse.`,
+      descFn:  s => `New enrolments ${P.fmt(s.metrics.enrolmentsYoY,'pct')} YoY — worst in portfolio. Capacity at ${s.metrics.capacity}%. New competitor entered segment. FTE vs Budget ${P.fmt(s.metrics.fteVsBudget,'pct')}.`,
+      chipsFn: s => [
+        { label: `${P.fmt(s.metrics.enrolmentsYoY,'pct')} Enrolments`, cls: 'r' },
+        { label: `${s.metrics.capacity}% Capacity`, cls: 'r' },
+        { label: `${P.fmt(s.metrics.enquiriesYoY,'pct')} Enquiries`, cls: 'r' },
+        { label: `${P.fmt(s.metrics.fteVsBudget,'pct')} FTE vs Bgt`, cls: 'r' },
+        { label: `${s.metrics.velocity}d Velocity`, cls: 'a' },
+      ],
+    },
+    {
+      school: P.getWorst('velocity'),
+      severity: 'warning',
+      titleFn: s => `Alert — ${s.metrics.velocity}-day velocity masks conversion breakdown at full capacity`,
+      descFn:  s => `Enrolments ${P.fmt(s.metrics.enrolmentsYoY,'pct')}, enquiries ${P.fmt(s.metrics.enquiriesYoY,'pct')}, but velocity at ${s.metrics.velocity} days — ${Math.round(s.metrics.velocity/P.THRESHOLDS.velocity.crit*100-100)}% above threshold. At ${s.metrics.capacity}% capacity, no physical room to grow without a pricing or infrastructure decision.`,
+      chipsFn: s => [
+        { label: `${s.metrics.velocity}d Velocity ⚠`, cls: 'r' },
+        { label: `${P.fmt(s.metrics.enrolmentsYoY,'pct')} Enrolments`, cls: 'g' },
+        { label: `${s.metrics.capacity}% Capacity`, cls: 'g' },
+        { label: `${(s.metrics.cvrDelta>0?'+':'')+s.metrics.cvrDelta.toFixed(1)}% CVR`, cls: 'a' },
+      ],
+    },
+    // Bratislava (index 2)
+    {
+      school: S[2],
+      severity: 'critical',
+      titleFn: s => `Watch — Enrolment decline second consecutive cycle`,
+      descFn:  s => `Enrolments ${P.fmt(s.metrics.enrolmentsYoY,'pct')}, enquiries ${P.fmt(s.metrics.enquiriesYoY,'pct')}. Exceptionally strong velocity (${s.metrics.velocity} days) suggests top-of-funnel awareness is the problem — not conversion process. FTE vs Budget ${P.fmt(s.metrics.fteVsBudget,'pct')}.`,
+      chipsFn: s => [
+        { label: `${P.fmt(s.metrics.enrolmentsYoY,'pct')} Enrolments`, cls: 'r' },
+        { label: `${P.fmt(s.metrics.enquiriesYoY,'pct')} Enquiries`, cls: 'r' },
+        { label: `${s.metrics.velocity}d Velocity ✓`, cls: 'g' },
+        { label: `${s.metrics.capacity}% Capacity`, cls: 'a' },
+      ],
+    },
+    // Compliance — portfolio
+    {
+      school: { name: 'Portfolio', country: '3 Schools', color: '#b8680a', colorDim: '#fdf5e6', initial: '!' },
+      severity: 'warning',
+      titleFn: s => `Compliance — Contractor BGC at ${R.contractorBgc}% (3 schools below 90%)`,
+      descFn:  s => `Direct staff at ${R.staffBgc}% (on track). Contractor BGC gap of ${(R.staffBgc - R.contractorBgc).toFixed(1)}pp indicates a systemic onboarding process failure. Regional HR escalation required by end of week.`,
+      chipsFn: s => [
+        { label: `${R.contractorBgc}% Contractor BGC`, cls: 'r' },
+        { label: `${R.staffBgc}% Staff BGC`, cls: 'g' },
+        { label: 'Portfolio Risk', cls: 'a' },
+      ],
+    },
+  ];
+
+  excConfig.forEach(cfg => {
+    const s = cfg.school;
+    const row = document.createElement('div');
+    row.className = 'exc-row';
+    row.style.marginBottom = '8px';
+    const chips = cfg.chipsFn(s).map(c => `<span class="chip chip-${c.cls}">${c.label}</span>`).join('');
+    row.innerHTML = `
+      <div class="exc-severity ${cfg.severity}"></div>
+      <div class="exc-school-badge">
+        <div class="esb-init" style="color:${s.color};">${s.initial || s.name[0]}</div>
+        <div class="esb-name">${s.name}</div>
+        <div class="esb-loc">${s.country}</div>
+      </div>
+      <div class="exc-detail">
+        <div class="exc-title">${cfg.titleFn(s)}</div>
+        <div class="exc-desc">${cfg.descFn(s)}</div>
+        <div class="exc-chips">${chips}</div>
+      </div>`;
+    schExc.appendChild(row);
+  });
+
+  // ── HEATMAP TABLE ─────────────────────────────────────────────────────────
+  const hd = P.getHeatmapData();
+  let thead = '<thead><tr><th class="lft">School</th>';
+  hd.metrics.forEach(m => { thead += `<th>${m.label}</th>`; });
+  thead += '</tr></thead>';
+
+  let tbody = '<tbody>';
+  hd.rows.forEach(row => {
+    const s = row.school;
+    const drillLink = s.principalDashboard ? ` <a href="${s.principalDashboard}" style="font-family:'Fira Code',monospace;font-size:8.5px;color:var(--cobalt);text-decoration:underline;">↗</a>` : '';
+    tbody += `<tr><td class="sch">${s.name}${drillLink}</td>`;
+    row.cells.forEach(cell => {
+      tbody += `<td class="hcell-${cell.rag}">${cell.display}</td>`;
+    });
+    tbody += '</tr>';
+  });
+  tbody += '</tbody>';
+  document.getElementById('heatmapTable').innerHTML = thead + tbody;
+
+  document.getElementById('heatmapLegend').innerHTML = `
+    <span style="background:var(--crimson-dim);color:var(--crimson);padding:2px 6px;">Red = breach</span>
+    <span style="background:var(--amber-dim);color:var(--amber);padding:2px 6px;">Amber = monitor</span>
+    <span style="background:var(--emerald-dim);color:var(--emerald);padding:2px 6px;">Green = on track</span>`;
+
+  // ── ACADEMIC CARDS ────────────────────────────────────────────────────────
+  const aLevelDrop = A.aLevel.current - A.aLevel.prev;
+  const aCards = [
+    { label: 'A-Level A*–A', val: A.aLevel.current + '%', delta: `↓ ${Math.abs(aLevelDrop).toFixed(1)}pp vs PY`, color: 'var(--crimson)', bg: 'var(--crimson-dim)' },
+    { label: 'iGCSE A*–A',  val: A.igcse.current + '%',  delta: `↓ ${(A.igcse.prev-A.igcse.current).toFixed(1)}pp vs PY`, color: 'var(--amber)', bg: 'var(--amber-dim)' },
+    { label: 'IB Diploma',  val: String(A.ib.current),    delta: `↑ +${(A.ib.current-A.ib.prev).toFixed(1)} vs PY`, color: 'var(--emerald)', bg: 'var(--emerald-dim)' },
+  ];
+  document.getElementById('academicCards').innerHTML = aCards.map(c => `
+    <div style="text-align:center;padding:14px;background:${c.bg};border:1px solid rgba(0,0,0,.06);">
+      <div style="font-family:'Fira Code',monospace;font-size:8.5px;color:${c.color};letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">${c.label}</div>
+      <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:${c.color};">${c.val}</div>
+      <div style="font-family:'Fira Code',monospace;font-size:9px;color:${c.color};margin-top:3px;">${c.delta}</div>
+    </div>`).join('');
+
+  document.getElementById('academicAlert').style.background = 'var(--amber-dim)';
+  document.getElementById('academicAlert').style.border = '1px solid rgba(184,104,10,.2)';
+  document.getElementById('academicAlert').innerHTML =
+    `<strong style="color:var(--amber);">Context:</strong> ${INS.aLevelContext}`;
+
+  // ── REQUIRED ACTIONS ──────────────────────────────────────────────────────
+  const priorityConfig = {
+    critical:    { cls: 'pri-crit', label: 'Critical',    color: 'var(--crimson)' },
+    strategic:   { cls: 'pri-str',  label: 'Strategic',   color: 'var(--cobalt)' },
+    opportunity: { cls: 'pri-opp',  label: 'Opportunity', color: 'var(--emerald)' },
+    warning:     { cls: 'pri-warn', label: 'Warning',      color: 'var(--amber)' },
+  };
+
+  const actionsList = document.getElementById('actionsList');
+  ACTIONS.forEach((action, idx) => {
+    const pc = priorityConfig[action.priority] || priorityConfig.warning;
+    const row = document.createElement('div');
+    row.className = 'action-row';
+    row.style.borderLeft = `3px solid ${pc.color}`;
+    row.style.paddingLeft = '12px';
+    row.innerHTML = `
+      <div class="ar-num">${idx+1}</div>
+      <div style="flex:1;">
+        <div class="ar-priority" style="color:${pc.color};">${pc.label} · ${action.deadline}</div>
+        <div class="ar-title">${action.title}</div>
+        <div class="ar-desc">${action.desc}</div>
+        <div class="ar-impact" style="color:${pc.color};">→ ${action.impact}</div>
+        <div class="ar-owner">Owner: ${action.owner} · School: ${action.school}</div>
+      </div>`;
+    actionsList.appendChild(row);
+  });
+
+  // ── CTA ───────────────────────────────────────────────────────────────────
+  document.getElementById('ctaSub').textContent =
+    `All charts, school-level drilldown, and the complete portfolio briefing are available below.`;
+  document.getElementById('ctaNote').innerHTML =
+    `This alert was automatically generated because ${totalAlerts} metric${totalAlerts!==1?'s':''} crossed defined portfolio-level thresholds.<br>
+    Alerts are not sent on a schedule — only when thresholds are breached.<br>
+    Data source: ${P.META.source} · All data synthetic for illustrative purposes.`;
+
+  document.getElementById('footerText').textContent =
+    `EU Portfolio · Regional Intelligence System · ${P.META.date}`;
+
+})();
+</script>
+</body>
+</html>

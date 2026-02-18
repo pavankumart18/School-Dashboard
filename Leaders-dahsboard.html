@@ -6,586 +6,192 @@
 <title>Regional Intelligence — EU Portfolio Overview</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Bricolage+Grotesque:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --stone-50: #fafaf9;
-  --stone-100: #f5f4f0;
-  --stone-200: #e8e5df;
-  --stone-300: #d4cfc6;
-  --stone-400: #a89e90;
-  --stone-500: #7a7060;
-  --stone-600: #5a5248;
-  --stone-700: #3d3730;
-  --stone-800: #26211c;
-  --stone-900: #141210;
-  --ink: #1a1614;
-  --ink-mid: #3d3730;
-  --ink-soft: #7a7060;
-  --ink-ghost: #b0a898;
-  --border: #e0dbd2;
-  --border-strong: #c8c2b8;
-  --crimson: #c0392b;
-  --crimson-dim: #fdf0ee;
-  --crimson-mid: #e8a09a;
-  --emerald: #1a6b50;
-  --emerald-dim: #edf7f3;
-  --emerald-mid: #6ec4a0;
-  --amber: #b8680a;
-  --amber-dim: #fdf5e6;
-  --amber-mid: #e8b46e;
-  --cobalt: #1a3a7a;
-  --cobalt-dim: #eef2fb;
-  --cobalt-mid: #7a9ee8;
-  --paper: var(--stone-50);
-  --surface: #ffffff;
-  --raised: var(--stone-100);
+:root{
+  --stone-50:#fafaf9;--stone-100:#f5f4f0;--stone-200:#e8e5df;--stone-300:#d4cfc6;
+  --stone-400:#a89e90;--stone-500:#7a7060;--stone-600:#5a5248;--stone-700:#3d3730;
+  --stone-800:#26211c;--stone-900:#141210;
+  --ink:#1a1614;--ink-mid:#3d3730;--ink-soft:#7a7060;--ink-ghost:#b0a898;
+  --border:#e0dbd2;--border-strong:#c8c2b8;
+  --crimson:#c0392b;--crimson-dim:#fdf0ee;--crimson-mid:#e8a09a;
+  --emerald:#1a6b50;--emerald-dim:#edf7f3;--emerald-mid:#6ec4a0;
+  --amber:#b8680a;--amber-dim:#fdf5e6;--amber-mid:#e8b46e;
+  --cobalt:#1a3a7a;--cobalt-dim:#eef2fb;--cobalt-mid:#7a9ee8;
+  --paper:var(--stone-50);--surface:#ffffff;--raised:var(--stone-100);
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Bricolage Grotesque',sans-serif;background:var(--stone-100);color:var(--ink);min-height:100vh;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.header{background:var(--ink);padding:0 40px;display:flex;align-items:stretch;height:58px;position:sticky;top:0;z-index:200;gap:0;}
+.header-brand{display:flex;align-items:center;gap:14px;padding-right:32px;border-right:1px solid rgba(255,255,255,0.1);}
+.header-logo{width:30px;height:30px;background:linear-gradient(135deg,var(--amber-mid),var(--amber));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.header-name{font-family:'Fraunces',serif;font-size:16px;font-weight:500;color:#fff;letter-spacing:-0.01em;}
+.header-name span{font-style:italic;font-weight:300;color:rgba(255,255,255,0.55);}
+.header-nav{display:flex;align-items:stretch;gap:0;padding:0 20px;flex:1;}
+.nav-tab{display:flex;align-items:center;padding:0 18px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.45);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;letter-spacing:0.01em;white-space:nowrap;}
+.nav-tab:hover{color:rgba(255,255,255,0.75);}
+.nav-tab.active{color:#fff;border-bottom-color:var(--amber-mid);}
+.nav-badge{background:var(--crimson);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:6px;}
+.header-right{display:flex;align-items:center;gap:10px;padding-left:20px;border-left:1px solid rgba(255,255,255,0.1);}
+.hdr-chip{font-family:'Fira Code',monospace;font-size:10px;padding:4px 10px;border-radius:14px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.hdr-chip.on{background:rgba(232,180,110,0.2);color:var(--amber-mid);border:1px solid rgba(232,180,110,0.3);}
+.hdr-chip.off{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1);}
+.hdr-chip select{background:transparent;border:none;font-family:inherit;font-size:inherit;color:inherit;cursor:pointer;outline:none;}
 
-body {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  background: var(--stone-100);
-  color: var(--ink);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+.content{padding:28px 40px;}
+.slabel{font-family:'Fira Code',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.slabel::after{content:'';flex:1;height:1px;background:var(--border);}
 
-/* ─── TOP HEADER BAR ─── */
-.header {
-  background: var(--ink);
-  padding: 0 40px;
-  display: flex;
-  align-items: stretch;
-  height: 58px;
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  gap: 0;
-}
+/* Hero strip */
+.region-hero{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:20px;overflow:hidden;display:grid;grid-template-columns:repeat(5,1fr);}
+.hero-cell{padding:22px 24px;border-right:1px solid var(--border);position:relative;transition:background 0.15s;cursor:default;}
+.hero-cell:last-child{border-right:none;}
+.hero-cell:hover{background:var(--raised);}
+.hero-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--border);}
+.hero-cell.bad::before{background:var(--crimson);}
+.hero-cell.warn::before{background:var(--amber);}
+.hero-cell.good::before{background:var(--emerald);}
+.hero-cell.info::before{background:var(--cobalt);}
+.hc-label{font-family:'Fira Code',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:6px;}
+.hc-value{font-family:'Fraunces',serif;font-size:36px;font-weight:400;letter-spacing:-0.03em;line-height:1;color:var(--ink);}
+.hc-value.bad{color:var(--crimson);}.hc-value.warn{color:var(--amber);}.hc-value.good{color:var(--emerald);}
+.hc-delta{display:inline-flex;align-items:center;gap:3px;font-family:'Fira Code',monospace;font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;margin-top:8px;}
+.hc-delta.dn{background:var(--crimson-dim);color:var(--crimson);}
+.hc-delta.up{background:var(--emerald-dim);color:var(--emerald);}
+.hc-delta.fl{background:var(--stone-100);color:var(--ink-soft);}
+.hc-delta.wn{background:var(--amber-dim);color:var(--amber);}
+.hc-sub{font-size:10px;color:var(--ink-ghost);margin-top:5px;}
+.hc-spark{margin-top:10px;}
 
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding-right: 32px;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-.header-logo {
-  width: 30px; height: 30px;
-  background: linear-gradient(135deg, var(--amber-mid), var(--amber));
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-}
-.header-name {
-  font-family: 'Fraunces', serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: -0.01em;
-}
-.header-name span {
-  font-style: italic;
-  font-weight: 300;
-  color: rgba(255,255,255,0.55);
-}
+/* Table */
+.school-table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px;}
+.school-table-head{padding:16px 24px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--raised);}
+.sth-title{font-size:13px;font-weight:600;color:var(--ink);}
+.sth-sub{font-size:10px;color:var(--ink-ghost);font-family:'Fira Code',monospace;margin-top:2px;}
+.sort-btns{display:flex;gap:6px;}
+.sort-btn{font-family:'Fira Code',monospace;font-size:9px;padding:3px 10px;border-radius:12px;cursor:pointer;border:1px solid var(--border);color:var(--ink-soft);background:var(--surface);transition:all 0.15s;letter-spacing:0.04em;}
+.sort-btn:hover{border-color:var(--border-strong);color:var(--ink);}
+.sort-btn.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+.school-table{width:100%;border-collapse:collapse;}
+.school-table th{font-family:'Fira Code',monospace;font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-ghost);font-weight:400;padding:10px 16px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;background:var(--raised);}
+.school-table th.num{text-align:right;}
+.school-table td{padding:12px 16px;font-size:12px;color:var(--ink-mid);border-bottom:1px solid var(--border);vertical-align:middle;}
+.school-table tr:last-child td{border-bottom:none;}
+.school-table tr:hover td{background:var(--raised);}
+.school-table td.num{text-align:right;}
+.school-name-cell{display:flex;align-items:center;gap:10px;}
+.school-initial{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:'Fraunces',serif;}
+.school-nm{font-size:12px;font-weight:600;color:var(--ink);}
+.school-loc{font-size:10px;color:var(--ink-ghost);font-family:'Fira Code',monospace;}
+.ibar-wrap{display:flex;align-items:center;gap:8px;}
+.ibar-track{flex:1;height:6px;background:var(--stone-200);border-radius:3px;overflow:hidden;min-width:60px;}
+.ibar-fill{height:100%;border-radius:3px;}
+.ibar-val{font-family:'Fira Code',monospace;font-size:10px;min-width:38px;text-align:right;}
+.sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;}
+.sdot.red{background:var(--crimson);}.sdot.amber{background:var(--amber);}.sdot.green{background:var(--emerald);}
+.rag{display:inline-flex;align-items:center;font-family:'Fira Code',monospace;font-size:9px;font-weight:500;padding:2px 8px;border-radius:10px;letter-spacing:0.04em;}
+.rag.r{background:var(--crimson-dim);color:var(--crimson);}
+.rag.a{background:var(--amber-dim);color:var(--amber);}
+.rag.g{background:var(--emerald-dim);color:var(--emerald);}
+.total-row td{background:var(--stone-100);font-weight:600;border-top:2px solid var(--border-strong)!important;}
+.drill-link{font-family:'Fira Code',monospace;font-size:9px;color:var(--cobalt);text-decoration:underline;margin-left:6px;cursor:pointer;}
 
-.header-nav {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  padding: 0 20px;
-  flex: 1;
-}
-.nav-tab {
-  display: flex;
-  align-items: center;
-  padding: 0 18px;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.45);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.15s;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-.nav-tab:hover { color: rgba(255,255,255,0.75); }
-.nav-tab.active { color: #fff; border-bottom-color: var(--amber-mid); }
-.nav-badge {
-  background: var(--crimson);
-  color: #fff;
-  font-size: 9px;
-  font-weight: 700;
-  padding: 1px 5px;
-  border-radius: 8px;
-  margin-left: 6px;
-}
+/* Grids */
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;}
+.grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:20px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-left: 20px;
-  border-left: 1px solid rgba(255,255,255,0.1);
-}
-.hdr-chip {
-  font-family: 'Fira Code', monospace;
-  font-size: 10px;
-  padding: 4px 10px;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.15s;
-  white-space: nowrap;
-}
-.hdr-chip.on { background: rgba(232,180,110,0.2); color: var(--amber-mid); border: 1px solid rgba(232,180,110,0.3); }
-.hdr-chip.off { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); }
-.hdr-chip select { background: transparent; border: none; font-family: inherit; font-size: inherit; color: inherit; cursor: pointer; outline: none; }
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.card-head{padding:15px 20px 13px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;}
+.card-title{font-size:13px;font-weight:600;color:var(--ink);}
+.card-sub{font-size:10px;color:var(--ink-ghost);font-family:'Fira Code',monospace;margin-top:2px;}
+.card-body{padding:20px;}
+.badge{font-family:'Fira Code',monospace;font-size:9px;padding:3px 8px;border-radius:10px;}
+.badge-r{background:var(--crimson-dim);color:var(--crimson);}
+.badge-a{background:var(--amber-dim);color:var(--amber);}
+.badge-g{background:var(--emerald-dim);color:var(--emerald);}
+.badge-b{background:var(--cobalt-dim);color:var(--cobalt);}
 
-/* ─── CONTENT ─── */
-.content { padding: 28px 40px; }
+/* Watchlist */
+.watchlist-row{display:flex;align-items:flex-start;gap:12px;padding:13px 20px;border-bottom:1px solid var(--border);transition:background 0.12s;cursor:default;}
+.watchlist-row:last-child{border-bottom:none;}
+.watchlist-row:hover{background:var(--raised);}
+.watch-sev{width:3px;align-self:stretch;border-radius:2px;flex-shrink:0;}
+.watch-sev.critical{background:var(--crimson);}.watch-sev.warn{background:var(--amber);}
+.watch-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.wi-red{background:var(--crimson-dim);}.wi-amber{background:var(--amber-dim);}
+.watch-body{flex:1;}
+.watch-title{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.watch-desc{font-size:11px;color:var(--ink-soft);line-height:1.5;}
+.watch-metric{font-family:'Fira Code',monospace;font-size:9px;color:var(--ink-ghost);margin-top:3px;}
+.watch-school{font-family:'Fira Code',monospace;font-size:9px;color:var(--ink-ghost);padding:2px 8px;background:var(--raised);border-radius:8px;border:1px solid var(--border);flex-shrink:0;white-space:nowrap;}
 
-/* ─── SECTION LABEL ─── */
-.slabel {
-  font-family: 'Fira Code', monospace;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.slabel::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+/* Insight box */
+.insight{display:flex;gap:10px;align-items:flex-start;background:linear-gradient(135deg,var(--cobalt-dim),var(--stone-50));border:1px solid rgba(26,58,122,0.12);border-radius:8px;padding:11px 13px;margin-top:14px;}
+.insight-icon{font-size:13px;flex-shrink:0;margin-top:1px;}
+.insight-text{font-size:11px;color:var(--ink-mid);line-height:1.6;}
+.insight-text strong{color:var(--cobalt);font-weight:600;}
 
-/* ─── REGION HERO ─── */
-.region-hero {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 0;
-  margin-bottom: 20px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
+/* Metric rows */
+.mrow{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);}
+.mrow:last-child{border-bottom:none;}
+.mrow-name{font-size:11px;color:var(--ink-mid);}
+.mrow-right{display:flex;align-items:center;gap:10px;}
+.mrow-val{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--ink);}
+.mrow-delta{font-family:'Fira Code',monospace;font-size:9px;}
 
-.hero-cell {
-  padding: 22px 24px;
-  border-right: 1px solid var(--border);
-  position: relative;
-  transition: background 0.15s;
-}
-.hero-cell:last-child { border-right: none; }
-.hero-cell:hover { background: var(--raised); }
-.hero-cell::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--cell-accent, var(--border));
-  border-radius: 0;
-}
-.hero-cell.bad::before { --cell-accent: var(--crimson); }
-.hero-cell.warn::before { --cell-accent: var(--amber); }
-.hero-cell.good::before { --cell-accent: var(--emerald); }
-.hero-cell.info::before { --cell-accent: var(--cobalt); }
+/* Animations */
+@keyframes slideUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+@keyframes drawLine{from{stroke-dashoffset:500;}to{stroke-dashoffset:0;}}
+.hero-cell{animation:slideUp 0.4s ease both;}
+.hero-cell:nth-child(1){animation-delay:0.04s;}
+.hero-cell:nth-child(2){animation-delay:0.08s;}
+.hero-cell:nth-child(3){animation-delay:0.12s;}
+.hero-cell:nth-child(4){animation-delay:0.16s;}
+.hero-cell:nth-child(5){animation-delay:0.20s;}
+.card,.school-table-wrap{animation:slideUp 0.4s ease 0.15s both;}
+.aline{stroke-dasharray:500;animation:drawLine 1.8s ease 0.3s both;}
 
-.hc-label {
-  font-family: 'Fira Code', monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
-  margin-bottom: 10px;
-}
-.hc-value {
-  font-family: 'Fraunces', serif;
-  font-size: 36px;
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--ink);
-}
-.hc-value.bad { color: var(--crimson); }
-.hc-value.warn { color: var(--amber); }
-.hc-value.good { color: var(--emerald); }
-.hc-delta {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-family: 'Fira Code', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 10px;
-  margin-top: 8px;
-}
-.hc-delta.dn { background: var(--crimson-dim); color: var(--crimson); }
-.hc-delta.up { background: var(--emerald-dim); color: var(--emerald); }
-.hc-delta.fl { background: var(--stone-100); color: var(--ink-soft); }
-.hc-delta.wn { background: var(--amber-dim); color: var(--amber); }
-.hc-sub { font-size: 10px; color: var(--ink-ghost); margin-top: 5px; }
-.hc-spark { margin-top: 10px; }
+/* Tooltip */
+.tip-box{position:fixed;background:var(--ink);color:#fff;padding:8px 12px;border-radius:8px;font-size:11px;font-family:'Fira Code',monospace;pointer-events:none;z-index:999;opacity:0;transition:opacity .15s;max-width:220px;line-height:1.5;}
 
-/* ─── SCHOOL COMPARISON TABLE ─── */
-.school-table-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.school-table-head {
-  padding: 16px 24px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  background: var(--raised);
-}
-.sth-title { font-size: 13px; font-weight: 600; color: var(--ink); }
-.sth-sub { font-size: 10px; color: var(--ink-ghost); font-family: 'Fira Code', monospace; margin-top: 2px; }
-.sort-btns { display: flex; gap: 6px; }
-.sort-btn {
-  font-family: 'Fira Code', monospace;
-  font-size: 9px;
-  padding: 3px 10px;
-  border-radius: 12px;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  color: var(--ink-soft);
-  background: var(--surface);
-  transition: all 0.15s;
-  letter-spacing: 0.04em;
-}
-.sort-btn:hover { border-color: var(--border-strong); color: var(--ink); }
-.sort-btn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--stone-300);border-radius:3px;}
 
-.school-table { width: 100%; border-collapse: collapse; }
-.school-table th {
-  font-family: 'Fira Code', monospace;
-  font-size: 8.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
-  font-weight: 400;
-  padding: 10px 16px;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-  white-space: nowrap;
-  background: var(--raised);
-}
-.school-table th.num { text-align: right; }
-.school-table td {
-  padding: 12px 16px;
-  font-size: 12px;
-  color: var(--ink-mid);
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
-}
-.school-table tr:last-child td { border-bottom: none; }
-.school-table tr:hover td { background: var(--raised); }
-.school-table td.num { text-align: right; }
-
-.school-name-cell { display: flex; align-items: center; gap: 10px; }
-.school-initial {
-  width: 28px; height: 28px;
-  border-radius: 7px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
-  flex-shrink: 0;
-  font-family: 'Fraunces', serif;
-}
-.school-nm { font-size: 12px; font-weight: 600; color: var(--ink); }
-.school-loc { font-size: 10px; color: var(--ink-ghost); font-family: 'Fira Code', monospace; }
-
-/* inline bar */
-.ibar-wrap { display: flex; align-items: center; gap: 8px; }
-.ibar-track { flex: 1; height: 6px; background: var(--stone-200); border-radius: 3px; overflow: hidden; min-width: 60px; }
-.ibar-fill { height: 100%; border-radius: 3px; }
-.ibar-val { font-family: 'Fira Code', monospace; font-size: 10px; min-width: 38px; text-align: right; }
-
-/* status dot */
-.sdot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 5px;
-}
-.sdot.red { background: var(--crimson); }
-.sdot.amber { background: var(--amber); }
-.sdot.green { background: var(--emerald); }
-
-/* RAG pill */
-.rag {
-  display: inline-flex; align-items: center;
-  font-family: 'Fira Code', monospace;
-  font-size: 9px; font-weight: 500;
-  padding: 2px 8px; border-radius: 10px;
-  letter-spacing: 0.04em;
-}
-.rag.r { background: var(--crimson-dim); color: var(--crimson); }
-.rag.a { background: var(--amber-dim); color: var(--amber); }
-.rag.g { background: var(--emerald-dim); color: var(--emerald); }
-
-/* total row */
-.total-row td { background: var(--stone-100); font-weight: 600; border-top: 2px solid var(--border-strong) !important; }
-
-/* ─── 3-COL GRID ─── */
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 20px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-
-/* ─── CARD ─── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-}
-.card-head {
-  padding: 15px 20px 13px;
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start; justify-content: space-between;
-}
-.card-title { font-size: 13px; font-weight: 600; color: var(--ink); }
-.card-sub { font-size: 10px; color: var(--ink-ghost); font-family: 'Fira Code', monospace; margin-top: 2px; }
-.card-body { padding: 20px; }
-.card-body.tight { padding: 14px 20px; }
-
-.badge {
-  font-family: 'Fira Code', monospace;
-  font-size: 9px;
-  padding: 3px 8px;
-  border-radius: 10px;
-}
-.badge-r { background: var(--crimson-dim); color: var(--crimson); }
-.badge-a { background: var(--amber-dim); color: var(--amber); }
-.badge-g { background: var(--emerald-dim); color: var(--emerald); }
-.badge-b { background: var(--cobalt-dim); color: var(--cobalt); }
-
-/* ─── SLOPE CHART ─── */
-.slope-wrap { padding: 10px 0; }
-
-/* ─── BUBBLE CHART ─── */
-.bubble-wrap { position: relative; }
-
-/* ─── METRIC ROW ─── */
-.mrow {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--border);
-}
-.mrow:last-child { border-bottom: none; }
-.mrow-name { font-size: 11px; color: var(--ink-mid); }
-.mrow-right { display: flex; align-items: center; gap: 10px; }
-.mrow-val { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 400; color: var(--ink); }
-.mrow-delta { font-family: 'Fira Code', monospace; font-size: 9px; }
-
-/* ─── WATCHLIST ─── */
-.watchlist-row {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 13px 20px;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.12s;
-  cursor: default;
-}
-.watchlist-row:last-child { border-bottom: none; }
-.watchlist-row:hover { background: var(--raised); }
-.watch-sev {
-  width: 3px;
-  align-self: stretch;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-.watch-sev.critical { background: var(--crimson); }
-.watch-sev.warn { background: var(--amber); }
-.watch-icon {
-  width: 30px; height: 30px;
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-.wi-red { background: var(--crimson-dim); }
-.wi-amber { background: var(--amber-dim); }
-.watch-body { flex: 1; }
-.watch-title { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-.watch-desc { font-size: 11px; color: var(--ink-soft); line-height: 1.5; }
-.watch-school {
-  font-family: 'Fira Code', monospace;
-  font-size: 9px; color: var(--ink-ghost);
-  padding: 2px 8px;
-  background: var(--raised);
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-/* ─── FUNNEL COMPARE ─── */
-.funnel-compare { display: flex; flex-direction: column; gap: 12px; }
-.fc-stage { display: flex; flex-direction: column; gap: 4px; }
-.fc-label {
-  font-family: 'Fira Code', monospace;
-  font-size: 9px; letter-spacing: 0.08em;
-  color: var(--ink-ghost); text-transform: uppercase;
-}
-.fc-bars { display: flex; flex-direction: column; gap: 3px; }
-.fc-bar-row { display: flex; align-items: center; gap: 8px; }
-.fc-school-name { font-size: 10px; color: var(--ink-soft); width: 70px; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.fc-bar-outer { flex: 1; height: 14px; background: var(--stone-100); border-radius: 2px; overflow: hidden; }
-.fc-bar-fill { height: 100%; border-radius: 2px; }
-.fc-val { font-family: 'Fira Code', monospace; font-size: 9px; color: var(--ink-soft); min-width: 36px; text-align: right; }
-
-/* ─── HEATMAP ─── */
-.heatmap-grid {
-  display: grid;
-  gap: 3px;
-}
-.hmap-cell {
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Fira Code', monospace;
-  font-size: 9px;
-  font-weight: 500;
-  cursor: default;
-  transition: transform 0.1s;
-}
-.hmap-cell:hover { transform: scale(1.05); }
-
-/* ─── ANIMATIONS ─── */
-@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes drawLine { from { stroke-dashoffset: 500; } to { stroke-dashoffset: 0; } }
-
-.hero-cell { animation: slideUp 0.4s ease both; }
-.hero-cell:nth-child(1) { animation-delay: 0.04s; }
-.hero-cell:nth-child(2) { animation-delay: 0.08s; }
-.hero-cell:nth-child(3) { animation-delay: 0.12s; }
-.hero-cell:nth-child(4) { animation-delay: 0.16s; }
-.hero-cell:nth-child(5) { animation-delay: 0.20s; }
-.card, .school-table-wrap { animation: slideUp 0.4s ease 0.15s both; }
-.aline { stroke-dasharray: 500; animation: drawLine 1.8s ease 0.3s both; }
-
-/* scrollbar */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--stone-300); border-radius: 3px; }
-
-/* ─── INSIGHT BOX ─── */
-.insight {
-  display: flex; gap: 10px; align-items: flex-start;
-  background: linear-gradient(135deg, var(--cobalt-dim), var(--stone-50));
-  border: 1px solid rgba(26,58,122,0.12);
-  border-radius: 8px;
-  padding: 11px 13px;
-  margin-top: 14px;
-}
-.insight-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
-.insight-text { font-size: 11px; color: var(--ink-mid); line-height: 1.6; }
-.insight-text strong { color: var(--cobalt); font-weight: 600; }
+@media(max-width:1100px){.grid-3{grid-template-columns:1fr 1fr;}.region-hero{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:800px){.content{padding:16px 18px;}.region-hero{grid-template-columns:1fr 1fr;}.grid-2-1,.grid-2{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<div class="tip-box" id="globalTip"></div>
+
 <header class="header">
   <div class="header-brand">
     <div class="header-logo">◈</div>
     <div class="header-name">Regional Intelligence <span>· EU Portfolio</span></div>
   </div>
   <nav class="header-nav">
-    <div class="nav-tab active">Portfolio Overview</div>
-    <div class="nav-tab">School Comparison</div>
-    <div class="nav-tab">Marketing & Funnel</div>
-    <div class="nav-tab">Academic & Proposition</div>
-    <div class="nav-tab">Financial Health</div>
-    <div class="nav-tab">Talent & Risk <span class="nav-badge">2</span></div>
-    <div class="nav-tab">Competitors</div>
+    <a href="Leaders-dahsboard.html" class="nav-tab active">Portfolio Overview</a>
+    <a href="Leaders-datastory.html" class="nav-tab">Portfolio Briefing</a>
+    <a href="Leaders-email-alert.html" class="nav-tab">Alert Email <span class="nav-badge" id="alertBadge">0</span></a>
+    <a href="index.html" class="nav-tab">Principal View ↗</a>
+    <a href="principal-datastory.html" class="nav-tab">Principal Briefing</a>
   </nav>
   <div class="header-right">
-    <div class="hdr-chip on">FY 2026</div>
-    <div class="hdr-chip on">EY 2027</div>
-    <div class="hdr-chip off">
-      <select><option>All Schools</option><option>Aubonne</option><option>Beau Soleil</option><option>Bratislava</option><option>Brighton</option><option>Budapest</option></select>
-    </div>
-    <div class="hdr-chip off">
-      <select><option>All Year Groups</option><option>Early Years</option><option>Primary</option><option>Secondary</option></select>
-    </div>
+    <div class="hdr-chip on" id="metaFY">FY 2026</div>
+    <div class="hdr-chip on" id="metaEY">EY 2027</div>
+    <div class="hdr-chip off"><select id="schoolFilter"><option value="">All Schools</option></select></div>
   </div>
 </header>
 
 <div class="content">
+  <div class="slabel" id="regionLabel">EU Region · At a Glance</div>
 
-  <!-- REGION HERO STRIP -->
-  <div class="slabel">EU Region · At a Glance</div>
-  <div class="region-hero">
-    <div class="hero-cell bad">
-      <div class="hc-label">Forecast FTE vs Budget</div>
-      <div class="hc-value bad">−3.2%</div>
-      <div class="hc-delta dn">↓ 405 students short</div>
-      <div class="hc-sub">Budget: 12,864 · Forecast: 12,459</div>
-      <div class="hc-spark">
-        <svg width="100%" height="28" viewBox="0 0 120 28" preserveAspectRatio="none">
-          <polyline class="aline" points="0,10 20,12 40,14 60,18 80,20 100,22 120,24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-          <circle cx="120" cy="24" r="2.5" fill="var(--crimson)" opacity="0.8"/>
-        </svg>
-      </div>
-    </div>
-    <div class="hero-cell bad">
-      <div class="hc-label">New Enrolments YoY</div>
-      <div class="hc-value bad">−13.9%</div>
-      <div class="hc-delta dn">↓ 67 fewer students</div>
-      <div class="hc-sub">410 enrolled · LY: 477</div>
-      <div class="hc-spark">
-        <svg width="100%" height="28" viewBox="0 0 120 28" preserveAspectRatio="none">
-          <polyline class="aline" points="0,6 20,8 40,10 60,12 80,16 100,20 120,24" fill="none" stroke="var(--crimson)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-          <circle cx="120" cy="24" r="2.5" fill="var(--crimson)" opacity="0.8"/>
-        </svg>
-      </div>
-    </div>
-    <div class="hero-cell warn">
-      <div class="hc-label">Avg Conversion Velocity</div>
-      <div class="hc-value warn">124 d</div>
-      <div class="hc-delta wn">⚠ Secondary 138d</div>
-      <div class="hc-sub">Enq → Enrolment · EY: 94d</div>
-      <div class="hc-spark">
-        <svg width="100%" height="28" viewBox="0 0 120 28" preserveAspectRatio="none">
-          <polyline class="aline" points="0,22 20,20 40,18 60,16 80,18 100,20 120,22" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-          <circle cx="120" cy="22" r="2.5" fill="var(--amber)" opacity="0.8"/>
-        </svg>
-      </div>
-    </div>
-    <div class="hero-cell warn">
-      <div class="hc-label">Regional NPS</div>
-      <div class="hc-value warn">29</div>
-      <div class="hc-delta wn">△ Below 35 target</div>
-      <div class="hc-sub">Value for Money: 3.41 / 5</div>
-      <div class="hc-spark">
-        <svg width="100%" height="28" viewBox="0 0 120 28" preserveAspectRatio="none">
-          <polyline class="aline" points="0,16 20,14 40,12 60,14 80,16 100,14 120,14" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-          <circle cx="120" cy="14" r="2.5" fill="var(--amber)" opacity="0.8"/>
-        </svg>
-      </div>
-    </div>
-    <div class="hero-cell good">
-      <div class="hc-label">Capacity Utilisation</div>
-      <div class="hc-value good">80.5%</div>
-      <div class="hc-delta up">↑ Forecast 73.7%</div>
-      <div class="hc-sub">Fee Income: $64.3M on budget</div>
-      <div class="hc-spark">
-        <svg width="100%" height="28" viewBox="0 0 120 28" preserveAspectRatio="none">
-          <polyline class="aline" points="0,24 20,22 40,18 60,16 80,14 100,12 120,10" fill="none" stroke="var(--emerald)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-          <circle cx="120" cy="10" r="2.5" fill="var(--emerald)" opacity="0.8"/>
-        </svg>
-      </div>
-    </div>
-  </div>
+  <!-- HERO STRIP — populated by JS -->
+  <div class="region-hero" id="heroStrip"></div>
 
   <!-- SCHOOL LEAGUE TABLE -->
   <div class="slabel">School Performance Comparison</div>
@@ -593,181 +199,19 @@ body {
     <div class="school-table-head">
       <div>
         <div class="sth-title">All Schools · EU Region</div>
-        <div class="sth-sub">Salesforce Wk 24 · Fiscal Year 2026 · Enrolment Year 2027</div>
+        <div class="sth-sub" id="tableSubLabel"></div>
       </div>
-      <div class="sort-btns">
-        <div class="sort-btn on">FTE vs Budget</div>
-        <div class="sort-btn">NPS</div>
-        <div class="sort-btn">Enrolments</div>
-        <div class="sort-btn">Velocity</div>
-        <div class="sort-btn">Capacity</div>
-      </div>
+      <div class="sort-btns" id="sortBtns"></div>
     </div>
     <table class="school-table">
-      <thead>
-        <tr>
-          <th>School</th>
-          <th class="num">FTE vs Budget</th>
-          <th class="num">New Enr. YoY</th>
-          <th class="num">Enquiries YoY</th>
-          <th>CVR (Enq→Enr)</th>
-          <th class="num">Velocity</th>
-          <th>Capacity</th>
-          <th class="num">NPS</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div class="school-name-cell">
-              <div class="school-initial" style="background:#fdf0ee;color:var(--crimson);">A</div>
-              <div><div class="school-nm">Aubonne</div><div class="school-loc">Switzerland · EY/P/S</div></div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;font-weight:600;">−7.1%</td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;">−66.7%</td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;">−37.3%</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:60%;background:var(--crimson);opacity:0.7;"></div></div>
-              <div class="ibar-val" style="color:var(--crimson);">−3.3%</div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--amber);font-family:'Fira Code',monospace;font-size:11px;">114d</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:49%;background:var(--crimson);opacity:0.6;"></div></div>
-              <div class="ibar-val" style="color:var(--crimson);">49%</div>
-            </div>
-          </td>
-          <td class="num" style="font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--ink);">32</td>
-          <td><span class="rag r">Critical</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="school-name-cell">
-              <div class="school-initial" style="background:var(--emerald-dim);color:var(--emerald);">B</div>
-              <div><div class="school-nm">Beau Soleil</div><div class="school-loc">Switzerland · Secondary</div></div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--emerald);font-family:'Fira Code',monospace;font-size:11px;font-weight:600;">+0.3%</td>
-          <td class="num" style="color:var(--emerald);font-family:'Fira Code',monospace;font-size:11px;">+14.3%</td>
-          <td class="num" style="color:var(--emerald);font-family:'Fira Code',monospace;font-size:11px;">+21.5%</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:45%;background:var(--emerald);opacity:0.7;"></div></div>
-              <div class="ibar-val" style="color:var(--emerald);">−0.7%</div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;font-weight:600;">168d ⚠</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:100%;background:var(--emerald);opacity:0.7;"></div></div>
-              <div class="ibar-val" style="color:var(--emerald);">101%</div>
-            </div>
-          </td>
-          <td class="num" style="font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--ink);">—</td>
-          <td><span class="rag a">Monitor</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="school-name-cell">
-              <div class="school-initial" style="background:var(--amber-dim);color:var(--amber);">B</div>
-              <div><div class="school-nm">Bratislava</div><div class="school-loc">Slovakia · EY/Primary</div></div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;font-weight:600;">−3.6%</td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;">−54.5%</td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;">−21.5%</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:40%;background:var(--amber);opacity:0.7;"></div></div>
-              <div class="ibar-val" style="color:var(--amber);">−2.4%</div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--emerald);font-family:'Fira Code',monospace;font-size:11px;">34d ✓</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:74%;background:var(--amber);opacity:0.6;"></div></div>
-              <div class="ibar-val" style="color:var(--amber);">74%</div>
-            </div>
-          </td>
-          <td class="num" style="font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--ink);">35</td>
-          <td><span class="rag a">Watch</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="school-name-cell">
-              <div class="school-initial" style="background:var(--emerald-dim);color:var(--emerald);">B</div>
-              <div><div class="school-nm">Brighton</div><div class="school-loc">UK · All year groups</div></div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--emerald);font-family:'Fira Code',monospace;font-size:11px;font-weight:600;">+1.2%</td>
-          <td class="num" style="color:var(--amber);font-family:'Fira Code',monospace;font-size:11px;">−4.1%</td>
-          <td class="num" style="color:var(--emerald);font-family:'Fira Code',monospace;font-size:11px;">+6.2%</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:72%;background:var(--emerald);opacity:0.7;"></div></div>
-              <div class="ibar-val" style="color:var(--emerald);">+1.1%</div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--emerald);font-family:'Fira Code',monospace;font-size:11px;">98d ✓</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:88%;background:var(--emerald);opacity:0.7;"></div></div>
-              <div class="ibar-val" style="color:var(--emerald);">88%</div>
-            </div>
-          </td>
-          <td class="num" style="font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--emerald);">38</td>
-          <td><span class="rag g">On Track</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="school-name-cell">
-              <div class="school-initial" style="background:var(--emerald-dim);color:var(--emerald);">B</div>
-              <div><div class="school-nm">Budapest</div><div class="school-loc">Hungary · All year groups</div></div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--amber);font-family:'Fira Code',monospace;font-size:11px;font-weight:600;">−1.8%</td>
-          <td class="num" style="color:var(--amber);font-family:'Fira Code',monospace;font-size:11px;">−8.3%</td>
-          <td class="num" style="color:var(--amber);font-family:'Fira Code',monospace;font-size:11px;">−5.1%</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:55%;background:var(--amber);opacity:0.6;"></div></div>
-              <div class="ibar-val" style="color:var(--amber);">−1.2%</div>
-            </div>
-          </td>
-          <td class="num" style="color:var(--amber);font-family:'Fira Code',monospace;font-size:11px;">118d</td>
-          <td>
-            <div class="ibar-wrap">
-              <div class="ibar-track"><div class="ibar-fill" style="width:79%;background:var(--amber);opacity:0.6;"></div></div>
-              <div class="ibar-val" style="color:var(--amber);">79%</div>
-            </div>
-          </td>
-          <td class="num" style="font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--ink);">31</td>
-          <td><span class="rag a">Watch</span></td>
-        </tr>
-        <tr class="total-row">
-          <td><div style="font-size:11px;color:var(--ink-soft);font-family:'Fira Code',monospace;letter-spacing:0.06em;">EU TOTAL</div></td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;font-weight:700;">−3.2%</td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;">−13.9%</td>
-          <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;">−13.3%</td>
-          <td><div class="ibar-wrap"><div class="ibar-track"><div class="ibar-fill" style="width:48%;background:var(--ink-ghost);"></div></div><div class="ibar-val" style="color:var(--ink-soft);">−0.0%</div></div></td>
-          <td class="num" style="color:var(--amber);font-family:'Fira Code',monospace;font-size:11px;">124d</td>
-          <td><div class="ibar-wrap"><div class="ibar-track"><div class="ibar-fill" style="width:80.5%;background:var(--emerald);opacity:0.7;"></div></div><div class="ibar-val" style="color:var(--emerald);">80.5%</div></div></td>
-          <td class="num" style="font-family:'Fraunces',serif;font-size:16px;font-weight:500;color:var(--amber);">29</td>
-          <td><span class="rag a">Mixed</span></td>
-        </tr>
-      </tbody>
+      <thead id="tableHead"></thead>
+      <tbody id="tableBody"></tbody>
     </table>
   </div>
 
-  <!-- ROW: CHARTS -->
+  <!-- PORTFOLIO DIAGNOSTICS -->
   <div class="slabel">Portfolio Diagnostics</div>
   <div class="grid-2-1">
-
-    <!-- SCHOOL PERFORMANCE HEATMAP -->
     <div class="card">
       <div class="card-head">
         <div>
@@ -777,83 +221,36 @@ body {
         <span class="badge badge-b">Portfolio View</span>
       </div>
       <div class="card-body">
-        <canvas id="heatmapCanvas" width="560" height="200" style="width:100%;height:auto;"></canvas>
-        <div class="insight">
-          <div class="insight-icon">🔍</div>
-          <div class="insight-text"><strong>Aubonne needs immediate escalation</strong> — red across 5 of 8 metrics. Beau Soleil is a paradox: excellent enrolment growth but highest velocity in the region at 168 days, masking a conversion efficiency problem that will hit next cycle.</div>
-        </div>
+        <canvas id="heatmapCanvas" height="200" style="width:100%;height:auto;"></canvas>
+        <div class="insight"><div class="insight-icon">🔍</div><div class="insight-text" id="heatmapInsight"></div></div>
       </div>
     </div>
-
-    <!-- WATCHLIST -->
     <div class="card">
       <div class="card-head">
         <div>
           <div class="card-title">Intervention Watchlist</div>
           <div class="card-sub">Schools requiring leadership action</div>
         </div>
-        <span class="badge badge-r">4 Items</span>
+        <span class="badge badge-r" id="watchlistBadge">0 Items</span>
       </div>
-      <div class="watchlist-row">
-        <div class="watch-sev critical"></div>
-        <div class="watch-icon wi-red">📉</div>
-        <div class="watch-body">
-          <div class="watch-title">Enrolment collapse in Primary</div>
-          <div class="watch-desc">New enrolments down 66.7% with strong new competitor entering the segment. Parent referral programme proposed but not yet launched.</div>
-        </div>
-        <div class="watch-school">Aubonne</div>
-      </div>
-      <div class="watchlist-row">
-        <div class="watch-sev critical"></div>
-        <div class="watch-icon wi-red">⏱</div>
-        <div class="watch-body">
-          <div class="watch-title">Secondary velocity 168 days</div>
-          <div class="watch-desc">Highest in the region — 40% above threshold. Despite strong enquiry growth, conversion is stalling at decision stage.</div>
-        </div>
-        <div class="watch-school">Beau Soleil</div>
-      </div>
-      <div class="watchlist-row">
-        <div class="watch-sev warn"></div>
-        <div class="watch-icon wi-amber">🔒</div>
-        <div class="watch-body">
-          <div class="watch-title">Contractor BGC compliance 76%</div>
-          <div class="watch-desc">Below the 90% threshold — safeguarding risk. Direct staff at 94%. Requires immediate ops escalation across 3 schools.</div>
-        </div>
-        <div class="watch-school">3 Schools</div>
-      </div>
-      <div class="watchlist-row">
-        <div class="watch-sev warn"></div>
-        <div class="watch-icon wi-amber">👥</div>
-        <div class="watch-body">
-          <div class="watch-title">MAC attrition rising — admissions risk</div>
-          <div class="watch-desc">MAC team turnover at 21.5% (+0.2pp). The people converting enquiries are leaving at the highest rate in the school.</div>
-        </div>
-        <div class="watch-school">Region-wide</div>
-      </div>
+      <div id="watchlistBody"></div>
     </div>
   </div>
 
-  <!-- ROW: FUNNEL COMPARE + NPS SLOPE + CAPACITY -->
+  <!-- FUNNEL / NPS / CAPACITY -->
   <div class="grid-3">
-
-    <!-- FUNNEL COMPARE -->
     <div class="card">
       <div class="card-head">
         <div>
-          <div class="card-title">Enrolment Funnel by School</div>
-          <div class="card-sub">EY2027 · Conversion comparison</div>
+          <div class="card-title">Enrolment CVR by School</div>
+          <div class="card-sub" id="cvrSubLabel"></div>
         </div>
       </div>
       <div class="card-body">
-        <canvas id="funnelChart" width="320" height="220" style="width:100%;height:auto;"></canvas>
-        <div class="insight" style="margin-top:12px;">
-          <div class="insight-icon">💡</div>
-          <div class="insight-text">Brighton converts <strong>2.3× better</strong> than Aubonne from enquiry to enrolment. Same pipeline effort, very different outcomes — investigate what Brighton's MAC team does differently at the visit stage.</div>
-        </div>
+        <canvas id="funnelChart" height="220" style="width:100%;height:auto;"></canvas>
+        <div class="insight"><div class="insight-icon">💡</div><div class="insight-text" id="cvrInsight"></div></div>
       </div>
     </div>
-
-    <!-- NPS SLOPE CHART -->
     <div class="card">
       <div class="card-head">
         <div>
@@ -863,14 +260,9 @@ body {
       </div>
       <div class="card-body">
         <svg id="slopeChart" viewBox="0 0 260 220" style="width:100%;height:220px;overflow:visible;"></svg>
-        <div class="insight" style="margin-top:8px;">
-          <div class="insight-icon">💡</div>
-          <div class="insight-text">Brighton is the only school with sustained NPS improvement. <strong>Aubonne has dropped 6 points</strong> — correlating with new competitor arrival and the A-Level grade decline.</div>
-        </div>
+        <div class="insight"><div class="insight-icon">💡</div><div class="insight-text" id="npsInsight"></div></div>
       </div>
     </div>
-
-    <!-- CAPACITY BUBBLE -->
     <div class="card">
       <div class="card-head">
         <div>
@@ -880,19 +272,14 @@ body {
       </div>
       <div class="card-body">
         <svg id="bubbleChart" viewBox="0 0 260 220" style="width:100%;height:220px;overflow:visible;"></svg>
-        <div class="insight" style="margin-top:8px;">
-          <div class="insight-icon">💡</div>
-          <div class="insight-text">Beau Soleil is the only school at 100%+ capacity — pricing power opportunity. Aubonne at 49% with declining enrolments is the most urgent structural risk.</div>
-        </div>
+        <div class="insight"><div class="insight-icon">💡</div><div class="insight-text" id="capacityInsight"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- ROW: ACADEMIC + FINANCIALS -->
+  <!-- ACADEMIC + FINANCIAL -->
   <div class="slabel">Academic · Financial Portfolio</div>
   <div class="grid-2" style="margin-bottom:28px;">
-
-    <!-- ACADEMIC COMPARE -->
     <div class="card">
       <div class="card-head">
         <div>
@@ -902,28 +289,11 @@ body {
         <span class="badge badge-a">A-Level ↓ Alert</span>
       </div>
       <div class="card-body">
-        <canvas id="academicChart" width="480" height="180" style="width:100%;height:auto;"></canvas>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:16px;">
-          <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
-            <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;letter-spacing:0.1em;text-transform:uppercase;">IB Diploma</div>
-            <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:var(--emerald);">33.2</div>
-            <div style="font-family:'Fira Code',monospace;font-size:9px;color:var(--emerald);margin-top:3px;">↑ +0.5 vs PY</div>
-          </div>
-          <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
-            <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;letter-spacing:0.1em;text-transform:uppercase;">A-Level A*–A</div>
-            <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:var(--crimson);">52.7%</div>
-            <div style="font-family:'Fira Code',monospace;font-size:9px;color:var(--crimson);margin-top:3px;">↓ −13.3pp vs PY</div>
-          </div>
-          <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
-            <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;letter-spacing:0.1em;text-transform:uppercase;">iGCSE A*–A</div>
-            <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:var(--amber);">46.4%</div>
-            <div style="font-family:'Fira Code',monospace;font-size:9px;color:var(--amber);margin-top:3px;">↓ −2.0pp vs PY</div>
-          </div>
-        </div>
+        <canvas id="academicChart" height="180" style="width:100%;height:auto;"></canvas>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;" id="academicCards"></div>
+        <div class="insight"><div class="insight-icon">⚠️</div><div class="insight-text" id="academicInsight"></div></div>
       </div>
     </div>
-
-    <!-- FINANCIAL WATERFALL -->
     <div class="card">
       <div class="card-head">
         <div>
@@ -933,396 +303,587 @@ body {
         <span class="badge badge-g">On Budget</span>
       </div>
       <div class="card-body">
-        <canvas id="finChart" width="480" height="180" style="width:100%;height:auto;"></canvas>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">
-          <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;">
-            <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.1em;">Fee Income</div>
-            <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--emerald);">$64.3M</div>
-            <div style="font-family:'Fira Code',monospace;font-size:9px;color:var(--emerald);margin-top:3px;">✓ On budget</div>
-          </div>
-          <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;">
-            <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.1em;">EBITDA</div>
-            <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--emerald);">$36.4M</div>
-            <div style="font-family:'Fira Code',monospace;font-size:9px;color:var(--emerald);margin-top:3px;">✓ On budget</div>
-          </div>
-          <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;">
-            <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.1em;">Flowthrough</div>
-            <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--crimson);">23.7%</div>
-            <div style="font-family:'Fira Code',monospace;font-size:9px;color:var(--crimson);margin-top:3px;">↓ −26.3% vs PY</div>
-          </div>
-          <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;">
-            <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.1em;">Market Share Growth</div>
-            <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--amber);">+0.17%</div>
-            <div style="font-family:'Fira Code',monospace;font-size:9px;color:var(--ink-ghost);margin-top:3px;">vs Core Market</div>
-          </div>
-        </div>
+        <canvas id="finChart" height="180" style="width:100%;height:auto;"></canvas>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;" id="financialCards"></div>
       </div>
     </div>
   </div>
+</div>
 
-</div><!-- /content -->
-
+<!-- Load data layer first -->
+<script src="portfolio-data.js"></script>
 <script>
-// ─── HEATMAP ───
-(function() {
-  const canvas = document.getElementById('heatmapCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const W = canvas.offsetWidth || 560;
-  const H = 200;
-  canvas.width = W * dpr;
-  canvas.height = H * dpr;
-  canvas.style.width = W + 'px';
-  canvas.style.height = H + 'px';
-  ctx.scale(dpr, dpr);
+(function () {
+  const P = window.PORTFOLIO;
+  const S = P.SCHOOLS;
+  const R = P.REGIONAL;
+  const INS = P.generateInsights();
+  const ALERTS = P.getAlerts();
 
-  const schools = ['Aubonne','Beau Soleil','Bratislava','Brighton','Budapest'];
-  const metrics = ['FTE vs Bgt','Enrolments','Enquiries','CVR','Velocity','NPS','Capacity','Compliance'];
-  // 0=red, 1=amber, 2=green
-  const data = [
-    [0,0,0,0,1,1,0,0],
-    [2,2,2,1,0,1,2,1],
-    [0,0,0,1,2,2,1,1],
-    [2,1,2,2,2,2,2,2],
-    [1,1,1,1,1,1,1,1],
+  // ── TOOLTIP ─────────────────────────────────────────────────────────────
+  const tip = document.getElementById('globalTip');
+  function showTip(e, html) {
+    tip.innerHTML = html;
+    tip.style.opacity = '1';
+    moveTip(e);
+  }
+  function moveTip(e) {
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top  = (e.clientY - 10) + 'px';
+  }
+  function hideTip() { tip.style.opacity = '0'; }
+  document.addEventListener('mousemove', moveTip);
+
+  // ── META ─────────────────────────────────────────────────────────────────
+  document.getElementById('regionLabel').textContent = `EU Region · At a Glance · ${P.META.source}`;
+  document.getElementById('tableSubLabel').textContent = `Salesforce Wk ${P.META.dataWeek} · ${P.META.fiscalYear} · ${P.META.enrolmentYear}`;
+  document.getElementById('metaFY').textContent = P.META.fiscalYear;
+  document.getElementById('metaEY').textContent = P.META.enrolmentYear;
+
+  // Alert badge
+  document.getElementById('alertBadge').textContent = ALERTS.filter(a => a.severity === 'critical').length;
+
+  // School filter dropdown
+  const sf = document.getElementById('schoolFilter');
+  S.forEach(s => { const o = document.createElement('option'); o.value = s.id; o.textContent = s.name; sf.appendChild(o); });
+
+  // Sort buttons
+  const sortDefs = [
+    { key: 'fteVsBudget', label: 'FTE vs Budget' },
+    { key: 'nps',         label: 'NPS' },
+    { key: 'enrolmentsYoY', label: 'Enrolments' },
+    { key: 'velocity',    label: 'Velocity' },
+    { key: 'capacity',    label: 'Capacity' },
   ];
-  const colors = ['#fdf0ee','#fdf5e6','#edf7f3'];
-  const textColors = ['#c0392b','#b8680a','#1a6b50'];
-  const vals = [
-    ['−7.1%','−66.7%','−37.3%','−3.3%','114d','32','49%','76%'],
-    ['+0.3%','+14.3%','+21.5%','−0.7%','168d','—','101%','91%'],
-    ['−3.6%','−54.5%','−21.5%','−2.4%','34d','35','74%','89%'],
-    ['+1.2%','−4.1%','+6.2%','+1.1%','98d','38','88%','94%'],
-    ['−1.8%','−8.3%','−5.1%','−1.2%','118d','31','79%','88%'],
-  ];
-
-  const leftPad = 80, topPad = 32, cellW = (W - leftPad - 10) / metrics.length, cellH = (H - topPad - 10) / schools.length;
-
-  // metrics header
-  ctx.font = `500 8.5px Fira Code, monospace`;
-  ctx.textAlign = 'center';
-  ctx.fillStyle = '#b0a898';
-  metrics.forEach((m, j) => {
-    ctx.fillText(m, leftPad + j * cellW + cellW / 2, 22);
+  let currentSort = 'fteVsBudget';
+  const sortBtns = document.getElementById('sortBtns');
+  sortDefs.forEach(d => {
+    const btn = document.createElement('div');
+    btn.className = 'sort-btn' + (d.key === currentSort ? ' on' : '');
+    btn.textContent = d.label;
+    btn.onclick = () => {
+      currentSort = d.key;
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      renderTable();
+    };
+    sortBtns.appendChild(btn);
   });
 
-  // school names
-  ctx.font = `500 10px Bricolage Grotesque, sans-serif`;
-  ctx.textAlign = 'right';
-  ctx.fillStyle = '#3d3730';
-  schools.forEach((s, i) => {
-    ctx.fillText(s, leftPad - 8, topPad + i * cellH + cellH / 2 + 4);
+  // ── HERO STRIP ────────────────────────────────────────────────────────────
+  const heroDefs = [
+    {
+      label: 'Forecast FTE vs Budget',
+      value: P.fmt(R.fteVsBudget, 'pct'),
+      cls: 'bad', vcls: 'bad', dcls: 'dn',
+      delta: `↓ ${Math.abs(R.fteDelta).toLocaleString()} students short`,
+      sub: `Budget: ${R.fteBudget.toLocaleString()} · Forecast: ${R.fteForecast.toLocaleString()}`,
+      spark: 'down',
+      tooltip: `FTE budget gap: ${Math.abs(R.fteDelta)} students · Threshold: −2% · Actual: ${(R.fteVsBudget*100).toFixed(1)}%`,
+    },
+    {
+      label: 'New Enrolments YoY',
+      value: P.fmt(R.enrolmentsYoY, 'pct'),
+      cls: 'bad', vcls: 'bad', dcls: 'dn',
+      delta: `↓ ${Math.abs(R.enrolmentDelta)} fewer students`,
+      sub: `${R.enrolments} enrolled · LY: ${R.enrolmentsPY}`,
+      spark: 'down',
+      tooltip: `New enrolments: ${R.enrolments} vs ${R.enrolmentsPY} last year · ${Math.abs(R.enrolmentDelta)} lost`,
+    },
+    {
+      label: 'Avg Conversion Velocity',
+      value: `${R.avgVelocity} d`,
+      cls: 'warn', vcls: 'warn', dcls: 'wn',
+      delta: `⚠ Beau Soleil ${S[1].metrics.velocity}d`,
+      sub: `Enq → Enrolment · Best: ${P.getBest('velocity').name} ${P.getBest('velocity').metrics.velocity}d`,
+      spark: 'flat',
+      tooltip: `Portfolio avg velocity: ${R.avgVelocity}d (PY: ${R.avgVelocityPY}d) · Target: ≤120d`,
+    },
+    {
+      label: 'Regional NPS',
+      value: String(R.nps),
+      cls: 'warn', vcls: 'warn', dcls: 'wn',
+      delta: `△ Below ${R.npsTarget} target`,
+      sub: `PY: ${R.npsPY} · Best: ${P.getBest('nps').name} ${P.getBest('nps').metrics.nps}`,
+      spark: 'flat',
+      tooltip: `NPS: ${R.nps} · Target: ${R.npsTarget} · YoY: ${R.nps - R.npsPY > 0 ? '+' : ''}${R.nps - R.npsPY}`,
+    },
+    {
+      label: 'Capacity · Fee Income',
+      value: R.capacity + '%',
+      cls: 'good', vcls: 'good', dcls: 'up',
+      delta: `✓ ${P.fmt(R.feeIncome, '$M')} on budget`,
+      sub: `EBITDA ${P.fmt(R.ebitda, '$M')} · Flowthrough ${R.flowthroughPct}%`,
+      spark: 'up',
+      tooltip: `Capacity: ${R.capacity}% · Fee income: ${P.fmt(R.feeIncome, '$M')} vs budget ${P.fmt(R.feeBudget, '$M')}`,
+    },
+  ];
+
+  const sparkPaths = {
+    down: '0,10 20,12 40,14 60,18 80,20 100,22 120,24',
+    up:   '0,24 20,22 40,18 60,16 80,14 100,12 120,10',
+    flat: '0,16 20,14 40,12 60,14 80,16 100,14 120,14',
+  };
+  const sparkColors = { down: 'var(--crimson)', up: 'var(--emerald)', flat: 'var(--amber)' };
+
+  const hero = document.getElementById('heroStrip');
+  heroDefs.forEach(h => {
+    const cell = document.createElement('div');
+    cell.className = `hero-cell ${h.cls}`;
+    cell.innerHTML = `
+      <div class="hc-label">${h.label}</div>
+      <div class="hc-value ${h.vcls}">${h.value}</div>
+      <div class="hc-delta ${h.dcls}">${h.delta}</div>
+      <div class="hc-sub">${h.sub}</div>
+      <div class="hc-spark">
+        <svg width="100%" height="28" viewBox="0 0 120 28" preserveAspectRatio="none">
+          <polyline class="aline" points="${sparkPaths[h.spark]}" fill="none" stroke="${sparkColors[h.spark]}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+          <circle cx="120" cy="${h.spark==='down'?24:h.spark==='up'?10:14}" r="2.5" fill="${sparkColors[h.spark]}" opacity="0.8"/>
+        </svg>
+      </div>`;
+    cell.addEventListener('mouseenter', e => showTip(e, h.tooltip));
+    cell.addEventListener('mouseleave', hideTip);
+    hero.appendChild(cell);
   });
 
-  // cells
-  data.forEach((row, i) => {
-    row.forEach((v, j) => {
-      const x = leftPad + j * cellW + 2;
-      const y = topPad + i * cellH + 2;
-      const cw = cellW - 4;
-      const ch = cellH - 4;
+  // ── LEAGUE TABLE ──────────────────────────────────────────────────────────
+  const colDefs = [
+    { label: 'School', key: null, align: 'left' },
+    { label: 'FTE vs Budget', key: 'fteVsBudget', align: 'right', fmt: v => `<span style="color:${v<-0.025?'var(--crimson)':v<0?'var(--amber)':'var(--emerald)'};font-family:'Fira Code',monospace;font-size:11px;font-weight:600;">${P.fmt(v,'pct')}</span>` },
+    { label: 'New Enr. YoY', key: 'enrolmentsYoY', align: 'right', fmt: v => `<span style="color:${v<-0.15?'var(--crimson)':v<-0.05?'var(--amber)':'var(--emerald)'};font-family:'Fira Code',monospace;font-size:11px;">${P.fmt(v,'pct')}</span>` },
+    { label: 'Enquiries YoY', key: 'enquiriesYoY', align: 'right', fmt: v => `<span style="color:${v<-0.18?'var(--crimson)':v<-0.05?'var(--amber)':'var(--emerald)'};font-family:'Fira Code',monospace;font-size:11px;">${P.fmt(v,'pct')}</span>` },
+    { label: 'CVR (Enq→Enr)', key: 'cvr', align: 'left', bar: true },
+    { label: 'Velocity', key: 'velocity', align: 'right', fmt: v => `<span style="color:${v>=150?'var(--crimson)':v>=120?'var(--amber)':'var(--emerald)'};font-family:'Fira Code',monospace;font-size:11px;">${v}d ${v>=120?'⚠':v<100?'✓':''}</span>` },
+    { label: 'Capacity', key: 'capacity', align: 'left', bar: true },
+    { label: 'NPS', key: 'nps', align: 'right', fmt: v => v===null?'<span style="color:var(--ink-ghost)">—</span>':`<span style="font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:${v>=35?'var(--emerald)':v>=30?'var(--ink)':'var(--crimson)'};">${v}</span>` },
+    { label: 'Status', key: null, align: 'left' },
+  ];
 
-      ctx.fillStyle = colors[v];
-      ctx.beginPath();
-      ctx.roundRect(x, y, cw, ch, 5);
-      ctx.fill();
+  const thead = document.getElementById('tableHead');
+  const tr = document.createElement('tr');
+  colDefs.forEach(c => {
+    const th = document.createElement('th');
+    th.className = c.align === 'right' ? 'num' : '';
+    th.textContent = c.label;
+    tr.appendChild(th);
+  });
+  thead.appendChild(tr);
 
-      ctx.font = `500 9px Fira Code, monospace`;
-      ctx.textAlign = 'center';
-      ctx.fillStyle = textColors[v];
-      ctx.fillText(vals[i][j], x + cw / 2, y + ch / 2 + 3);
+  function getStatus(s) {
+    const m = s.metrics;
+    const redCount = [m.fteVsBudget <= -0.025, m.enrolmentsYoY <= -0.15, m.enquiriesYoY <= -0.18, m.capacity <= 60].filter(Boolean).length;
+    if (redCount >= 3) return { text: 'Critical', cls: 'r' };
+    if (m.fteVsBudget >= 0 && m.nps >= 35) return { text: 'On Track', cls: 'g' };
+    if (redCount >= 1) return { text: m.enrolmentsYoY <= -0.30 ? 'Watch' : 'Monitor', cls: 'a' };
+    return { text: 'Watch', cls: 'a' };
+  }
+
+  function renderTable() {
+    const sorted = [...S].sort((a, b) => {
+      const va = a.metrics[currentSort] ?? -Infinity;
+      const vb = b.metrics[currentSort] ?? -Infinity;
+      return currentSort === 'velocity' ? va - vb : vb - va;
     });
-  });
-})();
 
-// ─── FUNNEL GROUPED BAR ───
-(function() {
-  const canvas = document.getElementById('funnelChart');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const W = canvas.offsetWidth || 320;
-  const H = 220;
-  canvas.width = W * dpr; canvas.height = H * dpr;
-  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-  ctx.scale(dpr, dpr);
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
 
-  const schools = ['Aubonne','Beau Soleil','Bratislava','Brighton','Budapest'];
-  const colors = ['#c0392b','#1a6b50','#b8680a','#1a3a7a','#7a7060'];
-  // CVR enquiry → enrolled %
-  const cvr = [4.2, 6.8, 5.1, 9.7, 6.2];
-  const maxV = 12;
-  const barH = 22, gap = 8, padL = 72, padT = 10, padR = 20;
-  const chartW = W - padL - padR;
+    sorted.forEach(s => {
+      const m = s.metrics;
+      const tr = document.createElement('tr');
+      const drillLink = s.principalDashboard ? `<a href="${s.principalDashboard}" class="drill-link">↗ drill</a>` : '';
 
-  schools.forEach((s, i) => {
-    const y = padT + i * (barH + gap);
-    const bw = (cvr[i] / maxV) * chartW;
+      const cells = [
+        // School name
+        `<td><div class="school-name-cell">
+          <div class="school-initial" style="background:${s.colorDim};color:${s.color};">${s.initial}</div>
+          <div><div class="school-nm">${s.name}${drillLink}</div><div class="school-loc">${s.country} · ${s.segments}</div></div>
+        </div></td>`,
+        // FTE vs Budget
+        `<td class="num">${colDefs[1].fmt(m.fteVsBudget)}</td>`,
+        // Enrolments YoY
+        `<td class="num">${colDefs[2].fmt(m.enrolmentsYoY)}</td>`,
+        // Enquiries YoY
+        `<td class="num">${colDefs[3].fmt(m.enquiriesYoY)}</td>`,
+        // CVR bar
+        `<td><div class="ibar-wrap">
+          <div class="ibar-track"><div class="ibar-fill" style="width:${Math.min(m.cvr/12*100,100)}%;background:${m.cvr>=7?'var(--emerald)':m.cvr>=5?'var(--amber)':'var(--crimson)'};opacity:0.75;"></div></div>
+          <div class="ibar-val" style="color:${m.cvr>=7?'var(--emerald)':m.cvr>=5?'var(--amber)':'var(--crimson)'};">${m.cvrDelta>0?'+':''}${m.cvrDelta.toFixed(1)}%</div>
+        </div></td>`,
+        // Velocity
+        `<td class="num">${colDefs[5].fmt(m.velocity)}</td>`,
+        // Capacity bar
+        `<td><div class="ibar-wrap">
+          <div class="ibar-track"><div class="ibar-fill" style="width:${Math.min(m.capacity,100)}%;background:${m.capacity>=85?'var(--emerald)':m.capacity>=70?'var(--amber)':'var(--crimson)'};opacity:0.7;"></div></div>
+          <div class="ibar-val" style="color:${m.capacity>=85?'var(--emerald)':m.capacity>=70?'var(--amber)':'var(--crimson)'};">${m.capacity}%</div>
+        </div></td>`,
+        // NPS
+        `<td class="num">${colDefs[7].fmt(m.nps)}</td>`,
+        // Status
+        `<td><span class="rag ${getStatus(s).cls}">${getStatus(s).text}</span></td>`,
+      ];
+      tr.innerHTML = cells.join('');
+      tr.addEventListener('mouseenter', e => showTip(e, `${s.name} · ${s.location}<br>CVR: ${m.cvr}% · Velocity: ${m.velocity}d · Capacity: ${m.capacity}%<br>Enrolments: ${m.enrolments} (PY: ${m.enrolmentsPY})`));
+      tr.addEventListener('mouseleave', hideTip);
+      tbody.appendChild(tr);
+    });
 
-    // track
-    ctx.fillStyle = '#f5f4f0';
-    ctx.beginPath();
-    ctx.roundRect(padL, y, chartW, barH, 4);
-    ctx.fill();
+    // Total row
+    const tot = document.createElement('tr');
+    tot.className = 'total-row';
+    tot.innerHTML = `
+      <td><div style="font-size:11px;color:var(--ink-soft);font-family:'Fira Code',monospace;letter-spacing:0.06em;">EU TOTAL</div></td>
+      <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;font-weight:700;">${P.fmt(R.fteVsBudget,'pct')}</td>
+      <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;">${P.fmt(R.enrolmentsYoY,'pct')}</td>
+      <td class="num" style="color:var(--crimson);font-family:'Fira Code',monospace;font-size:11px;">${P.fmt(R.enquiriesYoY,'pct')}</td>
+      <td><div class="ibar-wrap"><div class="ibar-track"><div class="ibar-fill" style="width:48%;background:var(--ink-ghost);"></div></div><div class="ibar-val" style="color:var(--ink-soft);">flat</div></div></td>
+      <td class="num" style="color:var(--amber);font-family:'Fira Code',monospace;font-size:11px;">${R.avgVelocity}d</td>
+      <td><div class="ibar-wrap"><div class="ibar-track"><div class="ibar-fill" style="width:${R.capacity}%;background:var(--emerald);opacity:0.7;"></div></div><div class="ibar-val" style="color:var(--emerald);">${R.capacity}%</div></div></td>
+      <td class="num" style="font-family:'Fraunces',serif;font-size:16px;font-weight:500;color:var(--amber);">${R.nps}</td>
+      <td><span class="rag a">Mixed</span></td>`;
+    tbody.appendChild(tot);
+  }
+  renderTable();
 
-    // fill
-    ctx.fillStyle = colors[i];
-    ctx.globalAlpha = 0.8;
-    ctx.beginPath();
-    ctx.roundRect(padL, y, bw, barH, 4);
-    ctx.fill();
-    ctx.globalAlpha = 1;
+  // ── HEATMAP ───────────────────────────────────────────────────────────────
+  (function () {
+    const canvas = document.getElementById('heatmapCanvas');
+    const hd = P.getHeatmapData();
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.parentElement.offsetWidth - 40 || 520;
+    const H = 200;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
 
-    // label
-    ctx.font = `500 10px Bricolage Grotesque, sans-serif`;
-    ctx.textAlign = 'right';
-    ctx.fillStyle = '#3d3730';
-    ctx.fillText(s, padL - 8, y + barH / 2 + 3.5);
+    const leftPad = 84, topPad = 32, cellW = (W - leftPad - 8) / hd.metrics.length;
+    const cellH = (H - topPad - 6) / hd.rows.length;
+    const colors = { r: '#fdf0ee', a: '#fdf5e6', g: '#edf7f3' };
+    const tColors = { r: '#c0392b', a: '#b8680a', g: '#1a6b50' };
 
-    // value
-    ctx.font = `500 10px Fira Code, monospace`;
-    ctx.textAlign = 'left';
-    ctx.fillStyle = '#fff';
-    if (bw > 30) ctx.fillText(cvr[i] + '%', padL + 8, y + barH / 2 + 3.5);
-    else {
-      ctx.fillStyle = colors[i];
-      ctx.fillText(cvr[i] + '%', padL + bw + 6, y + barH / 2 + 3.5);
-    }
-  });
-
-  // axis label
-  ctx.font = `400 8.5px Fira Code, monospace`;
-  ctx.textAlign = 'center';
-  ctx.fillStyle = '#b0a898';
-  ctx.fillText('Enquiry → Enrolment CVR %', padL + chartW / 2, H - 4);
-})();
-
-// ─── SLOPE CHART ───
-(function() {
-  const svg = document.getElementById('slopeChart');
-  if (!svg) return;
-  const schools = [
-    { name: 'Aubonne',    prev: 38, curr: 32, color: '#c0392b' },
-    { name: 'Beau Soleil',prev: 30, curr: 31, color: '#1a6b50' },
-    { name: 'Bratislava', prev: 32, curr: 35, color: '#b8680a' },
-    { name: 'Brighton',   prev: 33, curr: 38, color: '#1a3a7a' },
-    { name: 'Budapest',   prev: 34, curr: 31, color: '#7a7060' },
-  ];
-  const padL = 60, padR = 70, padT = 20, padB = 30;
-  const W = 260, H = 220;
-  const minV = 25, maxV = 45;
-  const x1 = padL, x2 = W - padR;
-  const scaleY = v => padT + ((maxV - v) / (maxV - minV)) * (H - padT - padB);
-
-  // axes
-  svg.innerHTML += `<text x="${x1}" y="${H-8}" font-family="Fira Code,monospace" font-size="9" fill="#b0a898" text-anchor="middle">Last Year</text>`;
-  svg.innerHTML += `<text x="${x2}" y="${H-8}" font-family="Fira Code,monospace" font-size="9" fill="#b0a898" text-anchor="middle">This Year</text>`;
-  svg.innerHTML += `<line x1="${x1}" y1="${padT}" x2="${x1}" y2="${H-padB}" stroke="#e0dbd2" stroke-width="1"/>`;
-  svg.innerHTML += `<line x1="${x2}" y1="${padT}" x2="${x2}" y2="${H-padB}" stroke="#e0dbd2" stroke-width="1"/>`;
-
-  // target line
-  const tY = scaleY(35);
-  svg.innerHTML += `<line x1="${x1-10}" y1="${tY}" x2="${x2+10}" y2="${tY}" stroke="#1a6b50" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>`;
-  svg.innerHTML += `<text x="${x2+12}" y="${tY+3}" font-family="Fira Code,monospace" font-size="8" fill="#1a6b50" opacity="0.6">Target</text>`;
-
-  schools.forEach(s => {
-    const y1 = scaleY(s.prev), y2 = scaleY(s.curr);
-    const dir = s.curr > s.prev ? '↑' : '↓';
-    const isUp = s.curr >= s.prev;
-
-    svg.innerHTML += `
-      <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${s.color}" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
-      <circle cx="${x1}" cy="${y1}" r="5" fill="${s.color}" opacity="0.5"/>
-      <circle cx="${x2}" cy="${y2}" r="5" fill="${s.color}"/>
-      <text x="${x1-8}" y="${y1+3.5}" font-family="Fira Code,monospace" font-size="9" fill="${s.color}" text-anchor="end" font-weight="500">${s.prev}</text>
-      <text x="${x2+8}" y="${y2+3.5}" font-family="Fira Code,monospace" font-size="9" fill="${s.color}" font-weight="600">${s.curr}</text>
-      <text x="${x2+22}" y="${y2+3.5}" font-family="Fira Code,monospace" font-size="8" fill="${s.color}">${dir}</text>
-      <text x="${(x1+x2)/2}" y="${(y1+y2)/2 - 6}" font-family="Bricolage Grotesque,sans-serif" font-size="8.5" fill="${s.color}" text-anchor="middle" opacity="0.8">${s.name}</text>
-    `;
-  });
-})();
-
-// ─── BUBBLE CHART ───
-(function() {
-  const svg = document.getElementById('bubbleChart');
-  if (!svg) return;
-  const W = 260, H = 220;
-  const padL = 30, padR = 20, padT = 15, padB = 28;
-  const cW = W - padL - padR, cH = H - padT - padB;
-
-  // x = enrolment growth %, y = capacity %, size = FTE
-  const schools = [
-    { name: 'Aubonne',    x: -66.7, y: 49,  fte: 800,  color: '#c0392b' },
-    { name: 'Beau Soleil',x: +14.3, y: 101, fte: 500,  color: '#1a6b50' },
-    { name: 'Bratislava', x: -54.5, y: 74,  fte: 600,  color: '#b8680a' },
-    { name: 'Brighton',   x: -4.1,  y: 88,  fte: 1200, color: '#1a3a7a' },
-    { name: 'Budapest',   x: -8.3,  y: 79,  fte: 900,  color: '#7a7060' },
-  ];
-
-  const xMin = -80, xMax = 25, yMin = 35, yMax = 115;
-  const sx = v => padL + ((v - xMin) / (xMax - xMin)) * cW;
-  const sy = v => padT + cH - ((v - yMin) / (yMax - yMin)) * cH;
-  const sr = fte => Math.sqrt(fte / 400) * 12;
-
-  // grid
-  [60, 80, 100].forEach(v => {
-    const y = sy(v);
-    svg.innerHTML += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#e0dbd2" stroke-width="1" stroke-dasharray="3,4"/>`;
-    svg.innerHTML += `<text x="${padL-4}" y="${y+3}" font-family="Fira Code,monospace" font-size="8" fill="#b0a898" text-anchor="end">${v}%</text>`;
-  });
-  [-60, -40, -20, 0, 20].forEach(v => {
-    const x = sx(v);
-    svg.innerHTML += `<line x1="${x}" y1="${padT}" x2="${x}" y2="${H-padB}" stroke="#e0dbd2" stroke-width="1" stroke-dasharray="3,4"/>`;
-    svg.innerHTML += `<text x="${x}" y="${H-padB+14}" font-family="Fira Code,monospace" font-size="8" fill="#b0a898" text-anchor="middle">${v}%</text>`;
-  });
-
-  // zero lines
-  const x0 = sx(0);
-  svg.innerHTML += `<line x1="${x0}" y1="${padT}" x2="${x0}" y2="${H-padB}" stroke="#d4cfc6" stroke-width="1.5"/>`;
-
-  // axis labels
-  svg.innerHTML += `<text x="${W/2}" y="${H}" font-family="Fira Code,monospace" font-size="8.5" fill="#b0a898" text-anchor="middle">New Enrolment Growth %</text>`;
-
-  // bubbles
-  schools.forEach(s => {
-    const bx = sx(s.x), by = sy(s.y), r = sr(s.fte);
-    svg.innerHTML += `<circle cx="${bx}" cy="${by}" r="${r}" fill="${s.color}" opacity="0.15"/>`;
-    svg.innerHTML += `<circle cx="${bx}" cy="${by}" r="${r}" fill="none" stroke="${s.color}" stroke-width="2" opacity="0.7"/>`;
-    svg.innerHTML += `<text x="${bx}" y="${by+3}" font-family="Bricolage Grotesque,sans-serif" font-size="9" fill="${s.color}" text-anchor="middle" font-weight="600">${s.name.split(' ')[0]}</text>`;
-  });
-})();
-
-// ─── ACADEMIC BAR CHART ───
-(function() {
-  const canvas = document.getElementById('academicChart');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const W = canvas.offsetWidth || 480, H = 180;
-  canvas.width = W * dpr; canvas.height = H * dpr;
-  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-  ctx.scale(dpr, dpr);
-
-  const metrics = ['A-Levels A*-A', 'iGCSE A*-A', 'IB Score (×10)'];
-  const thisYear = [52.7, 46.4, 33.2 * 1.5];
-  const lastYear = [66.0, 48.4, 32.7 * 1.5];
-  const colors = ['#c0392b', '#1a6b50', '#1a3a7a'];
-  const maxV = 80;
-  const padL = 110, padT = 20, padB = 25, padR = 20;
-  const cW = W - padL - padR;
-  const barsPerGroup = 2, groupH = 28, groupGap = 16, barGap = 3;
-  const barH = (groupH - barGap) / 2;
-
-  metrics.forEach((m, i) => {
-    const y0 = padT + i * (groupH + groupGap);
-
-    // label
-    ctx.font = `500 10px Bricolage Grotesque, sans-serif`;
-    ctx.textAlign = 'right';
-    ctx.fillStyle = '#3d3730';
-    ctx.fillText(m, padL - 8, y0 + groupH / 2 + 3);
-
-    // last year bar
-    const bwLY = (lastYear[i] / maxV) * cW;
-    ctx.fillStyle = '#e8e5df';
-    ctx.beginPath();
-    ctx.roundRect(padL, y0, bwLY, barH, 3);
-    ctx.fill();
-    ctx.font = `400 9px Fira Code, monospace`;
-    ctx.fillStyle = '#b0a898';
-    ctx.textAlign = 'left';
-    ctx.fillText('LY: ' + (i === 2 ? (lastYear[i]/1.5).toFixed(1) : lastYear[i] + '%'), padL + bwLY + 5, y0 + barH / 2 + 3);
-
-    // this year bar
-    const bwTY = (thisYear[i] / maxV) * cW;
-    ctx.fillStyle = colors[i];
-    ctx.globalAlpha = 0.8;
-    ctx.beginPath();
-    ctx.roundRect(padL, y0 + barH + barGap, bwTY, barH, 3);
-    ctx.fill();
-    ctx.globalAlpha = 1;
-    ctx.font = `500 9px Fira Code, monospace`;
-    ctx.fillStyle = colors[i];
-    ctx.textAlign = 'left';
-    const dispVal = i === 2 ? (thisYear[i]/1.5).toFixed(1) : thisYear[i] + '%';
-    ctx.fillText(dispVal, padL + bwTY + 5, y0 + barH + barGap + barH / 2 + 3);
-  });
-
-  // legend
-  ctx.font = `400 9px Fira Code, monospace`;
-  ctx.fillStyle = '#b0a898'; ctx.fillRect(padL, H - 14, 14, 8);
-  ctx.fillText('Last Year', padL + 18, H - 6);
-  ctx.fillStyle = '#3d3730'; ctx.globalAlpha = 0.8; ctx.fillRect(padL + 80, H - 14, 14, 8);
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = '#3d3730'; ctx.fillText('This Year', padL + 98, H - 6);
-})();
-
-// ─── FINANCIAL TREND CHART ───
-(function() {
-  const canvas = document.getElementById('finChart');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const W = canvas.offsetWidth || 480, H = 180;
-  canvas.width = W * dpr; canvas.height = H * dpr;
-  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-  ctx.scale(dpr, dpr);
-
-  const years = ['FY23','FY24','FY25','FY26'];
-  const feeIncome = [54.2, 58.7, 61.9, 64.3];
-  const ebitda = [29.4, 32.1, 34.8, 36.4];
-  const maxV = 75;
-  const padL = 36, padT = 10, padB = 28, padR = 20;
-  const cW = W - padL - padR, cH = H - padT - padB;
-
-  // grid
-  [0, 25, 50, 75].forEach(v => {
-    const y = padT + cH - (v / maxV) * cH;
-    ctx.beginPath();
-    ctx.moveTo(padL, y); ctx.lineTo(W - padR, y);
-    ctx.strokeStyle = '#e8e5df'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.font = `400 8px Fira Code, monospace`;
-    ctx.fillStyle = '#b0a898'; ctx.textAlign = 'right';
-    ctx.fillText('$' + v + 'M', padL - 4, y + 3);
-  });
-
-  const xPos = (i) => padL + (i / (years.length - 1)) * cW;
-  const yPos = (v) => padT + cH - (v / maxV) * cH;
-
-  // area fill — fee income
-  ctx.beginPath();
-  feeIncome.forEach((v, i) => { i === 0 ? ctx.moveTo(xPos(i), yPos(v)) : ctx.lineTo(xPos(i), yPos(v)); });
-  ctx.lineTo(xPos(years.length-1), padT + cH);
-  ctx.lineTo(xPos(0), padT + cH);
-  ctx.closePath();
-  ctx.fillStyle = 'rgba(26,107,80,0.08)'; ctx.fill();
-
-  // fee income line
-  ctx.beginPath();
-  feeIncome.forEach((v, i) => { i === 0 ? ctx.moveTo(xPos(i), yPos(v)) : ctx.lineTo(xPos(i), yPos(v)); });
-  ctx.strokeStyle = '#1a6b50'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round'; ctx.stroke();
-
-  // ebitda line
-  ctx.beginPath();
-  ebitda.forEach((v, i) => { i === 0 ? ctx.moveTo(xPos(i), yPos(v)) : ctx.lineTo(xPos(i), yPos(v)); });
-  ctx.strokeStyle = '#1a3a7a'; ctx.lineWidth = 2; ctx.setLineDash([5, 3]); ctx.stroke();
-  ctx.setLineDash([]);
-
-  // dots + labels
-  feeIncome.forEach((v, i) => {
-    ctx.beginPath(); ctx.arc(xPos(i), yPos(v), 4, 0, Math.PI*2);
-    ctx.fillStyle = '#1a6b50'; ctx.fill();
-    ctx.font = `500 9px Fira Code, monospace`; ctx.fillStyle = '#1a6b50';
+    // Headers
+    ctx.font = '500 8px Fira Code, monospace';
     ctx.textAlign = 'center';
-    ctx.fillText('$' + v + 'M', xPos(i), yPos(v) - 8);
+    ctx.fillStyle = '#b0a898';
+    hd.metrics.forEach((m, j) => ctx.fillText(m.label, leftPad + j * cellW + cellW / 2, 20));
+
+    // Rows
+    hd.rows.forEach((row, i) => {
+      ctx.font = '500 10px Bricolage Grotesque, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#3d3730';
+      ctx.fillText(row.school.name, leftPad - 8, topPad + i * cellH + cellH / 2 + 4);
+
+      row.cells.forEach((cell, j) => {
+        const x = leftPad + j * cellW + 2, y = topPad + i * cellH + 2;
+        const cw = cellW - 4, ch = cellH - 4;
+        ctx.fillStyle = colors[cell.rag];
+        ctx.beginPath(); ctx.roundRect(x, y, cw, ch, 4); ctx.fill();
+        ctx.font = '500 9px Fira Code, monospace';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = tColors[cell.rag];
+        ctx.fillText(cell.display, x + cw / 2, y + ch / 2 + 3.5);
+      });
+    });
+
+    // Insight
+    document.getElementById('heatmapInsight').innerHTML =
+      `<strong>${P.getWorst('enrolmentsYoY').name} needs immediate escalation</strong> — red across ${
+        P.getHeatmapData().rows.find(r => r.school.id === P.getWorst('enrolmentsYoY').id)
+          .cells.filter(c => c.rag === 'r').length
+      } of 8 metrics. ${INS.beauSoleilOpportunity}`;
+  })();
+
+  // ── WATCHLIST ─────────────────────────────────────────────────────────────
+  const watchIcons = { critical: '📉', warning: '⚠️' };
+  const watchAlerts = ALERTS.slice(0, 5);
+  document.getElementById('watchlistBadge').textContent = watchAlerts.length + ' Items';
+  document.getElementById('watchlistBadge').className = watchAlerts.filter(a => a.severity === 'critical').length > 2 ? 'badge badge-r' : 'badge badge-a';
+
+  const wBody = document.getElementById('watchlistBody');
+  watchAlerts.forEach(a => {
+    const row = document.createElement('div');
+    row.className = 'watchlist-row';
+    row.innerHTML = `
+      <div class="watch-sev ${a.severity}"></div>
+      <div class="watch-icon ${a.severity === 'critical' ? 'wi-red' : 'wi-amber'}">${watchIcons[a.severity] || '⚠️'}</div>
+      <div class="watch-body">
+        <div class="watch-title">${a.metric} — ${a.value}</div>
+        <div class="watch-desc">${a.desc}</div>
+        <div class="watch-metric">Threshold: ${a.threshold}</div>
+      </div>
+      <div class="watch-school">${a.school}</div>`;
+    row.addEventListener('mouseenter', e => showTip(e, `${a.metric}<br>${a.school} · ${a.value}<br>Threshold: ${a.threshold}`));
+    row.addEventListener('mouseleave', hideTip);
+    wBody.appendChild(row);
   });
 
-  // x labels
-  years.forEach((yr, i) => {
-    ctx.font = `400 9px Fira Code, monospace`; ctx.fillStyle = '#b0a898'; ctx.textAlign = 'center';
-    ctx.fillText(yr, xPos(i), H - 6);
-  });
+  // ── FUNNEL / CVR BAR ──────────────────────────────────────────────────────
+  document.getElementById('cvrSubLabel').textContent = `${P.META.enrolmentYear} · Enquiry → Enrolment CVR`;
+  (function () {
+    const canvas = document.getElementById('funnelChart');
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.parentElement.offsetWidth - 40 || 300;
+    const H = 220;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+
+    const maxCVR = Math.max(...S.map(s => s.metrics.cvr)) * 1.15;
+    const sorted = [...S].sort((a, b) => a.metrics.cvr - b.metrics.cvr);
+    const barH = 24, gap = 8, padL = 76, padT = 8, padR = 16;
+    const chartW = W - padL - padR;
+
+    sorted.forEach((s, i) => {
+      const cvr = s.metrics.cvr;
+      const y = padT + i * (barH + gap);
+      const bw = (cvr / maxCVR) * chartW;
+
+      ctx.fillStyle = '#f5f4f0';
+      ctx.beginPath(); ctx.roundRect(padL, y, chartW, barH, 4); ctx.fill();
+      ctx.fillStyle = s.color; ctx.globalAlpha = 0.85;
+      ctx.beginPath(); ctx.roundRect(padL, y, bw, barH, 4); ctx.fill();
+      ctx.globalAlpha = 1;
+
+      ctx.font = '500 10px Bricolage Grotesque, sans-serif';
+      ctx.textAlign = 'right'; ctx.fillStyle = '#3d3730';
+      ctx.fillText(s.name, padL - 6, y + barH / 2 + 3.5);
+
+      ctx.font = '500 10px Fira Code, monospace';
+      ctx.textAlign = 'left';
+      if (bw > 28) {
+        ctx.fillStyle = '#fff';
+        ctx.fillText(cvr + '%', padL + 6, y + barH / 2 + 3.5);
+      } else {
+        ctx.fillStyle = s.color;
+        ctx.fillText(cvr + '%', padL + bw + 5, y + barH / 2 + 3.5);
+      }
+    });
+    ctx.font = '400 8.5px Fira Code, monospace';
+    ctx.textAlign = 'center'; ctx.fillStyle = '#b0a898';
+    ctx.fillText('Enquiry → Enrolment CVR %', padL + chartW / 2, H - 4);
+
+    document.getElementById('cvrInsight').innerHTML = INS.cvrGap + ' ' + INS.cvrAction;
+  })();
+
+  // ── NPS SLOPE ─────────────────────────────────────────────────────────────
+  (function () {
+    const svg = document.getElementById('slopeChart');
+    const W = 260, H = 220, padL = 62, padR = 72, padT = 20, padB = 30;
+    const x1 = padL, x2 = W - padR;
+    const allNPS = S.flatMap(s => [s.metrics.npsPrev, s.metrics.nps]).filter(v => v !== null);
+    const minV = Math.min(...allNPS) - 3;
+    const maxV = Math.max(...allNPS) + 3;
+    const scY = v => padT + ((maxV - v) / (maxV - minV)) * (H - padT - padB);
+
+    svg.innerHTML = `
+      <text x="${x1}" y="${H-6}" font-family="Fira Code,monospace" font-size="9" fill="#b0a898" text-anchor="middle">Last Year</text>
+      <text x="${x2}" y="${H-6}" font-family="Fira Code,monospace" font-size="9" fill="#b0a898" text-anchor="middle">This Year</text>
+      <line x1="${x1}" y1="${padT}" x2="${x1}" y2="${H-padB}" stroke="#e0dbd2" stroke-width="1"/>
+      <line x1="${x2}" y1="${padT}" x2="${x2}" y2="${H-padB}" stroke="#e0dbd2" stroke-width="1"/>`;
+
+    // Target line
+    const tY = scY(P.THRESHOLDS.nps.target);
+    svg.innerHTML += `<line x1="${x1-8}" y1="${tY}" x2="${x2+8}" y2="${tY}" stroke="#1a6b50" stroke-width="1" stroke-dasharray="4,3" opacity="0.45"/>
+      <text x="${x2+10}" y="${tY+3}" font-family="Fira Code,monospace" font-size="8" fill="#1a6b50" opacity="0.7">Target</text>`;
+
+    S.forEach(s => {
+      const prev = s.metrics.npsPrev;
+      const curr = s.metrics.nps;
+      if (curr === null) return;
+      const y1 = scY(prev), y2 = scY(curr);
+      const dir = curr >= prev ? '↑' : '↓';
+      svg.innerHTML += `
+        <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${s.color}" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+        <circle cx="${x1}" cy="${y1}" r="5" fill="${s.color}" opacity="0.45"/>
+        <circle cx="${x2}" cy="${y2}" r="5" fill="${s.color}"/>
+        <text x="${x1-7}" y="${y1+3.5}" font-family="Fira Code,monospace" font-size="9" fill="${s.color}" text-anchor="end" font-weight="500">${prev}</text>
+        <text x="${x2+7}" y="${y2+3.5}" font-family="Fira Code,monospace" font-size="9" fill="${s.color}" font-weight="600">${curr}</text>
+        <text x="${x2+20}" y="${y2+3.5}" font-family="Fira Code,monospace" font-size="8" fill="${s.color}">${dir}</text>
+        <text x="${(x1+x2)/2}" y="${(y1+y2)/2-6}" font-family="Bricolage Grotesque,sans-serif" font-size="8.5" fill="${s.color}" text-anchor="middle" opacity="0.9">${s.name}</text>`;
+    });
+    document.getElementById('npsInsight').innerHTML = INS.npsLeader;
+  })();
+
+  // ── CAPACITY BUBBLE ────────────────────────────────────────────────────────
+  (function () {
+    const svg = document.getElementById('bubbleChart');
+    const W = 260, H = 220, padL = 30, padR = 22, padT = 15, padB = 28;
+    const cW = W - padL - padR, cH = H - padT - padB;
+
+    const xs = S.map(s => s.metrics.enrolmentsYoY * 100);
+    const ys = S.map(s => s.metrics.capacity);
+    const xMin = Math.min(...xs) - 8, xMax = Math.max(...xs) + 8;
+    const yMin = Math.min(...ys) - 10, yMax = Math.max(...ys) + 10;
+
+    const sx = v => padL + ((v - xMin) / (xMax - xMin)) * cW;
+    const sy = v => padT + cH - ((v - yMin) / (yMax - yMin)) * cH;
+    const sr = fte => Math.sqrt(fte / 350) * 11;
+
+    // Grid lines
+    [60, 80, 100].forEach(v => {
+      const y = sy(v);
+      svg.innerHTML += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#e0dbd2" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="${padL-4}" y="${y+3}" font-family="Fira Code,monospace" font-size="8" fill="#b0a898" text-anchor="end">${v}%</text>`;
+    });
+    [-60,-40,-20,0,20].forEach(v => {
+      const x = sx(v);
+      if (x < padL || x > W - padR) return;
+      svg.innerHTML += `<line x1="${x}" y1="${padT}" x2="${x}" y2="${H-padB}" stroke="#e0dbd2" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="${x}" y="${H-padB+13}" font-family="Fira Code,monospace" font-size="8" fill="#b0a898" text-anchor="middle">${v}%</text>`;
+    });
+    const x0 = sx(0);
+    svg.innerHTML += `<line x1="${x0}" y1="${padT}" x2="${x0}" y2="${H-padB}" stroke="#d4cfc6" stroke-width="1.5"/>`;
+    svg.innerHTML += `<text x="${W/2}" y="${H}" font-family="Fira Code,monospace" font-size="8.5" fill="#b0a898" text-anchor="middle">New Enrolment Growth %</text>`;
+
+    S.forEach(s => {
+      const bx = sx(s.metrics.enrolmentsYoY * 100);
+      const by = sy(s.metrics.capacity);
+      const r = sr(s.metrics.fte);
+      svg.innerHTML += `
+        <circle cx="${bx}" cy="${by}" r="${r}" fill="${s.color}" opacity="0.12"/>
+        <circle cx="${bx}" cy="${by}" r="${r}" fill="none" stroke="${s.color}" stroke-width="2" opacity="0.75"/>
+        <text x="${bx}" y="${by+3.5}" font-family="Bricolage Grotesque,sans-serif" font-size="9" fill="${s.color}" text-anchor="middle" font-weight="600">${s.name.split(' ')[0]}</text>`;
+    });
+    document.getElementById('capacityInsight').innerHTML = INS.beauSoleilOpportunity + ' ' + INS.capacityRisk;
+  })();
+
+  // ── ACADEMIC BAR ──────────────────────────────────────────────────────────
+  (function () {
+    const canvas = document.getElementById('academicChart');
+    const A = P.ACADEMIC;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.parentElement.offsetWidth - 40 || 460, H = 180;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+
+    const metrics = [
+      { label: 'A-Level A*–A', curr: A.aLevel.current, prev: A.aLevel.prev, target: A.aLevel.target, color: '#c0392b' },
+      { label: 'iGCSE A*–A',  curr: A.igcse.current,  prev: A.igcse.prev,  target: A.igcse.target,  color: '#1a6b50' },
+      { label: 'IB Diploma',  curr: A.ib.current * 1.5, prev: A.ib.prev * 1.5, target: A.ib.target * 1.5, color: '#1a3a7a', scale: 1/1.5 },
+    ];
+    const maxV = 80, padL = 112, padT = 18, padB = 22, padR = 18;
+    const cW = W - padL - padR;
+    const groupH = 26, groupGap = 18, barGap = 3, barH = (groupH - barGap) / 2;
+
+    metrics.forEach((m, i) => {
+      const y0 = padT + i * (groupH + groupGap);
+      ctx.font = '500 10px Bricolage Grotesque, sans-serif';
+      ctx.textAlign = 'right'; ctx.fillStyle = '#3d3730';
+      ctx.fillText(m.label, padL - 8, y0 + groupH / 2 + 3);
+
+      const bwPrev = (m.prev / maxV) * cW;
+      ctx.fillStyle = '#e8e5df';
+      ctx.beginPath(); ctx.roundRect(padL, y0, bwPrev, barH, 3); ctx.fill();
+      const prevLabel = m.scale ? (m.prev * m.scale).toFixed(1) : m.prev + '%';
+      ctx.font = '400 9px Fira Code, monospace'; ctx.fillStyle = '#b0a898'; ctx.textAlign = 'left';
+      ctx.fillText('LY: ' + prevLabel, padL + bwPrev + 5, y0 + barH / 2 + 3);
+
+      const bwCurr = (m.curr / maxV) * cW;
+      ctx.fillStyle = m.color; ctx.globalAlpha = 0.85;
+      ctx.beginPath(); ctx.roundRect(padL, y0 + barH + barGap, bwCurr, barH, 3); ctx.fill();
+      ctx.globalAlpha = 1;
+      const currLabel = m.scale ? (m.curr * m.scale).toFixed(1) : m.curr + '%';
+      ctx.font = '500 9px Fira Code, monospace'; ctx.fillStyle = m.color; ctx.textAlign = 'left';
+      ctx.fillText(currLabel, padL + bwCurr + 5, y0 + barH + barGap + barH / 2 + 3);
+
+      // Target marker
+      const bwTgt = (m.target / maxV) * cW;
+      ctx.strokeStyle = m.color; ctx.lineWidth = 1.5; ctx.setLineDash([3,3]);
+      ctx.beginPath(); ctx.moveTo(padL + bwTgt, y0); ctx.lineTo(padL + bwTgt, y0 + groupH); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+
+    // Academic stat cards
+    const aCards = document.getElementById('academicCards');
+    const cardDefs = [
+      { label: 'IB Diploma', val: A.ib.current, prev: A.ib.prev, unit: '', color: 'var(--emerald)', dir: '+' },
+      { label: 'A-Level A*–A', val: A.aLevel.current + '%', prev: A.aLevel.prev + '%', unit: '', color: 'var(--crimson)', dir: '↓' },
+      { label: 'iGCSE A*–A', val: A.igcse.current + '%', prev: A.igcse.prev + '%', unit: '', color: 'var(--amber)', dir: '↓' },
+    ];
+    aCards.innerHTML = cardDefs.map(c => `
+      <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;letter-spacing:0.1em;text-transform:uppercase;">${c.label}</div>
+        <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:${c.color};">${c.val}</div>
+        <div style="font-family:'Fira Code',monospace;font-size:9px;color:${c.color};margin-top:3px;">${c.dir} vs ${c.prev} PY</div>
+      </div>`).join('');
+
+    document.getElementById('academicInsight').innerHTML = INS.aLevelContext;
+  })();
+
+  // ── FINANCIAL TREND ────────────────────────────────────────────────────────
+  (function () {
+    const canvas = document.getElementById('finChart');
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.parentElement.offsetWidth - 40 || 460, H = 180;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+
+    const FT = P.FINANCIAL_TREND;
+    const maxV = Math.max(...FT.map(d => d.feeIncome)) * 1.1;
+    const padL = 36, padT = 10, padB = 28, padR = 18;
+    const cW = W - padL - padR, cH = H - padT - padB;
+    const xPos = i => padL + (i / (FT.length - 1)) * cW;
+    const yPos = v => padT + cH - (v / maxV) * cH;
+
+    [0, 25, 50, 75].forEach(v => {
+      const y = yPos(v);
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y);
+      ctx.strokeStyle = '#e8e5df'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.font = '400 8px Fira Code, monospace'; ctx.fillStyle = '#b0a898'; ctx.textAlign = 'right';
+      ctx.fillText('$' + v + 'M', padL - 4, y + 3);
+    });
+
+    // Fee income area fill
+    ctx.beginPath();
+    FT.forEach((d, i) => { i===0 ? ctx.moveTo(xPos(i), yPos(d.feeIncome)) : ctx.lineTo(xPos(i), yPos(d.feeIncome)); });
+    ctx.lineTo(xPos(FT.length-1), padT + cH);
+    ctx.lineTo(xPos(0), padT + cH);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(26,107,80,0.07)'; ctx.fill();
+
+    // Fee income line
+    ctx.beginPath();
+    FT.forEach((d, i) => { i===0 ? ctx.moveTo(xPos(i), yPos(d.feeIncome)) : ctx.lineTo(xPos(i), yPos(d.feeIncome)); });
+    ctx.strokeStyle = '#1a6b50'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round'; ctx.stroke();
+
+    // EBITDA line
+    ctx.beginPath();
+    FT.forEach((d, i) => { i===0 ? ctx.moveTo(xPos(i), yPos(d.ebitda)) : ctx.lineTo(xPos(i), yPos(d.ebitda)); });
+    ctx.strokeStyle = '#1a3a7a'; ctx.lineWidth = 2; ctx.setLineDash([5, 3]); ctx.stroke();
+    ctx.setLineDash([]);
+
+    FT.forEach((d, i) => {
+      ctx.beginPath(); ctx.arc(xPos(i), yPos(d.feeIncome), 4, 0, Math.PI*2);
+      ctx.fillStyle = '#1a6b50'; ctx.fill();
+      ctx.font = '500 9px Fira Code, monospace'; ctx.fillStyle = '#1a6b50'; ctx.textAlign = 'center';
+      ctx.fillText('$' + d.feeIncome + 'M', xPos(i), yPos(d.feeIncome) - 8);
+      ctx.font = '400 9px Fira Code, monospace'; ctx.fillStyle = '#b0a898'; ctx.textAlign = 'center';
+      ctx.fillText(d.year, xPos(i), H - 6);
+    });
+
+    // Financial stat cards
+    const finCards = document.getElementById('financialCards');
+    const fcDefs = [
+      { label: 'Fee Income', val: P.fmt(R.feeIncome,'$M'), note: '✓ On budget', color: 'var(--emerald)' },
+      { label: 'EBITDA',     val: P.fmt(R.ebitda,'$M'),    note: '✓ On budget', color: 'var(--emerald)' },
+      { label: 'Flowthrough', val: R.flowthroughPct + '%',  note: `↓ −${(R.flowthroughPctPY-R.flowthroughPct).toFixed(1)}pp vs PY`, color: 'var(--crimson)' },
+      { label: 'Market Share Growth', val: '+' + (R.marketShareGrowth*100).toFixed(2) + '%', note: 'vs Core Market', color: 'var(--amber)' },
+    ];
+    finCards.innerHTML = fcDefs.map(c => `
+      <div style="background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px;">
+        <div style="font-family:'Fira Code',monospace;font-size:8px;color:var(--ink-ghost);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.1em;">${c.label}</div>
+        <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:${c.color};">${c.val}</div>
+        <div style="font-family:'Fira Code',monospace;font-size:9px;color:${c.color};margin-top:3px;">${c.note}</div>
+      </div>`).join('');
+  })();
+
 })();
 </script>
 </body>
