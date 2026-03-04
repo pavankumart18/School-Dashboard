@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Dispatch - Principal's Daily Story - Lincoln Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:#0d2137; --charcoal:#1e3a5a; --dark:#2d4a6a; --mid:#4a6a8a; --soft:#90aac5;
+    --rule:#c8ddf0; --paper:#eef5fd; --warm-white:#f5f9ff; --ink-cream:#d8eaf8;
+    --red:#b02020; --teal:#0d7a6e; --amber:#a86008; --blue:#1a6bbf;
+    --accent:#1a6bbf;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:16px;}
+  body{background:var(--paper);color:var(--black);font-family:'Source Serif 4',serif;max-width:960px;margin:0 auto;padding:40px 32px;animation:fadeIn .5s ease;}
+  a{color:inherit;text-decoration:none;}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+  /* NAV BAR */
+  .nav-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 0 18px;border-bottom:1px solid var(--rule);margin-bottom:6px;}
+  .nav-bar a{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);text-decoration:none;padding:4px 10px;border:1px solid var(--rule);}
+  .nav-bar a:hover{background:var(--ink-cream);color:var(--black);}
+  .nav-bar a.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .nav-center{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mid);letter-spacing:.1em;}
+
+  /* MASTHEAD */
+  .masthead{text-align:center;border-top:4px solid var(--accent);border-bottom:1px solid var(--rule);padding:20px 0 16px;margin-bottom:8px;}
+  .masthead-kicker{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;}
+  .masthead-title{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--black);}
+  .masthead-title em{font-style:italic;color:var(--accent);font-weight:400;}
+  .masthead-meta{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);letter-spacing:.08em;}
+
+  /* SECTION RULE */
+  .section-rule{border:none;border-top:2px solid var(--accent);margin:24px 0 20px;}
+  .section-rule.thin{border-width:1px;border-color:var(--rule);}
+  .section-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+  /* LEAD STORY */
+  .lead-story{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding-bottom:24px;border-bottom:1px solid var(--rule);margin-bottom:24px;}
+  .headline{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px;}
+  .headline .hed-red{color:var(--red);}.headline .hed-teal{color:var(--teal);}.headline .hed-amber{color:var(--amber);}
+  .deck{font-size:14px;color:var(--dark);line-height:1.6;font-style:italic;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--rule);}
+  .body-copy{font-size:13px;line-height:1.7;color:var(--charcoal);}
+  .body-copy strong{font-weight:600;}
+
+  /* CHART BOX */
+  .chart-box{background:var(--warm-white);border:1px solid var(--rule);padding:20px;height:100%;display:flex;flex-direction:column;}
+  .chart-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+  .chart-note{font-size:11px;color:var(--soft);font-style:italic;margin-top:auto;padding-top:12px;}
+
+  /* FUNNEL */
+  .funnel-viz{display:flex;flex-direction:column;gap:6px;flex:1;justify-content:center;}
+  .f-stage{display:flex;align-items:center;gap:12px;}
+  .f-bar-outer{flex:1;height:22px;background:var(--ink-cream);position:relative;}
+  .f-bar-fill{height:100%;display:flex;align-items:center;padding-left:8px;}
+  .f-bar-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:#fff;letter-spacing:.06em;}
+  .f-stage-name{width:80px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);text-align:right;}
+  .f-num{width:52px;font-family:'Playfair Display',serif;font-size:14px;font-weight:600;text-align:right;}
+  .f-drop{width:54px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--red);text-align:right;}
+
+  /* METRICS STRIP */
+  .metrics-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:24px;}
+  .metric-cell{padding:16px 20px;border-right:1px solid var(--rule);position:relative;}
+  .metric-cell:last-child{border-right:none;}
+  .metric-cell.alert::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .metric-cell.alert-red::before{background:var(--red);}
+  .metric-cell.alert-amber::before{background:var(--amber);}
+  .metric-cell.alert-green::before{background:var(--teal);}
+  .mc-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;}
+  .mc-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;letter-spacing:-.02em;}
+  .mc-value.red{color:var(--red);}.mc-value.teal{color:var(--teal);}.mc-value.amber{color:var(--amber);}
+  .mc-delta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);margin-top:4px;}
+  .mc-delta .up{color:var(--teal);}.mc-delta .dn{color:var(--red);}
+
+  /* 3-COL */
+  .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);margin-bottom:24px;}
+  .col-block{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px;}
+  .col-headline{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;line-height:1.3;margin-bottom:10px;letter-spacing:-.01em;}
+  .col-body{font-size:12px;line-height:1.65;color:var(--charcoal);}
+
+  /* PULL QUOTE */
+  .pull-quote{border-left:4px solid var(--accent);padding:12px 20px;margin:16px 0;background:var(--warm-white);border-radius:0 6px 6px 0;}
+  .pull-quote p{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;line-height:1.4;color:var(--black);}
+  .pull-quote cite{font-size:11px;color:var(--soft);font-style:normal;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;display:block;margin-top:8px;}
+
+  /* ACTION ITEMS */
+  .actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+  .action-story{display:flex;gap:14px;padding:16px;border:1px solid var(--rule);background:var(--warm-white);}
+  .action-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#b8d8f4;line-height:1;flex-shrink:0;width:32px;}
+  .action-hl{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;margin-bottom:4px;line-height:1.3;}
+  .action-body{font-size:12px;color:var(--charcoal);line-height:1.6;}
+  .action-tag{display:inline-block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border:1px solid currentColor;}
+  .action-tag.mkt{color:var(--blue);}.action-tag.acad{color:var(--teal);}.action-tag.strat{color:var(--amber);}.action-tag.risk{color:var(--red);}
+
+  /* DATA TABLES */
+  .vel-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .vel-table td{padding:5px 0;border-bottom:1px solid var(--rule);}
+  .vel-table td:last-child{text-align:right;font-family:'JetBrains Mono',monospace;}
+  .vel-table tr:last-child td{border-bottom:none;}
+
+  .data-row{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+  .data-row:last-child{margin-bottom:0;}
+  .dr-label{font-size:11px;color:var(--mid);width:130px;flex-shrink:0;}
+  .dr-track{flex:1;height:8px;background:var(--ink-cream);}
+  .dr-fill{height:100%;}
+  .dr-val{font-family:'JetBrains Mono',monospace;font-size:11px;width:44px;text-align:right;flex-shrink:0;}
+
+  /* NPS BAND */
+  .nps-band{display:flex;height:12px;overflow:hidden;margin:10px 0;}
+  .nps-d{background:var(--red);opacity:.7;}.nps-p{background:#c8c0b0;}.nps-pr{background:var(--teal);}
+
+  /* WATERFALL VISUAL */
+  .wf-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+  .wf-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--soft);width:88px;flex-shrink:0;}
+  .wf-bar-wrap{flex:1;height:14px;position:relative;background:var(--ink-cream);}
+  .wf-bar{height:100%;position:absolute;}
+  .wf-val{font-family:'JetBrains Mono',monospace;font-size:10px;width:52px;text-align:right;font-weight:600;flex-shrink:0;}
+
+  /* SCATTER MINI */
+  .scat-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--rule);font-size:11px;}
+  .scat-row:last-child{border-bottom:none;}
+  .scat-dept{width:100px;}
+  .scat-bar-wrap{flex:1;margin:0 10px;height:8px;background:var(--ink-cream);}
+  .scat-bar{height:100%;}
+  .scat-nums{font-family:'JetBrains Mono',monospace;font-size:10px;width:90px;text-align:right;white-space:nowrap;}
+
+  svg.trend{width:100%;height:60px;overflow:visible;}
+
+  /* FOOTNOTE */
+  .footnote{border-top:1px solid var(--rule);margin-top:32px;padding-top:12px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--soft);letter-spacing:.08em;}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<div class="nav-bar">
+  <a href="index.html"><- Dashboard</a>
+  <span class="nav-center">Lincoln Academy - SCAN Summary</span>
+  <div style="display:flex;gap:6px;">
+    <a href="principal-datastory.html" class="active">Data Story</a>
+    <a href="principal-email-alert.html">Alert Email</a>
+    <a href="index.html">Principal Dashboard</a>
+    <a href="Leaders-dashboard.html">Leadership View -></a>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-kicker">The School Intelligence Briefing - For the Principal's Desk</div>
+  <div class="masthead-title">Morning<em> Dispatch</em></div>
+  <div class="masthead-meta">
+    <span>Wednesday, 4 March 2026</span>
+    <span>|</span>
+    <span>Lincoln Academy - Florida Region</span>
+    <span>|</span>
+    <span>Data as of Week 26 - SCAN</span>
+    <span>|</span>
+    <span>Enrolment Year 2027</span>
+  </div>
+</div>
+
+<!-- SUMMARY STRIP -->
+<div class="metrics-strip" style="margin-top:20px;">
+  <div class="metric-cell alert alert-green">
+    <div class="mc-label">Enquiries (Weekly)</div>
+    <div class="mc-value teal">142</div>
+    <div class="mc-delta"><span class="up">+8</span> vs last week</div>
+  </div>
+  <div class="metric-cell alert alert-amber">
+    <div class="mc-label">Conversions (E-E)</div>
+    <div class="mc-value amber">18.4%</div>
+    <div class="mc-delta"><span class="dn">-2.1 pts</span> vs last week</div>
+  </div>
+  <div class="metric-cell alert alert-red">
+    <div class="mc-label">NPS</div>
+    <div class="mc-value red">29</div>
+    <div class="mc-delta">Target 35 - below benchmark</div>
+  </div>
+  <div class="metric-cell alert alert-red">
+    <div class="mc-label">Safeguarding</div>
+    <div class="mc-value red">76.2%</div>
+    <div class="mc-delta">Below 80% minimum</div>
+  </div>
+</div>
+
+<!-- LEAD STORIES -->
+<div class="section-label">This Week's Lead Story</div>
+
+<div class="lead-story">
+  <div>
+    <div class="headline">
+      Admissions demand is holding, but conversion has slipped to <span class="hed-amber">18.4%</span>
+    </div>
+    <div class="deck">
+      Enquiries remain steady at 142 this week, yet conversion to enrolment declined by 2.1 points. Applications at 61 and offers at 44 signal that follow-up speed is the key bottleneck.
+    </div>
+    <div class="body-copy">
+      <p>FTEs are stable at <strong>1,148</strong> (+2 vs last week), so volume is not the issue. The drop is in stage progression: enquiry to application and application to offer are both weaker than the four-week average.</p>
+      <br>
+      <p>Priority action is to recover response time during peak enquiry hours. A two-counselor shift to peak slots is projected to recover 3 to 5 additional enrolments per week.</p>
+      <div class="pull-quote" style="margin-top:16px;">
+        <p>"The enquiry funnel is healthy. The leak is timing - follow-up speed, not demand."</p>
+        <cite>- Admissions Pulse, Week 26</cite>
+      </div>
+      <p>Recommendation: tighten follow-up within 24 hours and trigger automated reminders after 48 hours of inactivity.</p>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-label">Enquiry Funnel - Week 26</div>
+    <div class="funnel-viz">
+      <div class="f-stage">
+        <div class="f-stage-name">Enquiries</div>
+        <div class="f-bar-outer">
+          <div class="f-bar-fill" style="width:100%; background:#1a4a7a;">
+            <span class="f-bar-label">100%</span>
+          </div>
+        </div>
+        <div class="f-num">142</div>
+        <div class="f-drop"></div>
+      </div>
+      <div class="f-stage">
+        <div class="f-stage-name">Applications</div>
+        <div class="f-bar-outer">
+          <div class="f-bar-fill" style="width:43%; background:#0d7a6e;">
+            <span class="f-bar-label">43%</span>
+          </div>
+        </div>
+        <div class="f-num">61</div>
+        <div class="f-drop">-57%</div>
+      </div>
+      <div class="f-stage">
+        <div class="f-stage-name">Offers</div>
+        <div class="f-bar-outer">
+          <div class="f-bar-fill" style="width:31%; background:#1a6bbf;">
+            <span class="f-bar-label">31%</span>
+          </div>
+        </div>
+        <div class="f-num">44</div>
+        <div class="f-drop">-28%</div>
+      </div>
+      <div class="f-stage">
+        <div class="f-stage-name">Enrolments</div>
+        <div class="f-bar-outer">
+          <div class="f-bar-fill" style="width:22%; background:#a86008;">
+            <span class="f-bar-label">22%</span>
+          </div>
+        </div>
+        <div class="f-num" style="color:var(--amber); font-weight:700;">31</div>
+        <div class="f-drop">-30%</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; padding-top:14px; border-top:1px solid var(--rule);">
+      <div class="chart-label">Conversion Summary</div>
+      <div class="data-row">
+        <span class="dr-label">Enquiry to Application</span>
+        <div class="dr-track"><div class="dr-fill" style="width:43%; background:var(--amber);"></div></div>
+        <span class="dr-val">43%</span>
+      </div>
+      <div class="data-row">
+        <span class="dr-label">Application to Offer</span>
+        <div class="dr-track"><div class="dr-fill" style="width:72%; background:var(--teal);"></div></div>
+        <span class="dr-val">72%</span>
+      </div>
+      <div class="data-row">
+        <span class="dr-label">Offer to Enrolment</span>
+        <div class="dr-track"><div class="dr-fill" style="width:70%; background:var(--blue);"></div></div>
+        <span class="dr-val">70%</span>
+      </div>
+    </div>
+
+    <div class="chart-note">Conversion (E-E): 18.4% - down 2.1 pts vs last week</div>
+  </div>
+</div>
+
+<!-- SECOND STORY ROW -->
+<hr class="section-rule thin">
+<div class="three-col">
+  <div class="col-block">
+    <div class="col-headline">Academic signals are stable, but attendance needs lift</div>
+    <div class="col-body">
+      <p>Attendance is <strong>94.6%</strong>, below the 96% target. Student incidents are down to <strong>9</strong> this week, showing the pastoral plan is working.</p>
+      <br>
+      <p>Performance of key qualifications sits at <strong>72% A*-B</strong> with math and science 3 points below target. University destinations remain strong at <strong>88% top-2 choice</strong>.</p>
+    </div>
+  </div>
+
+  <div class="col-block">
+    <div class="col-headline">Financial performance below plan</div>
+    <div class="col-body">
+      <p>EBITDA is <strong>GBP 1.2M</strong>, short of the <strong>GBP 1.35M</strong> budget. Flowthrough improved to <strong>62%</strong>, but fee income collection dipped to <strong>96.1%</strong>.</p>
+      <br>
+      <p>Student churn is <strong>2.4%</strong>, slightly lower than last month. Focus should remain on collections in Grades 10 and 11.</p>
+    </div>
+  </div>
+
+  <div class="col-block">
+    <div class="col-headline">Talent and safeguarding remain the top risk</div>
+    <div class="col-body">
+      <p>Employee engagement is <strong>71</strong> and attrition is <strong>18%</strong> (above target). PTR has risen to <strong>13.8:1</strong>.</p>
+      <br>
+      <p>CBC compliance is <strong>92%</strong>, but safeguarding is at <strong>76.2%</strong> - below the legal minimum. This is the highest compliance risk this week.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT YOU SHOULD DO -->
+<hr class="section-rule">
+<div class="section-label">What You Should Do - Priority Actions This Week</div>
+
+<div class="actions-grid">
+  <div class="action-story">
+    <div class="action-num">1</div>
+    <div class="action-content">
+      <div class="action-hl">Close safeguarding training renewals immediately</div>
+      <div class="action-body">Safeguarding is at 76.2%, below the 80% minimum. Require completion by Friday and track daily compliance until above 95%.</div>
+      <span class="action-tag risk">Compliance - Urgent</span>
+    </div>
+  </div>
+  <div class="action-story">
+    <div class="action-num">2</div>
+    <div class="action-content">
+      <div class="action-hl">Restore enquiry-to-application conversion speed</div>
+      <div class="action-body">Shift two admissions counselors to peak enquiry hours and automate a 48-hour reminder flow to recover lost conversions.</div>
+      <span class="action-tag mkt">Admissions - This Week</span>
+    </div>
+  </div>
+  <div class="action-story">
+    <div class="action-num">3</div>
+    <div class="action-content">
+      <div class="action-hl">Reduce late fee payments in Grades 10-11</div>
+      <div class="action-body">Fee income collection is 96.1%. Finance should call top 10 overdue accounts and review payment plans.</div>
+      <span class="action-tag strat">Finance - This Week</span>
+    </div>
+  </div>
+  <div class="action-story">
+    <div class="action-num">4</div>
+    <div class="action-content">
+      <div class="action-hl">Run stay interviews to address attrition</div>
+      <div class="action-body">Attrition is 18% with primary departures driving the increase. Start targeted stay interviews within 10 days.</div>
+      <span class="action-tag acad">People - Immediate</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTNOTE -->
+<div class="footnote">
+  <span>Lincoln Academy - School Intelligence Briefing - <a href="index.html" style="color:inherit;">Back to Dashboard</a></span>
+  <span>Data: SCAN Week 26 - Refresh 4 Mar 2026</span>
+  <span>All data synthetic - For illustrative purposes only</span>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principal Alert — Westbridge Academy · 18 Feb 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:#eef5fd;color:#0d2137;padding:32px 16px;line-height:1.5;}
+a{color:inherit;text-decoration:none;}
+
+/* ── WRAPPER ── */
+.wrap{max-width:620px;margin:0 auto;}
+.pre{text-align:center;font-size:11px;color:#90aac5;margin-bottom:14px;font-style:italic;}
+.email{background:#ffffff;border:1px solid #c8ddf0;border-radius:6px;overflow:hidden;box-shadow:0 4px 24px rgba(26,107,191,.10);}
+
+/* ── HEADER ── */
+.hdr{background:#f5f9ff;border-bottom:1px solid #c8ddf0;padding:28px 32px 24px;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1a6bbf 0%,#38bdf8 50%,#1a6bbf 100%);}
+.alert-pill{display:inline-flex;align-items:center;gap:7px;background:#deeeff;border:1px solid rgba(26,107,191,.25);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:700;color:#1a6bbf;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
+.alert-dot{width:7px;height:7px;border-radius:50%;background:#1a6bbf;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hdr-title{font-family:'DM Serif Display',serif;font-size:26px;color:#0d2137;line-height:1.2;margin-bottom:6px;letter-spacing:-.025em;}
+.hdr-sub{font-size:12px;color:#4a6a8a;}
+.hdr-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:20px;padding-top:18px;border-top:1px solid #c8ddf0;}
+.hm{font-size:11px;color:#90aac5;padding-right:16px;}
+.hm strong{color:#1e3a5a;display:block;font-size:12.5px;font-weight:600;margin-bottom:2px;}
+
+/* ── STATS STRIP ── */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #d0e8f8;border-bottom:1px solid #d0e8f8;background:#f0f7ff;}
+.stat-cell{padding:18px 22px;border-right:1px solid #d0e8f8;text-align:center;}
+.stat-cell:last-child{border-right:none;}
+.stat-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#90aac5;margin-bottom:6px;}
+.stat-big{font-family:'DM Serif Display',serif;font-size:26px;letter-spacing:-.025em;line-height:1;}
+.stat-big.red{color:#b02020;}
+.stat-big.amber{color:#a86008;}
+.stat-big.green{color:#0b7060;}
+.stat-note{font-size:10px;color:#90aac5;margin-top:4px;}
+
+/* ── SECTION LABEL ── */
+.sec{padding:18px 32px 8px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:#90aac5;border-top:1px solid #d0e8f8;}
+
+/* ── ISSUE ROWS ── */
+.issues{padding:0 32px 8px;}
+.issue{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #d0e8f8;}
+.issue:last-child{border-bottom:none;}
+.issue-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:1px;}
+.icon-red{background:#fdf0ee;border:1px solid rgba(176,32,32,.15);}
+.icon-amber{background:#fffbf0;border:1px solid rgba(168,96,8,.15);}
+.issue-body{flex:1;}
+.issue-title{font-size:13px;font-weight:600;color:#0d2137;margin-bottom:4px;line-height:1.3;}
+.issue-desc{font-size:12px;color:#4a6a8a;line-height:1.55;}
+.issue-stat{text-align:right;flex-shrink:0;min-width:72px;}
+.stat-val{font-family:'DM Serif Display',serif;font-size:28px;line-height:1;letter-spacing:-.025em;}
+.stat-val.red{color:#b02020;}
+.stat-val.amber{color:#a86008;}
+.stat-sub{font-size:10px;color:#90aac5;margin-top:3px;}
+
+/* ── ACTIONS ── */
+.actions-bg{background:#f0f7ff;border-top:1px solid #d0e8f8;}
+.actions{padding:4px 32px 20px;}
+.action{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #d0e8f8;}
+.action:last-child{border-bottom:none;}
+.action-num{width:28px;height:28px;border-radius:50%;background:#1a6bbf;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.action-text{flex:1;}
+.action-title{font-size:13px;font-weight:600;color:#0d2137;margin-bottom:4px;}
+.action-desc{font-size:12px;color:#4a6a8a;line-height:1.5;}
+.action-tag{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:10px;margin-top:6px;}
+.tag-urgent{background:#fdf0ee;color:#b02020;border:1px solid rgba(176,32,32,.18);}
+.tag-week{background:#deeeff;color:#1a6bbf;border:1px solid rgba(26,107,191,.18);}
+.tag-comp{background:#fdf0ee;color:#b02020;border:1px solid rgba(176,32,32,.18);}
+.tag-plan{background:#edf7f3;color:#0b7060;border:1px solid rgba(11,112,96,.18);}
+
+/* ── CTA ── */
+.cta{padding:26px 32px;text-align:center;background:#f5f9ff;border-top:1px solid #d0e8f8;}
+.cta-title{font-family:'DM Serif Display',serif;font-size:18px;color:#0d2137;margin-bottom:5px;}
+.cta-sub{font-size:12px;color:#4a6a8a;margin-bottom:20px;}
+.cta-btns{display:flex;gap:10px;justify-content:center;}
+.btn-primary{background:#1a6bbf;color:#fff;padding:12px 28px;font-size:13px;font-weight:600;border-radius:6px;display:inline-block;letter-spacing:-.01em;}
+.btn-secondary{background:transparent;color:#4a6a8a;border:1px solid #b8d4ec;padding:12px 24px;font-size:13px;font-weight:500;border-radius:6px;display:inline-block;}
+.cta-note{font-size:10.5px;color:#90aac5;margin-top:16px;line-height:1.65;}
+
+/* ── FOOTER ── */
+.foot{padding:16px 32px;border-top:1px solid #d0e8f8;display:flex;justify-content:space-between;font-size:10.5px;color:#90aac5;background:#f0f7ff;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="pre">Automated alert — 4 metrics crossed warning thresholds · Westbridge Academy · 18 Feb 2026</div>
+
+  <div class="email">
+
+    <!-- HEADER -->
+    <div class="hdr">
+      <div class="alert-pill"><div class="alert-dot"></div>Action Required</div>
+      <div class="hdr-title">4 things need your attention this week</div>
+      <div class="hdr-sub">Westbridge Academy · Threshold alert triggered 18 Feb 2026</div>
+      <div class="hdr-meta">
+        <div class="hm"><strong>School</strong>Westbridge Academy</div>
+        <div class="hm"><strong>Week</strong>Salesforce Wk 24</div>
+        <div class="hm"><strong>Triggers</strong>4 thresholds crossed</div>
+        <div class="hm"><strong>Enrolment Year</strong>EY2027</div>
+      </div>
+    </div>
+
+    <!-- QUICK STATS -->
+    <div class="stats">
+      <div class="stat-cell">
+        <div class="stat-lbl">New Enrolments</div>
+        <div class="stat-big red">410</div>
+        <div class="stat-note">↓ −13.9% · Target was 477</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-lbl">A-Level Top Grades</div>
+        <div class="stat-big red">52.7%</div>
+        <div class="stat-note">↓ −13.3pt from 66% last year</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-lbl">Safeguarding BGC</div>
+        <div class="stat-big amber">76.2%</div>
+        <div class="stat-note">⚠ Below 80% legal minimum</div>
+      </div>
+    </div>
+
+    <!-- WHAT TRIGGERED THIS -->
+    <div class="sec">What triggered this alert</div>
+    <div class="issues">
+
+      <div class="issue">
+        <div class="issue-icon icon-red">📉</div>
+        <div class="issue-body">
+          <div class="issue-title">New enrolments down 13.9% — 67 students short of target</div>
+          <div class="issue-desc">Secondary is most affected. Enquiry volume is also down 13.3%, so fewer families are entering the pipeline — not just converting poorly. A new competitor (Aspire IS, $21k/yr) entered Primary this cycle.</div>
+        </div>
+        <div class="issue-stat">
+          <div class="stat-val red">−13.9%</div>
+          <div class="stat-sub">477 → 410 enrolled</div>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-icon icon-red">📋</div>
+        <div class="issue-body">
+          <div class="issue-title">A-Level grades fell 13.3 points — not within normal variation</div>
+          <div class="issue-desc">A*–A dropped from 66% to 52.7%. Languages (28% attrition, 42% A*–A) and Humanities (21%, 50%) are highest risk. IB improved to 33.2 (+0.5). Staffing–outcomes link needs urgent review.</div>
+        </div>
+        <div class="issue-stat">
+          <div class="stat-val red">−13.3</div>
+          <div class="stat-sub">pts A-Level A*–A</div>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-icon icon-amber">⏱</div>
+        <div class="issue-body">
+          <div class="issue-title">Secondary conversion taking 138 days — 18 days above threshold</div>
+          <div class="issue-desc">Families are stalling at decision stage, likely comparing us to Aspire IS. Early Years is 94 days (healthy), Primary 102 days. Secondary capacity is 72% vs 88% target — directly connected.</div>
+        </div>
+        <div class="issue-stat">
+          <div class="stat-val amber">138d</div>
+          <div class="stat-sub">Threshold: 120 days</div>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-icon icon-amber">🔒</div>
+        <div class="issue-body">
+          <div class="issue-title">Contractor BGC compliance at 76.2% — below 80% minimum</div>
+          <div class="issue-desc">Employed staff sit at 94.9%. The 18.7pp gap is a process failure in contractor onboarding. This is a safeguarding exposure — escalate to HR and Operations immediately.</div>
+        </div>
+        <div class="issue-stat">
+          <div class="stat-val amber">76.2%</div>
+          <div class="stat-sub">vs 94.9% employed</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WHAT TO DO -->
+    <div class="actions-bg">
+      <div class="sec" style="border-top:none;">What you should do this week</div>
+      <div class="actions">
+
+        <div class="action">
+          <div class="action-num">1</div>
+          <div class="action-text">
+            <div class="action-title">Brief MAC team — launch parent referral programme today</div>
+            <div class="action-desc">Referral converts at 10.1% vs 6.6% for web. 46% of current parents are promoters. Every week of delay cedes reach to Aspire IS. Agree incentive mechanics and launch this week.</div>
+            <span class="action-tag tag-urgent">Urgent</span>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="action-num">2</div>
+          <div class="action-text">
+            <div class="action-title">Audit A-Level departments — start with Languages &amp; Humanities</div>
+            <div class="action-desc">A 13-point single-year drop is not normal. Cross-reference attrition data. Determine whether emergency staffing is needed before results season.</div>
+            <span class="action-tag tag-urgent">Urgent</span>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="action-num">3</div>
+          <div class="action-text">
+            <div class="action-title">Escalate contractor BGC to HR and Head of Operations</div>
+            <div class="action-desc">Set a hard deadline: 95%+ within 6 weeks. Process failure — not a people issue. This is a live safeguarding risk.</div>
+            <span class="action-tag tag-comp">Compliance</span>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="action-num">4</div>
+          <div class="action-text">
+            <div class="action-title">Map Secondary conversion bottleneck with MAC team</div>
+            <div class="action-desc">138d vs 94d for EY. Find where families stall — visit→application or decision stage. A targeted fix can cut 20–30 days.</div>
+            <span class="action-tag tag-week">This Week</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <div class="cta-title">Open the full dashboard</div>
+      <div class="cta-sub">See all 20 metrics, pipeline detail, and the complete school picture.</div>
+      <div class="cta-btns">
+        <a href="index.html" class="btn-primary">Open Dashboard →</a>
+        <a href="principal-datastory.html" class="btn-secondary">Read Data Story</a>
+      </div>
+      <div class="cta-note">
+        This alert was sent because 4 metrics crossed defined thresholds.<br>
+        Alerts are not on a fixed schedule — only triggered when thresholds are breached.
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="foot">
+      <span>Westbridge Academy · School Intelligence · 18 Feb 2026</span>
+      <span>Salesforce Wk 24 · OneStream Wk 23</span>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

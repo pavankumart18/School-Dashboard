@@ -1,0 +1,826 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPI Drill-Down</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <nav class="sb">
+    <div class="sb-brand">
+      <div class="sb-logo"><div class="sb-dot"></div><span class="sb-school">Lincoln Academy</span></div>
+      <div class="sb-role">Principal - Dashboard</div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-lbl">My School</div>
+        <ul>
+          <li class="active"><a href="index.html"><i class="mi">dashboard</i>Overview</a></li>
+          <li><a href="principal-datastory.html"><i class="mi">auto_stories</i>Data Story</a></li>
+          <li><a href="principal-email-alert.html"><i class="mi">mail</i>Alert Email</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Views</div>
+        <ul>
+          <li><a href="regional-view.html"><i class="mi">hub</i>Regional View</a></li>
+          <li><a href="central-view.html"><i class="mi">language</i>Central View</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Leadership</div>
+        <ul>
+          <li><a href="Leaders-dashboard.html"><i class="mi">hub</i>Portfolio Overview</a></li>
+          <li><a href="Leaders-datastory.html"><i class="mi">auto_stories</i>Portfolio Briefing</a></li>
+          <li><a href="Leaders-email-alert.html"><i class="mi">mail</i>Leadership Alert</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sb-foot">
+      <div class="av">
+        <div class="av-ring">SM</div>
+        <div><div class="av-name">Dr. Sarah Miller</div><div class="av-role">Principal</div></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-left">
+        <div class="tb-greeting" id="kpi-title">KPI Drill-Down</div>
+        <div class="tb-date" id="kpi-subtitle">Detailed KPI context and next steps</div>
+      </div>
+      <div class="tb-right">
+        <a href="index.html" class="chip"><i class="mi">arrow_back</i>Back to Overview</a>
+      </div>
+    </header>
+
+    <div class="scroll">
+      <div id="kpi-empty" class="panel wide" style="display:none;">
+        <h3>No KPI Selected</h3>
+        <p>Select a KPI card from the dashboard to view detailed information for that KPI only.</p>
+      </div>
+
+      <div class="panel-grid" id="kpi-grid">
+        <div class="panel wide">
+          <h3>KPI Summary</h3>
+          <div class="simple-metric">
+            <span>Current Value</span>
+            <span id="kpi-value">-</span>
+          </div>
+          <p id="kpi-status">Status: -</p>
+          <p id="kpi-frequency">Frequency: -</p>
+          <p id="kpi-target">Target: -</p>
+          <div class="kpi-detail-block">
+            <div class="kpi-detail-label">Why this is moving</div>
+            <div class="kpi-detail-text" id="kpi-why">-</div>
+          </div>
+          <div class="kpi-detail-block">
+            <div class="kpi-detail-label">Action to take</div>
+            <div class="kpi-detail-text" id="kpi-action">-</div>
+          </div>
+          <div class="kpi-detail-block">
+            <div class="kpi-detail-label">Detailed description</div>
+            <div class="kpi-detail-text kpi-narrative" id="kpi-narrative"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Trend Snapshot</h3>
+          <div class="chart-box" id="trend-chart" role="img" aria-label="KPI trend chart"></div>
+          <p id="kpi-trend">Trend: -</p>
+          <p class="note" id="kpi-trend-note">Based on the latest reporting periods.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Period Comparison</h3>
+          <div class="chart-box" id="period-chart" role="img" aria-label="KPI period comparison"></div>
+          <p class="note" id="kpi-period-note"></p>
+        </div>
+
+        <div class="panel">
+          <h3>Driver Impact</h3>
+          <div class="chart-box" id="drivers-chart" role="img" aria-label="Driver impact chart"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Segment Breakdown</h3>
+          <div class="chart-box" id="segment-chart" role="img" aria-label="Segment breakdown chart"></div>
+          <div class="chart-legend" id="segment-legend"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Benchmark vs Target</h3>
+          <div class="chart-box" id="benchmark-chart" role="img" aria-label="Benchmark vs target chart"></div>
+          <p class="note" id="kpi-benchmark-note"></p>
+        </div>
+
+        <div class="panel">
+          <h3>Why This Is Moving</h3>
+          <div class="chart-list" id="kpi-drivers"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Action Plan</h3>
+          <div class="chart-list" id="kpi-actions"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Definition and Owner</h3>
+          <div class="chart-list">
+            <div id="kpi-definition">Definition: -</div>
+            <div id="kpi-owner">Owner: -</div>
+            <div id="kpi-source">Source: -</div>
+            <div id="kpi-updated">Last Updated: -</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Thresholds</h3>
+          <div class="chart-list">
+            <div id="kpi-threshold">-</div>
+            <div id="kpi-benchmark">Benchmark: -</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/scan_data.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const kpiId = params.get('kpi');
+  const kpi = SCAN_DATA.find(item => item.id === kpiId);
+
+  const detailMap = {
+    mkt_01: {
+      target: "150 weekly",
+      definition: "Total inbound enquiries logged in CRM during the week.",
+      owner: "Admissions Lead",
+      source: "CRM Enquiries",
+      updated: "Week 26",
+      threshold: "Green >= 140, Amber 120-139, Red < 120",
+      benchmark: "4-week avg: 136",
+      drivers: ["Open-day week boosted website leads", "Referral enquiries up 12%"],
+      actions: ["Maintain 24-hour follow-up SLA", "Prioritize web leads after 3pm"]
+    },
+    mkt_02: {
+      target: "20%",
+      definition: "Percent of enquiries that convert to enrolments.",
+      owner: "Admissions Lead",
+      source: "CRM Funnel",
+      updated: "Week 26",
+      threshold: "Green >= 20%, Amber 18-19.9%, Red < 18%",
+      benchmark: "4-week avg: 19.6%",
+      drivers: ["Late-day response time slipped", "Two counselor absences"],
+      actions: ["Shift coverage to late afternoon", "Automate 48-hour reminders"]
+    },
+    mkt_03: {
+      target: "60 weekly",
+      definition: "New application forms started in the week.",
+      owner: "Admissions Operations",
+      source: "Admissions Portal",
+      updated: "Week 26",
+      threshold: "Green >= 58, Amber 50-57, Red < 50",
+      benchmark: "4-week avg: 56",
+      drivers: ["Email nudges improved completions", "Open-day attendees started forms"],
+      actions: ["Continue reminder cadence", "Add short counselor follow-ups"]
+    },
+    mkt_04: {
+      target: "1,150",
+      definition: "Total enrolled students as of week close.",
+      owner: "School Operations",
+      source: "SIS",
+      updated: "Week 26",
+      threshold: "Green >= 1,140, Amber 1,120-1,139, Red < 1,120",
+      benchmark: "Prior year: 1,145",
+      drivers: ["Primary transfers net +3", "Secondary stable"],
+      actions: ["Track weekly transfers", "Confirm re-enrolments by April"]
+    },
+    prop_01: {
+      target: "96%",
+      definition: "Average weekly attendance across all year groups.",
+      owner: "Vice Principal",
+      source: "SIS Attendance",
+      updated: "Week 26",
+      threshold: "Green >= 96%, Amber 94-95.9%, Red < 94%",
+      benchmark: "4-week avg: 95.1%",
+      drivers: ["Year 10 absences post-assessments", "Transport delays"],
+      actions: ["Target chronic absences", "Reinforce attendance messaging"]
+    },
+    prop_02: {
+      target: "< 12 weekly",
+      definition: "Total student incidents logged weekly.",
+      owner: "Pastoral Lead",
+      source: "Behavior Log",
+      updated: "Week 26",
+      threshold: "Green <= 10, Amber 11-14, Red >= 15",
+      benchmark: "4-week avg: 12",
+      drivers: ["Peer mediation reduced repeats", "Increased corridor coverage"],
+      actions: ["Keep supervision schedule", "Continue weekly check-ins"]
+    },
+    prop_03: {
+      target: "75% A*-B",
+      definition: "Share of A*-B across key qualifications.",
+      owner: "Academic Director",
+      source: "Assessment Results",
+      updated: "FY2026",
+      threshold: "Green >= 75%, Amber 70-74.9%, Red < 70%",
+      benchmark: "Regional avg: 74%",
+      drivers: ["Maths gap -3 pts", "Science moderation delay"],
+      actions: ["Run boosters", "Align exam technique by department"]
+    },
+    prop_04: {
+      target: "85% top-2",
+      definition: "Share of seniors landing top-2 university choices.",
+      owner: "University Counseling",
+      source: "Destinations Tracker",
+      updated: "FY2026",
+      threshold: "Green >= 85%, Amber 82-84.9%, Red < 82%",
+      benchmark: "Prior year: 86%",
+      drivers: ["Early counseling uptake", "UK and US offers improved"],
+      actions: ["Expand alumni mentoring", "Schedule April readiness sessions"]
+    },
+    perf_01: {
+      target: "95%",
+      definition: "Utilization of available capacity across divisions.",
+      owner: "Operations Lead",
+      source: "SIS Capacity",
+      updated: "Month 2",
+      threshold: "Green >= 95%, Amber 92-94.9%, Red < 92%",
+      benchmark: "Regional avg: 93%",
+      drivers: ["Secondary approvals delayed", "Two sections pending"],
+      actions: ["Accelerate approvals", "Finalize staffing for new sections"]
+    },
+    perf_02: {
+      target: "60%",
+      definition: "Percent of revenue converting to EBITDA.",
+      owner: "Finance",
+      source: "Finance P&L",
+      updated: "Month 2",
+      threshold: "Green >= 60%, Amber 56-59.9%, Red < 56%",
+      benchmark: "Prior month: 59%",
+      drivers: ["Procurement savings", "Stable staffing cost"],
+      actions: ["Maintain procurement controls", "Monitor utilities weekly"]
+    },
+    perf_03: {
+      target: "GBP 1.35M",
+      definition: "Monthly EBITDA result vs budget.",
+      owner: "Finance",
+      source: "Finance P&L",
+      updated: "Month 2",
+      threshold: "Green >= 1.35M, Amber 1.25-1.34M, Red < 1.25M",
+      benchmark: "Budget: GBP 1.35M",
+      drivers: ["Utilities above plan", "Overtime expenses"],
+      actions: ["Freeze discretionary overtime", "Renegotiate utility usage"]
+    },
+    perf_04: {
+      target: "35",
+      definition: "Net Promoter Score from parent survey.",
+      owner: "Principal",
+      source: "NPS Survey",
+      updated: "FY2026",
+      threshold: "Green >= 35, Amber 30-34, Red < 30",
+      benchmark: "Regional avg: 34",
+      drivers: ["Comms response time", "Value for money concerns"],
+      actions: ["Publish monthly comms calendar", "Run value-for-money forum"]
+    },
+    perf_05: {
+      target: "98%",
+      definition: "Percent of billed fees collected by due date.",
+      owner: "Finance",
+      source: "Billing System",
+      updated: "Month 2",
+      threshold: "Green >= 98%, Amber 96-97.9%, Red < 96%",
+      benchmark: "Prior month: 97.3%",
+      drivers: ["Grade 10-11 late payers", "Payment plan delays"],
+      actions: ["Call overdue families", "Refresh payment plans"]
+    },
+    perf_06: {
+      target: "< 2.7%",
+      definition: "Monthly student exits as percent of enrolment.",
+      owner: "Student Affairs",
+      source: "SIS Exits",
+      updated: "Month 2",
+      threshold: "Green <= 2.7%, Amber 2.8-3.2%, Red > 3.2%",
+      benchmark: "Prior month: 2.7%",
+      drivers: ["Relocation remains top driver", "Improved pastoral support"],
+      actions: ["Strengthen relocation support", "Track exit reasons monthly"]
+    },
+    tal_01: {
+      target: "75",
+      definition: "Annual staff engagement survey score.",
+      owner: "HR",
+      source: "Engagement Survey",
+      updated: "FY2026",
+      threshold: "Green >= 75, Amber 70-74, Red < 70",
+      benchmark: "Regional avg: 73",
+      drivers: ["Exam period workload", "Cover pressure"],
+      actions: ["Introduce workload check-ins", "Protect meeting-free windows"]
+    },
+    tal_02: {
+      target: "< 16%",
+      definition: "Monthly staff exits as percent of headcount.",
+      owner: "HR",
+      source: "HRIS",
+      updated: "Month 2",
+      threshold: "Green <= 16%, Amber 16-18%, Red > 18%",
+      benchmark: "Prior month: 15.9%",
+      drivers: ["Primary departures", "Commute and workload"],
+      actions: ["Run stay interviews", "Adjust rota support"]
+    },
+    tal_03: {
+      target: "175",
+      definition: "Total employee FTE across the school.",
+      owner: "HR",
+      source: "HRIS",
+      updated: "Month 2",
+      threshold: "Green >= 175, Amber 170-174, Red < 170",
+      benchmark: "Prior year: 173",
+      drivers: ["Learning support hires", "Vacancies down"],
+      actions: ["Rebalance staffing", "Finalize cover schedule"]
+    },
+    tal_04: {
+      target: "<= 13.5:1",
+      definition: "Pupil to teacher ratio across the school.",
+      owner: "Academic Director",
+      source: "SIS Staffing",
+      updated: "Month 2",
+      threshold: "Green <= 13.5, Amber 13.6-14.2, Red > 14.2",
+      benchmark: "Regional avg: 13.6",
+      drivers: ["Secondary humanities class sizes", "Timetable adjustments"],
+      actions: ["Revisit timetable allocation", "Reduce class sizes"]
+    },
+    tal_05: {
+      target: "95%",
+      definition: "Percent of required CBC checks completed.",
+      owner: "HR Compliance",
+      source: "Compliance Tracker",
+      updated: "Week 26",
+      threshold: "Green >= 95%, Amber 90-94.9%, Red < 90%",
+      benchmark: "Prior month: 93%",
+      drivers: ["Two renewals outstanding", "New hire documentation"],
+      actions: ["Close renewals", "Daily compliance tracker"]
+    },
+    tal_06: {
+      target: "90%",
+      definition: "Percent of safeguarding training completed.",
+      owner: "Safeguarding Lead",
+      source: "Training LMS",
+      updated: "Week 26",
+      threshold: "Green >= 90%, Amber 80-89.9%, Red < 80%",
+      benchmark: "Prior month: 84%",
+      drivers: ["Contractor onboarding backlog", "Training renewals overdue"],
+      actions: ["Mandate training completion", "Escalate contractor checks"]
+    }
+  };
+
+  const detail = kpi && detailMap[kpi.id] ? detailMap[kpi.id] : {
+    target: "-",
+    definition: "-",
+    owner: "-",
+    source: "-",
+    updated: "-",
+    threshold: "-",
+    benchmark: "-",
+    drivers: ["-"],
+    actions: ["-"]
+  };
+
+  if (!kpi) {
+    document.getElementById('kpi-title').textContent = "KPI Drill-Down";
+    document.getElementById('kpi-subtitle').textContent = "Select a KPI from the dashboard to view a focused drill-down.";
+    document.getElementById('kpi-empty').style.display = 'block';
+    document.getElementById('kpi-grid').style.display = 'none';
+  } else {
+    const statusLabel = {
+      green: "On Track",
+      amber: "Watch",
+      red: "Action Needed"
+    }[kpi.status] || "On Track";
+
+    const freqLabel = { W: "Weekly", M: "Monthly", A: "Annual" }[kpi.frequency] || "";
+
+    document.getElementById('kpi-title').textContent = kpi.kpi_name + " Drill-Down";
+    document.getElementById('kpi-subtitle').textContent = kpi.explanation;
+    document.getElementById('kpi-value').textContent = kpi.current_value;
+    document.getElementById('kpi-status').textContent = `Status: ${statusLabel}`;
+    document.getElementById('kpi-frequency').textContent = `Frequency: ${freqLabel}`;
+    document.getElementById('kpi-trend').textContent = `Trend: ${kpi.trend_text}`;
+    const trendNote = freqLabel === "Weekly"
+      ? "Based on the last 6 weeks."
+      : (freqLabel === "Monthly" ? "Based on the last 6 months." : "Based on the last 3 years.");
+    document.getElementById('kpi-trend-note').textContent = trendNote;
+    document.getElementById('kpi-target').textContent = `Target: ${detail.target}`;
+    document.getElementById('kpi-why').textContent = kpi.explanation;
+    document.getElementById('kpi-action').textContent = kpi.action_text;
+    document.getElementById('kpi-narrative').innerHTML = [
+      `What this measures: ${detail.definition}`,
+      `Current reading: ${kpi.current_value} (${statusLabel}) against target ${detail.target}.`,
+      `Operational context: ${kpi.explanation}`,
+      `Immediate action: ${kpi.action_text}`,
+      `Next review cadence: ${freqLabel}, last updated ${detail.updated}.`
+    ].map(line => `<p>${line}</p>`).join('');
+
+    document.getElementById('kpi-definition').textContent = `Definition: ${detail.definition}`;
+    document.getElementById('kpi-owner').textContent = `Owner: ${detail.owner}`;
+    document.getElementById('kpi-source').textContent = `Source: ${detail.source}`;
+    document.getElementById('kpi-updated').textContent = `Last Updated: ${detail.updated}`;
+    document.getElementById('kpi-threshold').textContent = detail.threshold;
+    document.getElementById('kpi-benchmark').textContent = `Benchmark: ${detail.benchmark}`;
+    document.getElementById('kpi-benchmark-note').textContent = `Benchmark uses the latest regional comparison.`;
+
+    const driversEl = document.getElementById('kpi-drivers');
+    driversEl.innerHTML = detail.drivers.map(item => `<div>- ${item}</div>`).join('');
+
+    const actionsEl = document.getElementById('kpi-actions');
+    actionsEl.innerHTML = detail.actions.map(item => `<div>- ${item}</div>`).join('');
+
+    renderCharts(kpi, detail, freqLabel);
+  }
+
+  function renderCharts(kpi, detail, freqLabel) {
+    const unit = getUnit(kpi.current_value);
+    const baseValue = parseNumber(kpi.current_value) || 100;
+    const targetValue = parseNumber(detail.target) || baseValue;
+    const seed = hashCode(kpi.id);
+    const rand = seededRandom(seed);
+
+    const trendCount = freqLabel === "Annual" ? 3 : 6;
+    const trendLabels = freqLabel === "Annual"
+      ? ["FY24", "FY25", "FY26"]
+      : (freqLabel === "Monthly"
+        ? ["M-5", "M-4", "M-3", "M-2", "M-1", "M0"]
+        : ["W-5", "W-4", "W-3", "W-2", "W-1", "W0"]);
+    const trendValues = generateSeries(baseValue, trendCount, 0.06, rand, unit);
+
+    const periodLabels = freqLabel === "Annual"
+      ? ["FY24", "FY25", "FY26"]
+      : (freqLabel === "Monthly" ? ["Month -2", "Month -1", "Current"] : ["Week -2", "Week -1", "Current"]);
+    const periodValues = generateSeries(baseValue, 3, 0.04, rand, unit);
+    document.getElementById('kpi-period-note').textContent = `${periodLabels[0]} to ${periodLabels[2]} snapshot.`;
+
+    const driverLabels = getDriverLabels(kpi.section);
+    const driverValues = driverLabels.map(label => ({
+      label,
+      value: Math.round((rand() * 2 - 1) * 10 * 10) / 10
+    }));
+
+    const segmentLabels = getSegmentLabels(kpi.section);
+    const segmentValues = generateShares(segmentLabels.length, rand).map((value, idx) => ({
+      label: segmentLabels[idx],
+      value
+    }));
+
+    renderTrendChart("#trend-chart", trendLabels, trendValues, unit);
+    renderPeriodChart("#period-chart", periodLabels, periodValues, unit);
+    renderDriverChart("#drivers-chart", driverValues, unit);
+    renderSegmentChart("#segment-chart", "#segment-legend", segmentValues);
+    renderBenchmarkChart("#benchmark-chart", baseValue, targetValue, unit);
+  }
+
+  function parseNumber(value) {
+    if (!value) return null;
+    const cleaned = value.toString().replace(/[^0-9.\-]/g, '');
+    const num = parseFloat(cleaned);
+    return Number.isFinite(num) ? num : null;
+  }
+
+  function getUnit(value) {
+    const text = (value || '').toString();
+    if (text.includes('%')) return '%';
+    if (/GBP|£/i.test(text)) return 'GBP';
+    if (text.includes(':1')) return ':1';
+    return '';
+  }
+
+  function formatValue(value, unit) {
+    if (!Number.isFinite(value)) return '-';
+    if (unit === '%') return `${value.toFixed(1)}%`;
+    if (unit === ':1') return `${value.toFixed(1)}:1`;
+    if (unit === 'GBP') return `GBP ${value.toFixed(2)}M`;
+    return value.toFixed(0);
+  }
+
+  function hashCode(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i += 1) {
+      hash = ((hash << 5) - hash) + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash) + 1;
+  }
+
+  function seededRandom(seed) {
+    let value = seed % 2147483647;
+    return function() {
+      value = value * 16807 % 2147483647;
+      return (value - 1) / 2147483646;
+    };
+  }
+
+  function generateSeries(base, count, volatility, rand, unit) {
+    const values = [];
+    let current = base;
+    const maxBound = unit === '%' ? 100 : base * 1.25;
+    const minBound = unit === '%' ? 0 : base * 0.75;
+    for (let i = 0; i < count; i += 1) {
+      const change = (rand() * 2 - 1) * volatility;
+      current = current * (1 + change);
+      current = Math.max(minBound, Math.min(maxBound, current));
+      values.push(current);
+    }
+    return values;
+  }
+
+  function generateShares(count, rand) {
+    const raw = Array.from({ length: count }, () => rand() + 0.2);
+    const total = raw.reduce((sum, val) => sum + val, 0);
+    return raw.map(val => Math.round((val / total) * 100));
+  }
+
+  function getDriverLabels(section) {
+    const map = {
+      "Marketing Efficiency": ["Response time", "Open day impact", "Digital spend", "Counselor capacity"],
+      "School Proposition": ["Attendance push", "Pastoral coverage", "Assessment outcomes", "Parent communication"],
+      "School Performance": ["Utilities variance", "Staffing cost", "Fee collection", "Capacity approvals"],
+      "Talent / Capability": ["Workload balance", "Recruitment fill rate", "Compliance follow-up", "Training completion"]
+    };
+    return map[section] || ["Driver A", "Driver B", "Driver C", "Driver D"];
+  }
+
+  function getSegmentLabels(section) {
+    const map = {
+      "Marketing Efficiency": ["Website", "Referrals", "Events", "Agents"],
+      "School Proposition": ["Primary", "Middle", "Secondary", "Sixth Form"],
+      "School Performance": ["Primary", "Secondary", "Ancillary", "Other"],
+      "Talent / Capability": ["Teaching", "Support", "Leadership", "Contractors"]
+    };
+    return map[section] || ["Segment A", "Segment B", "Segment C", "Segment D"];
+  }
+
+  function renderTrendChart(target, labels, values, unit) {
+    const container = d3.select(target);
+    container.selectAll("*").remove();
+    const width = container.node().clientWidth || 320;
+    const height = 150;
+    const margin = { top: 10, right: 20, bottom: 24, left: 36 };
+    const svg = container.append("svg").attr("viewBox", `0 0 ${width} ${height}`);
+    const x = d3.scalePoint().domain(labels).range([margin.left, width - margin.right]);
+    const y = d3.scaleLinear()
+      .domain([d3.min(values) * 0.95, d3.max(values) * 1.05])
+      .range([height - margin.bottom, margin.top]);
+
+    svg.append("g")
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(d3.axisBottom(x).tickSize(0))
+      .call(g => g.selectAll("text").attr("class", "chart-axis"));
+
+    svg.append("g")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y).ticks(4))
+      .call(g => g.selectAll("text").attr("class", "chart-axis"))
+      .call(g => g.selectAll("line").attr("class", "chart-grid"))
+      .call(g => g.select(".domain").remove());
+
+    svg.append("path")
+      .datum(values)
+      .attr("fill", "none")
+      .attr("stroke", "#1a6bbf")
+      .attr("stroke-width", 2.5)
+      .attr("d", d3.line()
+        .x((d, i) => x(labels[i]))
+        .y(d => y(d))
+      );
+
+    const tooltip = getChartTooltip();
+    const points = values.map((value, index) => ({ value, label: labels[index] }));
+    svg.selectAll("circle")
+      .data(points)
+      .enter()
+      .append("circle")
+      .attr("cx", d => x(d.label))
+      .attr("cy", d => y(d.value))
+      .attr("r", 4)
+      .attr("fill", "#1a6bbf")
+      .on("mouseenter", (event, d) => {
+        tooltip.show(event, `${d.label}: ${formatValue(d.value, unit)}`);
+      })
+      .on("mousemove", (event) => tooltip.move(event))
+      .on("mouseleave", () => tooltip.hide());
+  }
+
+  function renderPeriodChart(target, labels, values, unit) {
+    const container = d3.select(target);
+    container.selectAll("*").remove();
+    const width = container.node().clientWidth || 320;
+    const height = 150;
+    const margin = { top: 10, right: 20, bottom: 26, left: 36 };
+    const svg = container.append("svg").attr("viewBox", `0 0 ${width} ${height}`);
+    const x = d3.scaleBand().domain(labels).range([margin.left, width - margin.right]).padding(0.3);
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(values) * 1.1])
+      .range([height - margin.bottom, margin.top]);
+
+    svg.append("g")
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(d3.axisBottom(x).tickSize(0))
+      .call(g => g.selectAll("text").attr("class", "chart-axis"));
+
+    svg.append("g")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y).ticks(4))
+      .call(g => g.selectAll("text").attr("class", "chart-axis"))
+      .call(g => g.selectAll("line").attr("class", "chart-grid"))
+      .call(g => g.select(".domain").remove());
+
+    const tooltip = getChartTooltip();
+    const bars = values.map((value, index) => ({ value, label: labels[index] }));
+    svg.selectAll("rect")
+      .data(bars)
+      .enter()
+      .append("rect")
+      .attr("x", d => x(d.label))
+      .attr("y", d => y(d.value))
+      .attr("width", x.bandwidth())
+      .attr("height", d => height - margin.bottom - y(d.value))
+      .attr("rx", 6)
+      .attr("fill", "#6aa4e7")
+      .on("mouseenter", (event, d) => {
+        tooltip.show(event, `${d.label}: ${formatValue(d.value, unit)}`);
+      })
+      .on("mousemove", (event) => tooltip.move(event))
+      .on("mouseleave", () => tooltip.hide());
+  }
+
+  function renderDriverChart(target, data, unit) {
+    const container = d3.select(target);
+    container.selectAll("*").remove();
+    const width = container.node().clientWidth || 320;
+    const height = 170;
+    const margin = { top: 10, right: 20, bottom: 20, left: 120 };
+    const svg = container.append("svg").attr("viewBox", `0 0 ${width} ${height}`);
+    const x = d3.scaleLinear().domain([-12, 12]).range([margin.left, width - margin.right]);
+    const y = d3.scaleBand().domain(data.map(d => d.label)).range([margin.top, height - margin.bottom]).padding(0.25);
+
+    svg.append("g")
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(d3.axisBottom(x).ticks(5))
+      .call(g => g.selectAll("text").attr("class", "chart-axis"))
+      .call(g => g.select(".domain").remove());
+
+    svg.append("g")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y).tickSize(0))
+      .call(g => g.selectAll("text").attr("class", "chart-axis"));
+
+    const tooltip = getChartTooltip();
+    svg.selectAll("rect")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("x", d => x(Math.min(0, d.value)))
+      .attr("y", d => y(d.label))
+      .attr("width", d => Math.abs(x(d.value) - x(0)))
+      .attr("height", y.bandwidth())
+      .attr("rx", 6)
+      .attr("fill", d => d.value >= 0 ? "#0b7060" : "#b02020")
+      .on("mouseenter", (event, d) => {
+        tooltip.show(event, `${d.label}: ${d.value > 0 ? '+' : ''}${d.value} impact`);
+      })
+      .on("mousemove", (event) => tooltip.move(event))
+      .on("mouseleave", () => tooltip.hide());
+  }
+
+  function renderSegmentChart(target, legendTarget, data) {
+    const container = d3.select(target);
+    container.selectAll("*").remove();
+    const width = container.node().clientWidth || 280;
+    const height = 170;
+    const radius = Math.min(width, height) / 2 - 10;
+    const svg = container.append("svg").attr("viewBox", `0 0 ${width} ${height}`);
+    const g = svg.append("g").attr("transform", `translate(${width / 2},${height / 2})`);
+    const color = d3.scaleOrdinal()
+      .domain(data.map(d => d.label))
+      .range(["#1a6bbf", "#0b7060", "#f2b352", "#b02020", "#8b5cf6"]);
+    const arc = d3.arc().innerRadius(radius * 0.55).outerRadius(radius);
+    const pie = d3.pie().sort(null).value(d => d.value);
+    const tooltip = getChartTooltip();
+
+    g.selectAll("path")
+      .data(pie(data))
+      .enter()
+      .append("path")
+      .attr("d", arc)
+      .attr("fill", d => color(d.data.label))
+      .on("mouseenter", (event, d) => {
+        tooltip.show(event, `${d.data.label}: ${d.data.value}%`);
+      })
+      .on("mousemove", (event) => tooltip.move(event))
+      .on("mouseleave", () => tooltip.hide());
+
+    const legend = document.getElementById(legendTarget.replace('#', ''));
+    legend.innerHTML = data.map(d => `
+      <div class="legend-item">
+        <span class="legend-dot" style="background:${color(d.label)}"></span>
+        <span>${d.label} (${d.value}%)</span>
+      </div>
+    `).join('');
+  }
+
+  function renderBenchmarkChart(target, actual, targetValue, unit) {
+    const container = d3.select(target);
+    container.selectAll("*").remove();
+    const width = container.node().clientWidth || 320;
+    const height = 90;
+    const margin = { top: 20, right: 20, bottom: 20, left: 36 };
+    const svg = container.append("svg").attr("viewBox", `0 0 ${width} ${height}`);
+    let min = Math.min(actual, targetValue) * 0.8;
+    let max = Math.max(actual, targetValue) * 1.2;
+    if (unit === '%') {
+      min = 0;
+      max = 100;
+    }
+    const x = d3.scaleLinear().domain([min, max]).range([margin.left, width - margin.right]);
+
+    const bands = [
+      { start: min, end: min + (max - min) * 0.4, color: "#fdeeed" },
+      { start: min + (max - min) * 0.4, end: min + (max - min) * 0.7, color: "#fff8ed" },
+      { start: min + (max - min) * 0.7, end: max, color: "#e8f7f3" }
+    ];
+
+    svg.selectAll("rect.band")
+      .data(bands)
+      .enter()
+      .append("rect")
+      .attr("class", "band")
+      .attr("x", d => x(d.start))
+      .attr("y", margin.top)
+      .attr("width", d => x(d.end) - x(d.start))
+      .attr("height", 16)
+      .attr("rx", 6)
+      .attr("fill", d => d.color);
+
+    svg.append("rect")
+      .attr("x", x(Math.min(actual, min)))
+      .attr("y", margin.top + 4)
+      .attr("width", Math.abs(x(actual) - x(min)))
+      .attr("height", 8)
+      .attr("rx", 4)
+      .attr("fill", "#1a6bbf");
+
+    svg.append("line")
+      .attr("x1", x(targetValue))
+      .attr("x2", x(targetValue))
+      .attr("y1", margin.top - 2)
+      .attr("y2", margin.top + 22)
+      .attr("stroke", "#0d2137")
+      .attr("stroke-width", 2);
+
+    svg.append("text")
+      .attr("x", x(actual))
+      .attr("y", margin.top + 36)
+      .attr("text-anchor", "middle")
+      .attr("class", "chart-axis")
+      .text(`Actual: ${formatValue(actual, unit)}`);
+
+    svg.append("text")
+      .attr("x", x(targetValue))
+      .attr("y", margin.top - 8)
+      .attr("text-anchor", "middle")
+      .attr("class", "chart-axis")
+      .text(`Target: ${formatValue(targetValue, unit)}`);
+  }
+
+  function getChartTooltip() {
+    let tooltip = document.getElementById('chart-tooltip');
+    if (!tooltip) {
+      tooltip = document.createElement('div');
+      tooltip.id = 'chart-tooltip';
+      tooltip.className = 'tooltip';
+      document.body.appendChild(tooltip);
+    }
+    return {
+      show(event, text) {
+        tooltip.textContent = text;
+        tooltip.style.opacity = '1';
+        this.move(event);
+      },
+      move(event) {
+        tooltip.style.left = `${event.clientX + 14}px`;
+        tooltip.style.top = `${event.clientY + 14}px`;
+      },
+      hide() {
+        tooltip.style.opacity = '0';
+      }
+    };
+  }
+</script>
+</body>
+</html>

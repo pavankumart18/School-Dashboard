@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principal's Dashboard - SCAN Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <nav class="sb">
+    <div class="sb-brand">
+      <div class="sb-logo"><div class="sb-dot"></div><span class="sb-school">Lincoln Academy</span></div>
+      <div class="sb-role">Principal · Dashboard</div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-lbl">My School</div>
+        <ul>
+          <li class="active"><a href="index.html"><i class="mi">dashboard</i>Overview</a></li>
+          <li><a href="principal-datastory.html"><i class="mi">auto_stories</i>Data Story</a></li>
+          <li><a href="principal-email-alert.html"><i class="mi">mail</i>Alert Email</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Views</div>
+        <ul>
+          <li><a href="regional-view.html"><i class="mi">hub</i>Regional View</a></li>
+          <li><a href="central-view.html"><i class="mi">language</i>Central View</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Leadership</div>
+        <ul>
+          <li><a href="Leaders-dashboard.html"><i class="mi">hub</i>Portfolio Overview</a></li>
+          <li><a href="Leaders-datastory.html"><i class="mi">auto_stories</i>Portfolio Briefing</a></li>
+          <li><a href="Leaders-email-alert.html"><i class="mi">mail</i>Leadership Alert</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sb-foot">
+      <div class="av">
+        <div class="av-ring">SM</div>
+        <div><div class="av-name">Dr. Sarah Miller</div><div class="av-role">Principal</div></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-left">
+        <div class="tb-greeting">Good morning, <em>Sarah</em> - SCAN KPIs at a glance</div>
+        <div class="tb-date">Wednesday, 4 March 2026 · Week 26 of the school year · EY2027</div>
+      </div>
+      <div class="tb-right">
+        <div class="filter-group" aria-label="Filter KPI frequency">
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="W">Weekly</button>
+          <button class="filter-chip" data-filter="M">Monthly</button>
+          <button class="filter-chip" data-filter="A">Annual</button>
+        </div>
+        <a href="principal-email-alert.html" class="chip"><i class="mi">mail</i>Email Alert</a>
+        <a href="regional-view.html" class="chip"><i class="mi">hub</i>Regional View</a>
+      </div>
+    </header>
+
+    <div class="scroll">
+      <div class="alert-banner">
+        <div class="ab-dot"></div>
+        <div class="ab-text">
+          <strong>Current focus:</strong> safeguarding compliance is below threshold, EBITDA is under plan, and NPS remains below target.
+        </div>
+        <div class="ab-pills">
+          <span class="ab-pill r">Safeguarding 76.2%</span>
+          <span class="ab-pill r">EBITDA -GBP 0.15M</span>
+          <span class="ab-pill a">NPS 29</span>
+        </div>
+      </div>
+
+      <!-- Marketing Efficiency -->
+      <section class="sec-block" data-section="Marketing Efficiency">
+        <div class="sec-hdr">
+          <div class="sec-icon mkt"><i class="mi">campaign</i></div>
+          <div>
+            <div class="sec-title">Marketing Efficiency</div>
+            <div class="sec-sub">Increase Profitable Revenue</div>
+          </div>
+          <div class="sec-right">
+            <span class="sec-alert" data-section-alert="Marketing Efficiency"></span>
+            <span class="sec-count" data-section-count="Marketing Efficiency">0 KPIs</span>
+          </div>
+          <div class="sec-line"></div>
+        </div>
+        <div class="kpi-grid" id="list-marketing"></div>
+      </section>
+
+      <!-- School Proposition -->
+      <section class="sec-block" data-section="School Proposition">
+        <div class="sec-hdr">
+          <div class="sec-icon prop"><i class="mi">school</i></div>
+          <div>
+            <div class="sec-title">School Proposition</div>
+            <div class="sec-sub">Improve Academic Outcomes</div>
+          </div>
+          <div class="sec-right">
+            <span class="sec-alert" data-section-alert="School Proposition"></span>
+            <span class="sec-count" data-section-count="School Proposition">0 KPIs</span>
+          </div>
+          <div class="sec-line"></div>
+        </div>
+        <div class="kpi-grid" id="list-proposition"></div>
+      </section>
+
+      <!-- School Performance -->
+      <section class="sec-block" data-section="School Performance">
+        <div class="sec-hdr">
+          <div class="sec-icon perf"><i class="mi">monitoring</i></div>
+          <div>
+            <div class="sec-title">School Performance</div>
+            <div class="sec-sub">Financial and Operational Efficiency</div>
+          </div>
+          <div class="sec-right">
+            <span class="sec-alert" data-section-alert="School Performance"></span>
+            <span class="sec-count" data-section-count="School Performance">0 KPIs</span>
+          </div>
+          <div class="sec-line"></div>
+        </div>
+        <div class="kpi-grid" id="list-performance"></div>
+      </section>
+
+      <!-- Talent / Capability -->
+      <section class="sec-block" data-section="Talent / Capability">
+        <div class="sec-hdr">
+          <div class="sec-icon talent"><i class="mi">groups</i></div>
+          <div>
+            <div class="sec-title">Talent / Capability</div>
+            <div class="sec-sub">Improving Operational Effectiveness</div>
+          </div>
+          <div class="sec-right">
+            <span class="sec-alert" data-section-alert="Talent / Capability"></span>
+            <span class="sec-count" data-section-count="Talent / Capability">0 KPIs</span>
+          </div>
+          <div class="sec-line"></div>
+        </div>
+        <div class="kpi-grid" id="list-talent"></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script src="js/scan_data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

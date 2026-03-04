@@ -1,0 +1,381 @@
+School ID,School Name,Cluster,Metric Category,Metric Name,Value,Unit,YoY Var,Status
+SCH-001,School Alpha,Western,Marketing,Enquiries,464,Count,-9.7%,Warning
+SCH-001,School Alpha,Western,Marketing,Visits,248,Count,-6.1%,Warning
+SCH-001,School Alpha,Western,Marketing,Applications,124,Count,+4.6%,Stable
+SCH-001,School Alpha,Western,Marketing,Enrolled,97,Count,+12.0%,Good
+SCH-001,School Alpha,Western,Marketing,Inquiry to Enrolled CVR,20.9,%,-1.3%,Warning
+SCH-001,School Alpha,Western,Marketing,Velocity,129,Days,-7 days,Stable
+SCH-001,School Alpha,Western,Performance,Student FTE,1673.3,FTE,+2.3%,Stable
+SCH-001,School Alpha,Western,Performance,Capacity Utilization,61.7,%,+17.5%,Critical
+SCH-001,School Alpha,Western,Performance,EBITDA Margin,29.4,%,-7.3%,Warning
+SCH-001,School Alpha,Western,Sentiment,NPS Score,48,Score,-1.0 pts,Good
+SCH-001,School Alpha,Western,Sentiment,Value for Money,4.1,1-5,-2.3 pts,Warning
+SCH-001,School Alpha,Western,Sentiment,Quality of Teaching,4.03,1-5,+1.3 pts,Stable
+SCH-001,School Alpha,Western,Academic,IB Avg Score,28,Score,+2.3 pts,Stable
+SCH-001,School Alpha,Western,Academic,A-Level A*-A,51.4,%,-14.1%,Critical
+SCH-001,School Alpha,Western,Academic,IGCSE Results,72.6,%,+2.0%,Stable
+SCH-001,School Alpha,Western,People,Teacher Attrition,23.3,%,-8.0%,Critical
+SCH-001,School Alpha,Western,People,MAC Attrition,16.4,%,-11.7%,Critical
+SCH-001,School Alpha,Western,People,Employee Engagement,65.2,%,+19.1%,Good
+SCH-001,School Alpha,Western,People,Compliance,96.0,%,+15.2%,Good
+SCH-002,School Beta,Western,Marketing,Enquiries,888,Count,+11.1%,Good
+SCH-002,School Beta,Western,Marketing,Visits,395,Count,-5.9%,Warning
+SCH-002,School Beta,Western,Marketing,Applications,263,Count,-1.1%,Warning
+SCH-002,School Beta,Western,Marketing,Enrolled,161,Count,+1.9%,Stable
+SCH-002,School Beta,Western,Marketing,Inquiry to Enrolled CVR,18.1,%,+0.5%,Stable
+SCH-002,School Beta,Western,Marketing,Velocity,134,Days,6 days,Stable
+SCH-002,School Beta,Western,Performance,Student FTE,836.8,FTE,+5.5%,Stable
+SCH-002,School Beta,Western,Performance,Capacity Utilization,61.9,%,+15.6%,Critical
+SCH-002,School Beta,Western,Performance,EBITDA Margin,32.0,%,+13.8%,Good
+SCH-002,School Beta,Western,Sentiment,NPS Score,20,Score,+3.4 pts,Warning
+SCH-002,School Beta,Western,Sentiment,Value for Money,4.36,1-5,-2.8 pts,Warning
+SCH-002,School Beta,Western,Sentiment,Quality of Teaching,3.95,1-5,-0.1 pts,Warning
+SCH-002,School Beta,Western,Academic,IB Avg Score,33,Score,+3.3 pts,Stable
+SCH-002,School Beta,Western,Academic,A-Level A*-A,44.8,%,+7.2%,Stable
+SCH-002,School Beta,Western,Academic,IGCSE Results,94.6,%,+4.7%,Stable
+SCH-002,School Beta,Western,People,Teacher Attrition,21.2,%,-3.4%,Critical
+SCH-002,School Beta,Western,People,MAC Attrition,7.5,%,+0.5%,Stable
+SCH-002,School Beta,Western,People,Employee Engagement,65.7,%,+12.0%,Good
+SCH-002,School Beta,Western,People,Compliance,98.5,%,-1.4%,Warning
+SCH-003,School Gamma,Northern,Marketing,Enquiries,917,Count,+4.6%,Stable
+SCH-003,School Gamma,Northern,Marketing,Visits,577,Count,+6.4%,Stable
+SCH-003,School Gamma,Northern,Marketing,Applications,454,Count,-6.2%,Warning
+SCH-003,School Gamma,Northern,Marketing,Enrolled,338,Count,+8.4%,Stable
+SCH-003,School Gamma,Northern,Marketing,Inquiry to Enrolled CVR,36.9,%,+18.8%,Good
+SCH-003,School Gamma,Northern,Marketing,Velocity,138,Days,-14 days,Stable
+SCH-003,School Gamma,Northern,Performance,Student FTE,828.4,FTE,+7.5%,Stable
+SCH-003,School Gamma,Northern,Performance,Capacity Utilization,99.4,%,+8.8%,Good
+SCH-003,School Gamma,Northern,Performance,EBITDA Margin,32.0,%,-11.8%,Critical
+SCH-003,School Gamma,Northern,Sentiment,NPS Score,68,Score,+0.2 pts,Good
+SCH-003,School Gamma,Northern,Sentiment,Value for Money,3.54,1-5,-0.2 pts,Warning
+SCH-003,School Gamma,Northern,Sentiment,Quality of Teaching,3.93,1-5,-0.6 pts,Warning
+SCH-003,School Gamma,Northern,Academic,IB Avg Score,31,Score,+0.4 pts,Stable
+SCH-003,School Gamma,Northern,Academic,A-Level A*-A,28.9,%,+13.2%,Good
+SCH-003,School Gamma,Northern,Academic,IGCSE Results,94.8,%,-4.2%,Warning
+SCH-003,School Gamma,Northern,People,Teacher Attrition,8.7,%,+18.3%,Good
+SCH-003,School Gamma,Northern,People,MAC Attrition,13.6,%,+9.3%,Stable
+SCH-003,School Gamma,Northern,People,Employee Engagement,92.3,%,-6.8%,Warning
+SCH-003,School Gamma,Northern,People,Compliance,90.6,%,+12.6%,Good
+SCH-004,School Delta,Northern,Marketing,Enquiries,922,Count,+19.4%,Good
+SCH-004,School Delta,Northern,Marketing,Visits,384,Count,-13.2%,Critical
+SCH-004,School Delta,Northern,Marketing,Applications,245,Count,+9.6%,Stable
+SCH-004,School Delta,Northern,Marketing,Enrolled,161,Count,+12.8%,Good
+SCH-004,School Delta,Northern,Marketing,Inquiry to Enrolled CVR,17.5,%,-13.4%,Critical
+SCH-004,School Delta,Northern,Marketing,Velocity,139,Days,-5 days,Stable
+SCH-004,School Delta,Northern,Performance,Student FTE,549.5,FTE,+17.5%,Good
+SCH-004,School Delta,Northern,Performance,Capacity Utilization,66.1,%,+7.6%,Critical
+SCH-004,School Delta,Northern,Performance,EBITDA Margin,20.7,%,+6.4%,Stable
+SCH-004,School Delta,Northern,Sentiment,NPS Score,17,Score,+3.1 pts,Critical
+SCH-004,School Delta,Northern,Sentiment,Value for Money,4.52,1-5,-0.6 pts,Warning
+SCH-004,School Delta,Northern,Sentiment,Quality of Teaching,4.6,1-5,+1.9 pts,Stable
+SCH-004,School Delta,Northern,Academic,IB Avg Score,32,Score,-2.0 pts,Warning
+SCH-004,School Delta,Northern,Academic,A-Level A*-A,36.6,%,+10.4%,Good
+SCH-004,School Delta,Northern,Academic,IGCSE Results,77.1,%,-2.2%,Warning
+SCH-004,School Delta,Northern,People,Teacher Attrition,25.9,%,+18.8%,Critical
+SCH-004,School Delta,Northern,People,MAC Attrition,35.1,%,+12.7%,Good
+SCH-004,School Delta,Northern,People,Employee Engagement,76.4,%,+8.0%,Stable
+SCH-004,School Delta,Northern,People,Compliance,98.3,%,-14.5%,Critical
+SCH-005,School Epsilon,Southern,Marketing,Enquiries,1069,Count,+14.4%,Good
+SCH-005,School Epsilon,Southern,Marketing,Visits,487,Count,-5.3%,Warning
+SCH-005,School Epsilon,Southern,Marketing,Applications,328,Count,-6.4%,Warning
+SCH-005,School Epsilon,Southern,Marketing,Enrolled,224,Count,-2.0%,Warning
+SCH-005,School Epsilon,Southern,Marketing,Inquiry to Enrolled CVR,21.0,%,-14.0%,Critical
+SCH-005,School Epsilon,Southern,Marketing,Velocity,104,Days,14 days,Stable
+SCH-005,School Epsilon,Southern,Performance,Student FTE,587.8,FTE,-10.8%,Critical
+SCH-005,School Epsilon,Southern,Performance,Capacity Utilization,74.3,%,-6.0%,Stable
+SCH-005,School Epsilon,Southern,Performance,EBITDA Margin,22.2,%,+12.2%,Good
+SCH-005,School Epsilon,Southern,Sentiment,NPS Score,37,Score,-0.9 pts,Warning
+SCH-005,School Epsilon,Southern,Sentiment,Value for Money,3.54,1-5,-1.2 pts,Warning
+SCH-005,School Epsilon,Southern,Sentiment,Quality of Teaching,4.07,1-5,+2.8 pts,Stable
+SCH-005,School Epsilon,Southern,Academic,IB Avg Score,37,Score,+2.1 pts,Stable
+SCH-005,School Epsilon,Southern,Academic,A-Level A*-A,20.8,%,+11.4%,Good
+SCH-005,School Epsilon,Southern,Academic,IGCSE Results,79.2,%,+16.8%,Good
+SCH-005,School Epsilon,Southern,People,Teacher Attrition,13.7,%,-0.4%,Good
+SCH-005,School Epsilon,Southern,People,MAC Attrition,18.0,%,-1.6%,Warning
+SCH-005,School Epsilon,Southern,People,Employee Engagement,65.0,%,-9.5%,Warning
+SCH-005,School Epsilon,Southern,People,Compliance,99.6,%,+5.1%,Stable
+SCH-006,School Zeta,Southern,Marketing,Enquiries,837,Count,+18.7%,Good
+SCH-006,School Zeta,Southern,Marketing,Visits,439,Count,+19.2%,Good
+SCH-006,School Zeta,Southern,Marketing,Applications,232,Count,+12.4%,Good
+SCH-006,School Zeta,Southern,Marketing,Enrolled,149,Count,-5.9%,Warning
+SCH-006,School Zeta,Southern,Marketing,Inquiry to Enrolled CVR,17.8,%,+3.9%,Stable
+SCH-006,School Zeta,Southern,Marketing,Velocity,120,Days,12 days,Stable
+SCH-006,School Zeta,Southern,Performance,Student FTE,824.3,FTE,-12.9%,Critical
+SCH-006,School Zeta,Southern,Performance,Capacity Utilization,62.5,%,-4.1%,Critical
+SCH-006,School Zeta,Southern,Performance,EBITDA Margin,27.5,%,-9.1%,Warning
+SCH-006,School Zeta,Southern,Sentiment,NPS Score,12,Score,-1.1 pts,Critical
+SCH-006,School Zeta,Southern,Sentiment,Value for Money,3.65,1-5,+0.1 pts,Stable
+SCH-006,School Zeta,Southern,Sentiment,Quality of Teaching,4.46,1-5,+1.3 pts,Stable
+SCH-006,School Zeta,Southern,Academic,IB Avg Score,31,Score,-2.7 pts,Warning
+SCH-006,School Zeta,Southern,Academic,A-Level A*-A,33.1,%,+13.1%,Good
+SCH-006,School Zeta,Southern,Academic,IGCSE Results,77.5,%,+15.6%,Good
+SCH-006,School Zeta,Southern,People,Teacher Attrition,8.6,%,+14.6%,Good
+SCH-006,School Zeta,Southern,People,MAC Attrition,13.6,%,-8.3%,Warning
+SCH-006,School Zeta,Southern,People,Employee Engagement,89.9,%,-5.9%,Warning
+SCH-006,School Zeta,Southern,People,Compliance,99.3,%,-5.4%,Warning
+SCH-007,School Eta,Western,Marketing,Enquiries,619,Count,+11.8%,Good
+SCH-007,School Eta,Western,Marketing,Visits,356,Count,+10.7%,Good
+SCH-007,School Eta,Western,Marketing,Applications,268,Count,-1.9%,Warning
+SCH-007,School Eta,Western,Marketing,Enrolled,238,Count,+17.7%,Good
+SCH-007,School Eta,Western,Marketing,Inquiry to Enrolled CVR,38.4,%,+18.4%,Good
+SCH-007,School Eta,Western,Marketing,Velocity,118,Days,6 days,Stable
+SCH-007,School Eta,Western,Performance,Student FTE,2042.6,FTE,+0.7%,Stable
+SCH-007,School Eta,Western,Performance,Capacity Utilization,63.7,%,+19.8%,Critical
+SCH-007,School Eta,Western,Performance,EBITDA Margin,21.4,%,+5.5%,Stable
+SCH-007,School Eta,Western,Sentiment,NPS Score,43,Score,-1.3 pts,Good
+SCH-007,School Eta,Western,Sentiment,Value for Money,3.73,1-5,-1.6 pts,Warning
+SCH-007,School Eta,Western,Sentiment,Quality of Teaching,4.71,1-5,-2.1 pts,Warning
+SCH-007,School Eta,Western,Academic,IB Avg Score,35,Score,-1.9 pts,Warning
+SCH-007,School Eta,Western,Academic,A-Level A*-A,48.6,%,+13.7%,Good
+SCH-007,School Eta,Western,Academic,IGCSE Results,81.3,%,+14.4%,Good
+SCH-007,School Eta,Western,People,Teacher Attrition,7.3,%,-11.4%,Good
+SCH-007,School Eta,Western,People,MAC Attrition,37.1,%,+2.4%,Stable
+SCH-007,School Eta,Western,People,Employee Engagement,64.1,%,+17.7%,Good
+SCH-007,School Eta,Western,People,Compliance,97.8,%,+14.1%,Good
+SCH-008,School Theta,Western,Marketing,Enquiries,316,Count,-7.8%,Warning
+SCH-008,School Theta,Western,Marketing,Visits,208,Count,+7.1%,Stable
+SCH-008,School Theta,Western,Marketing,Applications,118,Count,+2.2%,Stable
+SCH-008,School Theta,Western,Marketing,Enrolled,83,Count,+6.1%,Stable
+SCH-008,School Theta,Western,Marketing,Inquiry to Enrolled CVR,26.3,%,+3.8%,Stable
+SCH-008,School Theta,Western,Marketing,Velocity,129,Days,13 days,Stable
+SCH-008,School Theta,Western,Performance,Student FTE,2385.2,FTE,+16.5%,Good
+SCH-008,School Theta,Western,Performance,Capacity Utilization,82.0,%,+18.9%,Stable
+SCH-008,School Theta,Western,Performance,EBITDA Margin,13.9,%,-4.5%,Warning
+SCH-008,School Theta,Western,Sentiment,NPS Score,32,Score,+3.0 pts,Warning
+SCH-008,School Theta,Western,Sentiment,Value for Money,4.36,1-5,-0.1 pts,Warning
+SCH-008,School Theta,Western,Sentiment,Quality of Teaching,4.71,1-5,+1.9 pts,Stable
+SCH-008,School Theta,Western,Academic,IB Avg Score,35,Score,+2.6 pts,Stable
+SCH-008,School Theta,Western,Academic,A-Level A*-A,30.1,%,+18.8%,Good
+SCH-008,School Theta,Western,Academic,IGCSE Results,93.5,%,-4.0%,Warning
+SCH-008,School Theta,Western,People,Teacher Attrition,23.9,%,+1.5%,Critical
+SCH-008,School Theta,Western,People,MAC Attrition,30.4,%,-1.5%,Warning
+SCH-008,School Theta,Western,People,Employee Engagement,65.4,%,-2.2%,Warning
+SCH-008,School Theta,Western,People,Compliance,92.6,%,-12.5%,Critical
+SCH-009,School Iota,Northern,Marketing,Enquiries,452,Count,+4.6%,Stable
+SCH-009,School Iota,Northern,Marketing,Visits,205,Count,+11.6%,Good
+SCH-009,School Iota,Northern,Marketing,Applications,105,Count,+19.3%,Good
+SCH-009,School Iota,Northern,Marketing,Enrolled,68,Count,+13.5%,Good
+SCH-009,School Iota,Northern,Marketing,Inquiry to Enrolled CVR,15.0,%,-12.8%,Critical
+SCH-009,School Iota,Northern,Marketing,Velocity,140,Days,-6 days,Stable
+SCH-009,School Iota,Northern,Performance,Student FTE,2430.5,FTE,+9.6%,Stable
+SCH-009,School Iota,Northern,Performance,Capacity Utilization,97.5,%,-0.4%,Good
+SCH-009,School Iota,Northern,Performance,EBITDA Margin,13.8,%,-7.8%,Warning
+SCH-009,School Iota,Northern,Sentiment,NPS Score,41,Score,+0.8 pts,Good
+SCH-009,School Iota,Northern,Sentiment,Value for Money,4.01,1-5,+0.6 pts,Stable
+SCH-009,School Iota,Northern,Sentiment,Quality of Teaching,4.14,1-5,+3.0 pts,Stable
+SCH-009,School Iota,Northern,Academic,IB Avg Score,29,Score,+3.9 pts,Stable
+SCH-009,School Iota,Northern,Academic,A-Level A*-A,23.2,%,+8.8%,Stable
+SCH-009,School Iota,Northern,Academic,IGCSE Results,79.1,%,-3.2%,Warning
+SCH-009,School Iota,Northern,People,Teacher Attrition,10.1,%,+12.8%,Good
+SCH-009,School Iota,Northern,People,MAC Attrition,27.8,%,+7.2%,Stable
+SCH-009,School Iota,Northern,People,Employee Engagement,78.2,%,+16.2%,Good
+SCH-009,School Iota,Northern,People,Compliance,93.8,%,+17.9%,Good
+SCH-010,School Kappa,Northern,Marketing,Enquiries,332,Count,-7.1%,Warning
+SCH-010,School Kappa,Northern,Marketing,Visits,224,Count,+3.6%,Stable
+SCH-010,School Kappa,Northern,Marketing,Applications,149,Count,-2.7%,Warning
+SCH-010,School Kappa,Northern,Marketing,Enrolled,119,Count,-3.7%,Warning
+SCH-010,School Kappa,Northern,Marketing,Inquiry to Enrolled CVR,35.8,%,+15.3%,Good
+SCH-010,School Kappa,Northern,Marketing,Velocity,123,Days,-7 days,Stable
+SCH-010,School Kappa,Northern,Performance,Student FTE,1462.5,FTE,+6.4%,Stable
+SCH-010,School Kappa,Northern,Performance,Capacity Utilization,93.5,%,+19.7%,Stable
+SCH-010,School Kappa,Northern,Performance,EBITDA Margin,26.1,%,-6.2%,Warning
+SCH-010,School Kappa,Northern,Sentiment,NPS Score,33,Score,+0.2 pts,Warning
+SCH-010,School Kappa,Northern,Sentiment,Value for Money,4.3,1-5,+2.8 pts,Stable
+SCH-010,School Kappa,Northern,Sentiment,Quality of Teaching,4.48,1-5,-1.1 pts,Warning
+SCH-010,School Kappa,Northern,Academic,IB Avg Score,33,Score,-2.7 pts,Warning
+SCH-010,School Kappa,Northern,Academic,A-Level A*-A,47.7,%,+11.5%,Good
+SCH-010,School Kappa,Northern,Academic,IGCSE Results,76.2,%,+10.0%,Stable
+SCH-010,School Kappa,Northern,People,Teacher Attrition,6.5,%,-2.6%,Good
+SCH-010,School Kappa,Northern,People,MAC Attrition,5.3,%,-10.8%,Critical
+SCH-010,School Kappa,Northern,People,Employee Engagement,84.7,%,-6.1%,Warning
+SCH-010,School Kappa,Northern,People,Compliance,91.7,%,-1.0%,Warning
+SCH-011,School Lambda,Southern,Marketing,Enquiries,769,Count,-11.2%,Critical
+SCH-011,School Lambda,Southern,Marketing,Visits,488,Count,-0.9%,Warning
+SCH-011,School Lambda,Southern,Marketing,Applications,368,Count,+0.6%,Stable
+SCH-011,School Lambda,Southern,Marketing,Enrolled,222,Count,+7.9%,Stable
+SCH-011,School Lambda,Southern,Marketing,Inquiry to Enrolled CVR,28.9,%,+18.7%,Good
+SCH-011,School Lambda,Southern,Marketing,Velocity,133,Days,-2 days,Stable
+SCH-011,School Lambda,Southern,Performance,Student FTE,1656.4,FTE,-6.4%,Warning
+SCH-011,School Lambda,Southern,Performance,Capacity Utilization,67.4,%,+8.1%,Critical
+SCH-011,School Lambda,Southern,Performance,EBITDA Margin,34.7,%,-2.4%,Warning
+SCH-011,School Lambda,Southern,Sentiment,NPS Score,32,Score,+0.2 pts,Warning
+SCH-011,School Lambda,Southern,Sentiment,Value for Money,3.05,1-5,-1.5 pts,Warning
+SCH-011,School Lambda,Southern,Sentiment,Quality of Teaching,3.51,1-5,-1.7 pts,Warning
+SCH-011,School Lambda,Southern,Academic,IB Avg Score,35,Score,-1.0 pts,Warning
+SCH-011,School Lambda,Southern,Academic,A-Level A*-A,39.3,%,-2.6%,Warning
+SCH-011,School Lambda,Southern,Academic,IGCSE Results,76.6,%,-8.0%,Warning
+SCH-011,School Lambda,Southern,People,Teacher Attrition,14.0,%,+13.2%,Good
+SCH-011,School Lambda,Southern,People,MAC Attrition,25.6,%,+14.6%,Good
+SCH-011,School Lambda,Southern,People,Employee Engagement,89.6,%,+6.8%,Stable
+SCH-011,School Lambda,Southern,People,Compliance,99.4,%,+13.6%,Good
+SCH-012,School Mu,Southern,Marketing,Enquiries,839,Count,+3.8%,Stable
+SCH-012,School Mu,Southern,Marketing,Visits,370,Count,-8.0%,Warning
+SCH-012,School Mu,Southern,Marketing,Applications,258,Count,+4.0%,Stable
+SCH-012,School Mu,Southern,Marketing,Enrolled,211,Count,+19.6%,Good
+SCH-012,School Mu,Southern,Marketing,Inquiry to Enrolled CVR,25.1,%,+15.9%,Good
+SCH-012,School Mu,Southern,Marketing,Velocity,98,Days,-1 days,Stable
+SCH-012,School Mu,Southern,Performance,Student FTE,1736.9,FTE,+0.7%,Stable
+SCH-012,School Mu,Southern,Performance,Capacity Utilization,96.2,%,-5.1%,Good
+SCH-012,School Mu,Southern,Performance,EBITDA Margin,15.4,%,-12.0%,Critical
+SCH-012,School Mu,Southern,Sentiment,NPS Score,30,Score,+0.7 pts,Warning
+SCH-012,School Mu,Southern,Sentiment,Value for Money,3.57,1-5,+0.9 pts,Stable
+SCH-012,School Mu,Southern,Sentiment,Quality of Teaching,3.96,1-5,+2.1 pts,Stable
+SCH-012,School Mu,Southern,Academic,IB Avg Score,38,Score,-0.1 pts,Warning
+SCH-012,School Mu,Southern,Academic,A-Level A*-A,30.4,%,+2.1%,Stable
+SCH-012,School Mu,Southern,Academic,IGCSE Results,83.8,%,-5.9%,Warning
+SCH-012,School Mu,Southern,People,Teacher Attrition,9.9,%,-4.8%,Good
+SCH-012,School Mu,Southern,People,MAC Attrition,39.1,%,+10.3%,Good
+SCH-012,School Mu,Southern,People,Employee Engagement,85.8,%,-0.8%,Warning
+SCH-012,School Mu,Southern,People,Compliance,96.3,%,+8.6%,Stable
+SCH-013,School Nu,Western,Marketing,Enquiries,729,Count,+10.0%,Stable
+SCH-013,School Nu,Western,Marketing,Visits,471,Count,+18.9%,Good
+SCH-013,School Nu,Western,Marketing,Applications,238,Count,+15.2%,Good
+SCH-013,School Nu,Western,Marketing,Enrolled,143,Count,-9.4%,Warning
+SCH-013,School Nu,Western,Marketing,Inquiry to Enrolled CVR,19.6,%,+19.0%,Good
+SCH-013,School Nu,Western,Marketing,Velocity,120,Days,19 days,Stable
+SCH-013,School Nu,Western,Performance,Student FTE,1001.8,FTE,+7.5%,Stable
+SCH-013,School Nu,Western,Performance,Capacity Utilization,61.9,%,-10.7%,Critical
+SCH-013,School Nu,Western,Performance,EBITDA Margin,13.9,%,-1.7%,Warning
+SCH-013,School Nu,Western,Sentiment,NPS Score,45,Score,-0.2 pts,Good
+SCH-013,School Nu,Western,Sentiment,Value for Money,3.51,1-5,+2.1 pts,Stable
+SCH-013,School Nu,Western,Sentiment,Quality of Teaching,4.19,1-5,-1.8 pts,Warning
+SCH-013,School Nu,Western,Academic,IB Avg Score,37,Score,+2.6 pts,Stable
+SCH-013,School Nu,Western,Academic,A-Level A*-A,59.2,%,+7.5%,Stable
+SCH-013,School Nu,Western,Academic,IGCSE Results,74.0,%,+10.9%,Good
+SCH-013,School Nu,Western,People,Teacher Attrition,22.8,%,-5.4%,Critical
+SCH-013,School Nu,Western,People,MAC Attrition,34.5,%,-6.0%,Warning
+SCH-013,School Nu,Western,People,Employee Engagement,76.5,%,-10.6%,Critical
+SCH-013,School Nu,Western,People,Compliance,93.0,%,-12.2%,Critical
+SCH-014,School Xi,Western,Marketing,Enquiries,925,Count,+4.6%,Stable
+SCH-014,School Xi,Western,Marketing,Visits,545,Count,+17.8%,Good
+SCH-014,School Xi,Western,Marketing,Applications,357,Count,-10.2%,Critical
+SCH-014,School Xi,Western,Marketing,Enrolled,217,Count,-4.8%,Warning
+SCH-014,School Xi,Western,Marketing,Inquiry to Enrolled CVR,23.5,%,-12.9%,Critical
+SCH-014,School Xi,Western,Marketing,Velocity,100,Days,1 days,Stable
+SCH-014,School Xi,Western,Performance,Student FTE,1176.3,FTE,-10.4%,Critical
+SCH-014,School Xi,Western,Performance,Capacity Utilization,84.2,%,-9.1%,Stable
+SCH-014,School Xi,Western,Performance,EBITDA Margin,30.2,%,+11.6%,Good
+SCH-014,School Xi,Western,Sentiment,NPS Score,68,Score,-1.6 pts,Good
+SCH-014,School Xi,Western,Sentiment,Value for Money,3.31,1-5,-2.5 pts,Warning
+SCH-014,School Xi,Western,Sentiment,Quality of Teaching,4.69,1-5,+2.3 pts,Stable
+SCH-014,School Xi,Western,Academic,IB Avg Score,31,Score,+2.3 pts,Stable
+SCH-014,School Xi,Western,Academic,A-Level A*-A,31.3,%,+2.0%,Stable
+SCH-014,School Xi,Western,Academic,IGCSE Results,86.2,%,-1.2%,Warning
+SCH-014,School Xi,Western,People,Teacher Attrition,23.6,%,+12.6%,Critical
+SCH-014,School Xi,Western,People,MAC Attrition,30.4,%,+11.1%,Good
+SCH-014,School Xi,Western,People,Employee Engagement,83.5,%,+13.2%,Good
+SCH-014,School Xi,Western,People,Compliance,99.7,%,-14.6%,Critical
+SCH-015,School Omicron,Northern,Marketing,Enquiries,879,Count,-12.0%,Critical
+SCH-015,School Omicron,Northern,Marketing,Visits,471,Count,-4.9%,Warning
+SCH-015,School Omicron,Northern,Marketing,Applications,357,Count,+18.1%,Good
+SCH-015,School Omicron,Northern,Marketing,Enrolled,311,Count,+2.8%,Stable
+SCH-015,School Omicron,Northern,Marketing,Inquiry to Enrolled CVR,35.4,%,+13.8%,Good
+SCH-015,School Omicron,Northern,Marketing,Velocity,99,Days,-3 days,Stable
+SCH-015,School Omicron,Northern,Performance,Student FTE,1306.8,FTE,+7.0%,Stable
+SCH-015,School Omicron,Northern,Performance,Capacity Utilization,72.6,%,+10.9%,Stable
+SCH-015,School Omicron,Northern,Performance,EBITDA Margin,28.6,%,+8.5%,Stable
+SCH-015,School Omicron,Northern,Sentiment,NPS Score,67,Score,-0.7 pts,Good
+SCH-015,School Omicron,Northern,Sentiment,Value for Money,3.22,1-5,+3.8 pts,Stable
+SCH-015,School Omicron,Northern,Sentiment,Quality of Teaching,4.25,1-5,-2.5 pts,Warning
+SCH-015,School Omicron,Northern,Academic,IB Avg Score,37,Score,+3.8 pts,Stable
+SCH-015,School Omicron,Northern,Academic,A-Level A*-A,35.0,%,-10.5%,Critical
+SCH-015,School Omicron,Northern,Academic,IGCSE Results,79.9,%,+15.6%,Good
+SCH-015,School Omicron,Northern,People,Teacher Attrition,28.7,%,+13.6%,Critical
+SCH-015,School Omicron,Northern,People,MAC Attrition,33.9,%,-1.7%,Warning
+SCH-015,School Omicron,Northern,People,Employee Engagement,90.2,%,-10.8%,Critical
+SCH-015,School Omicron,Northern,People,Compliance,95.7,%,-4.5%,Warning
+SCH-016,School Pi,Northern,Marketing,Enquiries,434,Count,+8.2%,Stable
+SCH-016,School Pi,Northern,Marketing,Visits,268,Count,-9.4%,Warning
+SCH-016,School Pi,Northern,Marketing,Applications,189,Count,+9.6%,Stable
+SCH-016,School Pi,Northern,Marketing,Enrolled,141,Count,-2.5%,Warning
+SCH-016,School Pi,Northern,Marketing,Inquiry to Enrolled CVR,32.5,%,-3.2%,Warning
+SCH-016,School Pi,Northern,Marketing,Velocity,97,Days,-11 days,Stable
+SCH-016,School Pi,Northern,Performance,Student FTE,2486.5,FTE,-2.8%,Warning
+SCH-016,School Pi,Northern,Performance,Capacity Utilization,90.2,%,+6.6%,Stable
+SCH-016,School Pi,Northern,Performance,EBITDA Margin,20.3,%,+11.3%,Good
+SCH-016,School Pi,Northern,Sentiment,NPS Score,66,Score,-0.4 pts,Good
+SCH-016,School Pi,Northern,Sentiment,Value for Money,3.16,1-5,-2.0 pts,Warning
+SCH-016,School Pi,Northern,Sentiment,Quality of Teaching,3.63,1-5,-1.2 pts,Warning
+SCH-016,School Pi,Northern,Academic,IB Avg Score,30,Score,+2.6 pts,Stable
+SCH-016,School Pi,Northern,Academic,A-Level A*-A,30.0,%,+8.7%,Stable
+SCH-016,School Pi,Northern,Academic,IGCSE Results,90.6,%,+9.9%,Stable
+SCH-016,School Pi,Northern,People,Teacher Attrition,22.8,%,+17.0%,Critical
+SCH-016,School Pi,Northern,People,MAC Attrition,21.7,%,+0.8%,Stable
+SCH-016,School Pi,Northern,People,Employee Engagement,86.6,%,+1.4%,Stable
+SCH-016,School Pi,Northern,People,Compliance,90.8,%,-1.4%,Warning
+SCH-017,School Rho,Southern,Marketing,Enquiries,466,Count,-4.5%,Warning
+SCH-017,School Rho,Southern,Marketing,Visits,195,Count,+9.7%,Stable
+SCH-017,School Rho,Southern,Marketing,Applications,117,Count,+11.3%,Good
+SCH-017,School Rho,Southern,Marketing,Enrolled,81,Count,+2.9%,Stable
+SCH-017,School Rho,Southern,Marketing,Inquiry to Enrolled CVR,17.4,%,-7.1%,Warning
+SCH-017,School Rho,Southern,Marketing,Velocity,116,Days,-13 days,Stable
+SCH-017,School Rho,Southern,Performance,Student FTE,2478.7,FTE,-4.6%,Warning
+SCH-017,School Rho,Southern,Performance,Capacity Utilization,93.5,%,-7.9%,Stable
+SCH-017,School Rho,Southern,Performance,EBITDA Margin,21.5,%,+14.8%,Good
+SCH-017,School Rho,Southern,Sentiment,NPS Score,30,Score,+3.7 pts,Warning
+SCH-017,School Rho,Southern,Sentiment,Value for Money,4.14,1-5,-1.0 pts,Warning
+SCH-017,School Rho,Southern,Sentiment,Quality of Teaching,4.74,1-5,-2.8 pts,Warning
+SCH-017,School Rho,Southern,Academic,IB Avg Score,36,Score,-1.3 pts,Warning
+SCH-017,School Rho,Southern,Academic,A-Level A*-A,58.3,%,+19.9%,Good
+SCH-017,School Rho,Southern,Academic,IGCSE Results,92.3,%,-9.7%,Warning
+SCH-017,School Rho,Southern,People,Teacher Attrition,25.0,%,+4.0%,Critical
+SCH-017,School Rho,Southern,People,MAC Attrition,18.4,%,-11.1%,Critical
+SCH-017,School Rho,Southern,People,Employee Engagement,61.8,%,-0.1%,Warning
+SCH-017,School Rho,Southern,People,Compliance,97.0,%,+15.2%,Good
+SCH-018,School Sigma,Southern,Marketing,Enquiries,1170,Count,+14.7%,Good
+SCH-018,School Sigma,Southern,Marketing,Visits,667,Count,-9.1%,Warning
+SCH-018,School Sigma,Southern,Marketing,Applications,477,Count,-7.9%,Warning
+SCH-018,School Sigma,Southern,Marketing,Enrolled,391,Count,-9.7%,Warning
+SCH-018,School Sigma,Southern,Marketing,Inquiry to Enrolled CVR,33.4,%,-7.0%,Warning
+SCH-018,School Sigma,Southern,Marketing,Velocity,136,Days,-5 days,Stable
+SCH-018,School Sigma,Southern,Performance,Student FTE,2280.4,FTE,+4.5%,Stable
+SCH-018,School Sigma,Southern,Performance,Capacity Utilization,72.8,%,-10.8%,Stable
+SCH-018,School Sigma,Southern,Performance,EBITDA Margin,30.4,%,+17.9%,Good
+SCH-018,School Sigma,Southern,Sentiment,NPS Score,41,Score,+3.3 pts,Good
+SCH-018,School Sigma,Southern,Sentiment,Value for Money,3.12,1-5,-2.8 pts,Warning
+SCH-018,School Sigma,Southern,Sentiment,Quality of Teaching,4.58,1-5,-2.3 pts,Warning
+SCH-018,School Sigma,Southern,Academic,IB Avg Score,37,Score,-0.3 pts,Warning
+SCH-018,School Sigma,Southern,Academic,A-Level A*-A,28.8,%,+12.7%,Good
+SCH-018,School Sigma,Southern,Academic,IGCSE Results,72.2,%,+3.2%,Stable
+SCH-018,School Sigma,Southern,People,Teacher Attrition,19.1,%,+19.8%,Warning
+SCH-018,School Sigma,Southern,People,MAC Attrition,20.5,%,-4.7%,Warning
+SCH-018,School Sigma,Southern,People,Employee Engagement,60.9,%,+14.9%,Good
+SCH-018,School Sigma,Southern,People,Compliance,91.9,%,+6.4%,Stable
+SCH-019,School Tau,Western,Marketing,Enquiries,399,Count,+12.1%,Good
+SCH-019,School Tau,Western,Marketing,Visits,163,Count,+2.6%,Stable
+SCH-019,School Tau,Western,Marketing,Applications,95,Count,+16.0%,Good
+SCH-019,School Tau,Western,Marketing,Enrolled,71,Count,-6.1%,Warning
+SCH-019,School Tau,Western,Marketing,Inquiry to Enrolled CVR,17.8,%,+11.2%,Good
+SCH-019,School Tau,Western,Marketing,Velocity,99,Days,-12 days,Stable
+SCH-019,School Tau,Western,Performance,Student FTE,2381.2,FTE,+15.6%,Good
+SCH-019,School Tau,Western,Performance,Capacity Utilization,71.3,%,+2.1%,Stable
+SCH-019,School Tau,Western,Performance,EBITDA Margin,14.8,%,-10.0%,Warning
+SCH-019,School Tau,Western,Sentiment,NPS Score,19,Score,-1.2 pts,Critical
+SCH-019,School Tau,Western,Sentiment,Value for Money,3.77,1-5,-2.8 pts,Warning
+SCH-019,School Tau,Western,Sentiment,Quality of Teaching,4.08,1-5,-3.0 pts,Warning
+SCH-019,School Tau,Western,Academic,IB Avg Score,38,Score,-2.5 pts,Warning
+SCH-019,School Tau,Western,Academic,A-Level A*-A,20.3,%,+16.7%,Good
+SCH-019,School Tau,Western,Academic,IGCSE Results,75.2,%,-1.3%,Warning
+SCH-019,School Tau,Western,People,Teacher Attrition,21.7,%,-8.5%,Critical
+SCH-019,School Tau,Western,People,MAC Attrition,10.3,%,-5.4%,Warning
+SCH-019,School Tau,Western,People,Employee Engagement,61.5,%,+8.1%,Stable
+SCH-019,School Tau,Western,People,Compliance,92.0,%,+14.7%,Good
+SCH-020,School Upsilon,Western,Marketing,Enquiries,1160,Count,-5.2%,Warning
+SCH-020,School Upsilon,Western,Marketing,Visits,686,Count,+2.4%,Stable
+SCH-020,School Upsilon,Western,Marketing,Applications,360,Count,-12.0%,Critical
+SCH-020,School Upsilon,Western,Marketing,Enrolled,256,Count,-1.1%,Warning
+SCH-020,School Upsilon,Western,Marketing,Inquiry to Enrolled CVR,22.1,%,+11.3%,Good
+SCH-020,School Upsilon,Western,Marketing,Velocity,130,Days,-14 days,Stable
+SCH-020,School Upsilon,Western,Performance,Student FTE,1167.0,FTE,+17.5%,Good
+SCH-020,School Upsilon,Western,Performance,Capacity Utilization,98.4,%,+7.4%,Good
+SCH-020,School Upsilon,Western,Performance,EBITDA Margin,32.2,%,-14.3%,Critical
+SCH-020,School Upsilon,Western,Sentiment,NPS Score,34,Score,+3.7 pts,Warning
+SCH-020,School Upsilon,Western,Sentiment,Value for Money,3.74,1-5,-1.9 pts,Warning
+SCH-020,School Upsilon,Western,Sentiment,Quality of Teaching,4.14,1-5,-2.7 pts,Warning
+SCH-020,School Upsilon,Western,Academic,IB Avg Score,33,Score,+0.6 pts,Stable
+SCH-020,School Upsilon,Western,Academic,A-Level A*-A,21.7,%,+11.1%,Good
+SCH-020,School Upsilon,Western,Academic,IGCSE Results,81.4,%,+10.0%,Stable
+SCH-020,School Upsilon,Western,People,Teacher Attrition,8.3,%,+7.2%,Good
+SCH-020,School Upsilon,Western,People,MAC Attrition,21.5,%,-2.3%,Warning
+SCH-020,School Upsilon,Western,People,Employee Engagement,78.8,%,-11.6%,Critical
+SCH-020,School Upsilon,Western,People,Compliance,93.5,%,+8.0%,Stable

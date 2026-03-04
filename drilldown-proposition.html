@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Proposition Drill-Down</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <nav class="sb">
+    <div class="sb-brand">
+      <div class="sb-logo"><div class="sb-dot"></div><span class="sb-school">Lincoln Academy</span></div>
+      <div class="sb-role">Principal - Dashboard</div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-lbl">My School</div>
+        <ul>
+          <li class="active"><a href="index.html"><i class="mi">dashboard</i>Overview</a></li>
+          <li><a href="principal-datastory.html"><i class="mi">auto_stories</i>Data Story</a></li>
+          <li><a href="principal-email-alert.html"><i class="mi">mail</i>Alert Email</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Views</div>
+        <ul>
+          <li><a href="regional-view.html"><i class="mi">hub</i>Regional View</a></li>
+          <li><a href="central-view.html"><i class="mi">language</i>Central View</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Leadership</div>
+        <ul>
+          <li><a href="Leaders-dashboard.html"><i class="mi">hub</i>Portfolio Overview</a></li>
+          <li><a href="Leaders-datastory.html"><i class="mi">auto_stories</i>Portfolio Briefing</a></li>
+          <li><a href="Leaders-email-alert.html"><i class="mi">mail</i>Leadership Alert</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sb-foot">
+      <div class="av">
+        <div class="av-ring">SM</div>
+        <div><div class="av-name">Dr. Sarah Miller</div><div class="av-role">Principal</div></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-left">
+        <div class="tb-greeting">School Proposition Drill-Down</div>
+        <div class="tb-date">Attendance, incidents, qualifications, and university destinations</div>
+      </div>
+      <div class="tb-right">
+        <a href="index.html" class="chip"><i class="mi">arrow_back</i>Back to Overview</a>
+      </div>
+    </header>
+
+    <div class="scroll">
+      <div class="panel-grid">
+        <div class="panel">
+          <h3>Attendance</h3>
+          <div class="simple-metric">
+            <span>Weekly attendance</span>
+            <span>94.6%</span>
+          </div>
+          <p class="note">Target 96%. Secondary attendance dipped after assessment week.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Student Incidents</h3>
+          <div class="simple-metric">
+            <span>Incidents this week</span>
+            <span>9</span>
+          </div>
+          <p class="note">Down 3 vs last week. Most incidents were low-level corridor issues.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Performance of Key Qualifications</h3>
+          <div class="chart-list">
+            <div class="bar-row"><div class="bar-label">A-Level A*-B</div><div class="bar-track"><div class="bar-fill" style="width:72%;"></div></div><span>72%</span></div>
+            <div class="bar-row"><div class="bar-label">IB Diploma</div><div class="bar-track"><div class="bar-fill" style="width:78%;"></div></div><span>33.2</span></div>
+            <div class="bar-row"><div class="bar-label">iGCSE A*-B</div><div class="bar-track"><div class="bar-fill" style="width:68%;"></div></div><span>68%</span></div>
+          </div>
+          <p class="note">Math and science cohorts are 3 pts below target.</p>
+        </div>
+
+        <div class="panel">
+          <h3>University Destinations</h3>
+          <div class="simple-metric">
+            <span>Top-2 choice acceptance</span>
+            <span>88%</span>
+          </div>
+          <p class="note">Offers improved after early counseling and alumni mentoring.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Student Support Actions</h3>
+          <div class="chart-list">
+            <div>- Expand attendance follow-up for Years 10-11.</div>
+            <div>- Maintain peer mediation coverage in Primary.</div>
+            <div>- Run qualification boosters ahead of mock exams.</div>
+            <div>- Track university offer conversions weekly.</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Notes</h3>
+          <p>Student wellbeing remains stable. The biggest academic risk is math/science performance in Year 11.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

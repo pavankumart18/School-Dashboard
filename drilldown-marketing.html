@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Efficiency Drill-Down</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <nav class="sb">
+    <div class="sb-brand">
+      <div class="sb-logo"><div class="sb-dot"></div><span class="sb-school">Lincoln Academy</span></div>
+      <div class="sb-role">Principal · Dashboard</div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-lbl">My School</div>
+        <ul>
+          <li class="active"><a href="index.html"><i class="mi">dashboard</i>Overview</a></li>
+          <li><a href="principal-datastory.html"><i class="mi">auto_stories</i>Data Story</a></li>
+          <li><a href="principal-email-alert.html"><i class="mi">mail</i>Alert Email</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Views</div>
+        <ul>
+          <li><a href="regional-view.html"><i class="mi">hub</i>Regional View</a></li>
+          <li><a href="central-view.html"><i class="mi">language</i>Central View</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Leadership</div>
+        <ul>
+          <li><a href="Leaders-dashboard.html"><i class="mi">hub</i>Portfolio Overview</a></li>
+          <li><a href="Leaders-datastory.html"><i class="mi">auto_stories</i>Portfolio Briefing</a></li>
+          <li><a href="Leaders-email-alert.html"><i class="mi">mail</i>Leadership Alert</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sb-foot">
+      <div class="av">
+        <div class="av-ring">SM</div>
+        <div><div class="av-name">Dr. Sarah Miller</div><div class="av-role">Principal</div></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-left">
+        <div class="tb-greeting">Marketing Efficiency Drill-Down</div>
+        <div class="tb-date">Enquiry funnel, conversion, channel mix, and velocity</div>
+      </div>
+      <div class="tb-right">
+        <a href="index.html" class="chip"><i class="mi">arrow_back</i>Back to Overview</a>
+      </div>
+    </header>
+
+    <div class="scroll">
+      <div class="panel-grid">
+        <div class="panel">
+          <h3>Enquiry Funnel</h3>
+          <div class="funnel">
+            <div class="funnel-step"><span>Enquiries</span><span>142</span></div>
+            <div class="funnel-step"><span>Applications</span><span>61</span></div>
+            <div class="funnel-step"><span>Offers</span><span>44</span></div>
+            <div class="funnel-step"><span>Enrolments</span><span>31</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Conversion Rates</h3>
+          <div class="chart-list">
+            <div class="bar-row">
+              <div class="bar-label">Enquiry to Application</div>
+              <div class="bar-track"><div class="bar-fill" style="width:43%;"></div></div>
+              <span class="trend-chip">? 2.1 pts</span>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Application to Offer</div>
+              <div class="bar-track"><div class="bar-fill" style="width:72%;"></div></div>
+              <span class="trend-chip">? 1.4 pts</span>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Offer to Enrolment</div>
+              <div class="bar-track"><div class="bar-fill" style="width:70%;"></div></div>
+              <span class="trend-chip">? flat</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Enquiries by Channel</h3>
+          <div class="chart-list">
+            <div class="bar-row">
+              <div class="bar-label">Website</div>
+              <div class="bar-track"><div class="bar-fill" style="width:46%;"></div></div>
+              <span>46%</span>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Referrals</div>
+              <div class="bar-track"><div class="bar-fill" style="width:22%;"></div></div>
+              <span>22%</span>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Agents</div>
+              <div class="bar-track"><div class="bar-fill" style="width:18%;"></div></div>
+              <span>18%</span>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Events</div>
+              <div class="bar-track"><div class="bar-fill" style="width:14%;"></div></div>
+              <span>14%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Month-over-Month Trend</h3>
+          <svg viewBox="0 0 320 140" width="100%" height="140" role="img" aria-label="Enquiry trend">
+            <polyline points="20,90 80,70 140,75 200,60 260,55 300,50" fill="none" stroke="#1a6bbf" stroke-width="3" />
+            <circle cx="20" cy="90" r="4" fill="#1a6bbf" />
+            <circle cx="80" cy="70" r="4" fill="#1a6bbf" />
+            <circle cx="140" cy="75" r="4" fill="#1a6bbf" />
+            <circle cx="200" cy="60" r="4" fill="#1a6bbf" />
+            <circle cx="260" cy="55" r="4" fill="#1a6bbf" />
+            <circle cx="300" cy="50" r="4" fill="#1a6bbf" />
+          </svg>
+          <p>Momentum improved after January open day and follow-up blitz.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Pipeline Velocity</h3>
+          <div class="simple-metric">
+            <span>Average days to enrolment</span>
+            <span>18 days</span>
+          </div>
+          <p class="note">Down 2 days vs last month after faster admissions callbacks.</p>
+        </div>
+
+        <div class="panel">
+          <h3>SCAN Insights</h3>
+          <p>Reason: Enquiry volume held strong, but callback speed slowed on Tuesday and Thursday peaks.</p>
+          <p>Action: Shift two admissions counselors to peak-hour coverage.</p>
+          <p>Action: Automate application reminder after 48 hours of inactivity.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

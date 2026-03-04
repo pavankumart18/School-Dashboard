@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Performance Drill-Down</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <nav class="sb">
+    <div class="sb-brand">
+      <div class="sb-logo"><div class="sb-dot"></div><span class="sb-school">Lincoln Academy</span></div>
+      <div class="sb-role">Principal · Dashboard</div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-lbl">My School</div>
+        <ul>
+          <li class="active"><a href="index.html"><i class="mi">dashboard</i>Overview</a></li>
+          <li><a href="principal-datastory.html"><i class="mi">auto_stories</i>Data Story</a></li>
+          <li><a href="principal-email-alert.html"><i class="mi">mail</i>Alert Email</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Views</div>
+        <ul>
+          <li><a href="regional-view.html"><i class="mi">hub</i>Regional View</a></li>
+          <li><a href="central-view.html"><i class="mi">language</i>Central View</a></li>
+        </ul>
+      </div>
+      <div class="sb-section">
+        <div class="sb-lbl">Leadership</div>
+        <ul>
+          <li><a href="Leaders-dashboard.html"><i class="mi">hub</i>Portfolio Overview</a></li>
+          <li><a href="Leaders-datastory.html"><i class="mi">auto_stories</i>Portfolio Briefing</a></li>
+          <li><a href="Leaders-email-alert.html"><i class="mi">mail</i>Leadership Alert</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sb-foot">
+      <div class="av">
+        <div class="av-ring">SM</div>
+        <div><div class="av-name">Dr. Sarah Miller</div><div class="av-role">Principal</div></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-left">
+        <div class="tb-greeting">School Performance Drill-Down</div>
+        <div class="tb-date">Capacity, fee income, EBITDA variance, and churn</div>
+      </div>
+      <div class="tb-right">
+        <a href="index.html" class="chip"><i class="mi">arrow_back</i>Back to Overview</a>
+      </div>
+    </header>
+
+    <div class="scroll">
+      <div class="panel-grid">
+        <div class="panel">
+          <h3>Capacity Creation</h3>
+          <div class="simple-metric">
+            <span>Utilization</span>
+            <span>94%</span>
+          </div>
+          <p>Current utilization vs maximum capacity.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Fee Income Collection</h3>
+          <div class="simple-metric">
+            <span>Collected vs Target</span>
+            <span>96.1%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" style="width:96.1%;"></div></div>
+          <p class="note">Target 98%. Late payments clustered in Grade 10.</p>
+        </div>
+
+        <div class="panel">
+          <h3>EBITDA Variance</h3>
+          <div class="chart-list">
+            <div class="bar-row">
+              <div class="bar-label">Actual</div>
+              <div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--red);"></div></div>
+              <span>GBP 1.2M</span>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Budget</div>
+              <div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--navy);"></div></div>
+              <span>GBP 1.35M</span>
+            </div>
+          </div>
+          <p class="note">Variance: -GBP 0.15M driven by utilities and staffing.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Flowthrough % Trend</h3>
+          <svg viewBox="0 0 320 140" width="100%" height="140" role="img" aria-label="Flowthrough trend">
+            <polyline points="20,85 80,70 140,72 200,60 260,55 300,50" fill="none" stroke="#1a6bbf" stroke-width="3" />
+            <circle cx="20" cy="85" r="4" fill="#1a6bbf" />
+            <circle cx="80" cy="70" r="4" fill="#1a6bbf" />
+            <circle cx="140" cy="72" r="4" fill="#1a6bbf" />
+            <circle cx="200" cy="60" r="4" fill="#1a6bbf" />
+            <circle cx="260" cy="55" r="4" fill="#1a6bbf" />
+            <circle cx="300" cy="50" r="4" fill="#1a6bbf" />
+          </svg>
+          <p>Flowthrough improved steadily after expense controls.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Student Churn</h3>
+          <div class="chart-list">
+            <div class="bar-row">
+              <div class="bar-label">Overall churn</div>
+              <div class="bar-track"><div class="bar-fill" style="width:24%;"></div></div>
+              <span>2.4%</span>
+            </div>
+          </div>
+          <svg viewBox="0 0 320 120" width="100%" height="120" role="img" aria-label="Student churn trend">
+            <polyline points="20,70 80,68 140,64 200,60 260,58 300,56" fill="none" stroke="#1a6bbf" stroke-width="3" />
+            <circle cx="20" cy="70" r="4" fill="#1a6bbf" />
+            <circle cx="80" cy="68" r="4" fill="#1a6bbf" />
+            <circle cx="140" cy="64" r="4" fill="#1a6bbf" />
+            <circle cx="200" cy="60" r="4" fill="#1a6bbf" />
+            <circle cx="260" cy="58" r="4" fill="#1a6bbf" />
+            <circle cx="300" cy="56" r="4" fill="#1a6bbf" />
+          </svg>
+          <p class="note">Breakdown by year group:</p>
+          <div class="chart-list">
+            <div class="bar-row"><div class="bar-label">Primary</div><div class="bar-track"><div class="bar-fill" style="width:18%;"></div></div><span>1.8%</span></div>
+            <div class="bar-row"><div class="bar-label">Middle</div><div class="bar-track"><div class="bar-fill" style="width:26%;"></div></div><span>2.6%</span></div>
+            <div class="bar-row"><div class="bar-label">Senior</div><div class="bar-track"><div class="bar-fill" style="width:32%;"></div></div><span>3.2%</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>NPS Summary</h3>
+          <div class="simple-metric">
+            <span>Current NPS</span>
+            <span>29</span>
+          </div>
+          <p class="note">Below target of 35. Focus on communication consistency.</p>
+          <a class="back-link" href="drilldown-nps.html">View Full NPS Drill-Down</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
